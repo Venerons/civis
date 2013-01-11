@@ -8,11 +8,14 @@ It implements similar but simpler rules, and thanks to the web technologies is a
 
 ## Supported Platforms:
 
+### Browser
 * **Web App** - [CivJS](http://civjs.venerons.altervista.org)
 
+### Desktop OS
 * **Mac OS X** - _future native app, at today playable as web app_
 * **Windows** - _future native app, at today playable as web app_
 
+### Mobile OS
 * **iOS** - _future native app, at today playable as web app_
 * **Android** - _future native app, at today playable as web app_
 * **Windows Phone** - _future native app, at today playable as web app_
