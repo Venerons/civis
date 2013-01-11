@@ -56,17 +56,45 @@
             
             <div data-role="content" data-theme="c">
                 <ul data-role="listview" data-inset="true" data-theme="a">
-                    <li><a href="map.html" data-ajax="false">New Game</a></li>
-                    <li><a href="map.html" data-ajax="false">Load Game</a></li>
+                    <li><a href="map.html?action=new" data-ajax="false">New Game</a></li>
+                    <li><a href="#load" data-transition="slide">Load Game</a></li>
                 </ul>
                 <ul data-role="listview" data-inset="true" data-theme="a">
-                    <li><a href="map.html" data-ajax="false">Manual</a></li>
+                    <li><a href="#manual" data-transition="slide">Manual</a></li>
                 </ul>
                 <ul data-role="listview" data-inset="true" data-theme="a">
                     <li><a href="#about" data-transition="slide">Credits</a></li>
                 </ul>
             </div><!-- /content -->
         </div><!-- /page -->
+
+        <!-- PAGINA LOAD -->
+        <div data-role="page" id="load">
+            <div data-role="header" data-theme="a" data-position="inline" data-id="barra">
+                <a href="#home" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse" data-theme="a" /></a>
+                <h1>Load Game</h1>
+            </div><!-- /header -->
+            
+            <div data-role="content" data-theme="c">
+                <ul data-role="listview" data-inset="true" data-theme="a">
+                    <li><a href="map.html?action=load&save=auto" data-ajax="false">Load Last Auto Save</a></li>
+                    <li><a href="map.html?action=load&save=manual" data-ajax="false">Load Manual Save</a></li>
+                </ul>
+            </div><!-- /content -->
+        </div><!-- /page -->
+
+        <!-- PAGINA MANUAL -->
+        <div data-role="page" id="manual">
+            <div data-role="header" data-theme="a" data-position="inline">
+                <a href="#home" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse" data-theme="a" /></a>
+                <h1>CivJS Manual</h1>
+            </div>
+            <div data-role="content">
+                <p align="justify">
+                here goes the manual
+                </p>
+            </div>
+        </div>
         
         <!-- PAGINA ABOUT -->
         <div data-role="page" id="about">

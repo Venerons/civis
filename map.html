@@ -5,21 +5,22 @@
 	<title>CivJS</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="lib/map.css" />
+	<script src="lib/map.js"></script>
 </head>
-<body bgcolor="black">
+<body bgcolor="black" onload="loadMap()">
 	<div id="map">
 		<table border="0" cellspacing="1">
 			<tbody>
 				<tr>
-					<td class="water">
+					<td id="11" class="water">
 					</td>
-					<td class="water">
+					<td id="12" class="water">
 					</td>
-					<td class="water">
+					<td id="13" class="water">
 					</td>
-					<td class="water">
+					<td id="14" class="water">
 					</td>
-					<td class="water">
+					<td id="15" class="water">
 					</td>
 				</tr>
 				<tr>
@@ -54,12 +55,13 @@
 					<td class="water">
 					</td>
 					<td class="grass">
+						<img src="lib/tiles/forest.png">
 					</td>
 					<td class="snow border-left border-bottom blue">
-						<br/>
+						<img src="lib/tiles/forest.png">
 					</td>
 					<td class="desert border-bottom border-right blue">
-						<br/>
+						<img src="lib/tiles/forest.png">
 					</td>
 					<td class="water">
 					</td>
@@ -93,10 +95,10 @@
 	</div>
 	<div id="menubar">
 		<span style="position: relative; top: 5px; left: 10px; height: 40px;"><strong>CivJS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>
-		<button class="menubutton">Save Game</button>
-		<button class="menubutton">Load Game</button>
-		<button class="menubutton">Manual</button>
-		<button class="menubutton">Exit Game</button>
+		<button class="menubutton" onclick="saveGame()">Save Game</button>
+		<button class="menubutton" onclick="loadGame()">Load Game</button>
+		<button class="menubutton" onclick="manual()">Manual</button>
+		<button class="menubutton" onclick="exitGame()">Exit Game</button>
 	</div>
 	<div id="actionbar">
 		<span style="position: relative; top: 5px; left: 10px; height: 40px;"><strong>Action Bar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>
