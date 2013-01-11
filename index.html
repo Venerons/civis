@@ -1,0 +1,91 @@
+<!-- Copyright (c) 2013 Daniele Veneroni. Released under MIT License -->
+<!DOCTYPE html> 
+<html> 
+	<head> 
+        <title>CivJS</title> 
+        
+        <!-- WEB SEARCH META TAGS -->
+        <meta charset="UTF-8">
+        <meta content="index,follow" name="robots" />
+        <meta content="Android,Web,App,iPod,iPhone,iPad,Mac,OSX,Windows,browser,game,civ,civilization,js" name="Keywords" />
+        <meta content="A JavaScript game inspired by Sid Meier's Civilization series" name="Description" />
+        
+        <!-- SAFARI WEB APP META TAGS -->
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <!-- iOS web app icons -->
+        <link href="icons/ios/icon57.png" sizes="57x57" rel="apple-touch-icon" /> <!-- iPhone non-retina 57x57 -->
+        <link href="icons/ios/icon72.png" sizes="72x72" rel="apple-touch-icon" /> <!-- iPad non-retina 72x72 -->
+        <link href="icons/ios/icon114.png" sizes="114x114" rel="apple-touch-icon" /> <!-- iPhone retina 114x114 -->
+        <link href="icons/ios/icon144.png" sizes="144x144" rel="apple-touch-icon"/> <!-- iPad retina 144x144 -->
+        <!-- iOS web app spash screens -->
+        <link rel="apple-touch-startup-image" href="splash/ios/splash-320x460.jpg" media="(device-width: 320px)" /> <!-- iPhone standard resolution 320x460 (landscape not needed because all web apps start portrait on iPhone) -->
+        <link rel="apple-touch-startup-image" href="splash/ios/splash-640x920.jpg" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)" /> <!-- iPhone high resolution (retina) 640x920 pixels (landscape not needed because all web apps start portrait on iPhone) -->
+        <link rel="apple-touch-startup-image" href="splash/ios/splash-768x1004.jpg" media="(device-width: 768px) and (orientation: portrait)" /> <!-- iPad Portrait 768x1004 -->
+        <link rel="apple-touch-startup-image" href="splash/ios/splash-748x1024.jpg" media="(device-width: 768px) and (orientation: landscape)" /> <!-- iPad Landscape 748x1024 (yes, a portrait image but with content rotated 90 degrees - allows 20px for status bar) -->
+        <link rel="apple-touch-startup-image" href="splash/ios/splash-1536x2008.jpg" media="(device-width: 768px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" /> <!-- iPad retina Portrait 1536x2008 -->
+        <link rel="apple-touch-startup-image" href="splash/ios/splash-1496x2048.jpg" media="(device-width: 768px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" /> <!-- iPad retina Landscape 1496x2048 (yes, a portrait image but with content rotated 90 degrees - allows 40px for status bar) -->
+            
+        <!-- JQUERY MOBILE FRAMEWORK META TAGS -->
+        <link rel="stylesheet" href="lib/jquery.mobile.css" /> <!-- actual version: 1.2.0 -->
+        <script src="lib/jquery.js"></script> <!-- actual version: 1.8.2 -->
+        <script src="lib/jquery.mobile.js"></script> <!-- actual version: 1.2.0 -->
+            
+        <!-- ADD2HOME META TAGS -->
+        <script type="application/javascript" src="lib/add2home.js"></script>
+        <link rel="stylesheet" href="lib/add2home.css">
+        <script type="text/javascript">
+            var addToHomeConfig = {
+                animationIn: 'drop',
+                animationOut: 'fade',
+                startDelay: 1000,
+                lifespan: 5000,
+                expire: 2,
+                touchIcon:true,
+            };
+        </script>
+    </head> 
+    <body> 
+        
+        <!-- PAGINA HOME -->
+        <div data-role="page" id="home">
+            <div data-role="header" data-theme="a" data-position="inline" data-id="barra">
+                <h1>CivJS</h1>
+            </div><!-- /header -->
+            
+            <div data-role="content" data-theme="c">
+                <ul data-role="listview" data-inset="true" data-theme="a">
+                    <li><a href="map.html" data-ajax="false">New Game</a></li>
+                    <li><a href="map.html" data-ajax="false">Load Game</a></li>
+                </ul>
+                <ul data-role="listview" data-inset="true" data-theme="a">
+                    <li><a href="map.html" data-ajax="false">Manual</a></li>
+                </ul>
+                <ul data-role="listview" data-inset="true" data-theme="a">
+                    <li><a href="#about" data-transition="slide">Credits</a></li>
+                </ul>
+            </div><!-- /content -->
+        </div><!-- /page -->
+        
+        <!-- PAGINA ABOUT -->
+        <div data-role="page" id="about">
+            <div data-role="header" data-theme="a" data-position="inline">
+                <a href="#home" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse" data-theme="a" /></a>
+                <h1>About CivJS</h1>
+            </div>
+            <div data-role="content">
+                <p align="justify">
+                <strong>Author:</strong> Daniele Veneroni<br />
+                <strong>Company:</strong> Venerons Laboratories<br />
+                <strong>Version:</strong> 1.0.0<br /><br />
+                <strong>About:</strong><br />
+                CivJS is a JavaScript game inspired by Sid Meier's Civilization series.<br /><br />
+                <strong>Contacts:</strong><br />
+                For more information about the project CivJS please visit the website <a href="http://veneronslabs.wordpress.com/">Venerons Laboratories</a>.
+                </p>
+            </div>
+        </div>
+        
+    </body>
+</html>
