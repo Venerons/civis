@@ -16,6 +16,23 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645',GradientType=0 ); /* IE6-9 */
 }
 
+#actionbar {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	height: 50px;
+	display: none;
+	background: #f1e767; /* Old browsers */
+	background: -moz-linear-gradient(top,  #f1e767 0%, #feb645 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f1e767), color-stop(100%,#feb645)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #f1e767 0%,#feb645 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #f1e767 0%,#feb645 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #f1e767 0%,#feb645 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #f1e767 0%,#feb645 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645',GradientType=0 ); /* IE6-9 */
+}
+
 .menubutton {
 	position: relative;
 	top: 5px;
@@ -60,10 +77,19 @@ td {
 	background: #F7C967 url('tiles/desert.jpg') left top;
 }
 .marsh {
-	background: #4A8E16 url('tiles/marsh.jpg') left top;
+	background: #447F4C url('tiles/marsh.jpg') left top;
 }
 .mountain {
 	background: #87817D url('tiles/mountain.jpg') left top;
+}
+.snow {
+	background: #FFFFFF url('tiles/snow.jpg') left top;
+}
+.hill {
+	background: #4A8E16 url('tiles/hill.jpg') left top;
+}
+.fog {
+	background: #000000 url('tiles/fog.jpg') left top;
 }
 
 /* COLORS */
