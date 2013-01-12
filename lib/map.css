@@ -62,6 +62,31 @@ html {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645',GradientType=0 ); /* IE6-9 */
 }
 
+#infopopup {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 200px;
+	height: 100px;
+	visibility: hidden;
+	padding: 20px;
+	overflow: auto;
+	-moz-border-radius: 25px;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+	-moz-box-shadow: 0px 0px 20px #000000;
+	-webkit-box-shadow: 0px 0px 20px #000000;
+	box-shadow: 0px 0px 20px #000000;
+	background: #f1e767; /* Old browsers */
+	background: -moz-linear-gradient(top,  #f1e767 0%, #feb645 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f1e767), color-stop(100%,#feb645)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #f1e767 0%,#feb645 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #f1e767 0%,#feb645 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #f1e767 0%,#feb645 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #f1e767 0%,#feb645 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645',GradientType=0 ); /* IE6-9 */
+}
+
 .menubutton {
 	position: relative;
 	top: 5px;
@@ -106,6 +131,8 @@ html {
 
 /* GENERAL TILE SETTINGS */
 td {
+	position: relative;
+	top: 0px;
 	width: 100px;
 	height: 100px;
 	text-align: center;
@@ -165,15 +192,15 @@ td {
 
 /* UNITS */
 .blue-unit {
-	max-width: 100%;
-	max-height: 100%;
+	max-width: 100px;
+	max-height: 100px;
 	-moz-box-shadow: inset 0px 0px 20px #0989f9;
 	-webkit-box-shadow: inset 0px 0px 20px #0989f9;
 	box-shadow: inset 0px 0px 20px #0989f9;
 }
 .red-unit {
-	max-width: 100%;
-	max-height: 100%;
+	max-width: 100px;
+	max-height: 100px;
 	-moz-box-shadow: inset 0px 0px 20px #F73B3B;
 	-webkit-box-shadow: inset 0px 0px 20px #F73B3B;
 	box-shadow: inset 0px 0px 20px #F73B3B;

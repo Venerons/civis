@@ -13,6 +13,10 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 * Update reloadMap()
 * Update generateMap() _it returns an example mini-map at the moment_
 * Add Player Stats on menu
+* Update ReadMe
+* Add InfoPopup
+* Add Action Bar visible when an owned unit is clicked
+* Add various utiliy functions
 
 ### Update 11/01/2013
 
