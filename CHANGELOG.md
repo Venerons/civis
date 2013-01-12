@@ -2,6 +2,18 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 12/01/2013
+
+* Update Fonts
+* Add Popup
+* Update loadMap()
+* Update loadGame()
+* Update manual()
+* Add Popup and ActionBar open and close methods
+* Update reloadMap()
+* Update generateMap() _it returns an example mini-map at the moment_
+* Add Player Stats on menu
+
 ### Update 11/01/2013
 
 * First commit

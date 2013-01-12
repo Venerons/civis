@@ -6,92 +6,11 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="lib/map.css" />
 	<script src="lib/map.js"></script>
+	<script src="lib/jquery.js"></script>
 </head>
 <body bgcolor="black" onload="loadMap()">
 	<div id="map">
-		<table border="0" cellspacing="1">
-			<tbody>
-				<tr>
-					<td id="11" class="water">
-					</td>
-					<td id="12" class="water">
-					</td>
-					<td id="13" class="water">
-					</td>
-					<td id="14" class="water">
-					</td>
-					<td id="15" class="water">
-					</td>
-				</tr>
-				<tr>
-					<td class="water">
-					</td>
-					<td class="grass">
-					</td>
-					<td class="grass border-top border-left border-right blue">
-						<img src="lib/units/archer.png" class="red-unit">
-					</td>
-					<td class="grass">
-					</td>
-					<td class="water">
-					</td>
-				</tr>
-				<tr>
-					<td class="water">
-					</td>
-					<td class="grass border-top border-left border-bottom blue">
-						<br/>
-					</td>
-					<td class="desert">
-						<img src="lib/units/settler.png" class="blue-unit">
-					</td>
-					<td class="desert border-top border-right blue">
-						<br/>
-					</td>
-					<td class="water">
-					</td>
-				</tr>
-				<tr>
-					<td class="water">
-					</td>
-					<td class="grass">
-						<img src="lib/tiles/forest.png">
-					</td>
-					<td class="snow border-left border-bottom blue">
-						<img src="lib/tiles/forest.png">
-					</td>
-					<td class="desert border-bottom border-right blue">
-						<img src="lib/tiles/forest.png">
-					</td>
-					<td class="water">
-					</td>
-				</tr>
-				<tr>
-					<td class="water">
-					</td>
-					<td class="mountain">
-					</td>
-					<td class="marsh">
-					</td>
-					<td class="hill">
-					</td>
-					<td class="water">
-					</td>
-				</tr>
-				<tr>
-					<td class="water">
-					</td>
-					<td class="water">
-					</td>
-					<td class="fog">
-					</td>
-					<td class="fog">
-					</td>
-					<td class="water">
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		<br/>
 	</div>
 	<div id="menubar">
 		<span style="position: relative; top: 5px; left: 10px; height: 40px;"><strong>CivJS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>
@@ -99,11 +18,15 @@
 		<button class="menubutton" onclick="loadGame()">Load Game</button>
 		<button class="menubutton" onclick="manual()">Manual</button>
 		<button class="menubutton" onclick="exitGame()">Exit Game</button>
+		<span id="playerstats" style="position: relative; top: 5px; height: 40px; margin-left: 50px;"></span>
 	</div>
 	<div id="actionbar">
 		<span style="position: relative; top: 5px; left: 10px; height: 40px;"><strong>Action Bar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>
 		<button class="menubutton">Move</button>
 		<button class="menubutton">Fortify</button>
+	</div>
+	<div id="popup">
+		popup
 	</div>
 </body>
 </html>
