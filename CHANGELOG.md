@@ -2,6 +2,10 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 13/01/2013 (3)
+
+* Update Move order now is almost complete
+
 ### Update 13/01/2013
 
 * Add comments

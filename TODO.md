@@ -4,5 +4,7 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
 * cities setting on reloadMap()
 * generateMap()
-* selectDestinations()
+* selectDestinations() that controls also the fog tiles
 * deselectDestinations()
+* attack management on move order
+* fortifyUnit()
