@@ -14,18 +14,19 @@
 		<br/>
 	</div>
 	<div id="menubar">
-		<span style="position: relative; top: 5px; left: 10px; height: 40px;"><strong>CivJS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>
-		<button class="menubutton" onclick="saveGame()">Save Game</button>
-		<button class="menubutton" onclick="loadGame()">Load Game</button>
-		<button class="menubutton" onclick="manual()">Manual</button>
-		<button class="menubutton" onclick="exitGame()">Exit Game</button>
-		<span id="playerstats" style="position: relative; top: 5px; height: 40px; margin-left: 50px;"></span>
+		<span style="position: relative; top: 5px; left: 10px; height: 40px; vertical-align: middle;"><strong>CivJS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>
+		<button class="menubutton" onclick="saveGame()"><img src="lib/hud/save.png" class="buttonimage"> Save Game</button>
+		<button class="menubutton" onclick="loadGame()"><img src="lib/hud/load.png" class="buttonimage"> Load Game</button>
+		<button class="menubutton" onclick="manual()"><img src="lib/hud/manual.png" class="buttonimage"> Manual</button>
+		<button class="menubutton" onclick="exitGame()"><img src="lib/hud/exit.png" class="buttonimage"> Exit Game</button>
+		<span id="playerstats" style="position: relative; top: 5px; height: 40px; margin-left: 20px; font-size: 13px; vertical-align: middle;"></span>
 	</div>
 	<div id="actionbar">
 		<br/>
 	</div>
 	<div id="popup">
-		popup
+		<div id="popupcontent"><br/></div>
+		<button class="popupbutton" style="position: absolute; top: 20px; right: 20px;" onclick="closePopup()" title="Close"><img src="lib/hud/close.png" width="20"></button>
 	</div>
 	<div id="infopopup">
 		<br/>

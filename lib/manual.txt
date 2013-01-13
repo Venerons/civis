@@ -1,0 +1,11 @@
+<strong>Instructions Manual</strong>
+<p>Welcome to CivJS</p>
+<ul>
+	<li><a href="#winning">Winning</a></li>
+	<li><a href="#settling">Settling</a></li>
+	<li><a href="#combat">Combat</a></li>
+</ul>
+<p id="winning"><strong>Winning</strong><br/>winning instructions</p>
+<p id="settling"><strong>Settling</strong><br/>settling instructions</p>
+<p id="combat"><strong>Combat</strong><br/>combat instructions</p>
+

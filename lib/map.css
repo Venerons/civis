@@ -14,6 +14,7 @@ body {
 	left: 0px;
 	width: 100%;
 	height: 50px;
+	white-space: nowrap;
 	background: #f1e767; /* Old browsers */
 	background: -moz-linear-gradient(top,  #f1e767 0%, #feb645 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f1e767), color-stop(100%,#feb645)); /* Chrome,Safari4+ */
@@ -97,6 +98,7 @@ body {
 	margin-left: 5px;
 	height: 40px;
 	border-width: 3px;
+	vertical-align: middle;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
@@ -124,6 +126,11 @@ body {
 	background: -ms-linear-gradient(top,  #f1e767 0%,#feb645 100%); /* IE10+ */
 	background: linear-gradient(to bottom,  #f1e767 0%,#feb645 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645',GradientType=0 ); /* IE6-9 */
+}
+
+.buttonimage {
+	vertical-align: middle;
+	width: 30px;
 }
 
 #map {

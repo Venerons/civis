@@ -8,6 +8,9 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 * Update map JSON scheme
 * Update compressed images
 * Add HUD images
+* Add initial manual scheme
+* Add preliminary Move order
+* Add more player stats on HUD
 
 ### Update 12/01/2013
 
