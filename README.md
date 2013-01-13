@@ -8,7 +8,7 @@ It implements similar but simpler rules, and thanks to the web technologies is a
 
 ## Supported Platforms:
 
-### Browser _suggested browser: Firefox_
+### Browser _(suggested browser: Firefox)_
 * **Web App** - [CivJS](http://civjs.venerons.altervista.org)
 
 ### Desktop OS

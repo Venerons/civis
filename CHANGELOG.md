@@ -2,6 +2,13 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 13/01/2013
+
+* Add comments
+* Update map JSON scheme
+* Update compressed images
+* Add HUD images
+
 ### Update 12/01/2013
 
 * Update Fonts
