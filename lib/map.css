@@ -72,7 +72,7 @@ body {
 	top: 0px;
 	left: 0px;
 	width: 200px;
-	height: 100px;
+	height: 120px;
 	visibility: hidden;
 	padding: 20px;
 	overflow: auto;
@@ -207,15 +207,15 @@ td {
 	max-height: 100px;
 }
 .blue-unit {
-	max-width: 100px;
-	max-height: 100px;
+	max-width: 80%;
+	max-height: 80%;
 	-moz-box-shadow: inset 0px 0px 20px #0989f9;
 	-webkit-box-shadow: inset 0px 0px 20px #0989f9;
 	box-shadow: inset 0px 0px 20px #0989f9;
 }
 .red-unit {
-	max-width: 100px;
-	max-height: 100px;
+	max-width: 80%;
+	max-height: 80%;
 	-moz-box-shadow: inset 0px 0px 20px #F73B3B;
 	-webkit-box-shadow: inset 0px 0px 20px #F73B3B;
 	box-shadow: inset 0px 0px 20px #F73B3B;

@@ -2,10 +2,28 @@
 <p>Welcome to CivJS</p>
 <ul>
 	<li><a href="#winning">Winning</a></li>
+	<li><a href="#units">Units</a></li>
 	<li><a href="#settling">Settling</a></li>
 	<li><a href="#combat">Combat</a></li>
 </ul>
-<p id="winning"><strong>Winning</strong><br/>winning instructions</p>
-<p id="settling"><strong>Settling</strong><br/>settling instructions</p>
-<p id="combat"><strong>Combat</strong><br/>combat instructions</p>
+<p id="winning">
+	<strong>Winning</strong>
+	<br/>winning instructions
+</p>
+<p id="units">
+	<strong>Units</strong>
+	<br/>Life - remaining life points
+	<br/>Exp - experience points
+	<br/>Atk - attack power
+	<br/>Def - defence power
+	<br/>Mov - maximum movement
+</p>
+<p id="settling">
+	<strong>Settling</strong>
+	<br/>settling instructions
+</p>
+<p id="combat">
+	<strong>Combat</strong>
+	<br/>Formula
+</p>
 
