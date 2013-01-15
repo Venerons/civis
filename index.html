@@ -55,6 +55,9 @@
             </div><!-- /header -->
             
             <div data-role="content" data-theme="c">
+                <div style="text-align: center">
+                    <img style="width: 40%;" src="logo.png">
+                </div>
                 <ul data-role="listview" data-inset="true" data-theme="a">
                     <li><a href="map.html?action=new" data-ajax="false">New Game</a></li>
                     <li><a href="#load" data-transition="slide">Load Game</a></li>
@@ -90,8 +93,10 @@
                 <h1>CivJS Manual</h1>
             </div>
             <div data-role="content">
-                <p align="justify">
-                here goes the manual
+                <p align="justify" id="manualcontent">
+                    <script type="text/javascript">
+                        $('#manualcontent').load('lib/manual.txt');
+                    </script>
                 </p>
             </div>
         </div>
