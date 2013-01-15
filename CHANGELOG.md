@@ -4,10 +4,16 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
 ### Update 15/01/2013
 
-* Add new full support for PhoneGap Build
-* Add Instructions Manual on main menu
-* Add Logo on main menu
-* Update CivJS Logo on map
+* (1) Add new full support for PhoneGap Build
+* (1) Add Instructions Manual on main menu
+* (1) Add Logo on main menu
+* (1) Update CivJS Logo on map
+* (2) Add Fight management
+* (2) Add Promotions for the units (Veteran and Elite)
+* (2) Update Action Bar now shows also the unit title (Veteran or Elite) and the stats with the promotion bonus
+* (2) Add iOS.js to better experience with iOS web app
+* (2) Update leaving a tile now redesign nature elements
+* (2) Update manual.txt
 
 ### Update 14/01/2013
 

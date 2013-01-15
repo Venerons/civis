@@ -3,18 +3,37 @@
 <html>
 <head>
 	<title>CivJS</title>
-	<meta charset="utf-8">
+
+	<!-- WEB SEARCH META TAGS -->
+	<meta charset="UTF-8">
+	<meta content="index,follow" name="robots" />
+	<meta content="Android,Web,App,iPod,iPhone,iPad,Mac,OSX,Windows,browser,game,civ,civilization,js" name="Keywords" />
+	<meta content="A JavaScript game inspired by Sid Meier's Civilization series" name="Description" />
+	
+	<!-- SAFARI WEB APP META TAGS -->
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+
+	<!-- CivJS StyleSheets -->
 	<link rel="stylesheet" href="lib/map.css" />
+
+	<!-- CivJS libs -->
 	<script src="lib/map.js"></script>
 	<script src="lib/game.js"></script>
+
+	<!-- jQuery -->
 	<script src="lib/jquery.js"></script>
+
+	<!-- iOS.js -->
+    <script src="lib/iOS.js"></script>
 </head>
 <body onload="loadMap()">
 	<div id="map">
 		<br/>
 	</div>
 	<div id="menubar">
-		<span style="position: relative; top: 5px; left: 10px; height: 40px; vertical-align: middle;"><img src="logo.png" style="vertical-align: middle; width: 50px;"><strong>&nbsp;&nbsp;&nbsp;</strong></span>
+		<span style="position: relative; top: 5px; left: 10px; vertical-align: middle; margin-right: 10px;"><img src="logo.png" style="vertical-align: middle; width: 50px;"></span>
 		<button class="menubutton" onclick="saveGame()" title="Save Game" alt="Save Game"><img src="lib/hud/save.png" class="buttonimage"> Save Game</button>
 		<button class="menubutton" onclick="loadGame()" title="Load Game" alt="Load Game"><img src="lib/hud/load.png" class="buttonimage"> Load Game</button>
 		<button class="menubutton" onclick="manual()" title="Instructions Manual" alt="Instructions Manual"><img src="lib/hud/manual.png" class="buttonimage"> Manual</button>
