@@ -2,6 +2,13 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 16/01/2013
+
+* Update ReadMe
+* Add Turn System
+* Add find tile by XY or ID functions
+* Update some optimization and bugfix
+
 ### Update 15/01/2013
 
 * (1) Add new full support for PhoneGap Build

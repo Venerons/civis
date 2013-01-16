@@ -1,7 +1,8 @@
 {
     "game": {
         "turn": 1, // turn from the beginning of the game
-        "year": -4000 // year of the game
+        "year": -4000, // year of the game
+        "yearstep": 10 // year to be added at the end of each turn
     },
     "players": [
         {
@@ -61,7 +62,9 @@
             "y": 2, // unit y coordinate
             "type": "archer", // unit type
             "experience": 0, // unit experience, used to promote it to veteran and elite
-            "life": 1 // unit life points
+            "life": 1, // unit life points
+            "fortified": false, // if the unit is fortified
+            "active": true // if the unit have already moved this turn
         },
         {
             "player": 2,
@@ -70,7 +73,9 @@
             "y": 3,
             "type": "settler",
             "experience": 0,
-            "life": 1
+            "life": 1,
+            "fortified": false,
+            "active": true
         }
     ],
     "cities": [
