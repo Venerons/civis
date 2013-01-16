@@ -4,10 +4,12 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
 ### Update 16/01/2013
 
-* Update ReadMe
-* Add Turn System
-* Add find tile by XY or ID functions
-* Update some optimization and bugfix
+* (1) Update ReadMe
+* (1) Add Turn System
+* (1) Add find tile by XY or ID functions
+* (1) Update some optimization and bugfix
+* (2) a unit promoted to Elite or Veteran rank get full health restored
+* (2) a unit can fortify (+50% Atk/Def)
 
 ### Update 15/01/2013
 

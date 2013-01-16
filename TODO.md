@@ -6,4 +6,4 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 * generateMap()
 * selectDestinations() that controls also the fog tiles
 * better deselectDestinations() (?)
-* fortifyUnit()
+* kill()
