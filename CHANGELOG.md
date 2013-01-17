@@ -2,6 +2,13 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 17/01/2013
+
+* Update fortify order (+25% Atk/Def instead of +50%)
+* Add Menu that contains all buttons previously on the top bar
+* Add Kill unit order, that remove the unit to gain a small admount of gold
+* Fix various bugfix
+
 ### Update 16/01/2013
 
 * (1) Update ReadMe
