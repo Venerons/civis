@@ -229,14 +229,35 @@ td {
 .blue-unit {
 	max-width: 80%;
 	max-height: 80%;
-	-moz-box-shadow: inset 0px 0px 20px #0989f9;
-	-webkit-box-shadow: inset 0px 0px 20px #0989f9;
-	box-shadow: inset 0px 0px 20px #0989f9;
+	-moz-box-shadow: inset 0px 0px 20px #2E64FE;
+	-webkit-box-shadow: inset 0px 0px 20px #2E64FE;
+	box-shadow: inset 0px 0px 20px #2E64FE;
 }
 .red-unit {
 	max-width: 80%;
 	max-height: 80%;
-	-moz-box-shadow: inset 0px 0px 20px #F73B3B;
-	-webkit-box-shadow: inset 0px 0px 20px #F73B3B;
-	box-shadow: inset 0px 0px 20px #F73B3B;
+	-moz-box-shadow: inset 0px 0px 20px #FE2E2E;
+	-webkit-box-shadow: inset 0px 0px 20px #FE2E2E;
+	box-shadow: inset 0px 0px 20px #FE2E2E;
+}
+.yellow-unit {
+	max-width: 80%;
+	max-height: 80%;
+	-moz-box-shadow: inset 0px 0px 20px #F7FE2E;
+	-webkit-box-shadow: inset 0px 0px 20px #F7FE2E;
+	box-shadow: inset 0px 0px 20px #F7FE2E;
+}
+.orange-unit {
+	max-width: 80%;
+	max-height: 80%;
+	-moz-box-shadow: inset 0px 0px 20px #FE9A2E;
+	-webkit-box-shadow: inset 0px 0px 20px #FE9A2E;
+	box-shadow: inset 0px 0px 20px #FE9A2E;
+}
+.purple-unit {
+	max-width: 80%;
+	max-height: 80%;
+	-moz-box-shadow: inset 0px 0px 20px #CC2EFA;
+	-webkit-box-shadow: inset 0px 0px 20px #CC2EFA;
+	box-shadow: inset 0px 0px 20px #CC2EFA;
 }

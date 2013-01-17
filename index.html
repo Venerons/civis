@@ -62,7 +62,7 @@
                     <img style="width: 40%;" src="logo.png">
                 </div>
                 <ul data-role="listview" data-inset="true" data-theme="a">
-                    <li><a href="map.html?action=new" data-ajax="false">New Game</a></li>
+                    <li><a href="#new" data-ajax="false">New Game</a></li>
                     <li><a href="#load" data-transition="slide">Load Game</a></li>
                 </ul>
                 <ul data-role="listview" data-inset="true" data-theme="a">
@@ -74,10 +74,25 @@
             </div><!-- /content -->
         </div><!-- /page -->
 
+        <!-- PAGINA NEW -->
+        <div data-role="page" id="new">
+            <div data-role="header" data-theme="a" data-position="inline" data-id="barra">
+                <a href="#home" data-icon="back" data-transition="slide" data-direction="reverse" data-theme="a" />Back</a>
+                <h1>New Game</h1>
+            </div><!-- /header -->
+            
+            <div data-role="content" data-theme="c">
+                <ul data-role="listview" data-inset="true" data-theme="a">
+                    <li><a href="map.html?action=new&players=4&ncols=10&nrows=10" data-ajax="false">New Random Game</a></li>
+                    <li><a href="map.html?action=example" data-ajax="false">New Game from an Example Map</a></li>
+                </ul>
+            </div><!-- /content -->
+        </div><!-- /page -->
+
         <!-- PAGINA LOAD -->
         <div data-role="page" id="load">
             <div data-role="header" data-theme="a" data-position="inline" data-id="barra">
-                <a href="#home" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse" data-theme="a" /></a>
+                <a href="#home" data-icon="back" data-transition="slide" data-direction="reverse" data-theme="a" />Back</a>
                 <h1>Load Game</h1>
             </div><!-- /header -->
             
@@ -92,7 +107,7 @@
         <!-- PAGINA MANUAL -->
         <div data-role="page" id="manual">
             <div data-role="header" data-theme="a" data-position="inline">
-                <a href="#home" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse" data-theme="a" /></a>
+                <a href="#home" data-icon="back" data-transition="slide" data-direction="reverse" data-theme="a" />Back</a>
                 <h1>CivJS Manual</h1>
             </div>
             <div data-role="content">
@@ -107,7 +122,7 @@
         <!-- PAGINA ABOUT -->
         <div data-role="page" id="about">
             <div data-role="header" data-theme="a" data-position="inline">
-                <a href="#home" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse" data-theme="a" /></a>
+                <a href="#home" data-icon="back" data-transition="slide" data-direction="reverse" data-theme="a" />Back</a>
                 <h1>About CivJS</h1>
             </div>
             <div data-role="content">

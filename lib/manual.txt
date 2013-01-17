@@ -1,4 +1,4 @@
-<strong>Instructions Manual</strong>
+<h2>Instructions Manual</h2>
 <p>Welcome to CivJS, the JavaScript Civilization game!</p>
 <ul>
 	<li><a href="#winning">Winning</a></li>
@@ -7,29 +7,34 @@
 	<li><a href="#fighting">Fighting</a></li>
 </ul>
 <p id="winning">
-	<strong>Winning</strong>
-	<br/>
-	<br/>winning instructions
+	<h2>Winning</h2>
+	winning instructions
 </p>
 <p id="units">
-	<strong>Units</strong>
-	<br/>
-	<br/>Each unit have 5 stats:
-	<br/><strong>Life:</strong> Remaining life points of the unit. If the unit have less than 1 life point, it dies.
-	<br/><strong>Exp:</strong> Experience points of the unit. A unit can gain Exp by surviving in a fight. When a unit reach 5 Exp, it becomes Veteran, and gain +50% Atk/Def. When a unit reach 10 Exp, it becomes Elite, and gain +100% Atk/Def.
-	<br/><strong>Atk:</strong> Attack power of the unit, used to deal damage in a fight.
-	<br/><strong>Def:</strong> Defence power of the unit, used to prevent damage in a fight.
-	<br/><strong>Mov:</strong> Maximum movement that the unit can do in a turn. The movement still have to be a unique movement.
+	<h2>Units</h2>
+	Each unit have 5 stats:
+	<ul>
+		<li><strong>Life:</strong> Remaining life points of the unit. If the unit have less than 1 life point, it dies.</li>
+		<li><strong>Exp:</strong> Experience points of the unit. A unit can gain Exp by surviving in a fight. When a unit reach 5 Exp, it becomes Veteran, and gain +50% Atk/Def. When a unit reach 10 Exp, it becomes Elite, and gain +100% Atk/Def.</li>
+		<li><strong>Atk:</strong> Attack power of the unit, used to deal damage in a fight.</li>
+		<li><strong>Def:</strong> Defence power of the unit, used to prevent damage in a fight.</li>
+		<li><strong>Mov:</strong> Maximum movement that the unit can do in a turn. The movement still have to be a unique movement.</li>
+	</ul>
+	A unit can do various actions, depending to the unit type. Actions can be:
+	<ul>
+		<li><strong>Move:</strong> Move the unit to another tile. A unit can move only one time in a turn.</li>
+		<li><strong>Fortify:</strong> Fortify the unit, that gain a +25% Atk/Def until it's fortified. Moving the unit de-fortify the unit.</li>
+		<li><strong>Kill:</strong> Kill the unit to gain a small amount of gold. The unit will be removed.</li>
+		<li><strong>No Orders:</strong> Issue no orders to the unit, that will be left as it is.</li>
+	</ul>
 </p>
 <p id="settling">
-	<strong>Settling</strong>
-	<br/>
-	<br/>settling instructions
+	<h2>Settling</h2>
+	settling instructions
 </p>
 <p id="fighting">
-	<strong>Fighting</strong>
-	<br/>
-	<br/>A fight is resolved this way:
+	<h2>Fighting</h2>
+	A fight is resolved this way:
 	<br/>Each unit deal damage to the other unit, and the damage dealt is egual to the Atk of the unit minus the Def of the other unit (Damage dealt = Atk - Def). The damage dealt decrease the life points of the units, and if a unit have no remaining life points, it dies. In a fight could die one, both or none of the units. The surviving units (if any) gain an Exp. If a unit is promoted this way to the Elite or Veteran rank, all the life points will restored.
 	<br/>If the attacker kill the defender, it take its position. By the way, if the attacker get killed by the defender, the defender cannot gain the position, and stand on its tile.
 </p>

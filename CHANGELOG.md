@@ -4,10 +4,15 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
 ### Update 17/01/2013
 
-* Update fortify order (+25% Atk/Def instead of +50%)
-* Add Menu that contains all buttons previously on the top bar
-* Add Kill unit order, that remove the unit to gain a small admount of gold
-* Fix various bugfix
+* (1) Update fortify order (+25% Atk/Def instead of +50%)
+* (1) Add Menu that contains all buttons previously on the top bar
+* (1) Add Kill unit order, that remove the unit to gain a small admount of gold
+* (1) Fix various bugfix
+* (2) Add new random game or new from example map
+* (2) Update instructions manual
+* (2) Add new player colors
+* (2) Update HUD
+* (2) Add now generateMap() return a random map (too random for the moment...)
 
 ### Update 16/01/2013
 
