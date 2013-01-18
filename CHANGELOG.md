@@ -2,6 +2,14 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 18/01/2013
+
+* Update better findTileByXY()
+* Add discoverTiles()
+* Add random nature elements on map
+* Update now coordinate of the first unit are more controlled
+* Add keyboard mapping using kibo.js (pressing "space" trigger endTurn())
+
 ### Update 17/01/2013
 
 * (1) Update fortify order (+25% Atk/Def instead of +50%)
