@@ -2,6 +2,13 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 20/01/2013
+
+* Add utils.js where can be found all the utility functions
+* Update map.js
+* Update game.js
+* Update ReadMe adding Play Store link
+
 ### Update 18/01/2013
 
 * Update better findTileByXY()
