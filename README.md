@@ -6,6 +6,8 @@ CivJS is an HTML5, CSS3 and JavaScript game inspired by the Sid Meier's Civiliza
 
 It implements similar but simpler rules, and thanks to the web technologies is available to almost any modern OS.
 
+CivJS is currently in PRE-ALPHA development stage.
+
 ## Supported Platforms:
 
 ### Browser _(suggested browser: Firefox)_
@@ -17,7 +19,7 @@ It implements similar but simpler rules, and thanks to the web technologies is a
 
 ### Mobile OS
 * **iOS** - _future native app, at today playable as web app_
-* **Android** - [Play Store](https://play.google.com/store/apps/details?id=it.venerons.civjs) [apk](https://build.phonegap.com/apps/282025/download/android/)
+* **Android** - [Play Store](https://play.google.com/store/apps/details?id=it.venerons.civjs) - [apk](https://build.phonegap.com/apps/282025/download/android/)
 * **Windows Phone** - [xap](https://build.phonegap.com/apps/282025/download/winphone/)
 * **BlackBerry** - _future native app, at today playable as web app_
 * **WebOS** - [ipk](https://build.phonegap.com/apps/282025/download/webos/)
