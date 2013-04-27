@@ -62,7 +62,7 @@
         
     <!-- GENERAL PREFERENCES -->
         
-    <!-- <preference name="phonegap-version" value="2.5.0" /> versione di phonegap usata -->
+    <preference name="phonegap-version" value="2.5.0" /> <!-- versione di phonegap usata -->
     <preference name="orientation" value="default" /> <!-- entrambe supportate -->
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="true" /> <!-- toglie la barra in alto su iOS e Android -->
