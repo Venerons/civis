@@ -48,7 +48,7 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
         "x": 3,
         "y": 2,
         "type": "archer",
-        "experience": 10,
+        "experience": 0,
         "life": 2,
         "maxlife": 2,
         "fortified": false,
