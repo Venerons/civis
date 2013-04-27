@@ -1,45 +1,5 @@
 // Copyright (c) 2013 Daniele Veneroni. Released under MIT License
-"use strict";
-
-// UNITS DATABASE
-var unitsDB = {
-    "settler": 
-        {
-            "atk": 0,
-            "def": 0,
-            "mov": 2,
-            "naval": false,
-            "terrain": true,
-            "productioncost": 30
-        },
-    "warrior": 
-        {
-            "atk": 1,
-            "def": 1,
-            "mov": 1,
-            "naval": false,
-            "terrain": true,
-            "productioncost": 10
-        },
-    "archer": 
-        {
-            "atk": 2,
-            "def": 2,
-            "mov": 1,
-            "naval": false,
-            "terrain": true,
-            "productioncost": 25
-        },
-    "galley": 
-        {
-            "atk": 1,
-            "def": 1,
-            "mov": 1,
-            "naval": true,
-            "terrain": false,
-            "productioncost": 30
-        }
-};
+//"use strict";
 
 // GET URL VARS
 function getUrlVars() {
@@ -134,72 +94,25 @@ function exitGame() {
     }
 }
 
-function isVeteran(unit) {
-    if (unit.experience >= 5) return true;
-    return false;
+// LOAD THE PRESET MAP SPECIFIED
+function presetMap (mapname) {
+    $.getJSON('scripts/preset/' + mapname + '.json', function(data) {
+        map = JSON.parse(JSON.stringify(data));
+    });
 }
 
-function isElite(unit) {
-    if (unit.experience >= 10) return true;
-    return false;
+// EXPORT AS JSON THE CURRENT MAP
+function exportMap () {
+    var content = '<h3>Export Map</h3><textarea style="width:100%;height:200px">';
+    content += JSON.stringify(map);
+    content += '</textarea>'
+    $('#popupcontent').html(content);
+    openPopup();
 }
 
-function getAtkByType(type) {
-    switch (type) {
-        case "settler": return unitsDB.settler.atk;
-        case "warrior": return unitsDB.warrior.atk;
-        case "archer": return unitsDB.archer.atk;
-        case "galley": return unitsDB.galley.atk;
-    }
-}
-
-function getDefByType(type) {
-    switch (type) {
-        case "settler": return unitsDB.settler.def;
-        case "warrior": return unitsDB.warrior.def;
-        case "archer": return unitsDB.archer.def;
-        case "galley": return unitsDB.galley.def;
-    }
-}
-
-function getMovByType(type) {
-    switch (type) {
-        case "settler": return unitsDB.settler.mov;
-        case "warrior": return unitsDB.warrior.mov;
-        case "archer": return unitsDB.archer.mov;
-        case "galley": return unitsDB.galley.mov;
-    }
-}
-
-function isNaval(type) {
-    switch (type) {
-        case "settler": return unitsDB.settler.naval;
-        case "warrior": return unitsDB.warrior.naval;
-        case "archer": return unitsDB.archer.naval;
-        case "galley": return unitsDB.galley.naval;
-    }
-}
-
-function isTerrain(type) {
-    switch (type) {
-        case "settler": return unitsDB.settler.terrain;
-        case "warrior": return unitsDB.warrior.terrain;
-        case "archer": return unitsDB.archer.terrain;
-        case "galley": return unitsDB.galley.terrain;
-    }
-}
-
-function getProductionCost(unit) {
-    switch (unit.type) {
-        case "settler": return unitsDB.settler.productioncost;
-        case "warrior": return unitsDB.warrior.productioncost;
-        case "archer": return unitsDB.archer.productioncost;
-        case "galley": return unitsDB.galley.productioncost;
-    }
-}
-
+// GET THE ATK OF A UNIT COUNTING ALL VARIABLES
 function getAtk(unit) {
-    var unitAtk = getAtkByType(unit.type);
+    var unitAtk = unitsDB[unit.type].atk;
     if (isElite(unit)) { // +100% Atk/Def (AtK/Def * 2)
         unitAtk *= 2;
     } else {
@@ -211,8 +124,9 @@ function getAtk(unit) {
     return unitAtk;
 }
 
+// GET THE DEF OF A UNIT COUNTING ALL VARIABLES
 function getDef(unit) {
-    var unitDef = getDefByType(unit.type);
+    var unitDef = unitsDB[unit.type].def;
     if (isElite(unit)) { // +100% Atk/Def (AtK/Def * 2)
         unitDef *= 2;
     } else {
@@ -222,6 +136,38 @@ function getDef(unit) {
     }
     if (unit.fortified) unitDef += Math.round(unitDef / 4); // +25% Atk/Def (AtK/Def + 1/4 Atk/Def)
     return unitDef;
+}
+
+// GET THE MOV OF A UNIT COUNTING ALL VARIABLES
+function getMov(unit) {
+    return unitsDB[unit.type].mov;
+}
+
+// GET IF THE UNIT IS VETERAN
+function isVeteran(unit) {
+    if (unit.experience >= 5) return true;
+    return false;
+}
+
+// GET IF THE UNIT IS ELITE
+function isElite(unit) {
+    if (unit.experience >= 10) return true;
+    return false;
+}
+
+// GET IF THE UNIT CAN MOVE ON WATER
+function isNaval(unit) {
+    return unitsDB[unit.type].naval;
+}
+
+// GET IF THE UNIT CAN MOVE ON TERRAIN
+function isTerrain(unit) {
+    return unitsDB[unit.type].terrain;
+}
+
+// GET A UNIT PRODUCTION COST
+function getProductionCost(unit) {
+    return unitsDB[unit.type].productioncost;
 }
 
 // FIND A PLAYER BY ID
@@ -244,19 +190,6 @@ function findTileByXY(x, y) {
                 if (map.tiles[i][j].x == x && map.tiles[i][j].y == y) {
                     return map.tiles[i][j];
                 }
-            }
-        }
-    }
-}
-
-// FIND A TILE BY ID
-function findTileById(id) {
-    var len = map.tiles.length;
-    for (var i = 0; i < len; i++) {
-        var len2 = map.tiles[i].length;
-        for (var j = 0; j < len2; j++) {
-            if (map.tiles[i][j].id == id) {
-                return map.tiles[i][j];
             }
         }
     }

@@ -101,29 +101,31 @@
                                 </fieldset>
                             </div>
                             <div data-role="fieldcontain">
-                                <label for="customNcols">NCols:</label>
-                                <input name="customNcols" id="customNcols" placeholder="Width of the map" value="10" type="text">
-                            </div>
-                            <div data-role="fieldcontain">
-                                <label for="customNrows">NRows:</label>
-                                <input name="customNrows" id="customNrows" placeholder="Height of the map" value="10" type="text">
+                                <label for="mapSize">Map Size:</label>
+                                <select name="mapSize" id="mapSize" data-native-menu="false">
+                                    <option>Map Size</option>
+                                    <option value="small" selected>Small</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="large">Large</option>
+                                    <option value="xlarge">Extra Large</option>
+                                </select>
                             </div>
                             <a data-role="button" data-theme="b" href="#" id="customgamebutton" data-ajax="false">Start Game</a>
                     </div>
                     <div data-role="collapsible">
-                        <h3>New Game from Existing Map</h3>
+                        <h3>New Game from Preset Map</h3>
                         <p>Start a new game from a pre-generated map, selected from the available above.</p>
                         <div data-role="fieldcontain">
-                            <label for="map">Select Map:</label>
-                            <select name="map" id="map" data-native-menu="false">
+                            <label for="preset">Select Map:</label>
+                            <select name="preset" id="preset" data-native-menu="false">
                                 <option>Select Map</option>
-                                <option value="test" selected>Test Map</option>
+                                <option value="testmap" selected>Test Map</option>
                                 <option value="earthsmall">Earth Small</option>
                                 <option value="earthmedium">Earth Medium</option>
                                 <option value="earthlarge">Earth Large</option>
                             </select>
                         </div>
-                        <a data-role="button" data-theme="b" href="game.html?action=preset&map=example" data-ajax="false">Start Game</a>
+                        <a data-role="button" data-theme="b" id="presetmapbutton" href="#" data-ajax="false">Start Game</a>
                     </div>
                 </div>
             </div><!-- /content -->

@@ -1,5 +1,5 @@
 // Copyright (c) 2013 Daniele Veneroni. Released under MIT License
-"use strict";
+//"use strict";
 
 var stage;
 var canvas;
@@ -431,7 +431,7 @@ function selectDestinations(unit) {
         for (var y = 0; y < len2; y++) {
         	var tile = map.tiles[x][y];
             var distance = Math.sqrt(Math.pow(unit.x - tile.x, 2) + Math.pow(unit.y - tile.y, 2));
-            if (distance <= getMovByType(unit.type)) {
+            if (distance <= getMov(unit)) {
             	// the tile is (possibly) attainable
 
             	var assey = (tile.y - 1) * TILESIZE + camera.y;
@@ -459,12 +459,12 @@ function selectDestinations(unit) {
 	                	i++;
 	                }
 	                if (!trovato) {
-	                	if (tile.type == "water" && isNaval(unit.type)) { // the tile is water and the unit can go in water
+	                	if (tile.type == "water" && isNaval(unit)) { // the tile is water and the unit can go in water
 	                    	// add rect
 	            			mapselections.push(selezione);
 							stage.addChild(selezione.bmp);
                     	} else {
-                        	if (tile.type != "water" && isTerrain(unit.type)) { // the tile is not water and the unit can go on terrain
+                        	if (tile.type != "water" && isTerrain(unit)) { // the tile is not water and the unit can go on terrain
 	                            // add rect
 	                            mapselections.push(selezione);
 								stage.addChild(selezione.bmp);

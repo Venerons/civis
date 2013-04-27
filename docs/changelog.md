@@ -2,6 +2,15 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 27/04/2013 (2)
+
+* New database.js that will contains all DBs
+* New map size selection on new custom map
+* New test map
+* Changed some utility functions
+* Removed some useless utility functions
+* Lot of bug fixs
+
 ### Update 27/04/2013 (Version 0.1.0)
 
 * Complete conversion of the rendering engine from DOM rendering to Canvas rendering

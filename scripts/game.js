@@ -1,5 +1,5 @@
 // Copyright (c) 2013 Daniele Veneroni. Released under MIT License
-"use strict";
+//"use strict";
 
 // GLOBAL DECLARATION OF THE MAP
 var map;
@@ -30,7 +30,7 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
     }
 
     var basetile = {
-        "id": 11,
+        "id": "x1y1",
         "x": 1,
         "y": 1,
         "type": "water",
@@ -43,7 +43,7 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
     }
 
     var baseunit = {
-        "id": 0,
+        "id": "p0u1",
         "player": 2,
         "x": 3,
         "y": 2,
@@ -99,7 +99,7 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
             var t = jQuery.extend(true, {}, basetile);
             t.x = j + 1;
             t.y = i + 1;
-            t.id = String(t.x) + String(t.y)
+            t.id = "x" + t.x + "y" + t.y;
             t.type = tiletypes[Math.floor(Math.random() * tiletypes.length)];
             t.fog = true;
 
@@ -175,20 +175,6 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
 	return basemap;
 }
 
-function presetMap (mapname) {
-    $.getJSON('scripts/preset/' + mapname + '.json', function(data) {
-        map = JSON.parse(JSON.stringify(data));
-    });
-}
-
-function exportMap () {
-    var content = '<h3>Export Map</h3><textarea style="width:100%;height:200px">';
-    content += JSON.stringify(map);
-    content += '</textarea>'
-    $('#popupcontent').html(content);
-    openPopup();
-}
-
 function endTurn () {
     autoSaveGame(); // save the game as right before calling endTurn
     closeActionbar();
@@ -216,7 +202,7 @@ function showUnitOptions (unitid) {
         }
         var content = '<span style="position: relative; top: 5px; left: 10px; height: 40px; margin-right: 20px; vertical-align: middle;"><img src="images/units/' + unit.type + '.png" alt="' + unittitle + unit.type + '" title="' + unittitle + unit.type + '" class="buttonimage"> <strong>' 
                     + unittitle + unit.type.toUpperCase() 
-                    + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><img src="images/hud/life.png" alt="Life" title="Life" class="buttonimage"> ' + unit.life + ' <img src="images/hud/exp.png" alt="Exp" title="Exp" class="buttonimage">  ' + unit.experience + ' <img src="images/hud/atk.png" alt="Atk" title="Atk" class="buttonimage"> ' + getAtk(unit) + ' <img src="images/hud/def.png" alt="Def" title="Def" class="buttonimage"> ' + getDef(unit) + ' <img src="images/hud/move.png" alt="Mov" title="Mov" class="buttonimage"> ' + getMovByType(unit.type) + '</span>' 
+                    + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><img src="images/hud/life.png" alt="Life" title="Life" class="buttonimage"> ' + unit.life + ' <img src="images/hud/exp.png" alt="Exp" title="Exp" class="buttonimage">  ' + unit.experience + ' <img src="images/hud/atk.png" alt="Atk" title="Atk" class="buttonimage"> ' + getAtk(unit) + ' <img src="images/hud/def.png" alt="Def" title="Def" class="buttonimage"> ' + getDef(unit) + ' <img src="images/hud/move.png" alt="Mov" title="Mov" class="buttonimage"> ' + getMov(unit) + '</span>' 
                     + '<button class="button gradient topbarbutton" onclick="moveUnit(\'' + unit.id + '\')"><img src="images/hud/move.png" class="buttonimage"> Move</button>'
                     + '<button class="button gradient topbarbutton" onclick="fortifyUnit(\'' + unit.id + '\')"><img src="images/hud/fortify.png" class="buttonimage"> Fortify</button>'
                     + '<button class="button gradient topbarbutton" onclick="killUnit(\'' + unit.id + '\')"><img src="images/hud/kill.png" class="buttonimage"> Kill</button>'
