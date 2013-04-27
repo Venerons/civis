@@ -1,0 +1,22 @@
+CACHE MANIFEST
+# 27-04-2013:v1
+
+# Explicitly cached entries
+index.html
+game.html
+LICENSE.md
+
+# page that will be displayed if the user is offline
+FALLBACK:
+
+# All other resources require the user to be online
+NETWORK:
+*
+
+# Additional resources to cache
+CACHE:
+manifest.webapp
+lib/add2home.css
+lib/add2home.js
+docs/manual.txt
+images/logo.png

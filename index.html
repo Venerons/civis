@@ -37,20 +37,6 @@
             
         <!-- iOS.js -->
         <script src="scripts/lib/iOS.js"></script>
-
-        <!-- ADD2HOME META TAGS -->
-        <script type="application/javascript" src="scripts/lib/add2home.js"></script>
-        <link rel="stylesheet" href="scripts/lib/add2home.css">
-        <script type="text/javascript">
-            var addToHomeConfig = {
-                animationIn: 'drop',
-                animationOut: 'fade',
-                startDelay: 1000,
-                lifespan: 5000,
-                expire: 2,
-                touchIcon:true,
-            };
-        </script>
     </head> 
     <body> 
         
@@ -80,7 +66,7 @@
         <!-- PAGINA NEW -->
         <div data-role="page" id="new">
             <div data-role="header" data-theme="a" data-position="inline" data-id="barra">
-                <a href="#home" data-icon="back" data-transition="slide" data-direction="reverse" data-theme="a" />Back</a>
+                <a href="#home" data-icon="back" data-transition="slide" data-direction="reverse" data-theme="a">Back</a>
                 <h1>New Game</h1>
             </div><!-- /header -->
             
@@ -122,7 +108,7 @@
                                 <label for="customNrows">NRows:</label>
                                 <input name="customNrows" id="customNrows" placeholder="Height of the map" value="10" type="text">
                             </div>
-                            <a data-role="button" data-theme="b" href="#" onclick="customGame()" data-ajax="false">Start Game</a>
+                            <a data-role="button" data-theme="b" href="#" id="customgamebutton" data-ajax="false">Start Game</a>
                     </div>
                     <div data-role="collapsible">
                         <h3>New Game from Existing Map</h3>
@@ -146,7 +132,7 @@
         <!-- PAGINA LOAD -->
         <div data-role="page" id="load">
             <div data-role="header" data-theme="a" data-position="inline" data-id="barra">
-                <a href="#home" data-icon="back" data-transition="slide" data-direction="reverse" data-theme="a" />Back</a>
+                <a href="#home" data-icon="back" data-transition="slide" data-direction="reverse" data-theme="a">Back</a>
                 <h1>Load Game</h1>
             </div><!-- /header -->
             
@@ -161,22 +147,18 @@
         <!-- PAGINA MANUAL -->
         <div data-role="page" id="manual">
             <div data-role="header" data-theme="a" data-position="inline">
-                <a href="#home" data-icon="back" data-transition="slide" data-direction="reverse" data-theme="a" />Back</a>
+                <a href="#home" data-icon="back" data-transition="slide" data-direction="reverse" data-theme="a">Back</a>
                 <h1>CivJS Manual</h1>
             </div>
             <div data-role="content">
-                <p align="justify" id="manualcontent">
-                    <script type="text/javascript">
-                        $('#manualcontent').load('docs/manual.txt');
-                    </script>
-                </p>
+                <p align="justify" id="manualcontent"></p>
             </div>
         </div>
         
         <!-- PAGINA ABOUT -->
         <div data-role="page" id="about">
             <div data-role="header" data-theme="a" data-position="inline">
-                <a href="#home" data-icon="back" data-transition="slide" data-direction="reverse" data-theme="a" />Back</a>
+                <a href="#home" data-icon="back" data-transition="slide" data-direction="reverse" data-theme="a">Back</a>
                 <h1>About CivJS</h1>
             </div>
             <div data-role="content">

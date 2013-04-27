@@ -28,19 +28,19 @@
 	<script src="scripts/game.js"></script>
 	
 </head>
-<body onLoad="init();">
+<body>
 	<div id="menubar" class="gradient">
 		<span style="position: relative; top: 5px; left: 10px; vertical-align: middle; margin-right: 10px;">
 			<img src="images/logo.png" style="vertical-align: middle; width: 50px;">
 		</span>
-		<button class="button topbarbutton gradient" onclick="focusNext()" title="Focus Next" alt="Focus Next">
+		<button class="button topbarbutton gradient" id="focusnextbutton" title="Focus Next" alt="Focus Next">
 			<img src="images/hud/focusnext.png" class="buttonimage"> Focus Next
 		</button>
-		<button class="button topbarbutton gradient" onclick="endTurn()" title="End Turn" alt="End Turn">
+		<button class="button topbarbutton gradient" id="endturnbutton" title="End Turn" alt="End Turn">
 			<img src="images/hud/endturn.png" class="buttonimage"> End Turn
 		</button>
 		<span id="playerstats" style="position: relative; top: 5px; height: 40px; margin-left: 20px; font-size: 13px; vertical-align: middle;"></span>
-		<button class="button topbarbutton gradient" style="position: absolute; right: 10px" onclick="mainMenu()" title="Menu" alt="Menu">
+		<button class="button topbarbutton gradient" style="position: absolute; right: 10px" id="mainmenubutton" title="Menu" alt="Menu">
 			<img src="images/hud/menu.png" class="buttonimage"> Menu
 		</button>
 	</div>

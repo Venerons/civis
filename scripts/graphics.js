@@ -1,4 +1,5 @@
 // Copyright (c) 2013 Daniele Veneroni. Released under MIT License
+"use strict";
 
 var stage;
 var canvas;
@@ -16,6 +17,11 @@ var TILESIZE = Math.floor(101 * SCALE);
 var UNITSIZE = Math.floor(56 * SCALE);
 var UNITOFFSET = Math.floor((TILESIZE - UNITSIZE) / 2);
 
+// ON LOAD
+window.addEventListener("load", function() {
+     init();
+}, 0);
+
 function init() {
 	preloadImages();
 
@@ -27,6 +33,9 @@ function init() {
 
 	loadMap();
 	keyboardMapping();
+	$("#focusnextbutton").click(function () { focusNext(); });
+	$("#endturnbutton").click(function () { endTurn(); });
+	$("#mainmenubutton").click(function () { mainMenu(); });
 
 	createjs.Ticker.useRAF = true;
 	createjs.Ticker.setFPS(60);
@@ -127,7 +136,7 @@ function renderMap() {
         var dividquery = "#" + divid;
         $(dividquery).mouseover(function(event){
             var n = this.id.charAt(this.id.length-1);
-            htmlcode = '<strong>Name:</strong> <span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + map.players[n].color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + map.players[n].name
+            var htmlcode = '<strong>Name:</strong> <span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + map.players[n].color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + map.players[n].name
                      + '<br/><strong>Civilization:</strong> ' + map.players[n].civilization
                      + '<br/><strong>Points:</strong> ' + map.players[n].points
                      + '<br/><strong>Gold:</strong> ' + map.players[n].gold
@@ -393,6 +402,7 @@ function addCityToMap(city) {
 
 // ADD AN ELEMENT TO THE MAP
 function addElementToMap(element, x, y) {
+	var elementimg;
 	if (element == "forest") elementimg = imageCache.forest;
 
 	var elementBmp = new createjs.Bitmap(elementimg).setTransform(coordinate(x) - 10 + camera.x, coordinate(y) - 10 + camera.y, SCALE * 0.50, SCALE * 0.50);

@@ -1,0 +1,30 @@
+{
+    "name": "CivJS",
+    "description": "A JavaScript Civilization Game",
+    "version": "0.1.0",
+    "type": "web",
+    "csp": "allow 'self'; script-src 'self' ; style-src 'self';",
+    "launch_path": "/index.html",
+    "fullscreen": "false",
+    "icons": {
+        "16": "/images/icons/webapp/icon16.png",
+        "30": "/images/icons/webapp/icon30.png",
+        "32": "/images/icons/webapp/icon32.png",
+        "48": "/images/icons/webapp/icon48.png",
+        "60": "/images/icons/webapp/icon60.png",
+        "64": "/images/icons/webapp/icon64.png",
+        "128": "/images/icons/webapp/icon128.png",
+        "256": "/images/icons/webapp/icon256.png",
+        "512": "/images/icons/webapp/icon512.png"
+    },
+    "developer": {
+        "name": "Daniele Veneroni",
+        "url": "http://venerons.github.io/"
+    },
+    "default_locale": "en",
+    "locales": {
+      "it": {
+        "description": "Un gioco in stile Civilization scritto in JavaScript"
+      }
+    }
+}

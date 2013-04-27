@@ -1,4 +1,5 @@
 // Copyright (c) 2013 Daniele Veneroni. Released under MIT License
+"use strict";
 
 // GLOBAL DECLARATION OF THE MAP
 var map;
@@ -132,14 +133,14 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
             targetx = Math.floor(Math.random() * ncols) + 1;
             targety = Math.floor(Math.random() * nrows) + 1;
             var len = basemap.tiles.length;
-            for (index = 0; index < len; index++) {
+            for (var index = 0; index < len; index++) {
                 var len2 = basemap.tiles[index].length;
                 for (j = 0; j < len2; j++) {
                     if (basemap.tiles[index][j].x == targetx && basemap.tiles[index][j].y == targety) {
                         if (basemap.tiles[index][j].type == "grass" || basemap.tiles[index][j].type == "hill") {
                             var len3 = basemap.units.length;
                             var occupied = false;
-                            for (i3 = 0; i3 < len3; i3++) {
+                            for (var i3 = 0; i3 < len3; i3++) {
                                 if (basemap.units[i3].x == targetx && basemap.units[i3].y == targety) {
                                     occupied = true;
                                     break;
@@ -203,7 +204,7 @@ function endTurn () {
 
 function showUnitOptions (unitid) {
     deselectDestinations(); // deselect eventual selected destinations
-    unit = findUnitById(unitid);
+    var unit = findUnitById(unitid);
     if (unit.player == map.players[0].id) {
         var unittitle = "";
         if (isElite(unit)) {
@@ -371,7 +372,7 @@ function killUnit(unitid) {
     var answer = confirm("Do you want to kill this unit to gain " + gold + " gold?");
     if (answer){
         closeActionbar();
-        player = findPlayerById(unit.player);
+        var player = findPlayerById(unit.player);
         removeUnit(unit);
         player.gold += gold;
         renderMap();

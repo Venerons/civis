@@ -1,5 +1,15 @@
 // Copyright (c) 2013 Daniele Veneroni. Released under MIT License
 
+// ON LOAD
+window.addEventListener("load", function() {
+    init();
+}, 0);
+
+function init () {
+    $("#customgamebutton").click(function () { customGame(); });
+    $('#manualcontent').load('docs/manual.txt');
+}
+
 function customGame() {
     var customPlayers;
 
