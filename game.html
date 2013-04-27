@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CivJS</title>
+	<meta charset="UTF-8">
+	<meta content="index,follow" name="robots" />
+	<meta content="Android,Web,App,iPod,iPhone,iPad,Mac,OSX,Windows,browser,game,civ,civilization,js" name="Keywords" />
+	<meta content="A JavaScript game inspired by Sid Meier's Civilization series" name="Description" />
+
+	<!-- SAFARI WEB APP META TAGS -->
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<!-- CSS STYLESHEETS -->
+	<link rel="stylesheet" type="text/css" href="scripts/game.css">
+	
+	<!-- FRAMEWORKS & LIBRARIES -->
+	<script src="scripts/lib/jquery-1.9.1.js"></script>
+	<script src="scripts/lib/createjs20130212.js"></script> <!-- CreateJS 2013-02-12 -->
+	<script src="scripts/lib/kibo.js"></script>
+	<script src="scripts/lib/iOS.js"></script>
+
+	<!-- CIVJS SCRIPTS -->
+	<!-- <script src="scripts/civjs.js"></script> -->
+	<script src="scripts/graphics.js"></script>
+	<script src="scripts/utils.js"></script>
+	<script src="scripts/game.js"></script>
+	
+</head>
+<body onLoad="init();">
+	<div id="menubar" class="gradient">
+		<span style="position: relative; top: 5px; left: 10px; vertical-align: middle; margin-right: 10px;">
+			<img src="images/logo.png" style="vertical-align: middle; width: 50px;">
+		</span>
+		<button class="button topbarbutton gradient" onclick="focusNext()" title="Focus Next" alt="Focus Next">
+			<img src="images/hud/focusnext.png" class="buttonimage"> Focus Next
+		</button>
+		<button class="button topbarbutton gradient" onclick="endTurn()" title="End Turn" alt="End Turn">
+			<img src="images/hud/endturn.png" class="buttonimage"> End Turn
+		</button>
+		<span id="playerstats" style="position: relative; top: 5px; height: 40px; margin-left: 20px; font-size: 13px; vertical-align: middle;"></span>
+		<button class="button topbarbutton gradient" style="position: absolute; right: 10px" onclick="mainMenu()" title="Menu" alt="Menu">
+			<img src="images/hud/menu.png" class="buttonimage"> Menu
+		</button>
+	</div>
+	<div id="actionbar" class="gradient">
+		<br/>
+	</div>
+	<div id="popup" class="gradient">
+		<div id="popupcontent">
+			<br/>
+		</div>
+		<button class="button closebutton gradient" onclick="closePopup()" title="Close">
+			<img src="images/hud/close.png" width="20">
+		</button>
+	</div>
+	<canvas id="mapcanvas" width="100" height="100">
+		Loading, please wait...
+	</canvas>
+	<div id="infopopup" class="gradient">
+		<br/>
+	</div>
+</body>
+</html>
