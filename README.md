@@ -23,6 +23,6 @@ CivJS is currently in PRE-ALPHA development stage.
 * **Firefox OS** - _future native app, at today playable as web app_
 * **Android** - [Play Store](https://play.google.com/store/apps/details?id=it.venerons.civjs) - [apk](https://build.phonegap.com/apps/282025/download/android/)
 * **Windows Phone** - [xap](https://build.phonegap.com/apps/282025/download/winphone/)
-* **BlackBerry** - _future native app, at today playable as web app_
+* **BlackBerry** - [OTA Install](https://build.phonegap.com/apps/282025/download/blackberry)
 * **WebOS** - [ipk](https://build.phonegap.com/apps/282025/download/webos/)
 * **Symbian** - [wgz](https://build.phonegap.com/apps/282025/download/symbian/)
