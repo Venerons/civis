@@ -47,28 +47,124 @@ var unitsDB = {
 
 // CIVILIZATIONS DATABASE
 var civsDB = {
-    "America": null,
-    "Arabia": null,
-    "Aztec": null,
-    "Babylon": null,
-    "China": null,
-    "Denmark": null,
-    "Egypt": null,
-    "England": null,
-    "France": null,
-    "Germany": null,
-    "Greece": null,
-    "Inca": null,
-    "India": null,
-    "Iroquois": null,
-    "Japan": null,
-    "Mongolia": null,
-    "Ottoman Empire": null,
-    "Persia": null,
-    "Polynesia": null,
-    "Rome": null,
-    "Russia": null,
-    "Siam": null,
-    "Songhai": null,
-    "Spain": null
+    "America": {
+        "leaders": ["Abraham Lincoln", "Washington", "Roosevelt"]
+    },
+    "Arabia": {
+        "leaders": ["Saladin", "Harun al-Rashid"]
+    },
+    "Assyria": {
+        "leaders": ["Ashurbanipal"]
+    },
+    "Austria": {
+        "leaders": ["Maria Theresa"]
+    },
+    "Aztec": {
+        "leaders": ["Montezuma II"]
+    },
+    "Babylon": {
+        "leaders": ["Nebuchadnezzar II"]
+    },
+    "Brazil": {
+        "leaders": ["Pedro"]
+    },
+    "Byzantio": {
+        "leaders": ["Theodora"]
+    },
+    "Carthagine": {
+        "leaders": ["Dido"]
+    },
+    "Celts": {
+        "leaders": ["Boudica"]
+    },
+    "China": {
+        "leaders": ["Mao Zedong", "Wu Zetian", "Qin Shi Huang"]
+    },
+    "Denmark": {
+        "leaders": ["Harald Bluetooth"]
+    },
+    "Dutch": {
+        "leaders": ["William"]
+    },
+    "Egypt": {
+        "leaders": ["Cleopatra", "Ramesses II", "Hatshepsut"]
+    },
+    "England": {
+        "leaders": ["Elizabeth I", "Victoria I", "Henry VIII", "Winston Churchill"]
+    },
+    "Ethiopian": {
+        "leaders": ["Haile Selassie"]
+    },
+    "France": {
+        "leaders": ["Napoleon", "Louis XIV", "Joan d'Arc"]
+    },
+    "Germany": {
+        "leaders": ["Otto von Bismark", "Frederick II"]
+    },
+    "Greece": {
+        "leaders": ["Alexander III"]
+    },
+    "Hun": {
+        "leaders": ["Attila"]
+    },
+    "Inca": {
+        "leaders": ["Pachacuti", "Huayna Capac"]
+    },
+    "India": {
+        "leaders": ["Mohatma Gandhi", "Asoka"]
+    },
+    "Iroquois": {
+        "leaders": ["Hiawatha"]
+    },
+    "Japan": {
+        "leaders": ["Tokugawa Ieyasu", "Oda Nobunaga"]
+    },
+    "Korea": {
+        "leaders": ["Sejong"]
+    },
+    "Maya": {
+        "leaders": ["Pacal"]
+    },
+    "Mali": {
+        "leaders": ["Mansa Musa"]
+    },
+    "Mongolia": {
+        "leaders": ["Genghis Khan", "Kublai Khan"]
+    },
+    "Ottoman Empire": {
+        "leaders": ["Suleiman"]
+    },
+    "Persia": {
+        "leaders": ["Darius", "Cyrus", "Xerxes"]
+    },
+    "Polish": {
+        "leaders": ["Casimir"]
+    },
+    "Polynesia": {
+        "leaders": ["Kamehameha"]
+    },
+    "Portugal": {
+        "leaders": ["Maria"]
+    },
+    "Rome": {
+        "leaders": ["Julius Caesar", "Augustus Caesar"]
+    },
+    "Russia": {
+        "leaders": ["Catherine II", "Peter I", "Vladimir Lenin"]
+    },
+    "Siam": {
+        "leaders": ["Ramkhamhaeng"]
+    },
+    "Songhai": {
+        "leaders": ["Askia"]
+    },
+    "Spain": {
+        "leaders": ["Isabella I"]
+    },
+    "Sweden": {
+        "leaders": ["Gustavus Adolphus"]
+    },
+    "Zulu": {
+        "leaders": ["Shaka"]
+    }
 };

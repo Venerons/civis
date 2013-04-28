@@ -4,11 +4,17 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
 ### Update 28/04/2013
 
-* Update unitsDB
-* Cleaned up generateMap()
-* Update testmap.json
-* New createNewUnit()
-* New promoteUnit()
+* (1) Update unitsDB
+* (1) Cleaned up generateMap()
+* (1) New createNewUnit()
+* (1) New promoteUnit()
+* (2) Add attack preview on the attack confirm
+* (2) New full civilization selection on New Custom Map
+* (2) Updated civsDB
+* (2) Update random civilization and leader name for the AIs
+* (2) Update testmap.json
+* (2) Removed marsh tile (future implementation as nature element)
+* (2) Updated roadmap
 
 ### Update 27/04/2013 (2)
 

@@ -92,7 +92,6 @@ function preloadImages () {
 	imageCache.fog = new Image().src = "images/tiles/fog.jpg";
 	imageCache.grass = new Image().src = "images/tiles/grass.jpg";
 	imageCache.hill = new Image().src = "images/tiles/hill.jpg";
-	imageCache.marsh = new Image().src = "images/tiles/marsh.jpg";
 	imageCache.mountain = new Image().src = "images/tiles/mountain.jpg";
 	imageCache.snow = new Image().src = "images/tiles/snow.jpg";
 	imageCache.water = new Image().src = "images/tiles/water.jpg";
@@ -344,7 +343,6 @@ function addTileToMap(tile) {
 		if (tile.type == "desert") elementimg = imageCache.desert;
 		if (tile.type == "grass") elementimg = imageCache.grass;
 		if (tile.type == "hill") elementimg = imageCache.hill;
-		if (tile.type == "marsh") elementimg = imageCache.marsh;
 		if (tile.type == "mountain") elementimg = imageCache.mountain;
 		if (tile.type == "snow") elementimg = imageCache.snow;
 		if (tile.type == "water") elementimg = imageCache.water;

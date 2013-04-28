@@ -10,6 +10,19 @@ function init () {
     $("#customgamebutton").click(function () { customGame(); });
     $("#presetmapbutton").click(function () { presetGame(); });
     $('#manualcontent').load('docs/manual.txt');
+
+    var civs = [];
+
+    $.each(civsDB, function(key, val) {
+        civs.push(key);
+    });
+
+    var civsList = '<option>Civilization</option><option value="' + civs[0] + '" selected>' + civs[0] + '</option>';
+    for (var i = 1, len = civs.length; i < len; i++) {
+        civsList += '<option value="' + civs[i] + '">' + civs[i] + '</option>';
+    }
+
+    $("#customCiv").html(civsList);
 }
 
 function customGame() {

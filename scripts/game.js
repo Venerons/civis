@@ -19,8 +19,13 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
     }
 
     var colors = ["blue", "red", "yellow", "orange", "purple"];
-    var tiletypes = ["grass", "water", "hill", "mountain", "snow", "desert", "marsh"];
+    var tiletypes = ["grass", "water", "hill", "mountain", "snow", "desert"];
     var nature = ["none", "forest"];
+    var civs = [];
+
+    $.each(civsDB, function(key, val) {
+        civs.push(key);
+    });
 
     // INSERT THE PLAYER 1
 
@@ -43,8 +48,23 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
         p = {};
         p.id = i;
         p.color = colors[i];
-        p.name = "AI" + i;
-        p.civilization = "civilization" + i;
+
+        var civ;
+        var trovato = false;
+        while (!trovato) {
+            civ = civs[Math.floor(Math.random() * civs.length)];
+            var uguale = false;
+            var j = 0;
+            var len = basemap.players.length;
+            while (!uguale && j < len) {
+                if (basemap.players[j].civilization == civ) uguale = true;
+                j++;
+            }
+            if (!uguale) trovato = true;
+        }
+        p.civilization = civ;
+
+        p.name = civsDB[p.civilization].leaders[Math.floor(Math.random() * civsDB[p.civilization].leaders.length)];
         p.points = 0;
         p.gold = 0;
         p.society = "dispotism";
@@ -186,10 +206,31 @@ function make_handler(selected, unit) {
         var i = 0;
         var attack = false;
         while (!attack && i < len) {
-            if (map.units[i].x == selected.x && map.units[i].y == selected.y && map.units[i].player != map.players[0].id) { // a unit of a different player is already on that tile
-                var answer = confirm("Are you sure to attack?")
+            if (map.units[i].x == selected.x && map.units[i].y == selected.y && map.units[i].player != map.players[0].id) { 
+                // a unit of a different player is already on that tile
+                var unit2 = map.units[i];
+
+                var unit1title = findPlayerById(unit.player).civilization + " ";
+                if (isElite(unit)) {
+                    unit1title += "Elite ";
+                } else {
+                    if (isVeteran(unit)) {
+                        unit1title += "Veteran ";
+                    }
+                }
+                var unit2title = findPlayerById(unit2.player).civilization + " ";
+                if (isElite(unit2)) {
+                    unit2title += "Elite ";
+                } else {
+                    if (isVeteran(unit2)) {
+                        unit2title += "Veteran ";
+                    }
+                }
+                var confront = unit1title + unit.type.toUpperCase() + "  -  VS  -  " + unit2title + unit2.type.toUpperCase();
+
+                var answer = confirm(confront + "\n\nAre you sure to attack?")
                 if (answer){
-                    attackUnit(unit, map.units[i]);
+                    attackUnit(unit, unit2);
                     attack = true;
                 } else {
                     return;
