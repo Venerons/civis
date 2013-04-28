@@ -13,7 +13,8 @@
          "points":0,
          "gold":0,
          "society":"dispotism",
-         "culture":0
+         "culture":0,
+         "unitsCounter":3
       },
       {
          "id":1,
@@ -23,7 +24,8 @@
          "points":0,
          "gold":0,
          "society":"dispotism",
-         "culture":0
+         "culture":0,
+         "unitsCounter":2
       },
       {
          "id":2,
@@ -33,7 +35,8 @@
          "points":0,
          "gold":0,
          "society":"dispotism",
-         "culture":0
+         "culture":0,
+         "unitsCounter":1
       }
    ],
    "tiles":[
@@ -1302,8 +1305,8 @@
          "y":5,
          "type":"warrior",
          "experience":9,
-         "life":1,
-         "maxlife":1,
+         "life":2,
+         "maxlife":2,
          "fortified":false,
          "active":true
       },

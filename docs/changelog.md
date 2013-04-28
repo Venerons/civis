@@ -2,6 +2,14 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 28/04/2013
+
+* Update unitsDB
+* Cleaned up generateMap()
+* Update testmap.json
+* New createNewUnit()
+* New promoteUnit()
+
 ### Update 27/04/2013 (2)
 
 * New database.js that will contains all DBs

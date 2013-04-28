@@ -10,7 +10,8 @@ var unitsDB = {
             "mov": 2,
             "naval": false,
             "terrain": true,
-            "productioncost": 30
+            "productioncost": 30,
+            "initialLife": 1
         },
     "warrior": 
         {
@@ -19,7 +20,8 @@ var unitsDB = {
             "mov": 1,
             "naval": false,
             "terrain": true,
-            "productioncost": 10
+            "productioncost": 10,
+            "initialLife": 1
         },
     "archer": 
         {
@@ -28,7 +30,8 @@ var unitsDB = {
             "mov": 1,
             "naval": false,
             "terrain": true,
-            "productioncost": 25
+            "productioncost": 25,
+            "initialLife": 1
         },
     "galley": 
         {
@@ -37,7 +40,8 @@ var unitsDB = {
             "mov": 1,
             "naval": true,
             "terrain": false,
-            "productioncost": 30
+            "productioncost": 30,
+            "initialLife": 1
         }
 };
 

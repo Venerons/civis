@@ -18,50 +18,13 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
         "cities": []
     }
 
-    var baseplayer = {
-        "id": 1,
-        "color": "",
-        "name": "",
-        "civilization": "",
-        "points": 0,
-        "gold": 0,
-        "society": "dispotism",
-        "culture": 0
-    }
-
-    var basetile = {
-        "id": "x1y1",
-        "x": 1,
-        "y": 1,
-        "type": "water",
-        "fog": false,
-        "nature": "none",
-        "resource": "none",
-        "improvement": "none",
-        "street": false,
-        "culture": 0
-    }
-
-    var baseunit = {
-        "id": "p0u1",
-        "player": 2,
-        "x": 3,
-        "y": 2,
-        "type": "archer",
-        "experience": 0,
-        "life": 2,
-        "maxlife": 2,
-        "fortified": false,
-        "active": true
-    }
-
     var colors = ["blue", "red", "yellow", "orange", "purple"];
     var tiletypes = ["grass", "water", "hill", "mountain", "snow", "desert", "marsh"];
     var nature = ["none", "forest"];
 
     // INSERT THE PLAYER 1
 
-    var p = jQuery.extend(true, {}, baseplayer);
+    var p = {};
     p.id = 0;
     p.color = colors[0];
     p.name = pname;
@@ -70,12 +33,14 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
     p.gold = 0;
     p.society = "dispotism";
     p.culture = 0;
+    p.unitsCounter = 1;
+
     basemap.players.push(p);
 
     // INSERT THE OTHER PLAYERS (AI)
 
     for (var i = 1; i < nplayers; i++) {
-        p = jQuery.extend(true, {}, baseplayer);
+        p = {};
         p.id = i;
         p.color = colors[i];
         p.name = "AI" + i;
@@ -84,6 +49,7 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
         p.gold = 0;
         p.society = "dispotism";
         p.culture = 0;
+        p.unitsCounter = 1;
 
         basemap.players.push(p);
     }
@@ -96,7 +62,7 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
 
             // TODO the type of the tile must be more controlled, and must add a "nature" and "resource" elements
 
-            var t = jQuery.extend(true, {}, basetile);
+            var t = {};
             t.x = j + 1;
             t.y = i + 1;
             t.id = "x" + t.x + "y" + t.y;
@@ -157,15 +123,16 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
             }
         }
 
-        var u1 = jQuery.extend(true, {}, baseunit);
+        var u1 = {};
+
         u1.id = "p" + String(i) + "u1";
         u1.player = i;
         u1.x = targetx;
         u1.y = targety;
         u1.type = "settler";
         u1.experience = 0;
-        u1.life = 1;
-        u1.maxlife = 1;
+        u1.life = unitsDB["settler"].initialLife;
+        u1.maxlife = unitsDB["settler"].initialLife;
         u1.fortified = false;
         u1.active = true;
 
@@ -330,7 +297,7 @@ function attackUnit(unit1, unit2) {
         removeUnit(unit1);
     } else {
         unit1.life -= damage1;
-        if (unit1.experience == 5 || unit1.experience == 10) unit1.life = unit1.maxlife;
+        if (unit1.experience == 5 || unit1.experience == 10) promoteUnit(unit1);
     } 
     if ((unit2.life - damage2) <= 0) {
         content += '<br/><span style="color: ' + findPlayerById(unit2.player).color + '"><strong>' + unit2title + unit2.type.toUpperCase() + '</strong></span> is <strong>dead!</strong>';
@@ -339,7 +306,7 @@ function attackUnit(unit1, unit2) {
         removeUnit(unit2);
     } else {
         unit2.life -= damage2;
-        if (unit2.experience == 5 || unit2.experience == 10) unit2.life = unit2.maxlife;
+        if (unit2.experience == 5 || unit2.experience == 10) promoteUnit(unit2);
     } 
     $('#popupcontent').html(content);
     openPopup();

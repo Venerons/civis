@@ -262,3 +262,26 @@ function focusNext () {
     $("#actionbar").html('<p align="center">You have no active units. You should End Turn. (Press SPACE)<p>');
     openActionbar();
 }
+
+function createNewUnit(player, type, x, y) {
+    var unit = {};
+    player.unitsCounter++;
+    unit.id = "p" + player.id + "u" + player.unitsCounter;
+    unit.player = player.id;
+    unit.x = x;
+    unit.y = y;
+    unit.type = type;
+    unit.experience = 0;
+    unit.life = unitsDB[type].initialLife;
+    unit.maxlife = unitsDB[type].initialLife;
+    unit.fortified = false;
+    unit.active = true;
+
+    map.units.push(unit);
+}
+
+// PROMOTE A UNIT. IT DOUBLE THE MAXLIFE AND DO A FULL HEAL
+function promoteUnit(unit) {
+    unit.maxlife = unit.maxlife * 2; // VARIANT: = unitsDB[unit.type].initialLife * (unit.experience / 5 + 1); initialLife*2 when Veteran, initialLife*3 when Elite
+    unit.life = unit.maxlife;
+}
