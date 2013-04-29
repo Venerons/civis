@@ -2,6 +2,13 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 29/04/2013
+
+* Update config.xml
+* Corrected testmap.json
+* Cure unit when is fortified (+1 normal, +2 if veteran, +3 if elite)
+* New (not definitive) graphic for desert, fog, water and snow tiles
+
 ### Update 28/04/2013
 
 * (1) Update unitsDB

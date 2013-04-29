@@ -9,6 +9,7 @@
 
     <description>
         A JavaScript game inspired by the Sid Meier's Civilization games
+        More info at http://venerons.github.io/CivJS
     </description>
 
     <author href="http://venerons.github.io/" email="veneronslaboratories@gmail.com">
@@ -29,6 +30,7 @@
     <icon src="images/icons/android/mdpi.png" gap:platform="android" gap:density="mdpi" /> <!-- 48 pixels -->
     <icon src="images/icons/android/hdpi.png" gap:platform="android" gap:density="hdpi" /> <!-- 72 pixels -->
     <icon src="images/icons/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" /> <!-- 96 pixels -->
+    <!-- <icon src="images/icons/android/xxhdpi.png" gap:platform="android" gap:density="xxhdpi" /> 144 pixels -->
         
     <icon src="images/icons/bb/icon.png" gap:platform="blackberry" /> <!-- 72 pixels -->
     <icon src="images/icons/bb/icon_hover.png" gap:platform="blackberry" gap:state="hover"/> <!-- 72 pixels -->

@@ -165,13 +165,39 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
 function endTurn () {
     autoSaveGame(); // save the game as right before calling endTurn
     closeActionbar();
+
     // INSERT HERE THE AIs ACTIONS
-    map.game.turn++;
-    map.game.year += map.game.yearstep;
+
+    // UNITS END TURN
+    // re-active all units and cure if fortified
     var len = map.units.length;
     for (var i = 0; i < len; i++) {
-        map.units[i].active = true;
+        var unit = map.units[i];
+        unit.active = true;
+        
+        if (unit.fortified) {
+            // detect the admount of heal
+            var heal = 1;
+            if (isElite(unit)) {
+                heal = 3;
+            } else {
+                if (isVeteran(unit)) {
+                    heal = 2;
+                }
+            }
+            // heal the unit
+            var newlife = unit.life + heal;
+            if (newlife >= unit.maxlife) {
+                unit.life = unit.maxlife;
+            } else {
+                unit.life = newlife;
+            }
+        }
     }
+
+    map.game.turn++;
+    map.game.year += map.game.yearstep;
+    
     renderMap();
 }
 
