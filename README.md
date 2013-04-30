@@ -26,3 +26,11 @@ CivJS is currently in PRE-ALPHA development stage.
 * **BlackBerry** - [OTA Install](https://build.phonegap.com/apps/282025/download/blackberry)
 * **WebOS** - [ipk](https://build.phonegap.com/apps/282025/download/webos/)
 * **Symbian** - [wgz](https://build.phonegap.com/apps/282025/download/symbian/)
+
+## Support
+
+You like CivJS and you want to contribute with its development? Good! There's essentially three way to contribute to the CivJS project development:
+
+1. **Beta Tester** The easiest, and requires no knowledge of programming. Simply, give feedback through the [issue tracker](https://github.com/Venerons/CivJS/issues) reporting bugs, hints, tips, and user experience.
+2. **Sponsor** Donations help pay the costs fo maintenance of the project and to motivate the developers. It's little for you, huge for us! [Click here to know how to donate](http://venerons.github.io/CivJS/index.html#donate).
+3. **Collaborator** The hardest, but it's also the most useful! At now I'll appreciate if someone want to draw a default graphic set for the game (in the final version I hope to include various graphic sets so don't be scared to try!)
