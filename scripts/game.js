@@ -18,7 +18,7 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
         "cities": []
     }
 
-    var colors = ["blue", "red", "yellow", "orange", "purple"];
+    var colors = ["#1E74FF", "red", "yellow", "orange", "purple"];
     var tiletypes = ["grass", "water", "hill", "mountain", "snow", "desert"];
     var nature = ["none", "forest"];
     var civs = [];
@@ -26,6 +26,12 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
     $.each(civsDB, function(key, val) {
         civs.push(key);
     });
+
+    // TILES TYPE BY SECTOR
+    var poles = ["water", "water", "snow"];
+    var cold = ["snow", "grass", "grass", "mountain", "water", "water"];
+    var middle = ["grass", "mountain", "hill", "water", "water"];
+    var center = ["desert", "desert", "grass", "hill", "mountain", "water", "water"];
 
     // INSERT THE PLAYER 1
 
@@ -76,18 +82,31 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
 
     // TILES GENERATION
 
-    for (var i = 0; i < nrows; i++) {
+    for (var y = 0; y < nrows; y++) {
         var row = [];
-        for (var j = 0; j < ncols; j++) {
+        for (var x = 0; x < ncols; x++) {
 
             // TODO the type of the tile must be more controlled, and must add a "nature" and "resource" elements
 
             var t = {};
-            t.x = j + 1;
-            t.y = i + 1;
+            t.x = x + 1;
+            t.y = y + 1;
             t.id = "x" + t.x + "y" + t.y;
-            t.type = tiletypes[Math.floor(Math.random() * tiletypes.length)];
             t.fog = true;
+
+            // tile type
+            //t.type = tiletypes[Math.floor(Math.random() * tiletypes.length)];
+            if (t.y <= 2 || t.y >= (nrows - 1)) 
+                t.type = poles[Math.floor(Math.random() * poles.length)];
+            else
+                if (t.y == 3 || t.y == 8) 
+                    t.type = cold[Math.floor(Math.random() * cold.length)];
+                else
+                    if (t.y == 4 || t.y == 7)
+                        t.type = middle[Math.floor(Math.random() * middle.length)];
+                    else
+                        t.type = center[Math.floor(Math.random() * center.length)];
+            
 
             // add eventual nature element
             if (t.type == "grass" || t.type == "hill") {
@@ -213,14 +232,29 @@ function showUnitOptions (unitid) {
                 unittitle = "Veteran ";
             }
         }
+        
         var content = '<span style="position: relative; top: 5px; left: 10px; height: 40px; margin-right: 20px; vertical-align: middle;"><img src="images/units/' + unit.type + '.png" alt="' + unittitle + unit.type + '" title="' + unittitle + unit.type + '" class="buttonimage"> <strong>' 
                     + unittitle + unit.type.toUpperCase() 
                     + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><img src="images/hud/life.png" alt="Life" title="Life" class="buttonimage"> ' + unit.life + ' <img src="images/hud/exp.png" alt="Exp" title="Exp" class="buttonimage">  ' + unit.experience + ' <img src="images/hud/atk.png" alt="Atk" title="Atk" class="buttonimage"> ' + getAtk(unit) + ' <img src="images/hud/def.png" alt="Def" title="Def" class="buttonimage"> ' + getDef(unit) + ' <img src="images/hud/move.png" alt="Mov" title="Mov" class="buttonimage"> ' + getMov(unit) + '</span>' 
-                    + '<button class="button gradient topbarbutton" onclick="moveUnit(\'' + unit.id + '\')"><img src="images/hud/move.png" class="buttonimage"> Move</button>'
-                    + '<button class="button gradient topbarbutton" onclick="fortifyUnit(\'' + unit.id + '\')"><img src="images/hud/fortify.png" class="buttonimage"> Fortify</button>'
-                    + '<button class="button gradient topbarbutton" onclick="killUnit(\'' + unit.id + '\')"><img src="images/hud/kill.png" class="buttonimage"> Kill</button>'
-                    + '<button class="button gradient topbarbutton" onclick="closeActionbar()"><img src="images/hud/close.png" class="buttonimage"> No Orders</button>';
+                    + '&nbsp;&nbsp;<span id="specialOrders"></span>'
+                    + '<button class="button gradient topbarbutton" alt="Move" title="Move" id="moveUnit"><img src="images/hud/move.png" class="buttonimage"></button>'
+                    + '<button class="button gradient topbarbutton" alt="Fortify" title="Fortify" id="fortifyUnit"><img src="images/hud/fortify.png" class="buttonimage"></button>'
+                    + '<button class="button gradient topbarbutton" alt="Kill" title="Kill" id="killUnit"><img src="images/hud/kill.png" class="buttonimage"></button>'
+                    + '<button class="button gradient topbarbutton" alt="No Orders" title="No Orders" id="noOrders"><img src="images/hud/close.png" class="buttonimage"></button>';
         $("#actionbar").html(content);
+
+        $("#moveUnit").click(function () { moveUnit(unit.id); });
+        $("#fortifyUnit").click(function () { fortifyUnit(unit.id); });
+        $("#killUnit").click(function () { killUnit(unit.id); });
+        $("#noOrders").click(function () { closeActionbar(); });
+
+        var specialOrders = "";
+        if (unit.type == "settler") {
+            specialOrders = '<button class="button gradient topbarbutton" alt="Settle" title="Settle" id="settleCity"><img src="images/hud/settle.png" class="buttonimage"></button>';
+            $("#specialOrders").html(specialOrders);
+            $("#settleCity").click(function () { settleCity(unit.id); });
+        }
+
         openActionbar();
     }
 }
@@ -398,4 +432,27 @@ function killUnit(unitid) {
         renderMap();
     }
     focusNext();
+}
+
+function settleCity(unitid) {
+    var unit = findUnitById(unitid);
+    var cityname = prompt("Name of the city","MyCity");
+    if (cityname != null) {
+        var city = {};
+        city.id = "x" + unit.x + "y" + unit.y + "-" + cityname;
+        city.name = cityname;
+        city.player = unit.player;
+        city.x = unit.x;
+        city.y = unit.y;
+        city.population = 1;
+        city.buildings = [];
+        city.currentbuild = "";
+        city.currentbuildcost = 0;
+
+        map.cities.push(city);
+
+        removeUnit(unit);
+
+        renderMap();
+    }
 }

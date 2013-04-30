@@ -25,17 +25,18 @@ window.addEventListener("load", function() {
 function init() {
 	preloadImages();
 
+	loadMap();
+	keyboardMapping();
+
+	$("#focusnextbutton").click(function () { focusNext(); });
+	$("#endturnbutton").click(function () { endTurn(); });
+	$("#mainmenubutton").click(function () { mainMenu(); });
+
 	canvas = document.getElementById("mapcanvas");
 	canvas.width = $(window).width() - 10;
 	canvas.height = $(window).height() - 60;
 
 	stage = new createjs.Stage(canvas);
-
-	loadMap();
-	keyboardMapping();
-	$("#focusnextbutton").click(function () { focusNext(); });
-	$("#endturnbutton").click(function () { endTurn(); });
-	$("#mainmenubutton").click(function () { mainMenu(); });
 
 	createjs.Ticker.useRAF = true;
 	createjs.Ticker.setFPS(60);
@@ -219,10 +220,6 @@ function setupHUD() {
 // Keyboard mapping using Kibo.js
 function keyboardMapping() {
 	var k = new Kibo();
-	k.down(['ctrl e'], function(){
-		exportMap();
-		return false;
-	});
 	k.down(['space'], function() { 
 	    endTurn();
 	    return false; // used to prevent default action on keypress
@@ -242,6 +239,31 @@ function keyboardMapping() {
 	k.down(['right'], function() { 
 	    moveCamera(-100, 0);
 	    return false; // used to prevent default action on keypress
+	});
+
+	// DEBUG FEATURE CONTROLS
+	k.down(['ctrl e'], function(){
+		exportMap();
+		return false;
+	});
+	k.down(['ctrl a'], function(){
+		discoverAll();
+		renderMap();
+		return false;
+	});
+	k.down(['ctrl q'], function(){
+		SCALE -= 0.5;
+		TILESIZE = Math.floor(101 * SCALE);
+		UNITSIZE = Math.floor(56 * SCALE);
+		renderMap();
+		return false;
+	});
+	k.down(['ctrl w'], function(){
+		SCALE += 0.5;
+		TILESIZE = Math.floor(101 * SCALE);
+		UNITSIZE = Math.floor(56 * SCALE);
+		renderMap();
+		return false;
 	});
 }
 

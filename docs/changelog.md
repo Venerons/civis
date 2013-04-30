@@ -2,6 +2,18 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 30/04/2013
+
+* Introduced more debug controls
+* Changed preset map sizes
+* Added favicon images
+* Added webapp icons
+* Fix icons & spash screens on iOS
+* Better manage of ActionBar actions
+* New settle city
+* Reduced buttons border
+* Removed text on buttons (only icon)
+
 ### Update 29/04/2013
 
 * Update config.xml

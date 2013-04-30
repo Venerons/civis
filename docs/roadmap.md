@@ -24,7 +24,6 @@ _Bugs & technical features_
 
 _Game Features_
 
-* Settling
 * Add nature elements (forest, marsh, jungle, natural wonder, oasis, river, lake)
 * Tiles bonus/malus and food/production/gold values
 * Implement civilizations abilities

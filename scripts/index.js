@@ -40,10 +40,10 @@ function customGame() {
 
     var mapSize = document.getElementById("mapSize").value;
     var ncols, nrows;
-    if (mapSize == "small") { ncols = 10; nrows = 10; }
-    if (mapSize == "medium") { ncols = 20; nrows = 20; }
-    if (mapSize == "large") { ncols = 30; nrows = 30; }
-    if (mapSize == "xlarge") { ncols = 50; nrows = 50; }
+    if (mapSize == "small") { ncols = 16; nrows = 10; }
+    if (mapSize == "medium") { ncols = 25; nrows = 16; }
+    if (mapSize == "large") { ncols = 32; nrows = 20; }
+    if (mapSize == "xlarge") { ncols = 50; nrows = 30; }
 
     var param = "game.html?action=new&name=" + customPlayerName + "&civ=" + customCiv + "&players=" + customPlayers + "&ncols=" + ncols + "&nrows=" + nrows;
     window.location.href = param;

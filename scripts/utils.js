@@ -285,3 +285,14 @@ function promoteUnit(unit) {
     unit.maxlife = unit.maxlife * 2; // VARIANT: = unitsDB[unit.type].initialLife * (unit.experience / 5 + 1); initialLife*2 when Veteran, initialLife*3 when Elite
     unit.life = unit.maxlife;
 }
+
+// DISCOVER ALL TILES (DEBUG FEATURE)
+function discoverAll() {
+    var leny = map.tiles.length;
+    for (var y = 0; y < leny; y++) {
+        var lenx = map.tiles[y].length;
+        for (var x = 0; x < lenx; x++) {
+            map.tiles[y][x].fog = false;
+        }
+    }
+}
