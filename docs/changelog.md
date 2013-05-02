@@ -2,7 +2,12 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
-### Update 01/04/2013
+### Update 02/05/2013
+
+* Decreased rendering FPS to 24 from 60
+* Continued implementing city management (still partial)
+
+### Update 01/05/2013
 
 * Updated Instructions Manual
 * Updated RoadMap

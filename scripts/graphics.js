@@ -39,7 +39,7 @@ function init() {
 	stage = new createjs.Stage(canvas);
 
 	createjs.Ticker.useRAF = true;
-	createjs.Ticker.setFPS(60);
+	createjs.Ticker.setFPS(24);
 	createjs.Ticker.addListener(window);
 
 	renderMap();

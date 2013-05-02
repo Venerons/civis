@@ -214,6 +214,23 @@ function endTurn () {
         }
     }
 
+    // CITY END TURN
+    len = map.cities.length;
+    for (var i = 0; i < len; i++) {
+        var city = map.cities[i];
+        var cityprod = getCityProd(city)
+        if (city.build.name != "nothing" && city.build.cost - cityprod <= 0) {
+            // build finished
+            createNewUnit(findPlayerById(city.player), city.build.name, city.x, city.y);
+            city.build.name = "nothing";
+            city.build.cost = 0;
+        } else {
+            // build continued
+            if (city.build.name != "nothing") city.build.cost -= cityprod;
+        }
+
+    }
+
     map.game.turn++;
     map.game.year += map.game.yearstep;
     
@@ -436,6 +453,9 @@ function killUnit(unitid) {
 
 function settleCity(unitid) {
     var unit = findUnitById(unitid);
+
+    // TODO controllare che nella casella si possa fondare una città (es. non sia mare, non ci sia già una città, etc.)
+
     var cityname = prompt("Name of the city","MyCity");
     if (cityname != null) {
         var city = {};
@@ -446,14 +466,15 @@ function settleCity(unitid) {
         city.y = unit.y;
         city.population = 1;
         city.buildings = [];
-        city.currentbuild = "";
-        city.currentbuildcost = 0;
+        city.build = { name: "nothing", cost: 0 };
 
         map.cities.push(city);
 
         removeUnit(unit);
 
         renderMap();
+
+        showCityManager(city.id);
     }
 }
 
@@ -463,15 +484,52 @@ function showCityManager(cityid) {
 
     var cityproduction = getCityProd(city);
 
-    var content = '<table><tbody>'
+    var list = "<h4>Buildings</h4><ul>";
+    var len = city.buildings.length;
+    for (var i = 0; i < len; i++) {
+        list += '<li>' + city.buildings[i] + '</li>';
+    }
+    list += '</ul>';
+
+    var content = '<table style="width: 100%"><tbody>'
+                + '<tr><td style="width: 70%"><table><tbody>'
                 + '<tr><td><strong>Name:</strong></td><td>' + city.name + '</td></tr>'
                 + '<tr><td><strong>Population:</strong></td><td>' + city.population + '</td></tr>'
                 + '<tr><td><strong>Food:</strong></td><td>' + getCityFood(city) + '</td></tr>'
                 + '<tr><td><strong>Production:</strong></td><td>' + cityproduction + '</td></tr>'
                 + '<tr><td><strong>Gold:</strong></td><td>' + getCityGold(city) + '</td></tr>'
-                + '<tr><td><strong>Current Build:</strong></td><td>' + city.currentbuild + ' (' + Math.ceil(city.currentbuildcost/cityproduction) + ' Turns)</td></tr>'
-                + '</tbody></table>';
+                + '<tr><td><strong>Current Build:</strong></td><td>' + city.build.name + ' (' + Math.ceil(city.build.cost/cityproduction) + ' Turns)</td></tr>'
+                + '<tr><td><br/><button id="changebuildBtn" class="gradient button">Change Current Build</button></td></tr>'
+                + '</tbody></table></td>'
+                + '<td style="width: 30%;">'
+                + list
+                + '</td></tr></tbody></table>';
 
     $('#popupcontent').html(content);
+
+    $("#changebuildBtn").click(function () { createBuildingsList(cityid); });
+    
     openPopup();
+}
+
+function createBuildingsList(cityid) {
+    closePopup();
+    resetPopup();
+
+    var content = "<h4>Available Buildings</h4>";
+    content += '<button onclick="build(\'' + cityid + '\', \'settler\')" style="width: 100%; margin-bottom: 5px;" class="gradient button">Settler (20)</button><br/>';
+    content += '<button onclick="build(\'' + cityid + '\', \'warrior\')" style="width: 100%; margin-bottom: 5px;" class="gradient button">Settler (20)</button><br/>';
+
+    $('#popupcontent').html(content);
+
+    openPopup();
+}
+
+function build(cityid, building) {
+    var city = findCityById(cityid);
+    var build = {};
+    build.name = building;
+    build.cost = getProductionCost({type:building});
+    city.build = build;
+    closePopup();
 }
