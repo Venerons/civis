@@ -6,6 +6,7 @@ This document outlines the general goals for CivJS ongoing development.
 
 ### Version 0.2.0 (May 2013)
 
+* Publish updated Instructions Manual _(DONE)_
 * Map size selection _(DONE)_
 * Sample test map _(DONE)_
 * Attack preview _(DONE)_
@@ -14,9 +15,9 @@ This document outlines the general goals for CivJS ongoing development.
 * New (not definitive) tiles graphic _(DONE)_
 * Buttons restyle _(DONE)_
 * Full Firefox OS support _(DONE)_
+* Tiles bonus/malus and food/production/gold values _(DONE)_
 * City settling _(DONE)_
-* City management
-* Publish updated Instructions Manual
+* City management _(PARTIAL)_
 
 ### Version 1.0.0 (Unscheduled)
 
@@ -38,7 +39,6 @@ _Bugs & technical features_
 _Game Features_
 
 * Add nature elements (forest, marsh, jungle, natural wonder, oasis, river, lake)
-* Tiles bonus/malus and food/production/gold values
 * Implement civilizations abilities
 * Implement politics (aka Society)
 * Implement science research

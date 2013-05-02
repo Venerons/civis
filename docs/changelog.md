@@ -2,6 +2,14 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 01/04/2013
+
+* Updated Instructions Manual
+* Updated RoadMap
+* Fixed version numer on index.html
+* Fixed zoom rendering
+* New city management (partial)
+
 ### Update 30/04/2013
 
 * Introduced more debug controls

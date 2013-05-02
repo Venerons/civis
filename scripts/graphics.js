@@ -153,6 +153,7 @@ function renderMap() {
 
     // TILES SETTING
     discoverTiles();
+
 	var leny = map.tiles.length;
 	for (var y = 0; y < leny; y++) {
 		var lenx = map.tiles[y].length;
@@ -255,6 +256,7 @@ function keyboardMapping() {
 		SCALE -= 0.5;
 		TILESIZE = Math.floor(101 * SCALE);
 		UNITSIZE = Math.floor(56 * SCALE);
+		UNITOFFSET = Math.floor((TILESIZE - UNITSIZE) / 2);
 		renderMap();
 		return false;
 	});
@@ -262,6 +264,7 @@ function keyboardMapping() {
 		SCALE += 0.5;
 		TILESIZE = Math.floor(101 * SCALE);
 		UNITSIZE = Math.floor(56 * SCALE);
+		UNITOFFSET = Math.floor((TILESIZE - UNITSIZE) / 2);
 		renderMap();
 		return false;
 	});
@@ -341,7 +344,7 @@ function addUnitToMap(unit) {
 	hit.alpha = 0.5;
 	unitImage.hitArea = hit;
 
-	if (unit.player == 0) {
+	if (unit.player == map.players[0].id) {
 		hit.onClick = function (e) {
 			showUnitOptions(unit.id);
 		}
@@ -409,6 +412,12 @@ function addCityToMap(city) {
 		.beginFill("#E8E5E5")
 		.drawRect(tx - 5, ty - 5, label.getMeasuredWidth() + 10, label.getMeasuredHeight() + 10);
 	label.hitArea = hit;
+
+	if (city.player == map.players[0].id) {
+		hit.onClick = function (e) {
+			showCityManager(city.id);
+		}
+	}
 
 	var paintCity = {};
 	paintCity.id = city.id;

@@ -205,6 +205,16 @@ function findUnitById(id) {
     }
 }
 
+// FIND A CITY BY ID
+function findCityById(id) {
+    var len = map.cities.length;
+    for (var i = 0; i < len; i++) {
+        if (map.cities[i].id == id) {
+            return map.cities[i];
+        }
+    }
+}
+
 // REMOVE UNIT FROM THE GAME (I.E. IF KILLED, SACRIFIED ETC.)
 function removeUnit(unit) {
     var indexunit;
@@ -295,4 +305,104 @@ function discoverAll() {
             map.tiles[y][x].fog = false;
         }
     }
+}
+
+function getFoodFromTile(tile) {
+    var food = 0;
+    if (tile.type == "grass") food += 2;
+    if (tile.type == "hill" || tile.type == "water") food++;
+
+    if (tile.nature == "forest" || tile.nature == "jungle") food++;
+    if (tile.nature == "oasis") food += 3;
+    if (tile.nature == "lake") food += 2;
+
+    return food;
+}
+
+function getProdFromTile(tile) {
+    var prod = 0;
+    if (tile.type == "hill") prod++;
+    if (tile.type == "mountain") prod += 2;
+
+    if (tile.nature == "forest") prod++;
+    if (tile.nature == "jungle") prod--;
+    if (tile.nature == "naturalwonder") prod += 2;
+
+    return prod;
+}
+
+function getGoldFromTile(tile) {
+    var gold = 0;
+    if (tile.type == "mountain" || tile.type == "water") gold++;
+
+    if (tile.nature == "oasis" || tile.nature == "river" || tile.nature == "lake") gold++;
+    if (tile.nature == "naturalwonder") gold += 3;
+
+    return gold;
+}
+
+function getCityFood(city) {
+    var x = city.x;
+    var y = city.y;
+    var food = 0;
+    if (!(y == 1)) {
+        if (!(x == 1)) food += getFoodFromTile(findTileByXY(x-1, y-1));
+        food += getFoodFromTile(findTileByXY(x, y-1));
+        if (!(x == map.tiles[y-1].length)) food += getFoodFromTile(findTileByXY(x+1, y-1));
+    }
+
+    if (!(x == 1)) food += getFoodFromTile(findTileByXY(x-1, y));
+    food += getFoodFromTile(findTileByXY(x, y));
+    if (!(x == map.tiles[y-1].length)) food += getFoodFromTile(findTileByXY(x+1, y));
+
+    if (!(y == map.tiles.length)) {
+        if (!(x == 1)) food += getFoodFromTile(findTileByXY(x-1, y+1));
+        food += getFoodFromTile(findTileByXY(x, y+1));
+        if (!(x == map.tiles[y-1].length)) food += getFoodFromTile(findTileByXY(x+1, y+1));
+    }
+    return food;
+}
+
+function getCityProd(city) {
+    var x = city.x;
+    var y = city.y;
+    var prod = 0;
+    if (!(y == 1)) {
+        if (!(x == 1)) prod += getProdFromTile(findTileByXY(x-1, y-1));
+        prod += getProdFromTile(findTileByXY(x, y-1));
+        if (!(x == map.tiles[y-1].length)) prod += getProdFromTile(findTileByXY(x+1, y-1));
+    }
+
+    if (!(x == 1)) prod += getProdFromTile(findTileByXY(x-1, y));
+    prod += getProdFromTile(findTileByXY(x, y));
+    if (!(x == map.tiles[y-1].length)) prod += getProdFromTile(findTileByXY(x+1, y));
+
+    if (!(y == map.tiles.length)) {
+        if (!(x == 1)) prod += getProdFromTile(findTileByXY(x-1, y+1));
+        prod += getProdFromTile(findTileByXY(x, y+1));
+        if (!(x == map.tiles[y-1].length)) prod += getProdFromTile(findTileByXY(x+1, y+1));
+    }
+    return prod;
+}
+
+function getCityGold(city) {
+    var x = city.x;
+    var y = city.y;
+    var gold = 0;
+    if (!(y == 1)) {
+        if (!(x == 1)) gold += getGoldFromTile(findTileByXY(x-1, y-1));
+        gold += getGoldFromTile(findTileByXY(x, y-1));
+        if (!(x == map.tiles[y-1].length)) gold += getGoldFromTile(findTileByXY(x+1, y-1));
+    }
+
+    if (!(x == 1)) gold += getGoldFromTile(findTileByXY(x-1, y));
+    gold += getGoldFromTile(findTileByXY(x, y));
+    if (!(x == map.tiles[y-1].length)) gold += getGoldFromTile(findTileByXY(x+1, y));
+
+    if (!(y == map.tiles.length)) {
+        if (!(x == 1)) gold += getGoldFromTile(findTileByXY(x-1, y+1));
+        gold += getGoldFromTile(findTileByXY(x, y+1));
+        if (!(x == map.tiles[y-1].length)) gold += getGoldFromTile(findTileByXY(x+1, y+1));
+    }
+    return gold;
 }

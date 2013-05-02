@@ -456,3 +456,22 @@ function settleCity(unitid) {
         renderMap();
     }
 }
+
+function showCityManager(cityid) {
+    var city = findCityById(cityid);
+    resetPopup();
+
+    var cityproduction = getCityProd(city);
+
+    var content = '<table><tbody>'
+                + '<tr><td><strong>Name:</strong></td><td>' + city.name + '</td></tr>'
+                + '<tr><td><strong>Population:</strong></td><td>' + city.population + '</td></tr>'
+                + '<tr><td><strong>Food:</strong></td><td>' + getCityFood(city) + '</td></tr>'
+                + '<tr><td><strong>Production:</strong></td><td>' + cityproduction + '</td></tr>'
+                + '<tr><td><strong>Gold:</strong></td><td>' + getCityGold(city) + '</td></tr>'
+                + '<tr><td><strong>Current Build:</strong></td><td>' + city.currentbuild + ' (' + Math.ceil(city.currentbuildcost/cityproduction) + ' Turns)</td></tr>'
+                + '</tbody></table>';
+
+    $('#popupcontent').html(content);
+    openPopup();
+}
