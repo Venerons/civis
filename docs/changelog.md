@@ -2,6 +2,12 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 03/05/2013
+
+* Updated unitsDB
+* New buildingsDB
+* Continued implementing city management (almost finished)
+
 ### Update 02/05/2013
 
 * Decreased rendering FPS to 24 from 60

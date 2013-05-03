@@ -44,6 +44,7 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
     p.gold = 0;
     p.society = "dispotism";
     p.culture = 0;
+    p.tech = [];
     p.unitsCounter = 1;
 
     basemap.players.push(p);
@@ -75,6 +76,7 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
         p.gold = 0;
         p.society = "dispotism";
         p.culture = 0;
+        p.tech = [];
         p.unitsCounter = 1;
 
         basemap.players.push(p);
@@ -221,7 +223,11 @@ function endTurn () {
         var cityprod = getCityProd(city)
         if (city.build.name != "nothing" && city.build.cost - cityprod <= 0) {
             // build finished
-            createNewUnit(findPlayerById(city.player), city.build.name, city.x, city.y);
+            if (city.build.type === "unit") {
+                createNewUnit(findPlayerById(city.player), city.build.name, city.x, city.y);
+            } else {
+                city.buildings.push(city.build.name);
+            }
             city.build.name = "nothing";
             city.build.cost = 0;
         } else {
@@ -516,20 +522,46 @@ function createBuildingsList(cityid) {
     closePopup();
     resetPopup();
 
-    var content = "<h4>Available Buildings</h4>";
-    content += '<button onclick="build(\'' + cityid + '\', \'settler\')" style="width: 100%; margin-bottom: 5px;" class="gradient button">Settler (20)</button><br/>';
-    content += '<button onclick="build(\'' + cityid + '\', \'warrior\')" style="width: 100%; margin-bottom: 5px;" class="gradient button">Settler (20)</button><br/>';
+    var city = findCityById(cityid);
+
+    var cityIsNearWater = false; // TODO
+
+    var content = "<h4>Available Units</h4>";
+
+    $.each(unitsDB, function(key, val) {
+        if (val.techrequired === "none" || playerHaveTech(city.player, val.techrequired)) {
+            if (val.terrain || (val.naval && cityIsNearWater)) {
+                content += '<button onclick="setBuild(\'' + cityid + '\', \'unit\', \'' + key + '\')" style="width: 100%; margin-bottom: 5px;" class="gradient button">' + key + ' (' + val.productioncost + ')</button><br/>';
+            }
+        }
+    });
+
+    content += '<h4>Available Buildings</h4>'
+
+    $.each(buildingsDB, function(key, val) {
+        if (val.techrequired === "none" || playerHaveTech(city.player, val.techrequired)) {
+            if (val.buildingrequired === "none" || cityHaveBuilding(city, val.buildingrequired)) {
+                content += '<button onclick="setBuild(\'' + cityid + '\', \'building\', \'' + key + '\')" style="width: 100%; margin-bottom: 5px;" class="gradient button">' + key + " (" + val.productioncost + ')</button><br/>';
+            }
+        }
+    });
 
     $('#popupcontent').html(content);
 
     openPopup();
 }
 
-function build(cityid, building) {
+function setBuild(cityid, target, building) {
     var city = findCityById(cityid);
     var build = {};
     build.name = building;
-    build.cost = getProductionCost({type:building});
+    build.type = target;
+    if (target === "unit") {
+        build.cost = getUnitProductionCost({type:building});
+    } else {
+        build.cost = getBuildingProductionCost({name:building});
+    }
+    
     city.build = build;
     closePopup();
 }

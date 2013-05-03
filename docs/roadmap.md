@@ -18,6 +18,7 @@ This document outlines the general goals for CivJS ongoing development.
 * Tiles bonus/malus and food/production/gold values _(DONE)_
 * City settling _(DONE)_
 * City management _(PARTIAL)_
+* A settler cannot settle near (or on) a city
 
 ### Version 1.0.0 (Unscheduled)
 
@@ -34,10 +35,12 @@ _Bugs & technical features_
 * better discoverTiles() (implementare la distanza di visuale, ovvero se stai su una collina vedi più lontano, su una montagna ancora di più. Colline, montagne, foreste e giungle tuttavia possono bloccare la visuale.)
 * Possible performance boost: paint only items that will be showed inside the camera view (however, that means a renderMap() every time the camera move...)
 * Automated production build process (using Closure Compiler & HTML Compressor)
+* Export in-code styling on the external CSS
 * better generateMap()
 
 _Game Features_
 
+* End Turn Messages with infos about what happened
 * Add nature elements (forest, marsh, jungle, natural wonder, oasis, river, lake)
 * Implement civilizations abilities
 * Implement politics (aka Society)

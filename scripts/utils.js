@@ -112,7 +112,7 @@ function exportMap () {
 
 // GET THE ATK OF A UNIT COUNTING ALL VARIABLES
 function getAtk(unit) {
-    var unitAtk = unitsDB[unit.type].atk;
+    var unitAtk = unitsDB[unit.type.toLowerCase()].atk;
     if (isElite(unit)) { // +100% Atk/Def (AtK/Def * 2)
         unitAtk *= 2;
     } else {
@@ -126,7 +126,7 @@ function getAtk(unit) {
 
 // GET THE DEF OF A UNIT COUNTING ALL VARIABLES
 function getDef(unit) {
-    var unitDef = unitsDB[unit.type].def;
+    var unitDef = unitsDB[unit.type.toLowerCase()].def;
     if (isElite(unit)) { // +100% Atk/Def (AtK/Def * 2)
         unitDef *= 2;
     } else {
@@ -140,7 +140,7 @@ function getDef(unit) {
 
 // GET THE MOV OF A UNIT COUNTING ALL VARIABLES
 function getMov(unit) {
-    return unitsDB[unit.type].mov;
+    return unitsDB[unit.type.toLowerCase()].mov;
 }
 
 // GET IF THE UNIT IS VETERAN
@@ -157,17 +157,22 @@ function isElite(unit) {
 
 // GET IF THE UNIT CAN MOVE ON WATER
 function isNaval(unit) {
-    return unitsDB[unit.type].naval;
+    return unitsDB[unit.type.toLowerCase()].naval;
 }
 
 // GET IF THE UNIT CAN MOVE ON TERRAIN
 function isTerrain(unit) {
-    return unitsDB[unit.type].terrain;
+    return unitsDB[unit.type.toLowerCase()].terrain;
 }
 
 // GET A UNIT PRODUCTION COST
-function getProductionCost(unit) {
-    return unitsDB[unit.type].productioncost;
+function getUnitProductionCost(unit) {
+    return unitsDB[unit.type.toLowerCase()].productioncost;
+}
+
+// GET A BUILDING PRODUCTION COST
+function getBuildingProductionCost(building) {
+    return buildingsDB[building.name.toLowerCase()].productioncost;
 }
 
 // FIND A PLAYER BY ID
@@ -405,4 +410,26 @@ function getCityGold(city) {
         if (!(x == map.tiles[y-1].length)) gold += getGoldFromTile(findTileByXY(x+1, y+1));
     }
     return gold;
+}
+
+function playerHaveTech(playerid, techname) {
+    for (var i = 0, len = map.players.length; i < len; i++) {
+        if (map.players[i].id == playerid) {
+            for (var j = 0, len2 = map.players[i].tech.length; j < len2; j++) {
+                if (map.players[i].tech[j] == techname) {
+                    return true; // tech found
+                }
+            }
+            return false; // tech not
+        }
+    }
+}
+
+function cityHaveBuilding(city, buildingname) {
+    for (var i = 0, len = city.buildings.length; i < len; i++) {
+        if (city.buildings[i] == buildingname) {
+            return true; // building found
+        }
+    }
+    return false; // building not found
 }

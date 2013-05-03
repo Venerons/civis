@@ -11,7 +11,8 @@ var unitsDB = {
             "naval": false,
             "terrain": true,
             "productioncost": 30,
-            "initialLife": 1
+            "initialLife": 1,
+            "techrequired": "none"
         },
     "warrior": 
         {
@@ -21,27 +22,46 @@ var unitsDB = {
             "naval": false,
             "terrain": true,
             "productioncost": 10,
-            "initialLife": 1
+            "initialLife": 1,
+            "techrequired": "none"
         },
     "archer": 
         {
-            "atk": 2,
+            "atk": 1,
             "def": 2,
             "mov": 1,
             "naval": false,
             "terrain": true,
-            "productioncost": 25,
-            "initialLife": 1
+            "productioncost": 10,
+            "initialLife": 1,
+            "techrequired": "Bronze Working"
         },
     "galley": 
         {
             "atk": 1,
             "def": 1,
-            "mov": 1,
+            "mov": 2,
             "naval": true,
             "terrain": false,
             "productioncost": 30,
-            "initialLife": 1
+            "initialLife": 1,
+            "techrequired": "none"
+        }
+};
+
+// BUILDINGS DATABASE
+var buildingsDB = {
+    "granary": 
+        {
+            "productioncost": 40,
+            "techrequired": "Pottery",
+            "buildingrequired": "none"
+        },
+    "barracks": 
+        {
+            "productioncost": 40,
+            "techrequired": "Bronze Working",
+            "buildingrequired": "none"
         }
 };
 
