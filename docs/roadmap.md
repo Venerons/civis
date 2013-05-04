@@ -17,8 +17,10 @@ This document outlines the general goals for CivJS ongoing development.
 * Full Firefox OS support _(DONE)_
 * Tiles bonus/malus and food/production/gold values _(DONE)_
 * City settling _(DONE)_
+* A settler cannot settle near (or on) a city _(DONE)_
+* A city cannot have a name already taken by another city _(DONE)_
 * City management _(PARTIAL)_
-* A settler cannot settle near (or on) a city
+
 
 ### Version 1.0.0 (Unscheduled)
 

@@ -460,27 +460,38 @@ function killUnit(unitid) {
 function settleCity(unitid) {
     var unit = findUnitById(unitid);
 
-    // TODO controllare che nella casella si possa fondare una città (es. non sia mare, non ci sia già una città, etc.)
+    if (!cityIsNear(unit.x, unit.y, 2) && findTileByXY(unit.x, unit.y).type != "water") {
+        var cityname = prompt("Name of the city","MyCity");
+        var trovato = false, i = 0, len = map.cities.length;
+        while (!trovato && i < len) {
+            if (map.cities[i].name === cityname) {
+                trovato = true;
+            }
+            i++;
+        }
+        if (cityname != null && !trovato) {
+            var city = {};
+            city.id = "x" + unit.x + "y" + unit.y + "-" + cityname;
+            city.name = cityname;
+            city.player = unit.player;
+            city.x = unit.x;
+            city.y = unit.y;
+            city.population = 2;
+            city.buildings = [];
+            city.build = { name: "nothing", cost: 0 };
 
-    var cityname = prompt("Name of the city","MyCity");
-    if (cityname != null) {
-        var city = {};
-        city.id = "x" + unit.x + "y" + unit.y + "-" + cityname;
-        city.name = cityname;
-        city.player = unit.player;
-        city.x = unit.x;
-        city.y = unit.y;
-        city.population = 1;
-        city.buildings = [];
-        city.build = { name: "nothing", cost: 0 };
+            map.cities.push(city);
 
-        map.cities.push(city);
+            removeUnit(unit);
 
-        removeUnit(unit);
+            renderMap();
 
-        renderMap();
-
-        showCityManager(city.id);
+            showCityManager(city.id);
+        } else {
+            alert("\"I cannot give this name to my city. Maybe it's already taken.\"\n\n- The Settler");
+        }
+    } else {
+        alert("\"Cannot settle a city here, it's too near to another city.\"\n\n- The Settler");
     }
 }
 

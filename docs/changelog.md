@@ -2,6 +2,12 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 04/05/2013
+
+* A settler cannot settle near (or on) a city
+* A city cannot have a name already taken by another city
+* city starting population increased to 2
+
 ### Update 03/05/2013
 
 * Updated unitsDB

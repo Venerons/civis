@@ -143,6 +143,11 @@ function getMov(unit) {
     return unitsDB[unit.type.toLowerCase()].mov;
 }
 
+// GET A UNIT PRODUCTION COST
+function getUnitProductionCost(unit) {
+    return unitsDB[unit.type.toLowerCase()].productioncost;
+}
+
 // GET IF THE UNIT IS VETERAN
 function isVeteran(unit) {
     if (unit.experience >= 5) return true;
@@ -163,11 +168,6 @@ function isNaval(unit) {
 // GET IF THE UNIT CAN MOVE ON TERRAIN
 function isTerrain(unit) {
     return unitsDB[unit.type.toLowerCase()].terrain;
-}
-
-// GET A UNIT PRODUCTION COST
-function getUnitProductionCost(unit) {
-    return unitsDB[unit.type.toLowerCase()].productioncost;
 }
 
 // GET A BUILDING PRODUCTION COST
@@ -220,6 +220,29 @@ function findCityById(id) {
     }
 }
 
+function createNewUnit(player, type, x, y) {
+    var unit = {};
+    player.unitsCounter++;
+    unit.id = "p" + player.id + "u" + player.unitsCounter;
+    unit.player = player.id;
+    unit.x = x;
+    unit.y = y;
+    unit.type = type;
+    unit.experience = 0;
+    unit.life = unitsDB[type].initialLife;
+    unit.maxlife = unitsDB[type].initialLife;
+    unit.fortified = false;
+    unit.active = true;
+
+    map.units.push(unit);
+}
+
+// PROMOTE A UNIT. IT DOUBLE THE MAXLIFE AND DO A FULL HEAL
+function promoteUnit(unit) {
+    unit.maxlife = unit.maxlife * 2; // VARIANT: = unitsDB[unit.type].initialLife * (unit.experience / 5 + 1); initialLife*2 when Veteran, initialLife*3 when Elite
+    unit.life = unit.maxlife;
+}
+
 // REMOVE UNIT FROM THE GAME (I.E. IF KILLED, SACRIFIED ETC.)
 function removeUnit(unit) {
     var indexunit;
@@ -262,6 +285,17 @@ function discoverTiles() {
     }
 }
 
+// DISCOVER ALL TILES (DEBUG FEATURE)
+function discoverAll() {
+    var leny = map.tiles.length;
+    for (var y = 0; y < leny; y++) {
+        var lenx = map.tiles[y].length;
+        for (var x = 0; x < lenx; x++) {
+            map.tiles[y][x].fog = false;
+        }
+    }
+}
+
 // FOCUS ON THE FIRS UNIT OF THE PLAYER THAT IS ACTIVE AND NOT FORTIFIED
 function focusNext () {
     var len = map.units.length;
@@ -276,40 +310,6 @@ function focusNext () {
     }
     $("#actionbar").html('<p align="center">You have no active units. You should End Turn. (Press SPACE)<p>');
     openActionbar();
-}
-
-function createNewUnit(player, type, x, y) {
-    var unit = {};
-    player.unitsCounter++;
-    unit.id = "p" + player.id + "u" + player.unitsCounter;
-    unit.player = player.id;
-    unit.x = x;
-    unit.y = y;
-    unit.type = type;
-    unit.experience = 0;
-    unit.life = unitsDB[type].initialLife;
-    unit.maxlife = unitsDB[type].initialLife;
-    unit.fortified = false;
-    unit.active = true;
-
-    map.units.push(unit);
-}
-
-// PROMOTE A UNIT. IT DOUBLE THE MAXLIFE AND DO A FULL HEAL
-function promoteUnit(unit) {
-    unit.maxlife = unit.maxlife * 2; // VARIANT: = unitsDB[unit.type].initialLife * (unit.experience / 5 + 1); initialLife*2 when Veteran, initialLife*3 when Elite
-    unit.life = unit.maxlife;
-}
-
-// DISCOVER ALL TILES (DEBUG FEATURE)
-function discoverAll() {
-    var leny = map.tiles.length;
-    for (var y = 0; y < leny; y++) {
-        var lenx = map.tiles[y].length;
-        for (var x = 0; x < lenx; x++) {
-            map.tiles[y][x].fog = false;
-        }
-    }
 }
 
 function getFoodFromTile(tile) {
@@ -420,7 +420,7 @@ function playerHaveTech(playerid, techname) {
                     return true; // tech found
                 }
             }
-            return false; // tech not
+            return false; // tech not found
         }
     }
 }
@@ -432,4 +432,14 @@ function cityHaveBuilding(city, buildingname) {
         }
     }
     return false; // building not found
+}
+
+// A CITY IS NEAR THE POINT X,Y ENTER THE RAY R
+function cityIsNear(x, y, r) {
+    var distance;
+    for (var i = 0, len = map.cities.length; i < len; i++) {
+        distance = Math.sqrt(Math.pow(x - map.cities[i].x, 2) + Math.pow(y - map.cities[i].y, 2));
+        if (distance < r) { return true; }
+    }
+    return false;
 }
