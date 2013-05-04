@@ -535,7 +535,7 @@ function createBuildingsList(cityid) {
 
     var city = findCityById(cityid);
 
-    var cityIsNearWater = false; // TODO
+    var cityIsNearWater = pointIsNearWater(city.x, city.y);
 
     var content = "<h4>Available Units</h4>";
 

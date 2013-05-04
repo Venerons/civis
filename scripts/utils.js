@@ -443,3 +443,36 @@ function cityIsNear(x, y, r) {
     }
     return false;
 }
+
+// THE POINT X,Y HAVE A WATER TILE ADIACENT ITSELF
+function pointIsNearWater(x, y) {
+    if (!(y == 1)) {
+        if (!(x == 1)) {
+            if (findTileByXY(x-1, y-1).type == "water") { return true; }
+        }
+        if (findTileByXY(x, y-1).type == "water") { return true; }
+        if (!(x == map.tiles[y-1].length)) {
+            if (findTileByXY(x+1, y-1).type == "water") { return true; }
+        } 
+    }
+
+    if (!(x == 1)) {
+        if (findTileByXY(x-1, y).type == "water") { return true; }
+    }
+    if (findTileByXY(x, y).type == "water") { return true; }
+    if (!(x == map.tiles[y-1].length)) {
+        if (findTileByXY(x+1, y).type == "water") { return true; }
+    } 
+
+    if (!(y == map.tiles.length)) {
+        if (!(x == 1)) {
+            if (findTileByXY(x-1, y+1).type == "water") { return true; }
+        } 
+        if (findTileByXY(x, y+1).type == "water") { return true; }
+        if (!(x == map.tiles[y-1].length)) {
+            if (findTileByXY(x+1, y+1).type == "water") { return true; }
+        }
+    }
+
+    return false; // not found
+}

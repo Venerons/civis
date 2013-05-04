@@ -19,6 +19,7 @@ This document outlines the general goals for CivJS ongoing development.
 * City settling _(DONE)_
 * A settler cannot settle near (or on) a city _(DONE)_
 * A city cannot have a name already taken by another city _(DONE)_
+* Only coastal city can build naval units _(DONE)_
 * City management _(PARTIAL)_
 
 

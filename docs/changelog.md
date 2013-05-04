@@ -4,9 +4,10 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
 ### Update 04/05/2013
 
-* A settler cannot settle near (or on) a city
-* A city cannot have a name already taken by another city
-* city starting population increased to 2
+* (1) A settler cannot settle near (or on) a city
+* (1) A city cannot have a name already taken by another city
+* (1) City starting population increased to 2
+* (2) Only coastal city can build naval units
 
 ### Update 03/05/2013
 
