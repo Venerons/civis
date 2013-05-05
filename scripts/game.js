@@ -45,6 +45,7 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
     p.society = "dispotism";
     p.culture = 0;
     p.tech = [];
+    p.research = { tech: "", cost: 0 };
     p.unitsCounter = 1;
 
     basemap.players.push(p);
@@ -77,6 +78,7 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
         p.society = "dispotism";
         p.culture = 0;
         p.tech = [];
+        p.research = { tech: "", cost: 0 };
         p.unitsCounter = 1;
 
         basemap.players.push(p);

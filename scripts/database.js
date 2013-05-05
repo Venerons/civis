@@ -65,6 +65,9 @@ var buildingsDB = {
         }
 };
 
+// TECHNOLOGIES DATABASE
+var techDB = {};
+
 // CIVILIZATIONS DATABASE
 var civsDB = {
     "America": {

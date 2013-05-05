@@ -26,22 +26,21 @@ The map is the playground of the game. Each tile can be of one of these types:
 Tile | Food | Production | Gold | Modifiers
 --- | :---: | :---: | :---: | :---:
 Grass | 2 | - | - | -
-Hill | 1 | 1 | - | + Def
-Mountain | - | 2 | 1 | ++ Def
+Hill | 1 | 1 | - | +50% Atk/Def
+Mountain | - | 2 | 1 | +100% Atk/Def
 Water | 1 | - | 1 | -
 Desert | - | - | - | -
-Snow | - | - | - | - Def
+Snow | - | - | - | -50% Atk/Def
 
 Some tiles also can host a nature element, that modify the values of the tile
 
 Nature | Food | Production | Gold | Modifiers
 --- | :---: | :---: | :---: | :---:
-Forest | +1 | +1 | - | + Def
-Jungle | +1 | -1 | - | + Def
-Marsh | -1 | - | - | - Def
-Oasis | +3 | - | +1 | -
+Forest | - | +1 | - | +50% Atk/Def
+Jungle | +1 | -1 | - | +50% Atk/Def
+Marsh | -1 | - | - | -50% Atk/Def
+Oasis | +3 | - | +2 | -
 River | - | - | +1 | -
-Lake | +2 | - | +1 | -
 Natural Wonder | - | +2 | +3 | -
 
 ## Units
@@ -71,6 +70,10 @@ A fight is resolved this way:
 2. The damage dealt decrease the life points of the units, and if a unit have no remaining life points, it dies. In a fight could die one, both or none of the units.
 3. The surviving units (if any) gain an Exp. If a unit is promoted this way to the Elite or Veteran rank, all the life points will restored.
 4. If the attacker kill the defender, it take its position. By the way, if the attacker get killed by the defender, the defender cannot gain the position, and stand on its tile.
+
+## Science
+Science is produced by the player's cities and is used to pay the cost of the research of technologies.
+Each turn a city produce science and the total science from all of the player's cities is used to pay the cost of the player current technology research.
 
 ## Society
 Each civilization have a society system

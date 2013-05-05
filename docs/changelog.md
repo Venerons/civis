@@ -5,6 +5,10 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 ### Update 05/05/2013
 
 * Better generateMap()
+* Fix tiles and nature food/prod/gold stats
+* Add getNearTiles() and refactored where is useful
+* Add Atk/Def modifiers on tiles
+* Code Optimizations and Bug Fixs
 
 ### Update 04/05/2013
 

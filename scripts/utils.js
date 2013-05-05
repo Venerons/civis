@@ -17,14 +17,14 @@ function autoSaveGame() {
 
 // OPEN POPUP WINDOW
 function openPopup() {
-    if (document.getElementById('popup').style.visibility == "hidden") {
+    if (document.getElementById('popup').style.visibility === "hidden") {
         document.getElementById('popup').style.visibility = "visible";
     }
 }
 
 // CLOSE POPUP WINDOW
 function closePopup() {
-    if (document.getElementById('popup').style.visibility == "visible") {
+    if (document.getElementById('popup').style.visibility === "visible") {
         document.getElementById('popup').style.visibility = "hidden";
     }
 }
@@ -36,14 +36,14 @@ function resetPopup() {
 
 // OPEN ACTION BAR
 function openActionbar() {
-    if (document.getElementById('actionbar').style.visibility == "hidden") {
+    if (document.getElementById('actionbar').style.visibility === "hidden") {
         document.getElementById('actionbar').style.visibility = "visible";
     }
 }
 
 // CLOSE ACTION BAR
 function closeActionbar() {
-    if (document.getElementById('actionbar').style.visibility == "visible") {
+    if (document.getElementById('actionbar').style.visibility === "visible") {
         document.getElementById('actionbar').style.visibility = "hidden";
     }
 }
@@ -51,11 +51,15 @@ function closeActionbar() {
 // MAIN MENU
 function mainMenu() {
     resetPopup();
-    var content = '<br/><br/><br/><button class="gradient button menubutton" onclick="saveGame()" title="Save Game" alt="Save Game"><img src="images/hud/save.png" class="buttonimage"> Save Game</button>'
-                + '<br/><button class="gradient button menubutton" onclick="loadGame()" title="Load Game" alt="Load Game"><img src="images/hud/load.png" class="buttonimage"> Load Game</button>'
-                + '<br/><button class="gradient button menubutton" onclick="manual()" title="Instructions Manual" alt="Instructions Manual"><img src="images/hud/manual.png" class="buttonimage"> Manual</button>'
-                + '<br/><button class="gradient button menubutton" onclick="exitGame()" title="Exit Game" alt="Exit Game"><img src="images/hud/exit.png" class="buttonimage"> Exit Game</button>';
+    var content = '<br/><br/><br/><button class="gradient button menubutton" id="saveBtn" title="Save Game" alt="Save Game"><img src="images/hud/save.png" class="buttonimage"> Save Game</button>'
+                + '<br/><button class="gradient button menubutton" id="loadBtn" title="Load Game" alt="Load Game"><img src="images/hud/load.png" class="buttonimage"> Load Game</button>'
+                + '<br/><button class="gradient button menubutton" id="manualBtn" title="Instructions Manual" alt="Instructions Manual"><img src="images/hud/manual.png" class="buttonimage"> Manual</button>'
+                + '<br/><button class="gradient button menubutton" id="exitBtn" title="Exit Game" alt="Exit Game"><img src="images/hud/exit.png" class="buttonimage"> Exit Game</button>';
     $('#popupcontent').html(content);
+    $("#saveBtn").click(function () { saveGame(); });
+    $("#loadBtn").click(function () { loadGame(); });
+    $("#manualBtn").click(function () { manual(); });
+    $("#exitBtn").click(function () { exitGame(); });
     openPopup();
 }
 
@@ -105,36 +109,52 @@ function presetMap (mapname) {
 function exportMap () {
     var content = '<h3>Export Map</h3><textarea style="width:100%;height:200px">';
     content += JSON.stringify(map);
-    content += '</textarea>'
+    content += '</textarea>';
     $('#popupcontent').html(content);
     openPopup();
 }
 
 // GET THE ATK OF A UNIT COUNTING ALL VARIABLES
 function getAtk(unit) {
-    var unitAtk = unitsDB[unit.type.toLowerCase()].atk;
-    if (isElite(unit)) { // +100% Atk/Def (AtK/Def * 2)
-        unitAtk *= 2;
+    var baseAtk = unitsDB[unit.type.toLowerCase()].atk;
+    if (isElite(unit)) {
+        baseAtk *= 2; // +100% Atk/Def (AtK/Def * 2)
     } else {
-        if (isVeteran(unit)) { // +50% Atk/Def (AtK/Def + 1/2 Atk/Def)
-            unitAtk += Math.round(unitAtk / 2);
-        }
+        if (isVeteran(unit)) { baseAtk += Math.round(baseAtk / 2); } // +50% Atk/Def (AtK/Def + 1/2 Atk/Def)
     }
-    if (unit.fortified) unitAtk += Math.round(unitAtk / 4); // +25% Atk/Def (AtK/Def + 1/4 Atk/Def)
+    var unitAtk = baseAtk + 0;
+    var tile = findTileByXY(unit.x, unit.y);
+    var tileType = tile.type;
+    var tileNature = tile.nature;
+    if (unit.fortified) { unitAtk += Math.round(baseAtk / 4); } // +25% Atk/Def (AtK/Def + 1/4 Atk/Def) calcolata sulla base
+    if (tileType === "hill") { unitAtk += Math.round(baseAtk / 2); } // +50% Atk/Def calcolata sulla base
+    if (tileType === "mountain") { unitAtk += baseAtk; } // +100% Atk/Def calcolata sulla base
+    if (tileType === "snow") { unitAtk -= Math.round(baseAtk / 2); } // -50% Atk/Def calcolata sulla base
+    if (tileNature === "forest") { unitAtk += Math.round(baseAtk / 2); } // +50% Atk/Def calcolata sulla base
+    if (tileNature === "jungle") { unitAtk += Math.round(baseAtk / 2); } // +50% Atk/Def calcolata sulla base
+    if (tileNature === "marsh") { unitAtk -= Math.round(baseAtk / 2); } // -50% Atk/Def calcolata sulla base
     return unitAtk;
 }
 
 // GET THE DEF OF A UNIT COUNTING ALL VARIABLES
 function getDef(unit) {
-    var unitDef = unitsDB[unit.type.toLowerCase()].def;
-    if (isElite(unit)) { // +100% Atk/Def (AtK/Def * 2)
-        unitDef *= 2;
+    var baseDef = unitsDB[unit.type.toLowerCase()].def;
+    if (isElite(unit)) {
+        baseDef *= 2; // +100% Atk/Def (AtK/Def * 2)
     } else {
-        if (isVeteran(unit)) { // +50% Atk/Def (AtK/Def + 1/2 Atk/Def)
-            unitDef += Math.round(unitDef / 2);
-        }
+        if (isVeteran(unit)) { baseDef += Math.round(baseDef / 2); } // +50% Atk/Def (AtK/Def + 1/2 Atk/Def)
     }
-    if (unit.fortified) unitDef += Math.round(unitDef / 4); // +25% Atk/Def (AtK/Def + 1/4 Atk/Def)
+    var unitDef = baseDef + 0;
+    var tile = findTileByXY(unit.x, unit.y);
+    var tileType = tile.type;
+    var tileNature = tile.nature;
+    if (unit.fortified) { unitDef += Math.round(baseDef / 4); } // +25% Def/Def (AtK/Def + 1/4 Atk/Def) calcolata sulla base
+    if (tileType === "hill") { unitDef += Math.round(baseDef / 2); } // +50% Atk/Def calcolata sulla base
+    if (tileType === "mountain") { unitDef += baseDef; } // +100% Atk/Def calcolata sulla base
+    if (tileType === "snow") { unitDef -= Math.round(baseDef / 2); } // -50% Atk/Def calcolata sulla base
+    if (tileNature === "forest") { unitDef += Math.round(baseDef / 2); } // +50% Atk/Def calcolata sulla base
+    if (tileNature === "jungle") { unitDef += Math.round(baseDef / 2); } // +50% Atk/Def calcolata sulla base
+    if (tileNature === "marsh") { unitDef -= Math.round(baseDef / 2); } // -50% Atk/Def calcolata sulla base
     return unitDef;
 }
 
@@ -150,13 +170,13 @@ function getUnitProductionCost(unit) {
 
 // GET IF THE UNIT IS VETERAN
 function isVeteran(unit) {
-    if (unit.experience >= 5) return true;
+    if (unit.experience >= 5) { return true; }
     return false;
 }
 
 // GET IF THE UNIT IS ELITE
 function isElite(unit) {
-    if (unit.experience >= 10) return true;
+    if (unit.experience >= 10) { return true; }
     return false;
 }
 
@@ -179,7 +199,7 @@ function getBuildingProductionCost(building) {
 function findPlayerById(id) {
     var len = map.players.length;
     for (var i = 0; i < len; i++) {
-        if (map.players[i].id == id) {
+        if (map.players[i].id === id) {
             return map.players[i];
         }
     }
@@ -189,10 +209,10 @@ function findPlayerById(id) {
 function findTileByXY(x, y) {
     var len = map.tiles.length;
     for (var i = 0; i < len; i++) {
-        if ((i + 1) == y) {
+        if ((i + 1) === y) {
             var len2 = map.tiles[i].length;
             for (var j = 0; j < len2; j++) {
-                if (map.tiles[i][j].x == x && map.tiles[i][j].y == y) {
+                if (map.tiles[i][j].x === x && map.tiles[i][j].y === y) {
                     return map.tiles[i][j];
                 }
             }
@@ -204,7 +224,7 @@ function findTileByXY(x, y) {
 function findUnitById(id) {
     var len = map.units.length;
     for (var i = 0; i < len; i++) {
-        if (map.units[i].id == id) {
+        if (map.units[i].id === id) {
             return map.units[i];
         }
     }
@@ -214,7 +234,7 @@ function findUnitById(id) {
 function findCityById(id) {
     var len = map.cities.length;
     for (var i = 0; i < len; i++) {
-        if (map.cities[i].id == id) {
+        if (map.cities[i].id === id) {
             return map.cities[i];
         }
     }
@@ -249,8 +269,8 @@ function removeUnit(unit) {
     var len = map.units.length;
     var i = 0;
     var trovato = false;
-    while (i < len && trovato == false) {
-        if (map.units[i].id == unit.id) {
+    while (i < len && trovato === false) {
+        if (map.units[i].id === unit.id) {
             indexunit = i;
             trovato = true;
         }
@@ -259,27 +279,36 @@ function removeUnit(unit) {
     map.units.splice(indexunit, 1);
 }
 
+// GET A LIST OF TILES WITH THE TILES AROUND THE SPECIFIED COORDINATE (INCLUDING THE SPECIFIC COORDINATE TILE ITSELF)
+function getNearTiles(x, y) {
+    var list = [];
+
+    if (y !== 1) {
+        if (x !== 1) { list.push(findTileByXY(x-1, y-1)); }
+        list.push(findTileByXY(x, y-1));
+        if (x !== map.tiles[y-1].length) { list.push(findTileByXY(x+1, y-1)); }
+    }
+
+    if (x !== 1) { list.push(findTileByXY(x-1, y)); }
+    list.push(findTileByXY(x, y));
+    if (x !== map.tiles[y-1].length) { list.push(findTileByXY(x+1, y)); }
+
+    if (y !== map.tiles.length) {
+        if (x !== 1) { list.push(findTileByXY(x-1, y+1)); }
+        list.push(findTileByXY(x, y+1));
+        if (x !== map.tiles[y-1].length) { list.push(findTileByXY(x+1, y+1)); }
+    }
+
+    return list;
+}
+
 // DISCOVER TILES
 function discoverTiles() {
-    var len = map.units.length;
-    for (var i = 0; i < len; i++) {
-        if (map.units[i].player == map.players[0].id) {
-            var x = map.units[i].x;
-            var y = map.units[i].y;
-            if (!(y == 1)) {
-                if (!(x == 1)) findTileByXY(x-1, y-1).fog = false;
-                findTileByXY(x, y-1).fog = false;
-                if (!(x == map.tiles[y-1].length)) findTileByXY(x+1, y-1).fog = false;
-            }
-
-            if (!(x == 1)) findTileByXY(x-1, y).fog = false;
-            findTileByXY(x, y).fog = false;
-            if (!(x == map.tiles[y-1].length)) findTileByXY(x+1, y).fog = false;
-
-            if (!(y == map.tiles.length)) {
-                if (!(x == 1)) findTileByXY(x-1, y+1).fog = false;
-                findTileByXY(x, y+1).fog = false;
-                if (!(x == map.tiles[y-1].length)) findTileByXY(x+1, y+1).fog = false;
+    for (var i = 0, len = map.units.length; i < len; i++) {
+        if (map.units[i].player === map.players[0].id) {
+            var tiles = getNearTiles(map.units[i].x, map.units[i].y);
+            for (var j = 0, len2 = tiles.length; j < len2; j++) {
+                tiles[j].fog = false;
             }
         }
     }
@@ -301,7 +330,7 @@ function focusNext () {
     var len = map.units.length;
     for (var i = 0; i < len; i++) {
         var unit = map.units[i];
-        if (unit.player == map.players[0].id) { // the unit is owned by the player
+        if (unit.player === map.players[0].id) { // the unit is owned by the player
             if (unit.active && !unit.fortified) { // the unit is active and not fortified
                 centerCameraOnXY(unit.x, unit.y);
                 return; 
@@ -314,109 +343,76 @@ function focusNext () {
 
 function getFoodFromTile(tile) {
     var food = 0;
-    if (tile.type == "grass") food += 2;
-    if (tile.type == "hill" || tile.type == "water") food++;
+    
+    if (tile.type === "grass") { food = 2; }
+    else if (tile.type === "hill") { food = 1; }
+    else if (tile.type === "water") { food = 1; }
 
-    if (tile.nature == "forest" || tile.nature == "jungle") food++;
-    if (tile.nature == "oasis") food += 3;
-    if (tile.nature == "lake") food += 2;
+    if (tile.nature === "jungle") { food++; }
+    else if (tile.nature === "marsh") { food--; }
+    else if (tile.nature === "oasis") { food += 3; }
 
     return food;
 }
 
 function getProdFromTile(tile) {
     var prod = 0;
-    if (tile.type == "hill") prod++;
-    if (tile.type == "mountain") prod += 2;
+    
+    if (tile.type === "hill") { prod = 1; }
+    else if (tile.type === "mountain") { prod = 2; }
 
-    if (tile.nature == "forest") prod++;
-    if (tile.nature == "jungle") prod--;
-    if (tile.nature == "naturalwonder") prod += 2;
+    if (tile.nature === "forest") { prod++; }
+    else if (tile.nature === "jungle") { prod--; }
+    else if (tile.nature === "natural wonder") { prod += 2; }
 
     return prod;
 }
 
 function getGoldFromTile(tile) {
     var gold = 0;
-    if (tile.type == "mountain" || tile.type == "water") gold++;
 
-    if (tile.nature == "oasis" || tile.nature == "river" || tile.nature == "lake") gold++;
-    if (tile.nature == "naturalwonder") gold += 3;
+    if (tile.type === "mountain") { gold = 1; }
+    else if (tile.type === "water") { gold = 1; }
+
+    if (tile.nature === "oasis") { gold += 2; }
+    else if (tile.nature === "river") { gold++; }
+    else if (tile.nature === "natural wonder") { gold += 3; }
 
     return gold;
 }
 
 function getCityFood(city) {
-    var x = city.x;
-    var y = city.y;
     var food = 0;
-    if (!(y == 1)) {
-        if (!(x == 1)) food += getFoodFromTile(findTileByXY(x-1, y-1));
-        food += getFoodFromTile(findTileByXY(x, y-1));
-        if (!(x == map.tiles[y-1].length)) food += getFoodFromTile(findTileByXY(x+1, y-1));
-    }
-
-    if (!(x == 1)) food += getFoodFromTile(findTileByXY(x-1, y));
-    food += getFoodFromTile(findTileByXY(x, y));
-    if (!(x == map.tiles[y-1].length)) food += getFoodFromTile(findTileByXY(x+1, y));
-
-    if (!(y == map.tiles.length)) {
-        if (!(x == 1)) food += getFoodFromTile(findTileByXY(x-1, y+1));
-        food += getFoodFromTile(findTileByXY(x, y+1));
-        if (!(x == map.tiles[y-1].length)) food += getFoodFromTile(findTileByXY(x+1, y+1));
+    var tiles = getNearTiles(city.x, city.y);
+    for (var j = 0, len = tiles.length; j < len; j++) {
+        food += getFoodFromTile(tiles[j]);
     }
     return food;
 }
 
 function getCityProd(city) {
-    var x = city.x;
-    var y = city.y;
     var prod = 0;
-    if (!(y == 1)) {
-        if (!(x == 1)) prod += getProdFromTile(findTileByXY(x-1, y-1));
-        prod += getProdFromTile(findTileByXY(x, y-1));
-        if (!(x == map.tiles[y-1].length)) prod += getProdFromTile(findTileByXY(x+1, y-1));
-    }
-
-    if (!(x == 1)) prod += getProdFromTile(findTileByXY(x-1, y));
-    prod += getProdFromTile(findTileByXY(x, y));
-    if (!(x == map.tiles[y-1].length)) prod += getProdFromTile(findTileByXY(x+1, y));
-
-    if (!(y == map.tiles.length)) {
-        if (!(x == 1)) prod += getProdFromTile(findTileByXY(x-1, y+1));
-        prod += getProdFromTile(findTileByXY(x, y+1));
-        if (!(x == map.tiles[y-1].length)) prod += getProdFromTile(findTileByXY(x+1, y+1));
+    var tiles = getNearTiles(city.x, city.y);
+    for (var j = 0, len = tiles.length; j < len; j++) {
+        prod += getProdFromTile(tiles[j]);
     }
     return prod;
 }
 
 function getCityGold(city) {
-    var x = city.x;
-    var y = city.y;
     var gold = 0;
-    if (!(y == 1)) {
-        if (!(x == 1)) gold += getGoldFromTile(findTileByXY(x-1, y-1));
-        gold += getGoldFromTile(findTileByXY(x, y-1));
-        if (!(x == map.tiles[y-1].length)) gold += getGoldFromTile(findTileByXY(x+1, y-1));
-    }
-
-    if (!(x == 1)) gold += getGoldFromTile(findTileByXY(x-1, y));
-    gold += getGoldFromTile(findTileByXY(x, y));
-    if (!(x == map.tiles[y-1].length)) gold += getGoldFromTile(findTileByXY(x+1, y));
-
-    if (!(y == map.tiles.length)) {
-        if (!(x == 1)) gold += getGoldFromTile(findTileByXY(x-1, y+1));
-        gold += getGoldFromTile(findTileByXY(x, y+1));
-        if (!(x == map.tiles[y-1].length)) gold += getGoldFromTile(findTileByXY(x+1, y+1));
+    var tiles = getNearTiles(city.x, city.y);
+    for (var j = 0, len = tiles.length; j < len; j++) {
+        gold += getGoldFromTile(tiles[j]);
     }
     return gold;
 }
 
 function playerHaveTech(playerid, techname) {
     for (var i = 0, len = map.players.length; i < len; i++) {
-        if (map.players[i].id == playerid) {
+        if (map.players[i].id === playerid) {
             for (var j = 0, len2 = map.players[i].tech.length; j < len2; j++) {
-                if (map.players[i].tech[j] == techname) {
+                if (map.players[i].tech[j] === techname) {
                     return true; // tech found
                 }
             }
@@ -427,7 +423,7 @@ function playerHaveTech(playerid, techname) {
 
 function cityHaveBuilding(city, buildingname) {
     for (var i = 0, len = city.buildings.length; i < len; i++) {
-        if (city.buildings[i] == buildingname) {
+        if (city.buildings[i] === buildingname) {
             return true; // building found
         }
     }
@@ -446,33 +442,11 @@ function cityIsNear(x, y, r) {
 
 // THE POINT X,Y HAVE A WATER TILE ADIACENT ITSELF
 function pointIsNearWater(x, y) {
-    if (!(y == 1)) {
-        if (!(x == 1)) {
-            if (findTileByXY(x-1, y-1).type == "water") { return true; }
-        }
-        if (findTileByXY(x, y-1).type == "water") { return true; }
-        if (!(x == map.tiles[y-1].length)) {
-            if (findTileByXY(x+1, y-1).type == "water") { return true; }
-        } 
-    }
-
-    if (!(x == 1)) {
-        if (findTileByXY(x-1, y).type == "water") { return true; }
-    }
-    if (findTileByXY(x, y).type == "water") { return true; }
-    if (!(x == map.tiles[y-1].length)) {
-        if (findTileByXY(x+1, y).type == "water") { return true; }
-    } 
-
-    if (!(y == map.tiles.length)) {
-        if (!(x == 1)) {
-            if (findTileByXY(x-1, y+1).type == "water") { return true; }
-        } 
-        if (findTileByXY(x, y+1).type == "water") { return true; }
-        if (!(x == map.tiles[y-1].length)) {
-            if (findTileByXY(x+1, y+1).type == "water") { return true; }
+    var tiles = getNearTiles(x, y);
+    for (var j = 0, len = tiles.length; j < len; j++) {
+        if (tiles[j].type === "water") {
+            return true; // water found
         }
     }
-
     return false; // not found
 }
