@@ -19,8 +19,6 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
     }
 
     var colors = ["#1E74FF", "red", "yellow", "orange", "purple"];
-    var tiletypes = ["grass", "water", "hill", "mountain", "snow", "desert"];
-    var nature = ["none", "forest"];
     var civs = [];
 
     $.each(civsDB, function(key, val) {
@@ -28,10 +26,12 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
     });
 
     // TILES TYPE BY SECTOR
-    var poles = ["water", "water", "snow"];
-    var cold = ["snow", "grass", "grass", "mountain", "water", "water"];
-    var middle = ["grass", "mountain", "hill", "water", "water"];
-    var center = ["desert", "desert", "grass", "hill", "mountain", "water", "water"];
+    var poles = ["water", "water", "snow"]; // 10 % - 0-10 & 90-100
+    var cold = ["snow", "snow", "grass", "grass", "mountain", "water", "water"]; // 10% - 11-20 & 80-89
+    var middle = ["grass", "grass", "mountain", "hill", "hill", "water", "water"]; // 21-40 & 60-79
+    var center = ["desert", "desert", "grass", "hill", "mountain", "water", "water"]; // 20% - 41-59
+
+    var nature = ["none", "forest"];
 
     // INSERT THE PLAYER 1
 
@@ -97,14 +97,14 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
             t.fog = true;
 
             // tile type
-            //t.type = tiletypes[Math.floor(Math.random() * tiletypes.length)];
-            if (t.y <= 2 || t.y >= (nrows - 1)) 
+            var sector = t.y * 100 / nrows;
+            if (sector <= 10 || sector >= 90) 
                 t.type = poles[Math.floor(Math.random() * poles.length)];
             else
-                if (t.y == 3 || t.y == 8) 
+                if (sector <= 20 || sector >= 80) 
                     t.type = cold[Math.floor(Math.random() * cold.length)];
                 else
-                    if (t.y == 4 || t.y == 7)
+                    if (sector <= 40 || sector >= 60)
                         t.type = middle[Math.floor(Math.random() * middle.length)];
                     else
                         t.type = center[Math.floor(Math.random() * center.length)];

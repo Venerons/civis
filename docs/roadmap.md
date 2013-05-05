@@ -7,15 +7,16 @@ This document outlines the general goals for CivJS ongoing development.
 ### Version 0.2.0 (May 2013)
 
 * Publish updated Instructions Manual _(DONE)_
-* Map size selection _(DONE)_
-* Sample test map _(DONE)_
-* Attack preview _(DONE)_
 * Civilization selection _(DONE)_
-* Cure unit when fortified _(DONE)_
+* Map size selection _(DONE)_
+* Better map generation _(DONE)_
 * New (not definitive) tiles graphic _(DONE)_
+* Sample test map _(DONE)_
+* Tiles bonus/malus and food/production/gold values _(DONE)_
+* Attack preview _(DONE)_
+* Cure unit when fortified _(DONE)_
 * Buttons restyle _(DONE)_
 * Full Firefox OS support _(DONE)_
-* Tiles bonus/malus and food/production/gold values _(DONE)_
 * City settling _(DONE)_
 * A settler cannot settle near (or on) a city _(DONE)_
 * A city cannot have a name already taken by another city _(DONE)_
