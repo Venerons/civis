@@ -1,7 +1,7 @@
 {
     "name": "CivJS",
     "description": "A JavaScript Civilization Game",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "csp": "allow 'self'; script-src 'self' ; style-src 'self';",
     "launch_path": "/index.html",
     "fullscreen": "false",

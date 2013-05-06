@@ -2,8 +2,8 @@
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id = "it.venerons.civjs"
-        version = "0.1.0"
-        versionCode = "2">
+        version = "0.2.0"
+        versionCode = "3">
 
     <name>CivJS</name>
 

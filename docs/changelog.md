@@ -2,6 +2,12 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 06/05/2013 (Version 0.2.0)
+
+* Tagging version 0.2.0
+* Update RoadMap
+* Player receives gold produced by his cities each turn
+
 ### Update 05/05/2013
 
 * Better generateMap()

@@ -6,8 +6,11 @@ Welcome to CivJS, the JavaScript Civilization Game!
 * [Winning](#winning)
 * [The Map](#the-map)
 * [Units](#units)
-* [Settling](#settling)
-* [Fighting](#fighting)
+	* [Fighting](#fighting)
+	* [Settling](#settling)
+* [Cities](#cities)
+	* [Buildings](#buildings)
+* [Science](#science)
 * [Society](#society)
 
 ## Winning
@@ -60,16 +63,95 @@ A unit can do various actions, depending to the unit type. Actions can be:
 * **No Orders:** Issue no orders to the unit, that will be left as it is.
 * **Settle:** Settle a city in the tile where the unit is. Only available for settlers.
 
-## Settling
-settling instructions
-
-## Fighting
+### Fighting
 A fight is resolved this way:
 
 1. Each unit deal damage to the other unit, and the damage dealt is egual to the Atk of the unit minus the Def of the other unit (Damage dealt = Atk - Def).
 2. The damage dealt decrease the life points of the units, and if a unit have no remaining life points, it dies. In a fight could die one, both or none of the units.
 3. The surviving units (if any) gain an Exp. If a unit is promoted this way to the Elite or Veteran rank, all the life points will restored.
 4. If the attacker kill the defender, it take its position. By the way, if the attacker get killed by the defender, the defender cannot gain the position, and stand on its tile.
+
+### Settling
+settling instructions
+
+## Cities
+cities about
+each turn will be consumed 2 food per citizen. Eventual remaining will be used to increase population. If negative, population may decrease.
+
+### Buildings
+list of buildings
+
+Building | Cost | Tech Required | Building Required | Effect
+--- | :---: | :---: | :---: | :---
+Barracks | 40 | ? | - | Units produced are automatically Veterans (+5 exp)
+Granary | 40 | ? | - | Plains tiles give +2 food (or +X food constant)
+Harbor | ? | ? | - | +1 food in sea tiles
+Workshop | ? | ? | - | Provides +2 production from hills
+Iron Mine | ? | ? | - | Mountain tiles give +4 production 
+Walls | ? | ? | - | Gives +100% defensive bonus
+Library | ? | ? | - | Doubles city science production (or +1 science each 2 citizen -> +(population/2) science)
+University | ? | ? | - | Replaces library, x4 science production
+Temple | ? | ? | - | +1 culture for every citizen in city
+Cathedral  | ? | ? | - | Replaces temple and gives +2 culture for each citizen 
+Aqueduct | ? | ? | - | Increases city's growth by half 
+Market | ? | ? | - | Doubles city gold production
+Bank | ? | ? | - | Replaces market, x4 gold production 
+Courthouse | ? | ? | - | Increases the city's workable tile region (or reduce >:( )
+Factory | ? | ? | - | Doubles the city's production 
+
+Food Buildings
+---
+Hospital
+Medical Lab
+
+
+Production Buildings
+---
+Stable (must have access to hourse resource, +2 production)
+Forge
+Nuclear Plant
+Recycling center
+Solar plant
+
+
+Gold Buildings
+---
+Lighthouse (must be near water, +1 gold in sea tiles)
+Stock exchange
+
+
+Culture Buildings
+---
+Monument (see temple, +2 culture)
+Amphitheater (+3 culture, require monument)
+Opera House
+Theater
+Museum
+Broadcast Tower
+
+
+Science Buildings
+---
+Observatory
+Public School
+Research Lab
+
+
+Other Buildings
+---
+Circus (+2 :) )
+Colosseum (+ 3 :) )
+Stadium
+Castle
+Armory
+Arsenal
+Military Academy
+Police Station
+Military Base
+Garden
+Water Mill (must be near a river, +2 food and +1 production)
+Windmill
+
 
 ## Science
 Science is produced by the player's cities and is used to pay the cost of the research of technologies.

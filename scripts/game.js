@@ -222,6 +222,8 @@ function endTurn () {
     len = map.cities.length;
     for (var i = 0; i < len; i++) {
         var city = map.cities[i];
+
+        // CITY PRODUCTION
         var cityprod = getCityProd(city)
         if (city.build.name != "nothing" && city.build.cost - cityprod <= 0) {
             // build finished
@@ -236,6 +238,9 @@ function endTurn () {
             // build continued
             if (city.build.name != "nothing") city.build.cost -= cityprod;
         }
+
+        // CITY GOLD
+        findPlayerById(city.player).gold += getCityGold(city);
 
     }
 
