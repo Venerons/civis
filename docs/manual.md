@@ -8,9 +8,11 @@ Welcome to CivJS, the JavaScript Civilization Game!
 * [Units](#units)
 	* [Fighting](#fighting)
 	* [Settling](#settling)
+	* [Unit List](#unit-list)
 * [Cities](#cities)
 	* [Buildings](#buildings)
 * [Science](#science)
+	* [Technologies](#technologies)
 * [Society](#society)
 
 ## Winning
@@ -19,7 +21,7 @@ A victory can be achieved in four different ways.
 * Domination: capture all cities of the game.
 * Culture: Obtain 10,000 culture point.
 * Economic: Acquire 10,000 Gold.
-* Technological: Be the first to reach Alpha Centauri. 
+* Technological: Be the first to discover Tecnologia Futura. 
 
 As a civilization nears one of the above mentioned victory conditions, all other civilizations will usually declare war on it in an attempt to delay or stop it from winning.
 
@@ -68,11 +70,19 @@ A fight is resolved this way:
 
 1. Each unit deal damage to the other unit, and the damage dealt is egual to the Atk of the unit minus the Def of the other unit (Damage dealt = Atk - Def).
 2. The damage dealt decrease the life points of the units, and if a unit have no remaining life points, it dies. In a fight could die one, both or none of the units.
-3. The surviving units (if any) gain an Exp. If a unit is promoted this way to the Elite or Veteran rank, all the life points will restored.
+3. The surviving units (if any) gain an Exp. If a unit is promoted this way to the Elite or Veteran rank, the max life of the unit will be doubled and all the life points will be restored.
 4. If the attacker kill the defender, it take its position. By the way, if the attacker get killed by the defender, the defender cannot gain the position, and stand on its tile.
 
 ### Settling
 settling instructions
+
+### Unit List
+Unit | Atk | Def | Mov | Initial Life | Requirements
+--- | :---: | :---: | :---: | :---: | ---
+Settler | 0 | 0 | 2 | 1 | -
+Warrior | 1 | 1 | 1 | 1 | -
+Archer | 1 | 2 | 1 | 1 | Tiro con l'Arco
+Galley | 1 | 1 | 2 | 1 | Navigazione
 
 ## Cities
 cities about
@@ -157,19 +167,79 @@ Windmill
 Science is produced by the player's cities and is used to pay the cost of the research of technologies.
 Each turn a city produce science and the total science from all of the player's cities is used to pay the cost of the player current technology research.
 
+### Technologies
+Technology | Cost | Technologies Required | Advantages Unlocked
+--- | :---: | --- | ---
+Misticismo | - | - | -
+Scrittura | - | - | -
+Agricoltura | - | - | -
+Caccia | - | - | -
+Pesca | - | - | -
+Teologia | - | Misticismo, Scrittura | -
+Matematica | - | Scrittura, Ruota | -
+Ruota | - | Agricoltura | -
+Estrazione Mineraria | - | Agricoltura | -
+Allevamento | - | Agricoltura, Caccia | -
+Tiro con l'Arco | - | Caccia | -
+Navigazione | - | Pesca | -
+Diritto Divino | - | Teologia | -
+Educazione | - | Teologia, Matematica | -
+Valuta | - | Matematica | -
+Muratura | - | Estrazione Mineraria | -
+Lavorazione Bronzo | - | Estrazione Mineraria | -
+Equitazione | - | Allevamento | -
+Ottica | - | Tiro con l'Arco, Navigazione | -
+Arte | - | Diritto Divino, Educazione | -
+Letteratura | - | Educazione | -
+Ingegneria | - | Matematica, Muratura | -
+Lavorazione Ferro | - | Lavorazione Bronzo | -
+Codice Cavalleresco | - | Equitazione, Valuta | -
+Astronomia | - | Ottica | -
+Musica | - | Arte, Letteratura | -
+Sistema Bancario | - | Diritto Divino, Valuta | -
+Meccanica | - | Ingegneria | -
+Fisica | - | Ingegneria | -
+Fusione del metallo | - | Lavorazione Ferro | -
+Teoria Scientifica | - | Astronomia, Fisica | -
+Musica | - | Arte, Letteratura | -
+Economia | - | Sistema Bancario | -
+Acciaio | - | Fusione del metallo | -
+Energia a Vapore | - | Codice Cavalleresco, Acciaio | -
+Polvere da Sparo | - | Fisica, Acciaio | -
+Rigatura delle Canne | - | Meccanica, Polvere da Sparo | -
+Chimica | - | Polvere da Sparo | -
+Pezzi indipendenti | - | Energia a Vapore | -
+Elettricità | - | Energia a Vapore, Teoria Scientifica | -
+Radio | - | Musica, Elettricità | -
+Mass Media | - | Radio | -
+Elettronica | - | Radio | -
+Computer | - | Elettronica | -
+Globalizzazione | - | Economia, Computer | -
+Robotica | - | Computer | -
+Combustione | - | Rigatura delle Canne, Chimica | -
+Plastica | - | Chimica, Elettricità | -
+Volo | - | Pezzi indipendenti | -
+Missilistica | - | Volo, Combustione | -
+Teoria Atomica | - | Combustione | -
+Fissione Nucleare | - | Teoria Atomica, Missilistica | -
+Fisica Particelle | - | Teoria Atomica, Robotica | -
+Nanotecnologia | - | Fisica Particelle, Plastica | -
+Tecnologia Futura | - | Nanotecnologia, Fissione Nucleare | -
+
+
 ## Society
 Each civilization have a society system
 
-Society | Effects
---- | --- 
-Anarchy | No production, gold, science or food.
-Dispotism | 
-Monarchy | 
-Republic | 
-Teocracy | +XX% culture
-Democracy | +50% gold and +50% science but you can't declare war.
-Socialism | 
-Nationalism | 
-Communism | +XX% production
-Fascism | 
-Police State | 
+Society | Requirements | Effects
+--- | --- | ---
+Anarchy | - | No production, gold, science or food.
+Dispotism | - | No special effects.
+Monarchy | Diritto Divino | -
+Republic | Educazione | -
+Teocracy | Teologia | +XX% culture
+Democracy | - | +50% gold and +50% science but you can't declare war.
+Socialism | - | -
+Nationalism | Economia | -
+Communism | Energia a Vapore oppure Pezzi indipendenti | +XX% production
+Fascism | Mass Media | -
+Police State | Computer oppure Combustione | -

@@ -6,10 +6,11 @@ This document outlines the general goals for CivJS ongoing development.
 
 ### Version 0.3.0 (May 2013)
 
+* End Turn Messages with infos about what happened _(DONE)_
+* TODO getCityScience()
+* TODO getCityCulture()
 * redesign movement rules
-* End Turn Messages with infos about what happened
 * Implement science research
-* Implement city population growth
 * Implement buildings
 
 ### Version 1.0.0 (Unscheduled)

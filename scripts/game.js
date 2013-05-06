@@ -188,6 +188,7 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
 function endTurn () {
     autoSaveGame(); // save the game as right before calling endTurn
     closeActionbar();
+    var notifications = [];
 
     // INSERT HERE THE AIs ACTIONS
 
@@ -222,16 +223,25 @@ function endTurn () {
     len = map.cities.length;
     for (var i = 0; i < len; i++) {
         var city = map.cities[i];
+        var player = findPlayerById(city.player);
 
         // CITY PRODUCTION
         var cityprod = getCityProd(city)
         if (city.build.name != "nothing" && city.build.cost - cityprod <= 0) {
             // build finished
             if (city.build.type === "unit") {
-                createNewUnit(findPlayerById(city.player), city.build.name, city.x, city.y);
+                if (cityHaveBuilding(city, "Barracks")) {
+                    createNewUnit(player, city.build.name, 5, city.x, city.y);
+                } else {
+                    createNewUnit(player, city.build.name, 0, city.x, city.y);
+                }
             } else {
                 city.buildings.push(city.build.name);
             }
+            var message = {};
+            message.info = "A " + city.build.name + " was built in " + city.name;
+            message.callback = function () { centerCameraOnXY(city.x, city.y); };
+            notifications.push(message);
             city.build.name = "nothing";
             city.build.cost = 0;
         } else {
@@ -240,12 +250,64 @@ function endTurn () {
         }
 
         // CITY GOLD
-        findPlayerById(city.player).gold += getCityGold(city);
+        player.gold += getCityGold(city);
+
+        // CITY SCIENCE
+        if (player.research.tech !== "") {
+            player.research.cost -= getCityScience(city);
+            if (player.research.cost <= 0) { 
+                // research ended
+                player.tech.push(player.research.tech);
+                var message = {};
+                message.info = "Technology " + player.research.tech + " discovered";
+                message.callback = function () { /* open the research menu */ };
+                notifications.push(message);
+                player.research = { tech: "", cost: 0 };
+            }
+        }
+
+        // CITY CULTURE
+        player.culture += getCityCulture(city);
+
+        // CITY GROWTH
+        city.growth += getCityFood(city) - city.population * 2;
+        if (city.growth < 0) { // if growth < 0, one citizen die
+            city.growth = 0;
+            city.population--;
+            var message = {};
+            message.info = "A citizen died for food in " + city.name;
+            message.callback = function () { centerCameraOnXY(city.x, city.y); };
+            notifications.push(message);
+        }
+        var step = Math.floor(15 + 6 * (city.population - 1) + Math.pow(city.population - 1, 1.8));
+        if (city.growth >= step) { // if there is enougth food to grow, add a citizen and reset the growth (exeded food is maintained)
+            city.growth -= step;
+            city.population++;
+            var message = {};
+            message.info = city.name + " has grown to " + city.population + " of population";
+            message.callback = function () { centerCameraOnXY(city.x, city.y); };
+            notifications.push(message);
+        }
 
     }
 
     map.game.turn++;
     map.game.year += map.game.yearstep;
+
+    if (notifications.length >= 1) {
+        var htmlcode = '<h4 class="center">Notifications</h4>';
+        for (var i = 0, len = notifications.length; i < len; i++) {
+            htmlcode += '<span id="notification' + i + '"><a class="nodecoration" href="#">' + notifications[i].info + '</a></span><br/><br/>';
+        }
+        $("#infopopup").html(htmlcode);
+        for (var i = 0, len = notifications.length; i < len; i++) {
+            $("#notification" + i).click(notifications[i].callback);
+        }
+        $("#infopopup").css({'top': 55, 'left': 0, 'visibility': 'visible', 'height': 'auto', 'width': 'auto'});
+    } else {
+        $("#infopopup").css({'visibility': 'hidden'});
+    }
+    
     
     renderMap();
 }
@@ -484,6 +546,7 @@ function settleCity(unitid) {
             city.x = unit.x;
             city.y = unit.y;
             city.population = 2;
+            city.growth = 0;
             city.buildings = [];
             city.build = { name: "nothing", cost: 0 };
 
@@ -541,25 +604,27 @@ function createBuildingsList(cityid) {
     resetPopup();
 
     var city = findCityById(cityid);
-
+    var cityproduction = getCityProd(city);
     var cityIsNearWater = pointIsNearWater(city.x, city.y);
 
-    var content = "<h4>Available Units</h4>";
+    var content = '<h4 class="center">Available Units</h4>';
 
     $.each(unitsDB, function(key, val) {
         if (val.techrequired === "none" || playerHaveTech(city.player, val.techrequired)) {
             if (val.terrain || (val.naval && cityIsNearWater)) {
-                content += '<button onclick="setBuild(\'' + cityid + '\', \'unit\', \'' + key + '\')" style="width: 100%; margin-bottom: 5px;" class="gradient button">' + key + ' (' + val.productioncost + ')</button><br/>';
+                content += '<button onclick="setBuild(\'' + cityid + '\', \'unit\', \'' + key + '\')" style="width: 100%; margin-bottom: 5px;" class="gradient button"><strong>' + key + '</strong> (Cost: ' + val.productioncost + ' - ' + Math.ceil(val.productioncost/cityproduction) + ' Turns)</button><br/>';
             }
         }
     });
 
-    content += '<h4>Available Buildings</h4>'
+    content += '<h4 class="center">Available Buildings</h4>'
 
     $.each(buildingsDB, function(key, val) {
-        if (val.techrequired === "none" || playerHaveTech(city.player, val.techrequired)) {
-            if (val.buildingrequired === "none" || cityHaveBuilding(city, val.buildingrequired)) {
-                content += '<button onclick="setBuild(\'' + cityid + '\', \'building\', \'' + key + '\')" style="width: 100%; margin-bottom: 5px;" class="gradient button">' + key + " (" + val.productioncost + ')</button><br/>';
+        if (!cityHaveBuilding(city, key)) {
+            if (val.techrequired === "none" || playerHaveTech(city.player, val.techrequired)) {
+                if (val.buildingrequired === "none" || cityHaveBuilding(city, val.buildingrequired)) {
+                    content += '<button onclick="setBuild(\'' + cityid + '\', \'building\', \'' + key + '\')" style="width: 100%; margin-bottom: 5px;" class="gradient button"><strong>' + key + "</strong> (Cost: " + val.productioncost + ' - ' + Math.ceil(val.productioncost/cityproduction) + ' Turns)</button><br/>';
+                }
             }
         }
     });

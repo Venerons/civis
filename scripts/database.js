@@ -51,16 +51,16 @@ var unitsDB = {
 
 // BUILDINGS DATABASE
 var buildingsDB = {
-    "granary": 
+    "Granary": 
         {
             "productioncost": 40,
-            "techrequired": "Pottery",
+            "techrequired": "none",
             "buildingrequired": "none"
         },
-    "barracks": 
+    "Barracks": 
         {
             "productioncost": 40,
-            "techrequired": "Bronze Working",
+            "techrequired": "none",
             "buildingrequired": "none"
         }
 };

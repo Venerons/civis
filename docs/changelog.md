@@ -2,6 +2,14 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 06/05/2013 (2)
+
+* Notifications
+* Update CSS
+* Add Barracks building
+* Add city population growth
+* Update createBuildingsList()
+
 ### Update 06/05/2013 (Version 0.2.0)
 
 * Tagging version 0.2.0

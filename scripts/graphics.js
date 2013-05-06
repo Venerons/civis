@@ -142,7 +142,7 @@ function renderMap() {
                      + '<br/><strong>Gold:</strong> ' + map.players[n].gold
                      + '<br/><strong>Culture:</strong> ' + map.players[n].culture
                      + '<br/><strong>Society:</strong> ' + map.players[n].society;
-            $("#infopopup").html(htmlcode).css({'top': event.pageY, 'left': event.pageX, 'visibility': 'visible', 'height' : '120px'});  
+            $("#infopopup").html(htmlcode).css({'top': event.pageY, 'left': event.pageX, 'visibility': 'visible', 'height' : 'auto', 'width': 'auto'});  
         });
         $(function(){
             $(dividquery).mouseout(function(event){
@@ -400,7 +400,7 @@ function addTileToMap(tile) {
 function addCityToMap(city) {
 	var cityBitmap = new createjs.Bitmap(imageCache.city).setTransform(coordinate(city.x) + camera.x, coordinate(city.y) + camera.y, SCALE, SCALE);
 
-	var label = new createjs.Text(city.name, "normal 12px Arial", findPlayerById(city.player).color);
+	var label = new createjs.Text(city.population + " "+city.growth+ " - " + city.name, "normal 12px Arial", findPlayerById(city.player).color);
 	var tx = ((city.x - 1) * TILESIZE) + ((TILESIZE - label.getMeasuredWidth()) / 2) + camera.x;
 	var ty = ((city.y - 1) * TILESIZE) + (TILESIZE - label.getMeasuredHeight() - 10) + camera.y;
 	label.setTransform(tx, ty);
