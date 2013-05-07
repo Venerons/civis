@@ -51,22 +51,40 @@ var unitsDB = {
 
 // BUILDINGS DATABASE
 var buildingsDB = {
-    "Granary": 
+    "Granary": // +2 food
         {
             "productioncost": 40,
-            "techrequired": "none",
+            "techrequired": "Agriculture",
             "buildingrequired": "none"
         },
-    "Barracks": 
+    "Barracks": // +5 exp to the unit created on that city
         {
             "productioncost": 40,
-            "techrequired": "none",
+            "techrequired": "Bronze Working",
+            "buildingrequired": "none"
+        },
+    "Library": // +1 science per 2 citizen (+ (popultation / 2) science)
+        {
+            "productioncost": 40,
+            "techrequired": "Writing",
+            "buildingrequired": "none"
+        },
+    "Monument": // +2 culture
+        {
+            "productioncost": 20,
+            "techrequired": "Mysticism",
             "buildingrequired": "none"
         }
 };
 
 // TECHNOLOGIES DATABASE
-var techDB = {};
+var techDB = {
+    "Agriculture": 
+        {
+            "productioncost": 20,
+            "techrequired": []
+        }
+};
 
 // CIVILIZATIONS DATABASE
 var civsDB = {

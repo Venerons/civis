@@ -30,6 +30,8 @@ function init() {
 
 	$("#focusnextbutton").click(function () { focusNext(); });
 	$("#endturnbutton").click(function () { endTurn(); });
+	$("#researchbutton").click(function () { showResearchManagement(); });
+	$("#societybutton").click(function () { showSocietyManagement(); });
 	$("#mainmenubutton").click(function () { mainMenu(); });
 
 	canvas = document.getElementById("mapcanvas");
@@ -400,7 +402,7 @@ function addTileToMap(tile) {
 function addCityToMap(city) {
 	var cityBitmap = new createjs.Bitmap(imageCache.city).setTransform(coordinate(city.x) + camera.x, coordinate(city.y) + camera.y, SCALE, SCALE);
 
-	var label = new createjs.Text(city.population + " "+city.growth+ " - " + city.name, "normal 12px Arial", findPlayerById(city.player).color);
+	var label = new createjs.Text(city.population + " - " + city.name, "normal 12px Arial", findPlayerById(city.player).color);
 	var tx = ((city.x - 1) * TILESIZE) + ((TILESIZE - label.getMeasuredWidth()) / 2) + camera.x;
 	var ty = ((city.y - 1) * TILESIZE) + (TILESIZE - label.getMeasuredHeight() - 10) + camera.y;
 	label.setTransform(tx, ty);

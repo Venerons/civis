@@ -260,7 +260,7 @@ function endTurn () {
                 player.tech.push(player.research.tech);
                 var message = {};
                 message.info = "Technology " + player.research.tech + " discovered";
-                message.callback = function () { /* open the research menu */ };
+                message.callback = function () { showResearchManagement(); };
                 notifications.push(message);
                 player.research = { tech: "", cost: 0 };
             }
@@ -578,13 +578,25 @@ function showCityManager(cityid) {
     }
     list += '</ul>';
 
+    var step = Math.floor(15 + 6 * (city.population - 1) + Math.pow(city.population - 1, 1.8));
+    var bilancio = getCityFood(city) - city.population * 2;
+    var btext;
+    if (bilancio < 0) {
+        btext = '-' + bilancio;
+    } else {
+        btext = '+' + bilancio;
+    }
+
     var content = '<table style="width: 100%"><tbody>'
                 + '<tr><td style="width: 70%"><table><tbody>'
                 + '<tr><td><strong>Name:</strong></td><td>' + city.name + '</td></tr>'
                 + '<tr><td><strong>Population:</strong></td><td>' + city.population + '</td></tr>'
+                + '<tr><td><strong>Growth:</strong></td><td>' + btext + ' (' + city.growth + '/' + step + ')</td></tr>'
                 + '<tr><td><strong>Food:</strong></td><td>' + getCityFood(city) + '</td></tr>'
                 + '<tr><td><strong>Production:</strong></td><td>' + cityproduction + '</td></tr>'
                 + '<tr><td><strong>Gold:</strong></td><td>' + getCityGold(city) + '</td></tr>'
+                + '<tr><td><strong>Science:</strong></td><td>' + getCityScience(city) + '</td></tr>'
+                + '<tr><td><strong>Culture:</strong></td><td>' + getCityCulture(city) + '</td></tr>'
                 + '<tr><td><strong>Current Build:</strong></td><td>' + city.build.name + ' (' + Math.ceil(city.build.cost/cityproduction) + ' Turns)</td></tr>'
                 + '<tr><td><br/><button id="changebuildBtn" class="gradient button">Change Current Build</button></td></tr>'
                 + '</tbody></table></td>'
@@ -647,4 +659,66 @@ function setBuild(cityid, target, building) {
     
     city.build = build;
     closePopup();
+}
+
+function showResearchManagement() {
+    closePopup();
+    resetPopup();
+
+    var player = map.players[0];
+    var scienceproduction = 0;
+    for (var i = 0, len = map.cities.length; i < len; i++) {
+        var city = map.cities[i];
+        if (city.player === player.id) {
+            scienceproduction += getCityScience(city);
+        }
+    }
+
+    var content = '<h3 class="center">Technology Research</h3>';
+    if (map.players[0].research.tech !== "") {
+        var current = getTechProdCost(player.research.tech);
+        var status = current - player.research.cost;
+        content += '<strong>Current Research:</strong> ' + player.research.tech + ' (' + status + '/' + current +  ') - ' + Math.ceil(player.research.cost/scienceproduction) + ' Turns';
+    } else {
+        content += '<strong>Current Research:</strong> Nothing';
+    }
+
+    content += '<h4 class="center">Available Research</h4>';
+    
+
+    $.each(techDB, function(key, val) {
+        if (!playerHaveTech(player.id, key) && (player.research.tech !== key)) {
+            if (val.techrequired.length < 1 || playerHaveRequiredTechs(player.id, val.techrequired)) {
+                content += '<button onclick="setResearch(\'' + key + '\')" style="width: 100%; margin-bottom: 5px;" class="gradient button"><strong>' + key + "</strong> (Cost: " + val.productioncost + ' - ' + Math.ceil(val.productioncost/scienceproduction) + ' Turns)</button><br/>';
+            }
+        }
+    });
+
+    content += '<h4 class="center">Technologies Discovered</h4><ul>';
+    for (var i = 0, len = player.tech.length; i < len; i++) {
+        content += '<li>' + player.tech[i] + '</li>';
+    }
+    content += '</ul>';
+
+    $('#popupcontent').html(content);
+    openPopup();
+}
+
+function setResearch(techname) {
+    var research = {};
+    research.tech = techname;
+    research.cost = getTechProdCost(techname);
+    map.players[0].research = research;
+    closePopup();
+}
+
+function showSocietyManagement() {
+    closePopup();
+    resetPopup();
+
+    var content = '<h3 class="center">Society</h3>';
+    content += '<strong>Current Society:</strong> ' + map.players[0].society;
+
+    $('#popupcontent').html(content);
+    openPopup();
 }

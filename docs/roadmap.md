@@ -7,11 +7,15 @@ This document outlines the general goals for CivJS ongoing development.
 ### Version 0.3.0 (May 2013)
 
 * End Turn Messages with infos about what happened _(DONE)_
-* TODO getCityScience()
-* TODO getCityCulture()
+* Update to jQuery Mobile 1.3.1 _(DONE)_
+* Update to jQuery 2.0.0 _(DONE)_
+* Update manual.txt _(DONE)_
+* Optimized HUD images _(DONE)_
+* Implement science research _(DONE)_
+* Implemented Barracks, Granary, Monument, Library _(DONE)_
+
 * redesign movement rules
-* Implement science research
-* Implement buildings
+* Implement more buildings
 
 ### Version 1.0.0 (Unscheduled)
 

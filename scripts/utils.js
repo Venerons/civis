@@ -195,6 +195,11 @@ function getBuildingProductionCost(building) {
     return buildingsDB[building.name].productioncost;
 }
 
+// GET A TECHNNOLOGY PRODUCTION COST
+function getTechProdCost(techname) {
+    return techDB[techname].productioncost;
+}
+
 // FIND A PLAYER BY ID
 function findPlayerById(id) {
     var len = map.players.length;
@@ -392,6 +397,7 @@ function getCityFood(city) {
     for (var j = 0, len = tiles.length; j < len; j++) {
         food += getFoodFromTile(tiles[j]);
     }
+    if (cityHaveBuilding(city, "Granary")) { food += 2; }
     return food;
 }
 
@@ -414,14 +420,14 @@ function getCityGold(city) {
 }
 
 function getCityScience(city) {
-    var science = 0;
-    // if (cityHaveBuilding(city, "Library")) { science += city.population / 2; }
+    var science = Math.floor(city.population / 2); // base science = population / 2
+    if (cityHaveBuilding(city, "Library")) { science += Math.round(city.population / 2); }
     return science;
 }
 
 function getCityCulture(city) {
-    var culture = 0;
-    // if (cityHaveBuilding(city, "Monument")) { culture += 2; }
+    var culture = Math.floor(city.population / 2); // base culture = population / 2
+    if (cityHaveBuilding(city, "Monument")) { culture += 2; }
     return culture;
 }
 
@@ -436,6 +442,10 @@ function playerHaveTech(playerid, techname) {
             return false; // tech not found
         }
     }
+}
+
+function playerHaveRequiredTechs(playerid, techsrequired) { // TODO
+    return true;
 }
 
 function cityHaveBuilding(city, buildingname) {

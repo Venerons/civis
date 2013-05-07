@@ -2,6 +2,16 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 07/05/2013
+
+* Update to jQuery Mobile 1.3.1
+* Update to jQuery 2.0.0
+* Update manifest.appcache
+* Update manual.txt
+* Optimized HUD images
+* Implemented Barracks, Granary, Monument, Library
+* Implemented science research
+
 ### Update 06/05/2013 (2)
 
 * Notifications

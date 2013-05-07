@@ -93,13 +93,15 @@ list of buildings
 
 Building | Cost | Tech Required | Building Required | Effect
 --- | :---: | :---: | :---: | :---
-Barracks | 40 | ? | - | Units produced are automatically Veterans (+5 exp)
-Granary | 40 | ? | - | Plains tiles give +2 food (or +X food constant)
+Barracks | 40 | Bronze Working | - | Units produced are automatically Veterans (+5 exp)
+Granary | 40 | Agriculture | - | +2 food
+Library | 40 | Writing | - | +1 science each 2 population
+Monument | 20 | Mysticism | - | +2 culture
+
 Harbor | ? | ? | - | +1 food in sea tiles
 Workshop | ? | ? | - | Provides +2 production from hills
 Iron Mine | ? | ? | - | Mountain tiles give +4 production 
 Walls | ? | ? | - | Gives +100% defensive bonus
-Library | ? | ? | - | Doubles city science production (or +1 science each 2 citizen -> +(population/2) science)
 University | ? | ? | - | Replaces library, x4 science production
 Temple | ? | ? | - | +1 culture for every citizen in city
 Cathedral  | ? | ? | - | Replaces temple and gives +2 culture for each citizen 
@@ -132,7 +134,6 @@ Stock exchange
 
 Culture Buildings
 ---
-Monument (see temple, +2 culture)
 Amphitheater (+3 culture, require monument)
 Opera House
 Theater
