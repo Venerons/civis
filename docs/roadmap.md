@@ -13,9 +13,12 @@ This document outlines the general goals for CivJS ongoing development.
 * Optimized HUD images _(DONE)_
 * Implement science research _(DONE)_
 * Implemented Barracks, Granary, Monument, Library _(DONE)_
+* Add Empire overview _(DONE)_
+* Removed players stats on the toolbar _(DONE)_
 
 * redesign movement rules
 * Implement more buildings
+* Code optimizations and Bug Fixes
 
 ### Version 1.0.0 (Unscheduled)
 

@@ -19,8 +19,8 @@ Welcome to CivJS, the JavaScript Civilization Game!
 A victory can be achieved in four different ways.
 
 * Domination: capture all cities of the game.
-* Culture: Obtain 10,000 culture point.
-* Economic: Acquire 10,000 Gold.
+* Culture: Obtain 20,000 culture point.
+* Economic: Acquire 20,000 Gold.
 * Technological: Be the first to discover Tecnologia Futura. 
 
 As a civilization nears one of the above mentioned victory conditions, all other civilizations will usually declare war on it in an attempt to delay or stop it from winning.
@@ -28,25 +28,25 @@ As a civilization nears one of the above mentioned victory conditions, all other
 ## The Map
 The map is the playground of the game. Each tile can be of one of these types:
 
-Tile | Food | Production | Gold | Modifiers
---- | :---: | :---: | :---: | :---:
-Grass | 2 | - | - | -
-Hill | 1 | 1 | - | +50% Atk/Def
-Mountain | - | 2 | 1 | +100% Atk/Def
-Water | 1 | - | 1 | -
-Desert | - | - | - | -
-Snow | - | - | - | -50% Atk/Def
+Tile     | Food  | Production | Gold  | Modifiers
+-------- | :---: | :--------: | :---: | :---:
+Grass    | 2     | -          | -     | -
+Hill     | 1     | 1          | -     | +50% Atk/Def
+Mountain | -     | 2          | 1     | +100% Atk/Def
+Water    | 1     | -          | 1     | -
+Desert   | -     | -          | -     | -
+Snow     | -     | -          | -     | -50% Atk/Def
 
 Some tiles also can host a nature element, that modify the values of the tile
 
-Nature | Food | Production | Gold | Modifiers
---- | :---: | :---: | :---: | :---:
-Forest | - | +1 | - | +50% Atk/Def
-Jungle | +1 | -1 | - | +50% Atk/Def
-Marsh | -1 | - | - | -50% Atk/Def
-Oasis | +3 | - | +2 | -
-River | - | - | +1 | -
-Natural Wonder | - | +2 | +3 | -
+Nature         | Food  | Production | Gold  | Modifiers
+-------------- | :---: | :--------: | :---: | :---:
+Forest         | -     | +1         | -     | +50% Atk/Def
+Jungle         | +1    | -1         | -     | +50% Atk/Def
+Marsh          | -1    | -          | -     | -50% Atk/Def
+Oasis          | +3    | -          | +2    | -
+River          | -     | -          | +1    | -
+Natural Wonder | -     | +2         | +3    | -
 
 ## Units
 Each unit have 5 stats:
@@ -77,26 +77,24 @@ A fight is resolved this way:
 settling instructions
 
 ### Unit List
-Unit | Atk | Def | Mov | Initial Life | Requirements
---- | :---: | :---: | :---: | :---: | ---
-Settler | 0 | 0 | 2 | 1 | -
-Warrior | 1 | 1 | 1 | 1 | -
-Archer | 1 | 2 | 1 | 1 | Tiro con l'Arco
-Galley | 1 | 1 | 2 | 1 | Navigazione
+Unit             | Atk   | Def   | Mov   | Initial Life | Requirements
+---------------- | :---: | :---: | :---: | :----------: | ---
+Settler          | 0     | 0     | 2     | 1            | -
+Warrior          | 1     | 1     | 1     | 1            | -
+Archer           | 1     | 2     | 1     | 1            | Tiro con l'Arco
+Galley           | 1     | 1     | 2     | 1            | Navigazione
 
 ## Cities
 cities about
 each turn will be consumed 2 food per citizen. Eventual remaining will be used to increase population. If negative, population may decrease.
 
 ### Buildings
-list of buildings
-
-Building | Cost | Tech Required | Building Required | Effect
---- | :---: | :---: | :---: | :---
-Barracks | 40 | Bronze Working | - | Units produced are automatically Veterans (+5 exp)
-Granary | 40 | Agriculture | - | +2 food
-Library | 40 | Writing | - | +1 science each 2 population
-Monument | 20 | Mysticism | - | +2 culture
+Building         | Cost  | Tech Required  | Building Required | Effect
+---------------- | :---: | :------------: | :---------------: | :---
+Barracks         | 40    | Bronze Working | -                 | Units produced are automatically Veterans (+5 exp)
+Granary          | 40    | Agriculture    | -                 | +2 food
+Library          | 40    | Writing        | -                 | +1 science each 2 population
+Monument         | 20    | Mysticism      | -                 | +2 culture
 
 
 Harbor | ? | ? | - | +1 food in sea tiles
@@ -113,13 +111,13 @@ Courthouse | ? | ? | - | Increases the city's workable tile region (or reduce >:
 Factory | ? | ? | - | Doubles the city's production 
 
 Food Buildings
----
+-
 Hospital
 Medical Lab
 
 
 Production Buildings
----
+-
 Stable (must have access to hourse resource, +2 production)
 Forge
 Nuclear Plant
@@ -128,13 +126,13 @@ Solar plant
 
 
 Gold Buildings
----
+-
 Lighthouse (must be near water, +1 gold in sea tiles)
 Stock exchange
 
 
 Culture Buildings
----
+-
 Amphitheater (+3 culture, require monument)
 Opera House
 Theater
@@ -143,14 +141,14 @@ Broadcast Tower
 
 
 Science Buildings
----
+-
 Observatory
 Public School
 Research Lab
 
 
 Other Buildings
----
+-
 Circus (+2 :) )
 Colosseum (+ 3 :) )
 Stadium
@@ -203,9 +201,9 @@ Mechanics          | 320   | Engineering                     | -
 Physics            | 320   | Engineering                     | -
 Metal Casting      | 320   | Iron Working                    | -
 Scientific Theory  | 640   | Astronomy, Physics              | -
-Economy            | 640   | Banking                         | -
+Economy            | 640   | Banking                         | Unlock Nationalism
 Steel              | 640   | Metal Casting                   | -
-Steam Energy       | 1024  | Code of Chivalry, Steel         | -
+Steam Energy       | 1024  | Code of Chivalry, Steel         | Unlock Communism
 Gunpowder          | 1024  | Physics, Steel                  | -
 Rifling            | 2048  | Mechanics, Gunpowder            | -
 Chemistry          | 2048  | Gunpowder                       | -
@@ -215,11 +213,11 @@ Radio              | 4096  | Music, Electricity              | -
 Combustion         | 4096  | Rifling, Chemistry              | -
 Plastic            | 4096  | Chemistry, Electricity          | -
 Flight             | 4096  | Independent Pieces              | -
-Mass Media         | 8192  | Radio                           | -
+Mass Media         | 8192  | Radio                           | Unlock Fascism
 Electronics        | 8192  | Radio                           | -
 Rocketry           | 8192  | Flight, Combustion              | -
 Atomic Theory      | 8192  | Combustion                      | -
-Computers          | 16384 | Electronics                     | -
+Computers          | 16384 | Electronics                     | Unlock Police State
 Nuclear Fission    | 16384 | Atomic Theory, Rocketry         | -
 Globalization      | 32768 | Economy, Computers              | -
 Robotics           | 32768 | Computers                       | -
@@ -240,6 +238,6 @@ Teocracy     | Theology     | +XX% culture
 Democracy    | -            | +50% gold and +50% science but you can't declare war.
 Socialism    | -            | -
 Nationalism  | Economy      | -
-Communism    | Energia a Vapore oppure Pezzi indipendenti | +XX% production
+Communism    | Steam Energy | +XX% production
 Fascism      | Mass Media   | -
-Police State | Computer oppure Combustione | -
+Police State | Computers    | -

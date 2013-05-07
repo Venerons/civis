@@ -30,6 +30,7 @@ function init() {
 
 	$("#focusnextbutton").click(function () { focusNext(); });
 	$("#endturnbutton").click(function () { endTurn(); });
+	$("#empirebutton").click(function () { showEmpireOverview(); });
 	$("#researchbutton").click(function () { showResearchManagement(); });
 	$("#societybutton").click(function () { showSocietyManagement(); });
 	$("#mainmenubutton").click(function () { mainMenu(); });
@@ -124,34 +125,8 @@ function renderMap() {
 	mapcities = [];
 	mapelements = [];
 
-    // PLAYERS SETTING
-    document.getElementById('playerstats').innerHTML = '<img src="images/hud/stats.png" class="buttonimage" alt="Turn" title="Turn"> ' + map.game.turn + ' &nbsp;<img src="images/hud/time.png" class="buttonimage" alt="Year" title="Year"> ' + map.game.year + ' &nbsp;&nbsp;<strong>Players:</strong> ';
-    var len = map.players.length;
-    for (var i = 0; i < len; i++) {
-        var divid = "player" + i;
-        var dividquery = "#" + divid;
-        document.getElementById('playerstats').innerHTML += '<span id="' + divid + '"><span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + map.players[i].color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + map.players[i].name + ' (' + map.players[i].civilization + ')</span> &nbsp;&nbsp;&nbsp;';
-    }
-    var len = map.players.length;
-    for (var i = 0; i < len; i++) {
-        var divid = "player" + i;
-        var dividquery = "#" + divid;
-        $(dividquery).mouseover(function(event){
-            var n = this.id.charAt(this.id.length-1);
-            var htmlcode = '<strong>Name:</strong> <span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + map.players[n].color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + map.players[n].name
-                     + '<br/><strong>Civilization:</strong> ' + map.players[n].civilization
-                     + '<br/><strong>Points:</strong> ' + map.players[n].points
-                     + '<br/><strong>Gold:</strong> ' + map.players[n].gold
-                     + '<br/><strong>Culture:</strong> ' + map.players[n].culture
-                     + '<br/><strong>Society:</strong> ' + map.players[n].society;
-            $("#infopopup").html(htmlcode).css({'top': event.pageY, 'left': event.pageX, 'visibility': 'visible', 'height' : 'auto', 'width': 'auto'});  
-        });
-        $(function(){
-            $(dividquery).mouseout(function(event){
-                $("#infopopup").css({'visibility': 'hidden'});
-            });
-        });
-    }
+    // STATS SETTING
+    document.getElementById('stats').innerHTML = '<img src="images/hud/stats.png" class="buttonimage" alt="Turn" title="Turn"> ' + map.game.turn + ' &nbsp;<img src="images/hud/time.png" class="buttonimage" alt="Year" title="Year"> ' + map.game.year;
 
     // TILES SETTING
     discoverTiles();

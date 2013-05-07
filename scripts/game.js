@@ -16,7 +16,7 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
         "tiles": [],
         "units": [],
         "cities": []
-    }
+    };
 
     var colors = ["#1E74FF", "red", "yellow", "orange", "purple"];
     var civs = [];
@@ -57,20 +57,20 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
         p.id = i;
         p.color = colors[i];
 
-        var civ;
+        var civis;
         var trovato = false;
         while (!trovato) {
-            civ = civs[Math.floor(Math.random() * civs.length)];
+            civis = civs[Math.floor(Math.random() * civs.length)];
             var uguale = false;
             var j = 0;
             var len = basemap.players.length;
             while (!uguale && j < len) {
-                if (basemap.players[j].civilization == civ) uguale = true;
+                if (basemap.players[j].civilization === civis) { uguale = true; }
                 j++;
             }
-            if (!uguale) trovato = true;
+            if (!uguale) { trovato = true; }
         }
-        p.civilization = civ;
+        p.civilization = civis;
 
         p.name = civsDB[p.civilization].leaders[Math.floor(Math.random() * civsDB[p.civilization].leaders.length)];
         p.points = 0;
@@ -100,20 +100,23 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
 
             // tile type
             var sector = t.y * 100 / nrows;
-            if (sector <= 10 || sector >= 90) 
+            if (sector <= 10 || sector >= 90) {
                 t.type = poles[Math.floor(Math.random() * poles.length)];
-            else
-                if (sector <= 20 || sector >= 80) 
+            } else {
+                if (sector <= 20 || sector >= 80) {
                     t.type = cold[Math.floor(Math.random() * cold.length)];
-                else
-                    if (sector <= 40 || sector >= 60)
+                } else {
+                    if (sector <= 40 || sector >= 60) {
                         t.type = middle[Math.floor(Math.random() * middle.length)];
-                    else
+                    } else {
                         t.type = center[Math.floor(Math.random() * center.length)];
+                    }
+                }
+            }
             
 
             // add eventual nature element
-            if (t.type == "grass" || t.type == "hill") {
+            if (t.type === "grass" || t.type === "hill") {
                 t.nature = nature[Math.floor(Math.random() * nature.length)];
             } else {
                 t.nature = "none";
@@ -144,13 +147,13 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
             var len = basemap.tiles.length;
             for (var index = 0; index < len; index++) {
                 var len2 = basemap.tiles[index].length;
-                for (j = 0; j < len2; j++) {
-                    if (basemap.tiles[index][j].x == targetx && basemap.tiles[index][j].y == targety) {
-                        if (basemap.tiles[index][j].type == "grass" || basemap.tiles[index][j].type == "hill") {
+                for (var j = 0; j < len2; j++) {
+                    if (basemap.tiles[index][j].x === targetx && basemap.tiles[index][j].y === targety) {
+                        if (basemap.tiles[index][j].type === "grass" || basemap.tiles[index][j].type === "hill") {
                             var len3 = basemap.units.length;
                             var occupied = false;
                             for (var i3 = 0; i3 < len3; i3++) {
-                                if (basemap.units[i3].x == targetx && basemap.units[i3].y == targety) {
+                                if (basemap.units[i3].x === targetx && basemap.units[i3].y === targety) {
                                     occupied = true;
                                     break;
                                 }
@@ -162,7 +165,7 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
                         }
                     }
                 }
-                if (found) break;
+                if (found) { break; }
             }
         }
 
@@ -174,8 +177,8 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
         u1.y = targety;
         u1.type = "settler";
         u1.experience = 0;
-        u1.life = unitsDB["settler"].initialLife;
-        u1.maxlife = unitsDB["settler"].initialLife;
+        u1.life = unitsDB.settler.initialLife;
+        u1.maxlife = unitsDB.settler.initialLife;
         u1.fortified = false;
         u1.active = true;
 
@@ -226,8 +229,8 @@ function endTurn () {
         var player = findPlayerById(city.player);
 
         // CITY PRODUCTION
-        var cityprod = getCityProd(city)
-        if (city.build.name != "nothing" && city.build.cost - cityprod <= 0) {
+        var cityprod = getCityProd(city);
+        if (city.build.name !== "nothing" && city.build.cost - cityprod <= 0) {
             // build finished
             if (city.build.type === "unit") {
                 if (cityHaveBuilding(city, "Barracks")) {
@@ -246,7 +249,7 @@ function endTurn () {
             city.build.cost = 0;
         } else {
             // build continued
-            if (city.build.name != "nothing") city.build.cost -= cityprod;
+            if (city.build.name !== "nothing") { city.build.cost -= cityprod; }
         }
 
         // CITY GOLD
@@ -315,7 +318,7 @@ function endTurn () {
 function showUnitOptions (unitid) {
     deselectDestinations(); // deselect eventual selected destinations
     var unit = findUnitById(unitid);
-    if (unit.player == map.players[0].id) {
+    if (unit.player === map.players[0].id) {
         var unittitle = "";
         if (isElite(unit)) {
             unittitle = "Elite ";
@@ -341,7 +344,7 @@ function showUnitOptions (unitid) {
         $("#noOrders").click(function () { closeActionbar(); });
 
         var specialOrders = "";
-        if (unit.type == "settler") {
+        if (unit.type === "settler") {
             specialOrders = '<button class="button gradient topbarbutton" alt="Settle" title="Settle" id="settleCity"><img src="images/hud/settle.png" class="buttonimage"></button>';
             $("#specialOrders").html(specialOrders);
             $("#settleCity").click(function () { settleCity(unit.id); });
@@ -358,7 +361,7 @@ function make_handler(selected, unit) {
         var i = 0;
         var attack = false;
         while (!attack && i < len) {
-            if (map.units[i].x == selected.x && map.units[i].y == selected.y && map.units[i].player != map.players[0].id) { 
+            if (map.units[i].x === selected.x && map.units[i].y === selected.y && map.units[i].player !== map.players[0].id) { 
                 // a unit of a different player is already on that tile
                 var unit2 = map.units[i];
 
@@ -380,7 +383,7 @@ function make_handler(selected, unit) {
                 }
                 var confront = unit1title + unit.type.toUpperCase() + "  -  VS  -  " + unit2title + unit2.type.toUpperCase();
 
-                var answer = confirm(confront + "\n\nAre you sure to attack?")
+                var answer = confirm(confront + "\n\nAre you sure to attack?");
                 if (answer){
                     attackUnit(unit, unit2);
                     attack = true;
@@ -464,8 +467,8 @@ function attackUnit(unit1, unit2) {
 
     var damage1 = unit2Atk - unit1Def;
     var damage2 = unit1Atk - unit2Def;
-    if (damage1 < 0) damage1 = 0; 
-    if (damage2 < 0) damage2 = 0;
+    if (damage1 < 0) { damage1 = 0; }
+    if (damage2 < 0) { damage2 = 0; }
 
     var content = '<table style="width: 100%;"><tbody><tr>'
                 + '<td style="text-align: center;"><img src="images/units/' + unit1.type + '.png"><br/><span style="color: ' + findPlayerById(unit1.player).color + '"><strong>' + unit1title + unit1.type.toUpperCase() + '</strong></span><br/><img src="images/hud/life.png" alt="Life" title="Life" class="buttonimage"> ' 
@@ -490,7 +493,7 @@ function attackUnit(unit1, unit2) {
         removeUnit(unit1);
     } else {
         unit1.life -= damage1;
-        if (unit1.experience == 5 || unit1.experience == 10) promoteUnit(unit1);
+        if (unit1.experience === 5 || unit1.experience === 10) { promoteUnit(unit1); }
     } 
     if ((unit2.life - damage2) <= 0) {
         content += '<br/><span style="color: ' + findPlayerById(unit2.player).color + '"><strong>' + unit2title + unit2.type.toUpperCase() + '</strong></span> is <strong>dead!</strong>';
@@ -499,7 +502,7 @@ function attackUnit(unit1, unit2) {
         removeUnit(unit2);
     } else {
         unit2.life -= damage2;
-        if (unit2.experience == 5 || unit2.experience == 10) promoteUnit(unit2);
+        if (unit2.experience === 5 || unit2.experience === 10) { promoteUnit(unit2); }
     } 
     $('#popupcontent').html(content);
     openPopup();
@@ -529,7 +532,7 @@ function killUnit(unitid) {
 function settleCity(unitid) {
     var unit = findUnitById(unitid);
 
-    if (!cityIsNear(unit.x, unit.y, 2) && findTileByXY(unit.x, unit.y).type != "water") {
+    if (!cityIsNear(unit.x, unit.y, 2) && findTileByXY(unit.x, unit.y).type !== "water") {
         var cityname = prompt("Name of the city","MyCity");
         var trovato = false, i = 0, len = map.cities.length;
         while (!trovato && i < len) {
@@ -538,7 +541,7 @@ function settleCity(unitid) {
             }
             i++;
         }
-        if (cityname != null && !trovato) {
+        if (cityname !== null && !trovato) {
             var city = {};
             city.id = "x" + unit.x + "y" + unit.y + "-" + cityname;
             city.name = cityname;
@@ -629,7 +632,7 @@ function createBuildingsList(cityid) {
         }
     });
 
-    content += '<h4 class="center">Available Buildings</h4>'
+    content += '<h4 class="center">Available Buildings</h4>';
 
     $.each(buildingsDB, function(key, val) {
         if (!cityHaveBuilding(city, key)) {
@@ -718,6 +721,27 @@ function showSocietyManagement() {
 
     var content = '<h3 class="center">Society</h3>';
     content += '<strong>Current Society:</strong> ' + map.players[0].society;
+    content += '<h4 class="center">Available Societies</h4>';
+
+    $('#popupcontent').html(content);
+    openPopup();
+}
+
+function showEmpireOverview() {
+    closePopup();
+    resetPopup();
+
+    var player = map.players[0];
+
+    var content = '<h3 class="center">Empire Overview</h3><h4 class="center"><span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + player.color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + player.name + ' (' + player.civilization + ')</h4>';
+    content += '<strong>Points:</strong> ' + player.points;
+    content += '<br/><strong>Gold:</strong> ' + player.gold;
+    content += '<br/><strong>Culture:</strong> ' + player.culture;
+    content += '<h3 class="center">Diplomacy</h3>';
+
+    for (var i = 1, len = map.players.length; i < len; i++) {
+        content += '<span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + map.players[i].color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + map.players[i].name + ' (' + map.players[i].civilization + ')<br/><br/>';
+    }
 
     $('#popupcontent').html(content);
     openPopup();

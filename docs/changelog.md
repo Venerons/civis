@@ -11,6 +11,9 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 * Optimized HUD images
 * Implemented Barracks, Granary, Monument, Library
 * Implemented science research
+* Add Empire Overview
+* Removed players stats from the toolbar
+* Code optimizations and Bug Fixes
 
 ### Update 06/05/2013 (2)
 
