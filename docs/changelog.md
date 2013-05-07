@@ -14,6 +14,8 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 * Add Empire Overview
 * Removed players stats from the toolbar
 * Code optimizations and Bug Fixes
+* Redesigned movement rules
+* Update textmap.json
 
 ### Update 06/05/2013 (2)
 

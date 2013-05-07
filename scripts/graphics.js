@@ -46,6 +46,7 @@ function init() {
 	createjs.Ticker.addListener(window);
 
 	renderMap();
+	focusNext();
 }
 
 function tick(elapsedTime) {
@@ -163,7 +164,7 @@ function renderMap() {
 	setupHUD();
 
 	// FOCUS ON THE FIRST ACTION
-	focusNext();
+	//focusNext();
 
     // RENDERING
     createjs.Ticker.setPaused(false);
@@ -431,56 +432,50 @@ function findGraphics(type, id) {
 
 // SELECT DESTINATIONS FOR THE UNIT
 function selectDestinations(unit) {
-    var len = map.tiles.length;
-    for (var x = 0; x < len; x++) {
-        var len2 = map.tiles[x].length;
-        for (var y = 0; y < len2; y++) {
-        	var tile = map.tiles[x][y];
-            var distance = Math.sqrt(Math.pow(unit.x - tile.x, 2) + Math.pow(unit.y - tile.y, 2));
-            if (distance <= getMov(unit)) {
-            	// the tile is (possibly) attainable
+	var tiles = getNearTiles(unit.x, unit.y);
+	for (var j = 0, len2 = tiles.length; j < len2; j++) {
+		var tile = tiles[j];
+	    var assey = (tile.y - 1) * TILESIZE + camera.y;
+        var assex = (tile.x - 1) * TILESIZE + camera.x;
 
-            	var assey = (tile.y - 1) * TILESIZE + camera.y;
-            	var assex = (tile.x - 1) * TILESIZE + camera.x;
+        var rect = new createjs.Shape();
+        rect.graphics
+            	.setStrokeStyle(1)
+            	.beginStroke(findPlayerById(unit.player).color)
+            	.beginFill(findPlayerById(unit.player).color)
+           		.drawRect(assex, assey, TILESIZE, TILESIZE);
+    	rect.alpha = 0.3;
 
-            	var rect = new createjs.Shape();
-            	rect.graphics
-            		.setStrokeStyle(1)
-            		.beginStroke(findPlayerById(unit.player).color)
-            		.beginFill(findPlayerById(unit.player).color)
-            		.drawRect(assex, assey, TILESIZE, TILESIZE);
-            	rect.alpha = 0.3;
+        var selezione = {};
+        selezione.x = tile.x;
+        selezione.y = tile.y;
+        selezione.bmp = rect;
 
-            	var selezione = {};
-                selezione.x = tile.x;
-                selezione.y = tile.y;
-                selezione.bmp = rect;
-
-                if (!(tile.x == unit.x && tile.y == unit.y)) { // the tile is the same of the unit position
-                	var unitsLen = map.units.length;
-                	var trovato = false;
-	                var i = 0;
-	                while (i < unitsLen && !trovato) {
-	                	if (map.units[i].x == tile.x && map.units[i].y == tile.y && map.units[i].player == map.players[0].id) trovato = true; // a unit of the same player is already on that tile
-	                	i++;
-	                }
-	                if (!trovato) {
-	                	if (tile.type == "water" && isNaval(unit)) { // the tile is water and the unit can go in water
-	                    	// add rect
-	            			mapselections.push(selezione);
-							stage.addChild(selezione.bmp);
-                    	} else {
-                        	if (tile.type != "water" && isTerrain(unit)) { // the tile is not water and the unit can go on terrain
-	                            // add rect
-	                            mapselections.push(selezione);
-								stage.addChild(selezione.bmp);
-                        	}
-                    	}
-	                }
+        if (!(tile.x == unit.x && tile.y == unit.y)) { // the tile is the same of the unit position
+            var unitsLen = map.units.length;
+            var trovato = false;
+	        var i = 0;
+	        while (i < unitsLen && !trovato) {
+	            if (map.units[i].x == tile.x && map.units[i].y == tile.y && map.units[i].player == map.players[0].id) { 
+	            	trovato = true; // a unit of the same player is already on that tile
+	            }
+	            i++;
+	        }
+	        if (!trovato) {
+	            if (tile.type == "water" && isNaval(unit)) { // the tile is water and the unit can go in water
+	                // add rect
+	           		mapselections.push(selezione);
+					stage.addChild(selezione.bmp);
+               	} else {
+                   	if (tile.type != "water" && isTerrain(unit)) { // the tile is not water and the unit can go on terrain
+	                    // add rect
+	                    mapselections.push(selezione);
+						stage.addChild(selezione.bmp);
+                    }
                 }
-            }
+	        }
         }
-    }
+	}
 }
 
 // DESELECT SELECTED DESTINATIONS

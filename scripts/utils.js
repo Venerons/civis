@@ -262,7 +262,7 @@ function createNewUnit(player, type, exp, x, y) {
     unit.life = initialLife
     unit.maxlife = initialLife;
     unit.fortified = false;
-    unit.active = true;
+    unit.active = getMov({"type":type});
 
     map.units.push(unit);
 }
@@ -341,7 +341,7 @@ function focusNext () {
     for (var i = 0; i < len; i++) {
         var unit = map.units[i];
         if (unit.player === map.players[0].id) { // the unit is owned by the player
-            if (unit.active && !unit.fortified) { // the unit is active and not fortified
+            if (unit.active > 0 && !unit.fortified) { // the unit is active and not fortified
                 centerCameraOnXY(unit.x, unit.y);
                 return; 
             }

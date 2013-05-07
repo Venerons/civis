@@ -15,8 +15,9 @@ This document outlines the general goals for CivJS ongoing development.
 * Implemented Barracks, Granary, Monument, Library _(DONE)_
 * Add Empire overview _(DONE)_
 * Removed players stats on the toolbar _(DONE)_
+* Redesigned movement rules _(DONE)_
+* Update textmap.json _(DONE)_
 
-* redesign movement rules
 * Implement more buildings
 * Code optimizations and Bug Fixes
 
@@ -27,11 +28,6 @@ This document outlines the general goals for CivJS ongoing development.
 
 _Bugs & technical features_
 
-* Se un unità attacca da più di una casella di distanza, dopo l'attacco deve essere messa nella casella accanto a quella in cui ha combattuto (e non tornare dove era prima)
-* better selectDestinations():
-	* rivedere il movimento. Magari fare un movimento alla volta, e le unità "consumano" Mov. Questo risolverebbe i problemi descritti sotto (e risparmia calcoli, perché sai perfettamente quali sono le caselle immediatamente adiacenti!)
-	* decidere se un unità può spostarsi direttamente su un tile coperto da nebbia o se deve prima scoprirlo passandoci accanto (permetterebbe un grosso risparmio di calcoli, ma sarebbe limitativo per le unità che hanno tanti Mov).
-	* Ora un unità può "scavalcare" una casella d'acqua. Non dovrebbe?
 * better discoverTiles() (implementare la distanza di visuale, ovvero se stai su una collina vedi più lontano, su una montagna ancora di più. Colline, montagne, foreste e giungle tuttavia possono bloccare la visuale.)
 * Possible performance boost: paint only items that will be showed inside the camera view (however, that means a renderMap() every time the camera move...)
 * Automated production build process (using Closure Compiler & HTML Compressor)

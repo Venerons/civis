@@ -180,7 +180,7 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
         u1.life = unitsDB.settler.initialLife;
         u1.maxlife = unitsDB.settler.initialLife;
         u1.fortified = false;
-        u1.active = true;
+        u1.active = unitsDB.settler.mov;
 
         basemap.units.push(u1);
     }
@@ -200,7 +200,7 @@ function endTurn () {
     var len = map.units.length;
     for (var i = 0; i < len; i++) {
         var unit = map.units[i];
-        unit.active = true;
+        unit.active = getMov(unit); // restore full movement
         
         if (unit.fortified) {
             // detect the admount of heal
@@ -313,6 +313,7 @@ function endTurn () {
     
     
     renderMap();
+    focusNext();
 }
 
 function showUnitOptions (unitid) {
@@ -351,6 +352,21 @@ function showUnitOptions (unitid) {
         }
 
         openActionbar();
+    }
+}
+
+function moveUnit(unitid) {
+    var unit = findUnitById(unitid);
+    if (unit.active <= 0) {
+        alert("This unit have already moved this turn, or cannot move.");
+        return;
+    }
+    selectDestinations(unit);
+    closeActionbar();
+
+    var len = mapselections.length;
+    for (var i = 0; i < len; i++) {
+        mapselections[i].bmp.onClick = make_handler(mapselections[i], unit);
     }
 }
 
@@ -399,10 +415,23 @@ function make_handler(selected, unit) {
             unit.y = selected.y;
         }
         
-        unit.active = false;
+        unit.active--;
 
-        closeActionbar();
-        deselectDestinations();
+        if (unit.active > 0) { // riattiva di nuovo le destinazioni
+            deselectDestinations();
+            renderMap();
+            selectDestinations(unit);
+            var len = mapselections.length;
+            for (var i = 0; i < len; i++) {
+                mapselections[i].bmp.onClick = make_handler(mapselections[i], unit);
+            }
+        } else {
+            deselectDestinations();
+            closeActionbar();
+            renderMap();
+            focusNext();
+        }
+        
 
         // animazione che sposta
         /* 
@@ -420,24 +449,7 @@ function make_handler(selected, unit) {
             y: -diffy
         }, 300);
         */
-
-        renderMap();
     };
-}
-
-function moveUnit(unitid) {
-    var unit = findUnitById(unitid);
-    if (!unit.active) {
-        alert("This unit have already moved this turn.");
-        return;
-    }
-    selectDestinations(unit);
-    closeActionbar();
-
-    var len = mapselections.length;
-    for (var i = 0; i < len; i++) {
-        mapselections[i].bmp.onClick = make_handler(mapselections[i], unit);
-    }
 }
 
 function attackUnit(unit1, unit2) {
@@ -542,6 +554,8 @@ function settleCity(unitid) {
             i++;
         }
         if (cityname !== null && !trovato) {
+            closeActionbar();
+            
             var city = {};
             city.id = "x" + unit.x + "y" + unit.y + "-" + cityname;
             city.name = cityname;
