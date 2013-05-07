@@ -444,7 +444,10 @@ function playerHaveTech(playerid, techname) {
     }
 }
 
-function playerHaveRequiredTechs(playerid, techsrequired) { // TODO
+function playerHaveRequiredTechs(playerid, techsrequired) {
+    for (var i = 0, len = techsrequired.length; i < len; i++) {
+        if (!playerHaveTech(playerid, techsrequired[i])) { return false; }
+    }
     return true;
 }
 

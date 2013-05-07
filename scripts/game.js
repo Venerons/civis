@@ -582,7 +582,7 @@ function showCityManager(cityid) {
     var bilancio = getCityFood(city) - city.population * 2;
     var btext;
     if (bilancio < 0) {
-        btext = '-' + bilancio;
+        btext = '' + bilancio;
     } else {
         btext = '+' + bilancio;
     }

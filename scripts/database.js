@@ -34,7 +34,7 @@ var unitsDB = {
             "terrain": true,
             "productioncost": 10,
             "initialLife": 1,
-            "techrequired": "Bronze Working"
+            "techrequired": "Archery"
         },
     "galley": 
         {
@@ -45,7 +45,7 @@ var unitsDB = {
             "terrain": false,
             "productioncost": 30,
             "initialLife": 1,
-            "techrequired": "none"
+            "techrequired": "Navigation"
         }
 };
 
@@ -79,10 +79,280 @@ var buildingsDB = {
 
 // TECHNOLOGIES DATABASE
 var techDB = {
-    "Agriculture": 
+    "Agriculture": // agricoltura
         {
             "productioncost": 20,
             "techrequired": []
+        },
+    "Writing": // scrittura
+        {
+            "productioncost": 20,
+            "techrequired": []
+        },
+    "Mysticism": // misticismo
+        {
+            "productioncost": 20,
+            "techrequired": []
+        },
+    "Hunting": // caccia
+        {
+            "productioncost": 20,
+            "techrequired": []
+        },
+    "Fishing": // pesca
+        {
+            "productioncost": 20,
+            "techrequired": []
+        },
+    "Theology": // teologia
+        {
+            "productioncost": 40,
+            "techrequired": ["Mysticism", "Writing"]
+        },
+    "Mathematics": // matematica
+        {
+            "productioncost": 40,
+            "techrequired": ["Writing", "Wheel"]
+        },
+    "Wheel": // ruota
+        {
+            "productioncost": 40,
+            "techrequired": ["Agriculture"]
+        },
+    "Mining": // estrazione mineraria
+        {
+            "productioncost": 40,
+            "techrequired": ["Agriculture"]
+        },
+    "Breeding": // allevamento
+        {
+            "productioncost": 40,
+            "techrequired": ["Agriculture", "Hunting"]
+        },
+    "Archery": // tiro con l'arco
+        {
+            "productioncost": 40,
+            "techrequired": ["Hunting"]
+        },
+    "Navigation": // navigazione
+        {
+            "productioncost": 40,
+            "techrequired": ["Fishing"]
+        },
+    "Divine Right": // diritto divino
+        {
+            "productioncost": 80,
+            "techrequired": ["Theology"]
+        },
+    "Education": // educazione
+        {
+            "productioncost": 80,
+            "techrequired": ["Theology", "Mathematics"]
+        },
+    "Currency": // valuta
+        {
+            "productioncost": 80,
+            "techrequired": ["Mathematics"]
+        },
+    "Masonry": // muratura
+        {
+            "productioncost": 80,
+            "techrequired": ["Mining"]
+        },
+    "Bronze Working": // lavorazione del bronzo
+        {
+            "productioncost": 80,
+            "techrequired": ["Mining"]
+        },
+    "Horse Riding": // equitazione
+        {
+            "productioncost": 80,
+            "techrequired": ["Breeding"]
+        },
+    "Optics": // ottica
+        {
+            "productioncost": 80,
+            "techrequired": ["Archery", "Navigation"]
+        },
+    "Art": // arte
+        {
+            "productioncost": 160,
+            "techrequired": ["Divine Right", "Education"]
+        },
+    "Literature": // letteratura
+        {
+            "productioncost": 160,
+            "techrequired": ["Education"]
+        },
+    "Engineering": // ingegneria
+        {
+            "productioncost": 160,
+            "techrequired": ["Mathematics", "Masonry"]
+        },
+    "Iron Working": // lavorazione del ferro
+        {
+            "productioncost": 160,
+            "techrequired": ["Bronze Working"]
+        },
+    "Code of Chivalry": // codice cavalleresco
+        {
+            "productioncost": 160,
+            "techrequired": ["Horse Riding", "Currency"]
+        },
+    "Astronomy": // astronomia
+        {
+            "productioncost": 160,
+            "techrequired": ["Optics"]
+        },
+    "Music": // musica
+        {
+            "productioncost": 320,
+            "techrequired": ["Art", "Literature"]
+        },
+    "Banking": // sistema bancario
+        {
+            "productioncost": 320,
+            "techrequired": ["Divine Right", "Currency"]
+        },
+    "Mechanics": // meccanica
+        {
+            "productioncost": 320,
+            "techrequired": ["Engineering"]
+        },
+    "Physics": // fisica
+        {
+            "productioncost": 320,
+            "techrequired": ["Engineering"]
+        },
+    "Metal Casting": // fusione del metallo
+        {
+            "productioncost": 320,
+            "techrequired": ["Iron Working"]
+        },
+    "Scientific Theory": // teoria scientifica
+        {
+            "productioncost": 640,
+            "techrequired": ["Astronomy", "Physics"]
+        },
+    "Economy": // economia
+        {
+            "productioncost": 640,
+            "techrequired": ["Banking"]
+        },
+    "Steel": // acciaio
+        {
+            "productioncost": 640,
+            "techrequired": ["Metal Casting"]
+        },
+    "Steam Energy": // energia a vapore
+        {
+            "productioncost": 1024,
+            "techrequired": ["Code of Chivalry", "Steel"]
+        },
+    "Gunpowder": // polvere da sparo
+        {
+            "productioncost": 1024,
+            "techrequired": ["Physics", "Steel"]
+        },
+    "Rifling": // rigatura delle canne
+        {
+            "productioncost": 2048,
+            "techrequired": ["Mechanics", "Gunpowder"]
+        },
+    "Chemistry": // chimica
+        {
+            "productioncost": 2048,
+            "techrequired": ["Gunpowder"]
+        },
+    "Independent Pieces": // pezzi indipendenti
+        {
+            "productioncost": 2048,
+            "techrequired": ["Steam Energy"]
+        },
+    "Electricity": // elettricità
+        {
+            "productioncost": 2048,
+            "techrequired": ["Steam Energy", "Scientific Theory"]
+        },
+    "Radio": // radio
+        {
+            "productioncost": 4096,
+            "techrequired": ["Music", "Electricity"]
+        },
+    "Combustion": // combustione
+        {
+            "productioncost": 4096,
+            "techrequired": ["Rifling", "Chemistry"]
+        },
+    "Plastic": // plastica
+        {
+            "productioncost": 4096,
+            "techrequired": ["Chemistry", "Electricity"]
+        },
+    "Flight": // volo
+        {
+            "productioncost": 4096,
+            "techrequired": ["Independent Pieces"]
+        },
+    "Mass Media": // mass media
+        {
+            "productioncost": 8192,
+            "techrequired": ["Radio"]
+        },
+    "Mass Media": // mass media
+        {
+            "productioncost": 8192,
+            "techrequired": ["Radio"]
+        },
+    "Electronics": // elettronica
+        {
+            "productioncost": 8192,
+            "techrequired": ["Radio"]
+        },
+    "Rocketry": // missilistica
+        {
+            "productioncost": 8192,
+            "techrequired": ["Flight", "Combustion"]
+        },
+    "Atomic Theory": // teoria atomica
+        {
+            "productioncost": 8192,
+            "techrequired": ["Combustion"]
+        },
+    "Computers": // computer
+        {
+            "productioncost": 16384,
+            "techrequired": ["Electronics"]
+        },
+    "Nuclear Fission": // fissione nucleare
+        {
+            "productioncost": 16384,
+            "techrequired": ["Atomic Theory", "Rocketry"]
+        },
+    "Globalization": // globalizzazione
+        {
+            "productioncost": 32768,
+            "techrequired": ["Economy", "Computers"]
+        },
+    "Robotics": // robotica
+        {
+            "productioncost": 32768,
+            "techrequired": ["Computers"]
+        },
+    "Particle Physics": // fisica delle particelleù
+        {
+            "productioncost": 65536,
+            "techrequired": ["Atomic Theory", "Robotics"]
+        },
+    "Nanotechnology": // nanotecnologia
+        {
+            "productioncost": 131072,
+            "techrequired": ["Particle Physics", "Plastic"]
+        },
+    "Future Technology": // tecnologia futura
+        {
+            "productioncost": 262144,
+            "techrequired": ["Nanotechnology", "Nuclear Fission"]
         }
 };
 

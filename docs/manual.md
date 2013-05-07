@@ -98,6 +98,7 @@ Granary | 40 | Agriculture | - | +2 food
 Library | 40 | Writing | - | +1 science each 2 population
 Monument | 20 | Mysticism | - | +2 culture
 
+
 Harbor | ? | ? | - | +1 food in sea tiles
 Workshop | ? | ? | - | Provides +2 production from hills
 Iron Mine | ? | ? | - | Mountain tiles give +4 production 
@@ -165,82 +166,80 @@ Windmill
 
 
 ## Science
-Science is produced by the player's cities and is used to pay the cost of the research of technologies.
+Science is produced by the player's cities and is used to pay the cost of the research of technologies.  
 Each turn a city produce science and the total science from all of the player's cities is used to pay the cost of the player current technology research.
 
 ### Technologies
-Technology | Cost | Technologies Required | Advantages Unlocked
---- | :---: | --- | ---
-Misticismo | - | - | -
-Scrittura | - | - | -
-Agricoltura | - | - | -
-Caccia | - | - | -
-Pesca | - | - | -
-Teologia | - | Misticismo, Scrittura | -
-Matematica | - | Scrittura, Ruota | -
-Ruota | - | Agricoltura | -
-Estrazione Mineraria | - | Agricoltura | -
-Allevamento | - | Agricoltura, Caccia | -
-Tiro con l'Arco | - | Caccia | -
-Navigazione | - | Pesca | -
-Diritto Divino | - | Teologia | -
-Educazione | - | Teologia, Matematica | -
-Valuta | - | Matematica | -
-Muratura | - | Estrazione Mineraria | -
-Lavorazione Bronzo | - | Estrazione Mineraria | -
-Equitazione | - | Allevamento | -
-Ottica | - | Tiro con l'Arco, Navigazione | -
-Arte | - | Diritto Divino, Educazione | -
-Letteratura | - | Educazione | -
-Ingegneria | - | Matematica, Muratura | -
-Lavorazione Ferro | - | Lavorazione Bronzo | -
-Codice Cavalleresco | - | Equitazione, Valuta | -
-Astronomia | - | Ottica | -
-Musica | - | Arte, Letteratura | -
-Sistema Bancario | - | Diritto Divino, Valuta | -
-Meccanica | - | Ingegneria | -
-Fisica | - | Ingegneria | -
-Fusione del metallo | - | Lavorazione Ferro | -
-Teoria Scientifica | - | Astronomia, Fisica | -
-Musica | - | Arte, Letteratura | -
-Economia | - | Sistema Bancario | -
-Acciaio | - | Fusione del metallo | -
-Energia a Vapore | - | Codice Cavalleresco, Acciaio | -
-Polvere da Sparo | - | Fisica, Acciaio | -
-Rigatura delle Canne | - | Meccanica, Polvere da Sparo | -
-Chimica | - | Polvere da Sparo | -
-Pezzi indipendenti | - | Energia a Vapore | -
-Elettricità | - | Energia a Vapore, Teoria Scientifica | -
-Radio | - | Musica, Elettricità | -
-Mass Media | - | Radio | -
-Elettronica | - | Radio | -
-Computer | - | Elettronica | -
-Globalizzazione | - | Economia, Computer | -
-Robotica | - | Computer | -
-Combustione | - | Rigatura delle Canne, Chimica | -
-Plastica | - | Chimica, Elettricità | -
-Volo | - | Pezzi indipendenti | -
-Missilistica | - | Volo, Combustione | -
-Teoria Atomica | - | Combustione | -
-Fissione Nucleare | - | Teoria Atomica, Missilistica | -
-Fisica Particelle | - | Teoria Atomica, Robotica | -
-Nanotecnologia | - | Fisica Particelle, Plastica | -
-Tecnologia Futura | - | Nanotecnologia, Fissione Nucleare | -
-
+Technology         | Cost  | Technologies Required           | Advantages Unlocked
+------------------ | :---: | ------------------------------- | -------------------
+Mysticism          | 20    | -                               | Unlock Monument
+Writing            | 20    | -                               | Unlock Library
+Agriculture        | 20    | -                               | Unlock Granary
+Hunting            | 20    | -                               | -
+Fishing            | 20    | -                               | -
+Theology           | 40    | Mysticism, Writing              | Unlock Theocracy
+Mathematics        | 40    | Writing, Wheel                  | -
+Wheel              | 40    | Agriculture                     | -
+Mining             | 40    | Agriculture                     | -
+Breeding           | 40    | Agriculture, Hunting            | -
+Archery            | 40    | Hunting                         | Unlock Archer
+Navigation         | 40    | Fishing                         | Unlock Galley
+Divine Right       | 80    | Theology                        | Unlock Monarchy
+Education          | 80    | Theology, Mathematics           | Unlock Republic
+Currency           | 80    | Mathematics                     | -
+Masonry            | 80    | Mining                          | -
+Bronze Working     | 80    | Mining                          | -
+Horse Riding       | 80    | Breeding                        | -
+Optics             | 80    | Archery, Navigation             | -
+Art                | 160   | Divine Right, Education         | -
+Literature         | 160   | Education                       | -
+Engineering        | 160   | Mathematics, Masonry            | -
+Iron Working       | 160   | Bronze Working                  | -
+Code of Chivalry   | 160   | Horse Riding, Currency          | -
+Astronomy          | 160   | Optics                          | -
+Music              | 320   | Art, Literature                 | -
+Banking            | 320   | Divine Right, Currency          | -
+Mechanics          | 320   | Engineering                     | -
+Physics            | 320   | Engineering                     | -
+Metal Casting      | 320   | Iron Working                    | -
+Scientific Theory  | 640   | Astronomy, Physics              | -
+Economy            | 640   | Banking                         | -
+Steel              | 640   | Metal Casting                   | -
+Steam Energy       | 1024  | Code of Chivalry, Steel         | -
+Gunpowder          | 1024  | Physics, Steel                  | -
+Rifling            | 2048  | Mechanics, Gunpowder            | -
+Chemistry          | 2048  | Gunpowder                       | -
+Independent Pieces | 2048  | Steam Energy                    | -
+Electricity        | 2048  | Steam Energy, Scientific Theory | -
+Radio              | 4096  | Music, Electricity              | -
+Combustion         | 4096  | Rifling, Chemistry              | -
+Plastic            | 4096  | Chemistry, Electricity          | -
+Flight             | 4096  | Independent Pieces              | -
+Mass Media         | 8192  | Radio                           | -
+Electronics        | 8192  | Radio                           | -
+Rocketry           | 8192  | Flight, Combustion              | -
+Atomic Theory      | 8192  | Combustion                      | -
+Computers          | 16384 | Electronics                     | -
+Nuclear Fission    | 16384 | Atomic Theory, Rocketry         | -
+Globalization      | 32768 | Economy, Computers              | -
+Robotics           | 32768 | Computers                       | -
+Particle Physics   | 65536 | Atomic Theory, Robotics         | -
+Nanotechnology     | 131072 | Particle Physics, Plastic       | -
+Future Technology  | 262144 | Nanotechnology, Nuclear Fission | -
 
 ## Society
 Each civilization have a society system
 
-Society | Requirements | Effects
---- | --- | ---
-Anarchy | - | No production, gold, science or food.
-Dispotism | - | No special effects.
-Monarchy | Diritto Divino | -
-Republic | Educazione | -
-Teocracy | Teologia | +XX% culture
-Democracy | - | +50% gold and +50% science but you can't declare war.
-Socialism | - | -
-Nationalism | Economia | -
-Communism | Energia a Vapore oppure Pezzi indipendenti | +XX% production
-Fascism | Mass Media | -
+Society      | Requirements | Effects
+------------ | ------------ | ---
+Anarchy      | -            | No production, gold, science or food.
+Dispotism    | -            | No special effects. Available on the beginning of the game.
+Monarchy     | Divine Right | -
+Republic     | Education    | -
+Teocracy     | Theology     | +XX% culture
+Democracy    | -            | +50% gold and +50% science but you can't declare war.
+Socialism    | -            | -
+Nationalism  | Economy      | -
+Communism    | Energia a Vapore oppure Pezzi indipendenti | +XX% production
+Fascism      | Mass Media   | -
 Police State | Computer oppure Combustione | -
