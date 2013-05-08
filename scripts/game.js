@@ -244,7 +244,7 @@ function endTurn () {
             var message = {};
             message.info = "A " + city.build.name + " was built in " + city.name;
             message.type = "city-notif";
-            message.callback = function () { centerCameraOnXY(city.x, city.y); };
+            message.callback = function () { showCityManager(city.id); };
             notifications.push(message);
             city.build.name = "nothing";
             city.build.cost = 0;
@@ -552,36 +552,38 @@ function settleCity(unitid) {
 
     if (!cityIsNear(unit.x, unit.y, 2) && findTileByXY(unit.x, unit.y).type !== "water") {
         var cityname = prompt("Name of the city","MyCity");
-        var trovato = false, i = 0, len = map.cities.length;
-        while (!trovato && i < len) {
-            if (map.cities[i].name === cityname) {
-                trovato = true;
+        if (cityname !== null) {
+            var trovato = false, i = 0, len = map.cities.length;
+            while (!trovato && i < len) {
+                if (map.cities[i].name === cityname) {
+                    trovato = true;
+                }
+                i++;
             }
-            i++;
-        }
-        if (cityname !== null && !trovato) {
-            closeActionbar();
-            
-            var city = {};
-            city.id = "x" + unit.x + "y" + unit.y + "-" + cityname;
-            city.name = cityname;
-            city.player = unit.player;
-            city.x = unit.x;
-            city.y = unit.y;
-            city.population = 2;
-            city.growth = 0;
-            city.buildings = [];
-            city.build = { name: "nothing", cost: 0 };
+            if (!trovato) {
+                closeActionbar();
+                
+                var city = {};
+                city.id = "x" + unit.x + "y" + unit.y + "-" + cityname;
+                city.name = cityname;
+                city.player = unit.player;
+                city.x = unit.x;
+                city.y = unit.y;
+                city.population = 2;
+                city.growth = 0;
+                city.buildings = [];
+                city.build = { name: "nothing", cost: 0 };
 
-            map.cities.push(city);
+                map.cities.push(city);
 
-            removeUnit(unit);
+                removeUnit(unit);
 
-            renderMap();
+                renderMap();
 
-            showCityManager(city.id);
-        } else {
-            alert("\"I cannot give this name to my city. Maybe it's already taken.\"\n\n- The Settler");
+                showCityManager(city.id);
+            } else {
+                alert("\"I cannot give this name to my city. Maybe it's already taken.\"\n\n- The Settler");
+            }
         }
     } else {
         alert("\"Cannot settle a city here, it's too near to another city.\"\n\n- The Settler");
@@ -594,7 +596,7 @@ function showCityManager(cityid) {
 
     var cityproduction = getCityProd(city);
 
-    var list = "<h4>Buildings</h4><ul>";
+    var list = "<ul>";
     var len = city.buildings.length;
     for (var i = 0; i < len; i++) {
         list += '<li>' + city.buildings[i] + '</li>';
@@ -610,22 +612,11 @@ function showCityManager(cityid) {
         btext = '+' + bilancio;
     }
 
-    var content = '<table style="width: 100%"><tbody>'
-                + '<tr><td style="width: 70%"><table><tbody>'
-                + '<tr><td><strong>Name:</strong></td><td>' + city.name + '</td></tr>'
-                + '<tr><td><strong>Population:</strong></td><td>' + city.population + '</td></tr>'
-                + '<tr><td><strong>Growth:</strong></td><td>' + btext + ' (' + city.growth + '/' + step + ')</td></tr>'
-                + '<tr><td><strong>Food:</strong></td><td>' + getCityFood(city) + '</td></tr>'
-                + '<tr><td><strong>Production:</strong></td><td>' + cityproduction + '</td></tr>'
-                + '<tr><td><strong>Gold:</strong></td><td>' + getCityGold(city) + '</td></tr>'
-                + '<tr><td><strong>Science:</strong></td><td>' + getCityScience(city) + '</td></tr>'
-                + '<tr><td><strong>Culture:</strong></td><td>' + getCityCulture(city) + '</td></tr>'
-                + '<tr><td><strong>Current Build:</strong></td><td>' + city.build.name + ' (' + Math.ceil(city.build.cost/cityproduction) + ' Turns)</td></tr>'
-                + '<tr><td><br/><button id="changebuildBtn" class="gradient button">Change Current Build</button></td></tr>'
-                + '</tbody></table></td>'
-                + '<td style="width: 30%;">'
-                + list
-                + '</td></tr></tbody></table>';
+    var content = '<h3 class="center"><img src="images/tiles/city.png" width="25" height="25">&nbsp;&nbsp;' + city.name + '&nbsp;&nbsp;&nbsp;<em>(Population ' + city.population + ')</em></h3><table class="w100"><tbody>'
+                + '<tr><td class="w70"><table class="w100"><tbody><tr><td class="w33 center"><img src="images/hud/food.png" alt="Food" title="Food" width="20" height="20">&nbsp;&nbsp;' + getCityFood(city) + '</td><td class="w33 center"><img src="images/hud/prod.png" alt="Production" title="Production" width="20" height="20">&nbsp;&nbsp;' + cityproduction + '</td><td class="w33 center"><img src="images/hud/gold.png" alt="Gold" title="Gold" width="20" height="20">&nbsp;&nbsp;' + getCityGold(city) + '</td></tr></tbody></table>'
+                + '<br/><table class="w100"><tbody><tr><td class="w33 center"><strong>Growth:</strong> ' + btext + ' (' + city.growth + '/' + step + ')</td><td class="w33 center"><img src="images/hud/research.png" alt="Science" title="Science" width="30" height="30">&nbsp;&nbsp;' + getCityScience(city) + '</td><td class="w33 center"><img src="images/hud/culture.png" alt="Culture" title="Culture" width="20" height="20">&nbsp;&nbsp;' + getCityCulture(city) + '</td></tr></tbody></table>'
+                + '<br/><br/><strong>Current Build:</strong> ' + city.build.name + ' (' + Math.ceil(city.build.cost/cityproduction) + ' Turns)&nbsp;&nbsp;&nbsp;<button id="changebuildBtn" class="gradient button w33">Change Build</button></td>'
+                + '<td class="w30" style="border-style: solid"><h4 class="center">Buildings</h4>' + list + '</td></tr></tbody></table>';
 
     $('#popupcontent').html(content);
 
@@ -754,10 +745,10 @@ function showEmpireOverview() {
     var player = map.players[0];
 
     var content = '<h3 class="center">Empire Overview</h3><h4 class="center"><span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + player.color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + player.name + ' (' + player.civilization + ')</h4>';
-    content += '<strong>Points:</strong> ' + player.points;
-    content += '<br/><strong>Gold:</strong> ' + player.gold;
-    content += '<br/><strong>Culture:</strong> ' + player.culture;
-    content += '<h3 class="center">Diplomacy</h3>';
+    content += '<table class="w100"><tbody><tr><td class="w33 center"><strong>Points:</strong> ' + player.points;
+    content += '</td><td class="w33 center"><img src="images/hud/gold.png" alt="Gold" title="Gold" width="20" height="20">&nbsp;&nbsp;' + player.gold;
+    content += '</td><td class="w33 center"><img src="images/hud/culture.png" alt="Culture" title="Culture" width="20" height="20">&nbsp;&nbsp;' + player.culture;
+    content += '</td></tr></tbody></table><h3 class="center">Diplomacy</h3>';
 
     for (var i = 1, len = map.players.length; i < len; i++) {
         content += '<span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + map.players[i].color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + map.players[i].name + ' (' + map.players[i].civilization + ')<br/><br/>';

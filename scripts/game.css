@@ -1,7 +1,7 @@
 /* Copyright (c) 2013 Daniele Veneroni. Released under MIT License */
 
 html {
-	font-family: Arial, sans-serif;
+	font-family: "Century Gothic", "Avant Garde", sans-serif;
 }
 
 body {
@@ -118,6 +118,22 @@ body {
 
 .center {
 	text-align: center;
+}
+
+.w100 {
+	width: 100%;
+}
+
+.w70 {
+	width: 70%;
+}
+
+.w30 {
+	width: 30%;
+}
+
+.w33 {
+	width: 33%;
 }
 
 .notification {

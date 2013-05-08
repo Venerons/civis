@@ -12,6 +12,9 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 * Update ReadMe
 * Update index.html
 * Code optimizations and Bug Fixes
+* A finished build message trigger a showCityManager()
+* Fix "Discard" on settling
+* New City Manager Layout
 
 ### Update 07/05/2013
 
