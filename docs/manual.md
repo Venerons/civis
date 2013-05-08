@@ -92,19 +92,18 @@ each turn will be consumed 2 food per citizen. Eventual remaining will be used t
 Building         | Cost  | Tech Required  | Building Required | Effect
 ---------------- | :---: | :------------: | :---------------: | :---
 Barracks         | 40    | Bronze Working | -                 | Units produced are automatically Veterans (+5 exp)
-Granary          | 40    | Agriculture    | -                 | +2 food
+Granary          | 40    | Agriculture    | -                 | +3 food
 Library          | 40    | Writing        | -                 | +1 science each 2 population
 Monument         | 20    | Mysticism      | -                 | +2 culture
-
+Temple           | 40    | Theology       | Monument          | +1 culture each 2 population
+University       | 80    | Education      | Library           | +1 science each 2 population (combinable with the Library)
+Aqueduct         | 100   | Engineering    |                   | +50% food
 
 Harbor | ? | ? | - | +1 food in sea tiles
 Workshop | ? | ? | - | Provides +2 production from hills
 Iron Mine | ? | ? | - | Mountain tiles give +4 production 
 Walls | ? | ? | - | Gives +100% defensive bonus
-University | ? | ? | - | Replaces library, x4 science production
-Temple | ? | ? | - | +1 culture for every citizen in city
 Cathedral  | ? | ? | - | Replaces temple and gives +2 culture for each citizen 
-Aqueduct | ? | ? | - | Increases city's growth by half 
 Market | ? | ? | - | Doubles city gold production
 Bank | ? | ? | - | Replaces market, x4 gold production 
 Courthouse | ? | ? | - | Increases the city's workable tile region (or reduce >:( )
@@ -165,7 +164,9 @@ Windmill
 
 ## Science
 Science is produced by the player's cities and is used to pay the cost of the research of technologies.  
-Each turn a city produce science and the total science from all of the player's cities is used to pay the cost of the player current technology research.
+Each turn a city produce science and the total science from all of the player's cities is used to pay the cost of the player current technology research.  
+A city produce science equal to the half of its population, plus eventual bonus granted by buildings, tiles, technologies and societies.  
+If no research is in queue at the end of the turn, half the science produced is converted to gold.
 
 ### Technologies
 Technology         | Cost  | Technologies Required           | Advantages Unlocked
@@ -175,7 +176,7 @@ Writing            | 20    | -                               | Unlock Library
 Agriculture        | 20    | -                               | Unlock Granary
 Hunting            | 20    | -                               | -
 Fishing            | 20    | -                               | -
-Theology           | 40    | Mysticism, Writing              | Unlock Theocracy
+Theology           | 40    | Mysticism, Writing              | Unlock Theocracy, Temple
 Mathematics        | 40    | Writing, Wheel                  | -
 Wheel              | 40    | Agriculture                     | -
 Mining             | 40    | Agriculture                     | -
@@ -183,15 +184,15 @@ Breeding           | 40    | Agriculture, Hunting            | -
 Archery            | 40    | Hunting                         | Unlock Archer
 Navigation         | 40    | Fishing                         | Unlock Galley
 Divine Right       | 80    | Theology                        | Unlock Monarchy
-Education          | 80    | Theology, Mathematics           | Unlock Republic
+Education          | 80    | Theology, Mathematics           | Unlock Republic, University
 Currency           | 80    | Mathematics                     | -
 Masonry            | 80    | Mining                          | -
-Bronze Working     | 80    | Mining                          | -
+Bronze Working     | 80    | Mining                          | Unlock Barracks
 Horse Riding       | 80    | Breeding                        | -
 Optics             | 80    | Archery, Navigation             | -
 Art                | 160   | Divine Right, Education         | -
 Literature         | 160   | Education                       | -
-Engineering        | 160   | Mathematics, Masonry            | -
+Engineering        | 160   | Mathematics, Masonry            | Unlock Aqueduct
 Iron Working       | 160   | Bronze Working                  | -
 Code of Chivalry   | 160   | Horse Riding, Currency          | -
 Astronomy          | 160   | Optics                          | -

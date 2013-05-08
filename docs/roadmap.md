@@ -12,12 +12,16 @@ This document outlines the general goals for CivJS ongoing development.
 * Update manual.txt _(DONE)_
 * Optimized HUD images _(DONE)_
 * Implement science research _(DONE)_
-* Implemented Barracks, Granary, Monument, Library _(DONE)_
+* Implemented Barracks, Granary, Monument, Library, Temple, University, Aqueduct _(DONE)_
 * Add Empire overview _(DONE)_
 * Removed players stats on the toolbar _(DONE)_
 * Redesigned movement rules _(DONE)_
 * Update textmap.json _(DONE)_
+* Decreased rendering FPS to 10 _(DONE)_
+* Update Granary give now +3 food _(DONE)_
+* Add if no research is specified, half the science is converted to gold _(DONE)_
 
+* Fix messages callback behaviour
 * Implement more buildings
 * Code optimizations and Bug Fixes
 

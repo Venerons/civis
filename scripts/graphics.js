@@ -42,7 +42,7 @@ function init() {
 	stage = new createjs.Stage(canvas);
 
 	createjs.Ticker.useRAF = true;
-	createjs.Ticker.setFPS(24);
+	createjs.Ticker.setFPS(10);
 	createjs.Ticker.addListener(window);
 
 	renderMap();
@@ -60,19 +60,19 @@ function loadMap() {
     document.getElementById('actionbar').style.visibility = "hidden";
 
 	var action = getUrlVars()["action"];
-	if (action == "load") {
+	if (action === "load") {
 		var save = getUrlVars()["save"];
-		if (save == "auto") {
-            if (localStorage.autosave != "") {
+		if (save === "auto") {
+            if (localStorage.autosave !== "") {
                 map = JSON.parse(localStorage.autosave);
             }
 		} else {
-            if (localStorage.manualsave != "") {
+            if (localStorage.manualsave !== "") {
                 map = JSON.parse(localStorage.manualsave);
             }
 		}
 	} 
-    if (action == "new") {
+    if (action === "new") {
     	var playerName = getUrlVars()["name"];
     	var civilization = getUrlVars()["civ"];
         var nplayers = getUrlVars()["players"];
@@ -80,8 +80,8 @@ function loadMap() {
         var nrows = getUrlVars()["nrows"];
 		map = JSON.parse(JSON.stringify(generateMap(playerName, civilization, nplayers, nrows, ncols)));
 	}
-    if (action == "preset") {
-    	var mapname = getUrlVars()["map"];
+    if (action === "preset") {
+		var mapname = getUrlVars()["map"];
         presetMap(mapname);
         alert(mapname + " Map Loaded");
     }
@@ -132,31 +132,26 @@ function renderMap() {
     // TILES SETTING
     discoverTiles();
 
-	var leny = map.tiles.length;
-	for (var y = 0; y < leny; y++) {
-		var lenx = map.tiles[y].length;
-		for (var x = 0; x < lenx; x++) {
+	for (var y = 0, leny = map.tiles.length; y < leny; y++) {
+		for (var x = 0, lenx = map.tiles[y].length; x < lenx; x++) {
 			var t = map.tiles[y][x];
 			addTileToMap(t);
 		}
 	}
 
     // CITIES SETTING
-
-    var len = map.cities.length;
-    for (var i = 0; i < len; i++) {
+    for (var i = 0, len = map.cities.length; i < len; i++) {
         var city = map.cities[i];
         if (!(findTileByXY(city.x, city.y).fog)) {
-        	addCityToMap(city);
+			addCityToMap(city);
         }
     }
 
     // UNITS SETTING
-    var len = map.units.length;
-    for (var i = 0; i < len; i++) {
+    for (var i = 0, len = map.units.length; i < len; i++) {
         var unit = map.units[i];
         if (!(findTileByXY(unit.x, unit.y).fog)) {
-        	addUnitToMap(unit);
+			addUnitToMap(unit);
         }
     }
 
@@ -182,16 +177,16 @@ function setupHUD() {
 
 	up.onClick = function (e) {
 		moveCamera(0, 100);
-	}
+	};
 	down.onClick = function (e) {
 		moveCamera(0, -100);
-	}
+	};
 	left.onClick = function (e) {
 		moveCamera(100, 0);
-	}
+	};
 	right.onClick = function (e) {
 		moveCamera(-100, 0);
-	}
+	};
 
 	stage.addChild(up, down, left, right);
 }
@@ -199,25 +194,25 @@ function setupHUD() {
 // Keyboard mapping using Kibo.js
 function keyboardMapping() {
 	var k = new Kibo();
-	k.down(['space'], function() { 
-	    endTurn();
-	    return false; // used to prevent default action on keypress
+	k.down(['space'], function() {
+		endTurn();
+		return false; // used to prevent default action on keypress
 	});
-	k.down(['up'], function() { 
-	    moveCamera(0, 100);
-	    return false; // used to prevent default action on keypress
+	k.down(['up'], function() {
+		moveCamera(0, 100);
+		return false; // used to prevent default action on keypress
 	});
-	k.down(['down'], function() { 
-	    moveCamera(0, -100);
-	    return false; // used to prevent default action on keypress
+	k.down(['down'], function() {
+		moveCamera(0, -100);
+		return false; // used to prevent default action on keypress
 	});
-	k.down(['left'], function() { 
-	    moveCamera(100, 0);
-	    return false; // used to prevent default action on keypress
+	k.down(['left'], function() {
+		moveCamera(100, 0);
+		return false; // used to prevent default action on keypress
 	});
-	k.down(['right'], function() { 
-	    moveCamera(-100, 0);
-	    return false; // used to prevent default action on keypress
+	k.down(['right'], function() {
+		moveCamera(-100, 0);
+		return false; // used to prevent default action on keypress
 	});
 
 	// DEBUG FEATURE CONTROLS
@@ -322,10 +317,10 @@ function addUnitToMap(unit) {
 	hit.alpha = 0.5;
 	unitImage.hitArea = hit;
 
-	if (unit.player == map.players[0].id) {
+	if (unit.player === map.players[0].id) {
 		hit.onClick = function (e) {
 			showUnitOptions(unit.id);
-		}
+		};
 	}
 
 	var paintUnit = {};
@@ -343,12 +338,12 @@ function addTileToMap(tile) {
 	if (tile.fog) { 
 		elementimg = imageCache.fog; 
 	} else {
-		if (tile.type == "desert") elementimg = imageCache.desert;
-		if (tile.type == "grass") elementimg = imageCache.grass;
-		if (tile.type == "hill") elementimg = imageCache.hill;
-		if (tile.type == "mountain") elementimg = imageCache.mountain;
-		if (tile.type == "snow") elementimg = imageCache.snow;
-		if (tile.type == "water") elementimg = imageCache.water;
+		if (tile.type === "desert") { elementimg = imageCache.desert; }
+		if (tile.type === "grass") { elementimg = imageCache.grass; }
+		if (tile.type === "hill") { elementimg = imageCache.hill; }
+		if (tile.type === "mountain") { elementimg = imageCache.mountain; }
+		if (tile.type === "snow") { elementimg = imageCache.snow; }
+		if (tile.type === "water") { elementimg = imageCache.water; }
 	}
 	
 	var assey = (tile.y - 1) * TILESIZE + camera.y;
@@ -357,8 +352,8 @@ function addTileToMap(tile) {
 	try {
 		elementBmp = new createjs.Bitmap(elementimg).setTransform(assex, assey, SCALE, SCALE);
 	} catch(err) {
-	  console.log(err);
-	  console.trace();
+		console.log(err);
+		console.trace();
 	}
 	
 	var paintTile = {};
@@ -369,7 +364,7 @@ function addTileToMap(tile) {
 	stage.addChild(elementBmp);
 
 	// set eventual nature element
-	if (!(tile.nature == "none" || tile.fog)) {
+	if (!(tile.nature === "none" || tile.fog)) {
 		addElementToMap(tile.nature, tile.x, tile.y);
 	}
 }
@@ -391,10 +386,10 @@ function addCityToMap(city) {
 		.drawRect(tx - 5, ty - 5, label.getMeasuredWidth() + 10, label.getMeasuredHeight() + 10);
 	label.hitArea = hit;
 
-	if (city.player == map.players[0].id) {
+	if (city.player === map.players[0].id) {
 		hit.onClick = function (e) {
 			showCityManager(city.id);
-		}
+		};
 	}
 
 	var paintCity = {};
@@ -410,7 +405,7 @@ function addCityToMap(city) {
 // ADD AN ELEMENT TO THE MAP
 function addElementToMap(element, x, y) {
 	var elementimg;
-	if (element == "forest") elementimg = imageCache.forest;
+	if (element === "forest") { elementimg = imageCache.forest; }
 
 	var elementBmp = new createjs.Bitmap(elementimg).setTransform(coordinate(x) - 10 + camera.x, coordinate(y) - 10 + camera.y, SCALE * 0.50, SCALE * 0.50);
 	mapelements.push(elementBmp);
@@ -419,14 +414,13 @@ function addElementToMap(element, x, y) {
 
 function findGraphics(type, id) {
 	var array;
-	if (type == "unit") array = mapunits;
-	if (type == "tile") array = maptiles;
-	if (type == "city") array = mapcities;
-	if (type == "element") array = mapelements;
+	if (type === "unit") { array = mapunits; }
+	if (type === "tile") { array = maptiles; }
+	if (type === "city") { array = mapcities; }
+	if (type === "element") { array = mapelements; }
 
-	var len = array.length;
-	for (var i = 0; i < len; i++) {
-		if (array[i].id == id) return array[i];
+	for (var i = 0, len = array.length; i < len; i++) {
+		if (array[i].id === id) { return array[i]; }
 	}
 }
 
@@ -435,46 +429,46 @@ function selectDestinations(unit) {
 	var tiles = getNearTiles(unit.x, unit.y);
 	for (var j = 0, len2 = tiles.length; j < len2; j++) {
 		var tile = tiles[j];
-	    var assey = (tile.y - 1) * TILESIZE + camera.y;
-        var assex = (tile.x - 1) * TILESIZE + camera.x;
+		var assey = (tile.y - 1) * TILESIZE + camera.y;
+		var assex = (tile.x - 1) * TILESIZE + camera.x;
 
-        var rect = new createjs.Shape();
-        rect.graphics
-            	.setStrokeStyle(1)
-            	.beginStroke(findPlayerById(unit.player).color)
-            	.beginFill(findPlayerById(unit.player).color)
-           		.drawRect(assex, assey, TILESIZE, TILESIZE);
-    	rect.alpha = 0.3;
+		var rect = new createjs.Shape();
+		rect.graphics
+				.setStrokeStyle(1)
+				.beginStroke(findPlayerById(unit.player).color)
+				.beginFill(findPlayerById(unit.player).color)
+				.drawRect(assex, assey, TILESIZE, TILESIZE);
+		rect.alpha = 0.3;
 
         var selezione = {};
         selezione.x = tile.x;
         selezione.y = tile.y;
         selezione.bmp = rect;
 
-        if (!(tile.x == unit.x && tile.y == unit.y)) { // the tile is the same of the unit position
+        if (!(tile.x === unit.x && tile.y === unit.y)) { // the tile is the same of the unit position
             var unitsLen = map.units.length;
             var trovato = false;
-	        var i = 0;
-	        while (i < unitsLen && !trovato) {
-	            if (map.units[i].x == tile.x && map.units[i].y == tile.y && map.units[i].player == map.players[0].id) { 
-	            	trovato = true; // a unit of the same player is already on that tile
-	            }
-	            i++;
-	        }
-	        if (!trovato) {
-	            if (tile.type == "water" && isNaval(unit)) { // the tile is water and the unit can go in water
-	                // add rect
-	           		mapselections.push(selezione);
+			var i = 0;
+			while (i < unitsLen && !trovato) {
+				if (map.units[i].x === tile.x && map.units[i].y === tile.y && map.units[i].player === map.players[0].id) { 
+					trovato = true; // a unit of the same player is already on that tile
+				}
+				i++;
+			}
+			if (!trovato) {
+				if (tile.type === "water" && isNaval(unit)) { // the tile is water and the unit can go in water
+					// add rect
+					mapselections.push(selezione);
 					stage.addChild(selezione.bmp);
-               	} else {
-                   	if (tile.type != "water" && isTerrain(unit)) { // the tile is not water and the unit can go on terrain
-	                    // add rect
-	                    mapselections.push(selezione);
+				} else {
+					if (tile.type !== "water" && isTerrain(unit)) { // the tile is not water and the unit can go on terrain
+						// add rect
+						mapselections.push(selezione);
 						stage.addChild(selezione.bmp);
-                    }
-                }
-	        }
-        }
+					}
+				}
+			}
+		}
 	}
 }
 

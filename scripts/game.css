@@ -120,6 +120,18 @@ body {
 	text-align: center;
 }
 
-.nodecoration {
-	text-decoration: none;
+.notification {
+	cursor: help; /* crosshair - help - pointer */
+}
+
+.military-notif {
+	color: red;
+}
+
+.science-notif {
+	color: blue;
+}
+
+.city-notif {
+	color: purple;
 }

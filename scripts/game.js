@@ -1,5 +1,5 @@
 // Copyright (c) 2013 Daniele Veneroni. Released under MIT License
-//"use strict";
+"use strict";
 
 // GLOBAL DECLARATION OF THE MAP
 var map;
@@ -243,6 +243,7 @@ function endTurn () {
             }
             var message = {};
             message.info = "A " + city.build.name + " was built in " + city.name;
+            message.type = "city-notif";
             message.callback = function () { centerCameraOnXY(city.x, city.y); };
             notifications.push(message);
             city.build.name = "nothing";
@@ -263,10 +264,13 @@ function endTurn () {
                 player.tech.push(player.research.tech);
                 var message = {};
                 message.info = "Technology " + player.research.tech + " discovered";
+                message.type = "science-notif";
                 message.callback = function () { showResearchManagement(); };
                 notifications.push(message);
                 player.research = { tech: "", cost: 0 };
             }
+        } else {
+            player.gold += Math.ceil(getCityScience(city) / 2); // if no research is in queue, half the science is converted to gold
         }
 
         // CITY CULTURE
@@ -279,6 +283,7 @@ function endTurn () {
             city.population--;
             var message = {};
             message.info = "A citizen died for food in " + city.name;
+            message.type = "city-notif";
             message.callback = function () { centerCameraOnXY(city.x, city.y); };
             notifications.push(message);
         }
@@ -288,6 +293,7 @@ function endTurn () {
             city.population++;
             var message = {};
             message.info = city.name + " has grown to " + city.population + " of population";
+            message.type = "city-notif";
             message.callback = function () { centerCameraOnXY(city.x, city.y); };
             notifications.push(message);
         }
@@ -300,7 +306,7 @@ function endTurn () {
     if (notifications.length >= 1) {
         var htmlcode = '<h4 class="center">Notifications</h4>';
         for (var i = 0, len = notifications.length; i < len; i++) {
-            htmlcode += '<span id="notification' + i + '"><a class="nodecoration" href="#">' + notifications[i].info + '</a></span><br/><br/>';
+            htmlcode += '<span class="notification ' + notifications[i].type + '" id="notification' + i + '">' + notifications[i].info + '</span><br/><br/>';
         }
         $("#infopopup").html(htmlcode);
         for (var i = 0, len = notifications.length; i < len; i++) {

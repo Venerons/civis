@@ -54,7 +54,10 @@
                 </div>
                 <ul data-role="listview" data-inset="true" data-theme="a">
                     <li><a href="#new" data-ajax="false">New Game</a></li>
-                    <li><a href="#load" data-transition="slide">Load Game</a></li>
+                </ul>
+                <ul data-role="listview" data-inset="true" data-theme="a">
+                    <li><a href="game.html?action=load&save=auto" data-ajax="false">Load Last Auto Save</a></li>
+                    <li><a href="game.html?action=load&save=manual" data-ajax="false">Load Manual Save</a></li>
                 </ul>
                 <ul data-role="listview" data-inset="true" data-theme="a">
                     <li><a href="#manual" data-transition="slide">Manual</a></li>
@@ -126,21 +129,6 @@
                         <a data-role="button" data-theme="b" id="presetmapbutton" href="#" data-ajax="false">Start Game</a>
                     </div>
                 </div>
-            </div><!-- /content -->
-        </div><!-- /page -->
-
-        <!-- PAGINA LOAD -->
-        <div data-role="page" id="load">
-            <div data-role="header" data-theme="a" data-position="inline" data-id="barra">
-                <a href="#home" data-icon="back" data-transition="slide" data-direction="reverse" data-theme="a">Back</a>
-                <h1>Load Game</h1>
-            </div><!-- /header -->
-            
-            <div data-role="content" data-theme="c">
-                <ul data-role="listview" data-inset="true" data-theme="a">
-                    <li><a href="game.html?action=load&save=auto" data-ajax="false">Load Last Auto Save</a></li>
-                    <li><a href="game.html?action=load&save=manual" data-ajax="false">Load Manual Save</a></li>
-                </ul>
             </div><!-- /content -->
         </div><!-- /page -->
 

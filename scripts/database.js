@@ -51,7 +51,7 @@ var unitsDB = {
 
 // BUILDINGS DATABASE
 var buildingsDB = {
-    "Granary": // +2 food
+    "Granary": // +3 food
         {
             "productioncost": 40,
             "techrequired": "Agriculture",
@@ -73,6 +73,24 @@ var buildingsDB = {
         {
             "productioncost": 20,
             "techrequired": "Mysticism",
+            "buildingrequired": "none"
+        },
+    "Temple": // +1 culture per 2 citizen (+ (popultation / 2) culture)
+        {
+            "productioncost": 40,
+            "techrequired": "Theology",
+            "buildingrequired": "Monument"
+        },
+    "University": // +1 science per 2 citizen (+ (popultation / 2) science)
+        {
+            "productioncost": 80,
+            "techrequired": "Education",
+            "buildingrequired": "Library"
+        },
+    "Aqueduct": // +50% food
+        {
+            "productioncost": 100,
+            "techrequired": "Engineering",
             "buildingrequired": "none"
         }
 };
@@ -293,11 +311,6 @@ var techDB = {
         {
             "productioncost": 4096,
             "techrequired": ["Independent Pieces"]
-        },
-    "Mass Media": // mass media
-        {
-            "productioncost": 8192,
-            "techrequired": ["Radio"]
         },
     "Mass Media": // mass media
         {

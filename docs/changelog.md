@@ -2,6 +2,17 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 08/05/2013
+
+* Decreased rendering FPS to 10
+* Update Granary give now +3 food
+* Add if no research is specified, half the science is converted to gold
+* Implemented Temple, University, Aqueduct
+* Update messages now have colors based on the source of the message
+* Update ReadMe
+* Update index.html
+* Code optimizations and Bug Fixes
+
 ### Update 07/05/2013
 
 * Update to jQuery Mobile 1.3.1

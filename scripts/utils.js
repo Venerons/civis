@@ -254,12 +254,13 @@ function createNewUnit(player, type, exp, x, y) {
     unit.y = y;
     unit.type = type;
     unit.experience = exp;
+    var initialLife;
     if (exp === 5) {
         initialLife = unitsDB[type].initialLife * 2;
     } else {
         initialLife = unitsDB[type].initialLife;
     }
-    unit.life = initialLife
+    unit.life = initialLife;
     unit.maxlife = initialLife;
     unit.fortified = false;
     unit.active = getMov({"type":type});
@@ -397,7 +398,8 @@ function getCityFood(city) {
     for (var j = 0, len = tiles.length; j < len; j++) {
         food += getFoodFromTile(tiles[j]);
     }
-    if (cityHaveBuilding(city, "Granary")) { food += 2; }
+    if (cityHaveBuilding(city, "Granary")) { food += 3; }
+    if (cityHaveBuilding(city, "Aqueduct")) { food += Math.ceil(food / 2); }
     return food;
 }
 
@@ -422,12 +424,14 @@ function getCityGold(city) {
 function getCityScience(city) {
     var science = Math.floor(city.population / 2); // base science = population / 2
     if (cityHaveBuilding(city, "Library")) { science += Math.round(city.population / 2); }
+    if (cityHaveBuilding(city, "University")) { science += Math.round(city.population / 2); }
     return science;
 }
 
 function getCityCulture(city) {
     var culture = Math.floor(city.population / 2); // base culture = population / 2
     if (cityHaveBuilding(city, "Monument")) { culture += 2; }
+    if (cityHaveBuilding(city, "Temple")) { culture += Math.round(city.population / 2); }
     return culture;
 }
 
