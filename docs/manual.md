@@ -4,6 +4,7 @@ Welcome to CivJS, the JavaScript Civilization Game!
 
 ## Index
 * [Winning](#winning)
+* [Controls](#controls)
 * [The Map](#the-map)
 * [Units](#units)
 	* [Fighting](#fighting)
@@ -25,28 +26,36 @@ A victory can be achieved in four different ways.
 
 As a civilization nears one of the above mentioned victory conditions, all other civilizations will usually declare war on it in an attempt to delay or stop it from winning.
 
+## Controls
+`spacebar` - End turn
+`up` `left` `right` `down` - move the camera through the map
+`ctrl + e` - Export map
+`ctrl + a` - Discover All
+`ctrl + q` - Zoom out
+`ctrl + w` - Zoom in
+
 ## The Map
 The map is the playground of the game. Each tile can be of one of these types:
 
-Tile     | Food  | Production | Gold  | Modifiers
--------- | :---: | :--------: | :---: | :---:
-Grass    | 2     | -          | -     | -
-Hill     | 1     | 1          | -     | +50% Atk/Def
-Mountain | -     | 2          | 1     | +100% Atk/Def
-Water    | 1     | -          | 1     | -
-Desert   | -     | -          | -     | -
-Snow     | -     | -          | -     | -50% Atk/Def
+Tile     | Food  | Production | Commerce  | Movement | Modifiers
+-------- | :---: | :--------: | :-------: | :------: | :---:
+Grass    | 2     | -          | -         | -        | -
+Hill     | 1     | 1          | -         | +1       | +50% Atk/Def
+Mountain | -     | 2          | -         | +2       | +100% Atk/Def
+Water    | 1     | -          | 2         | -        | -
+Desert   | -     | -          | -         | -        | -
+Snow     | -     | -          | -         | -        | -50% Atk/Def
 
 Some tiles also can host a nature element, that modify the values of the tile
 
-Nature         | Food  | Production | Gold  | Modifiers
--------------- | :---: | :--------: | :---: | :---:
-Forest         | -     | +1         | -     | +50% Atk/Def
-Jungle         | +1    | -1         | -     | +50% Atk/Def
-Marsh          | -1    | -          | -     | -50% Atk/Def
-Oasis          | +3    | -          | +2    | -
-River          | -     | -          | +1    | -
-Natural Wonder | -     | +2         | +3    | -
+Nature         | Food  | Production | Commerce  | Modifiers
+-------------- | :---: | :--------: | :-------: | :---:
+Forest         | -     | +1         | -         | +50% Atk/Def
+Jungle         | +1    | -1         | -         | +50% Atk/Def
+Marsh          | -1    | -          | -         | -50% Atk/Def
+Oasis          | +3    | -          | +2        | -
+River          | -     | -          | +1        | -
+Natural Wonder | -     | +2         | +3        | -
 
 ## Units
 Each unit have 5 stats:
@@ -55,11 +64,11 @@ Each unit have 5 stats:
 * **Exp:** Experience points of the unit. A unit can gain Exp by surviving in a fight. When a unit reach 5 Exp, it becomes Veteran, and gain +50% Atk/Def. When a unit reach 10 Exp, it becomes Elite, and gain +100% Atk/Def.
 * **Atk:** Attack power of the unit, used to deal damage in a fight.
 * **Def:** Defence power of the unit, used to prevent damage in a fight.
-* **Mov:** Maximum movement that the unit can do in a turn. The movement still have to be a unique movement.
+* **Mov:** Movement points of the unit, used to move around the map.
 
 A unit can do various actions, depending to the unit type. Actions can be:
 
-* **Move:** Move the unit to another tile. A unit can move only one time in a turn.
+* **Move:** Move the unit to another tile. To move, a unit requires Mov points and consumes a Mov point every tiles moved. Some tiles consumes more Mov than others, see the section _The Map_ for futher informations.
 * **Fortify:** Fortify the unit, that gain a +25% Atk/Def until it's fortified. Moving the unit de-fortify the unit.
 * **Kill:** Kill the unit to gain a small amount of gold. The unit will be removed.
 * **No Orders:** Issue no orders to the unit, that will be left as it is.
@@ -81,8 +90,8 @@ Unit             | Atk   | Def   | Mov   | Initial Life | Requirements
 ---------------- | :---: | :---: | :---: | :----------: | ---
 Settler          | 0     | 0     | 2     | 1            | -
 Warrior          | 1     | 1     | 1     | 1            | -
-Archer           | 1     | 2     | 1     | 1            | Tiro con l'Arco
-Galley           | 1     | 1     | 2     | 1            | Navigazione
+Archer           | 1     | 2     | 1     | 1            | Archery
+Galley           | 1     | 1     | 2     | 1            | Sailing
 
 ## Cities
 cities about
@@ -92,20 +101,20 @@ each turn will be consumed 2 food per citizen. Eventual remaining will be used t
 Building         | Cost  | Tech Required  | Building Required | Effect
 ---------------- | :---: | :------------: | :---------------: | :---
 Barracks         | 40    | Bronze Working | -                 | Units produced are automatically Veterans (+5 exp)
-Granary          | 40    | Agriculture    | -                 | +3 food
-Library          | 40    | Writing        | -                 | +1 science each 2 population
-Monument         | 20    | Mysticism      | -                 | +2 culture
-Temple           | 40    | Theology       | Monument          | +1 culture each 2 population
-University       | 80    | Education      | Library           | +1 science each 2 population (combinable with the Library)
-Aqueduct         | 100   | Engineering    |                   | +50% food
+Granary          | 40    | Agriculture    | -                 | +3 Food
+Library          | 40    | Writing        | -                 | +1 Science each 2 population
+Monument         | 20    | Mysticism      | -                 | +2 Culture
+Temple           | 40    | Theology       | Monument          | +1 Culture each 2 population
+University       | 80    | Education      | Library           | +1 Science each 2 population (combinable with the Library)
+Aqueduct         | 100   | Engineering    | -                 | +50% Food
+Market           | 100   | Currency       | -                 | +25% Gold
 
 Harbor | ? | ? | - | +1 food in sea tiles
 Workshop | ? | ? | - | Provides +2 production from hills
 Iron Mine | ? | ? | - | Mountain tiles give +4 production 
 Walls | ? | ? | - | Gives +100% defensive bonus
 Cathedral  | ? | ? | - | Replaces temple and gives +2 culture for each citizen 
-Market | ? | ? | - | Doubles city gold production
-Bank | ? | ? | - | Replaces market, x4 gold production 
+Bank | ? | ? | - | +50% Gold
 Courthouse | ? | ? | - | Increases the city's workable tile region (or reduce >:( )
 Factory | ? | ? | - | Doubles the city's production 
 
@@ -126,12 +135,13 @@ Solar plant
 
 Gold Buildings
 -
-Lighthouse (must be near water, +1 gold in sea tiles)
+Lighthouse (must be near water, +1 commerce in sea tiles)
 Stock exchange
 
 
 Culture Buildings
 -
+Academy
 Amphitheater (+3 culture, require monument)
 Opera House
 Theater
@@ -165,8 +175,8 @@ Windmill
 ## Science
 Science is produced by the player's cities and is used to pay the cost of the research of technologies.  
 Each turn a city produce science and the total science from all of the player's cities is used to pay the cost of the player current technology research.  
-A city produce science equal to the half of its population, plus eventual bonus granted by buildings, tiles, technologies and societies.  
-If no research is in queue at the end of the turn, half the science produced is converted to gold.
+A city produce science equal to the half of its commerce production, plus eventual bonus granted by buildings, tiles, technologies and societies.  
+If no research is in queue at the end of the turn, the science produced is converted to gold.
 
 ### Technologies
 Technology         | Cost  | Technologies Required           | Advantages Unlocked
@@ -182,14 +192,14 @@ Wheel              | 40    | Agriculture                     | -
 Mining             | 40    | Agriculture                     | -
 Breeding           | 40    | Agriculture, Hunting            | -
 Archery            | 40    | Hunting                         | Unlock Archer
-Navigation         | 40    | Fishing                         | Unlock Galley
+Sailing            | 40    | Fishing                         | Unlock Galley
 Divine Right       | 80    | Theology                        | Unlock Monarchy
 Education          | 80    | Theology, Mathematics           | Unlock Republic, University
 Currency           | 80    | Mathematics                     | -
 Masonry            | 80    | Mining                          | -
 Bronze Working     | 80    | Mining                          | Unlock Barracks
 Horse Riding       | 80    | Breeding                        | -
-Optics             | 80    | Archery, Navigation             | -
+Optics             | 80    | Archery, Sailing                | -
 Art                | 160   | Divine Right, Education         | -
 Literature         | 160   | Education                       | -
 Engineering        | 160   | Mathematics, Masonry            | Unlock Aqueduct
@@ -231,7 +241,7 @@ Each civilization have a society system
 
 Society      | Requirements | Effects
 ------------ | ------------ | ---
-Anarchy      | -            | No production, gold, science or food.
+Anarchy      | -            | No production, commerce, gold, science or food.
 Dispotism    | -            | No special effects. Available on the beginning of the game.
 Monarchy     | Divine Right | -
 Republic     | Education    | -

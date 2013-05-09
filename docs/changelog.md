@@ -2,6 +2,16 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 09/05/2013
+
+* Add oasis
+* Add hill and mountain tiles require more Mov to enter
+* Unit action bar shows remaining Mov instead of unit max Mov
+* Navigation tech renamed Sailing
+* Introducing Commerce instead of Gold
+* Update Gold production
+* Update Science production
+
 ### Update 08/05/2013
 
 * Decreased rendering FPS to 10

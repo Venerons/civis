@@ -15,11 +15,13 @@ This document outlines the general goals for CivJS ongoing development.
 * Implemented Barracks, Granary, Monument, Library, Temple, University, Aqueduct _(DONE)_
 * Add Empire overview _(DONE)_
 * Removed players stats on the toolbar _(DONE)_
-* Redesigned movement rules _(DONE)_
+* Redesigned movement rules, hill and mountain tiles require more Mov to enter _(DONE)_
 * Update textmap.json _(DONE)_
 * Decreased rendering FPS to 10 _(DONE)_
 * Update Granary give now +3 food _(DONE)_
 * Add if no research is specified, half the science is converted to gold _(DONE)_
+* Add oasis _(DONE)_
+* Tiles does not provide Gold, but Commerce, and Science and Gold base production is based on the half of Commerce production _(DONE)_
 
 * Fix messages callback behaviour
 * Implement more buildings
@@ -43,7 +45,7 @@ _Game Features_
 * Implement more units
 * Implement culture
 * Implement points
-* Add other nature elements (marsh, jungle, natural wonder, oasis, river)
+* Add other nature elements (marsh, jungle, natural wonder, river)
 * Implement civilizations abilities
 * Implement politics (aka Society)
 * Implement enemy AIs

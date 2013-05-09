@@ -45,7 +45,7 @@ var unitsDB = {
             "terrain": false,
             "productioncost": 30,
             "initialLife": 1,
-            "techrequired": "Navigation"
+            "techrequired": "Sailing"
         }
 };
 
@@ -91,6 +91,12 @@ var buildingsDB = {
         {
             "productioncost": 100,
             "techrequired": "Engineering",
+            "buildingrequired": "none"
+        },
+    "Market": // +25% gold
+        {
+            "productioncost": 100,
+            "techrequired": "Currency",
             "buildingrequired": "none"
         }
 };
@@ -152,7 +158,7 @@ var techDB = {
             "productioncost": 40,
             "techrequired": ["Hunting"]
         },
-    "Navigation": // navigazione
+    "Sailing": // navigazione
         {
             "productioncost": 40,
             "techrequired": ["Fishing"]
@@ -190,7 +196,7 @@ var techDB = {
     "Optics": // ottica
         {
             "productioncost": 80,
-            "techrequired": ["Archery", "Navigation"]
+            "techrequired": ["Archery", "Sailing"]
         },
     "Art": // arte
         {

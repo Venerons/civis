@@ -379,17 +379,16 @@ function getProdFromTile(tile) {
     return prod;
 }
 
-function getGoldFromTile(tile) {
-    var gold = 0;
+function getCommerceFromTile(tile) {
+    var commerce = 0;
 
-    if (tile.type === "mountain") { gold = 1; }
-    else if (tile.type === "water") { gold = 1; }
+    if (tile.type === "water") { commerce = 2; }
 
-    if (tile.nature === "oasis") { gold += 2; }
-    else if (tile.nature === "river") { gold++; }
-    else if (tile.nature === "natural wonder") { gold += 3; }
+    if (tile.nature === "oasis") { commerce += 2; }
+    else if (tile.nature === "river") { commerce++; }
+    else if (tile.nature === "natural wonder") { commerce += 3; }
 
-    return gold;
+    return commerce;
 }
 
 function getCityFood(city) {
@@ -412,17 +411,24 @@ function getCityProd(city) {
     return prod;
 }
 
-function getCityGold(city) {
-    var gold = 0;
+function getCityCommerce(city) {
+    var commerce = 0;
     var tiles = getNearTiles(city.x, city.y);
     for (var j = 0, len = tiles.length; j < len; j++) {
-        gold += getGoldFromTile(tiles[j]);
+        commerce += getCommerceFromTile(tiles[j]);
     }
+    return commerce;
+}
+
+function getCityGold(city) {
+    var basegold = Math.floor(getCityCommerce(city) / 2); // base gold = commerce / 2
+    var gold = basegold;
+    if (cityHaveBuilding(city, "Market")) { gold += Math.round(basegold / 4); } // +25%
     return gold;
 }
 
 function getCityScience(city) {
-    var science = Math.floor(city.population / 2); // base science = population / 2
+    var science = Math.floor(getCityCommerce(city) / 2); // base science = commerce / 2
     if (cityHaveBuilding(city, "Library")) { science += Math.round(city.population / 2); }
     if (cityHaveBuilding(city, "University")) { science += Math.round(city.population / 2); }
     return science;

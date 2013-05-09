@@ -117,7 +117,9 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
 
             // add eventual nature element
             if (t.type === "grass" || t.type === "hill") {
-                t.nature = nature[Math.floor(Math.random() * nature.length)];
+                if (Math.floor(Math.random() * 100 + 1) <= 30) { t.nature = "forest"; } // 30 % forest
+            } else if (t.type === "desert"){
+                if (Math.floor(Math.random() * 100 + 1) <= 15) { t.nature = "oasis"; } // 15 % oasis
             } else {
                 t.nature = "none";
             }
@@ -238,6 +240,7 @@ function endTurn () {
                 } else {
                     createNewUnit(player, city.build.name, 0, city.x, city.y);
                 }
+                if (city.build.name === "settler") { city.population--; }
             } else {
                 city.buildings.push(city.build.name);
             }
@@ -270,7 +273,7 @@ function endTurn () {
                 player.research = { tech: "", cost: 0 };
             }
         } else {
-            player.gold += Math.ceil(getCityScience(city) / 2); // if no research is in queue, half the science is converted to gold
+            player.gold += getCityScience(city); // if no research is in queue, the science is converted to gold
         }
 
         // CITY CULTURE
@@ -337,7 +340,7 @@ function showUnitOptions (unitid) {
         
         var content = '<span style="position: relative; top: 5px; left: 10px; height: 40px; margin-right: 20px; vertical-align: middle;"><img src="images/units/' + unit.type + '.png" alt="' + unittitle + unit.type + '" title="' + unittitle + unit.type + '" class="buttonimage"> <strong>' 
                     + unittitle + unit.type.toUpperCase() 
-                    + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><img src="images/hud/life.png" alt="Life" title="Life" class="buttonimage"> ' + unit.life + ' <img src="images/hud/exp.png" alt="Exp" title="Exp" class="buttonimage">  ' + unit.experience + ' <img src="images/hud/atk.png" alt="Atk" title="Atk" class="buttonimage"> ' + getAtk(unit) + ' <img src="images/hud/def.png" alt="Def" title="Def" class="buttonimage"> ' + getDef(unit) + ' <img src="images/hud/move.png" alt="Mov" title="Mov" class="buttonimage"> ' + getMov(unit) + '</span>' 
+                    + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><img src="images/hud/life.png" alt="Life" title="Life" class="buttonimage"> ' + unit.life + ' <img src="images/hud/exp.png" alt="Exp" title="Exp" class="buttonimage">  ' + unit.experience + ' <img src="images/hud/atk.png" alt="Atk" title="Atk" class="buttonimage"> ' + getAtk(unit) + ' <img src="images/hud/def.png" alt="Def" title="Def" class="buttonimage"> ' + getDef(unit) + ' <img src="images/hud/move.png" alt="Mov" title="Mov" class="buttonimage"> ' + unit.active + '</span>' 
                     + '&nbsp;&nbsp;<span id="specialOrders"></span>'
                     + '<button class="button gradient topbarbutton" alt="Move" title="Move" id="moveUnit"><img src="images/hud/move.png" class="buttonimage"></button>'
                     + '<button class="button gradient topbarbutton" alt="Fortify" title="Fortify" id="fortifyUnit"><img src="images/hud/fortify.png" class="buttonimage"></button>'
@@ -421,7 +424,12 @@ function make_handler(selected, unit) {
             unit.y = selected.y;
         }
         
-        unit.active--;
+        // decrease movement based on the destination tile type
+        var tiletype = findTileByXY(unit.x, unit.y).type;
+        if (tiletype === "grass") { unit.active--; }
+        else if (tiletype === "hill") { unit.active -= 2; }
+        else if (tiletype === "mountain") { unit.active -= 3; }
+        else { unit.active--; }
 
         if (unit.active > 0) { // riattiva di nuovo le destinazioni
             deselectDestinations();
@@ -432,6 +440,7 @@ function make_handler(selected, unit) {
                 mapselections[i].bmp.onClick = make_handler(mapselections[i], unit);
             }
         } else {
+            unit.active = 0;
             deselectDestinations();
             closeActionbar();
             renderMap();
@@ -609,12 +618,12 @@ function showCityManager(cityid) {
     if (bilancio < 0) {
         btext = '' + bilancio;
     } else {
-        btext = '+' + bilancio;
+        btext = '+&nbsp;' + bilancio;
     }
 
     var content = '<h3 class="center"><img src="images/tiles/city.png" width="25" height="25">&nbsp;&nbsp;' + city.name + '&nbsp;&nbsp;&nbsp;<em>(Population ' + city.population + ')</em></h3><table class="w100"><tbody>'
-                + '<tr><td class="w70"><table class="w100"><tbody><tr><td class="w33 center"><img src="images/hud/food.png" alt="Food" title="Food" width="20" height="20">&nbsp;&nbsp;' + getCityFood(city) + '</td><td class="w33 center"><img src="images/hud/prod.png" alt="Production" title="Production" width="20" height="20">&nbsp;&nbsp;' + cityproduction + '</td><td class="w33 center"><img src="images/hud/gold.png" alt="Gold" title="Gold" width="20" height="20">&nbsp;&nbsp;' + getCityGold(city) + '</td></tr></tbody></table>'
-                + '<br/><table class="w100"><tbody><tr><td class="w33 center"><strong>Growth:</strong> ' + btext + ' (' + city.growth + '/' + step + ')</td><td class="w33 center"><img src="images/hud/research.png" alt="Science" title="Science" width="30" height="30">&nbsp;&nbsp;' + getCityScience(city) + '</td><td class="w33 center"><img src="images/hud/culture.png" alt="Culture" title="Culture" width="20" height="20">&nbsp;&nbsp;' + getCityCulture(city) + '</td></tr></tbody></table>'
+                + '<tr><td class="w70"><table class="w100"><tbody><tr><td class="w33 center"><img src="images/hud/food.png" alt="Food" title="Food" width="20" height="20">&nbsp;&nbsp;' + getCityFood(city) + '</td><td class="w33 center"><img src="images/hud/prod.png" alt="Production" title="Production" width="20" height="20">&nbsp;&nbsp;' + cityproduction + '</td><td class="w33 center"><img src="images/hud/commerce.png" alt="Commerce" title="Commerce" width="20" height="20">&nbsp;&nbsp;' + getCityCommerce(city) + '</td></tr></tbody></table>'
+                + '<br/><table class="w100"><tbody><tr><td class="w33 center"><strong>Growth:</strong> ' + btext + ' (' + city.growth + '/' + step + ')</td><td class="w33 center"><img src="images/hud/research.png" alt="Science" title="Science" width="30" height="30">&nbsp;+&nbsp;' + getCityScience(city) + '</td><td class="w33 center"><img src="images/hud/culture.png" alt="Culture" title="Culture" width="20" height="20">&nbsp;+&nbsp;' + getCityCulture(city) + '</td></tr></tbody></table>'
                 + '<br/><br/><strong>Current Build:</strong> ' + city.build.name + ' (' + Math.ceil(city.build.cost/cityproduction) + ' Turns)&nbsp;&nbsp;&nbsp;<button id="changebuildBtn" class="gradient button w33">Change Build</button></td>'
                 + '<td class="w30" style="border-style: solid"><h4 class="center">Buildings</h4>' + list + '</td></tr></tbody></table>';
 

@@ -102,6 +102,7 @@ function preloadImages () {
 	imageCache.water = new Image().src = "images/tiles/water.jpg";
 
 	imageCache.forest = new Image().src = "images/tiles/forest.png";
+	imageCache.oasis = new Image().src = "images/tiles/oasis.png";
 	imageCache.city = new Image().src = "images/tiles/city.png";
 }
 
@@ -158,14 +159,11 @@ function renderMap() {
     // SETUP HUD
 	setupHUD();
 
-	// FOCUS ON THE FIRST ACTION
-	//focusNext();
-
     // RENDERING
     createjs.Ticker.setPaused(false);
     stage.update();
 
-    console.log("RENDERMAP -", "Tiles:", maptiles.length, "Units:", mapunits.length, "Cities:", mapcities.length, "Elements:", mapelements.length);
+    //console.log("RENDERMAP -", "Tiles:", maptiles.length, "Units:", mapunits.length, "Cities:", mapcities.length, "Elements:", mapelements.length);
 }
 
 // SETUP HUD WITH ARROWS
@@ -339,11 +337,11 @@ function addTileToMap(tile) {
 		elementimg = imageCache.fog; 
 	} else {
 		if (tile.type === "desert") { elementimg = imageCache.desert; }
-		if (tile.type === "grass") { elementimg = imageCache.grass; }
-		if (tile.type === "hill") { elementimg = imageCache.hill; }
-		if (tile.type === "mountain") { elementimg = imageCache.mountain; }
-		if (tile.type === "snow") { elementimg = imageCache.snow; }
-		if (tile.type === "water") { elementimg = imageCache.water; }
+		else if (tile.type === "grass") { elementimg = imageCache.grass; }
+		else if (tile.type === "hill") { elementimg = imageCache.hill; }
+		else if (tile.type === "mountain") { elementimg = imageCache.mountain; }
+		else if (tile.type === "snow") { elementimg = imageCache.snow; }
+		else if (tile.type === "water") { elementimg = imageCache.water; }
 	}
 	
 	var assey = (tile.y - 1) * TILESIZE + camera.y;
@@ -406,8 +404,9 @@ function addCityToMap(city) {
 function addElementToMap(element, x, y) {
 	var elementimg;
 	if (element === "forest") { elementimg = imageCache.forest; }
+	else if (element === "oasis") { elementimg = imageCache.oasis; }
 
-	var elementBmp = new createjs.Bitmap(elementimg).setTransform(coordinate(x) - 10 + camera.x, coordinate(y) - 10 + camera.y, SCALE * 0.50, SCALE * 0.50);
+	var elementBmp = new createjs.Bitmap(elementimg).setTransform(coordinate(x) - 10 + camera.x, coordinate(y) - 10 + camera.y, SCALE, SCALE);
 	mapelements.push(elementBmp);
 	stage.addChild(elementBmp);
 }
@@ -415,9 +414,9 @@ function addElementToMap(element, x, y) {
 function findGraphics(type, id) {
 	var array;
 	if (type === "unit") { array = mapunits; }
-	if (type === "tile") { array = maptiles; }
-	if (type === "city") { array = mapcities; }
-	if (type === "element") { array = mapelements; }
+	else if (type === "tile") { array = maptiles; }
+	else if (type === "city") { array = mapcities; }
+	else if (type === "element") { array = mapelements; }
 
 	for (var i = 0, len = array.length; i < len; i++) {
 		if (array[i].id === id) { return array[i]; }
