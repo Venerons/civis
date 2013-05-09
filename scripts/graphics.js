@@ -23,17 +23,20 @@ window.addEventListener("load", function() {
 }, 0);
 
 function init() {
+	localStorage.tileset = "default";
+	localStorage.hudset = "default";
+	
 	preloadImages();
-
 	loadMap();
 	keyboardMapping();
 
-	$("#focusnextbutton").click(function () { focusNext(); });
-	$("#endturnbutton").click(function () { endTurn(); });
-	$("#empirebutton").click(function () { showEmpireOverview(); });
-	$("#researchbutton").click(function () { showResearchManagement(); });
-	$("#societybutton").click(function () { showSocietyManagement(); });
-	$("#mainmenubutton").click(function () { mainMenu(); });
+	$("#focusnextbutton").html('<img src="images/hud/' + localStorage.hudset + '/focusnext.png" class="buttonimage">').click(function () { focusNext(); });
+	$("#endturnbutton").html('<img src="images/hud/' + localStorage.hudset + '/endturn.png" class="buttonimage">').click(function () { endTurn(); });
+	$("#empirebutton").html('<img src="images/hud/' + localStorage.hudset + '/empire.png" class="buttonimage">').click(function () { showEmpireOverview(); });
+	$("#researchbutton").html('<img src="images/hud/' + localStorage.hudset + '/research.png" class="buttonimage">').click(function () { showResearchManagement(); });
+	$("#societybutton").html('<img src="images/hud/' + localStorage.hudset + '/society.png" class="buttonimage">').click(function () { showSocietyManagement(); });
+	$("#mainmenubutton").html('<img src="images/hud/' + localStorage.hudset + '/menu.png" class="buttonimage">').click(function () { mainMenu(); });
+	$("#closeBtn").html('<img src="images/hud/' + localStorage.hudset + '/close.png" width="20">').click(function () { closePopup(); });
 
 	canvas = document.getElementById("mapcanvas");
 	canvas.width = $(window).width() - 10;
@@ -88,22 +91,22 @@ function loadMap() {
 }
 
 function preloadImages () {
-	imageCache.upImg = new Image().src = "images/hud/up.png";
-	imageCache.downImg = new Image().src = "images/hud/down.png";
-	imageCache.leftImg = new Image().src = "images/hud/left.png";
-	imageCache.rightImg = new Image().src = "images/hud/right.png";
+	imageCache.upImg = new Image().src = "images/hud/" + localStorage.hudset + "/up.png";
+	imageCache.downImg = new Image().src = "images/hud/" + localStorage.hudset + "/down.png";
+	imageCache.leftImg = new Image().src = "images/hud/" + localStorage.hudset + "/left.png";
+	imageCache.rightImg = new Image().src = "images/hud/" + localStorage.hudset + "/right.png";
 
-	imageCache.desert = new Image().src = "images/tiles/desert.jpg";
-	imageCache.fog = new Image().src = "images/tiles/fog.jpg";
-	imageCache.grass = new Image().src = "images/tiles/grass.jpg";
-	imageCache.hill = new Image().src = "images/tiles/hill.jpg";
-	imageCache.mountain = new Image().src = "images/tiles/mountain.jpg";
-	imageCache.snow = new Image().src = "images/tiles/snow.jpg";
-	imageCache.water = new Image().src = "images/tiles/water.jpg";
+	imageCache.desert = new Image().src = "images/map/" + localStorage.tileset + "/tiles/desert.jpg";
+	imageCache.fog = new Image().src = "images/map/" + localStorage.tileset + "/tiles/fog.jpg";
+	imageCache.grass = new Image().src = "images/map/" + localStorage.tileset + "/tiles/grass.jpg";
+	imageCache.hill = new Image().src = "images/map/" + localStorage.tileset + "/tiles/hill.jpg";
+	imageCache.mountain = new Image().src = "images/map/" + localStorage.tileset + "/tiles/mountain.jpg";
+	imageCache.snow = new Image().src = "images/map/" + localStorage.tileset + "/tiles/snow.jpg";
+	imageCache.water = new Image().src = "images/map/" + localStorage.tileset + "/tiles/water.jpg";
 
-	imageCache.forest = new Image().src = "images/tiles/forest.png";
-	imageCache.oasis = new Image().src = "images/tiles/oasis.png";
-	imageCache.city = new Image().src = "images/tiles/city.png";
+	imageCache.forest = new Image().src = "images/map/" + localStorage.tileset + "/elements/forest.png";
+	imageCache.oasis = new Image().src = "images/map/" + localStorage.tileset + "/elements/oasis.png";
+	imageCache.city = new Image().src = "images/map/" + localStorage.tileset + "/elements/city.png";
 }
 
 function toggleLoadingMessage () {
@@ -128,7 +131,7 @@ function renderMap() {
 	mapelements = [];
 
     // STATS SETTING
-    document.getElementById('stats').innerHTML = '<img src="images/hud/stats.png" class="buttonimage" alt="Turn" title="Turn"> ' + map.game.turn + ' &nbsp;<img src="images/hud/time.png" class="buttonimage" alt="Year" title="Year"> ' + map.game.year;
+    document.getElementById('stats').innerHTML = '<img src="images/hud/' + localStorage.hudset + '/stats.png" class="buttonimage" alt="Turn" title="Turn"> ' + map.game.turn + ' &nbsp;<img src="images/hud/' + localStorage.hudset + '/time.png" class="buttonimage" alt="Year" title="Year"> ' + map.game.year;
 
     // TILES SETTING
     discoverTiles();
@@ -303,7 +306,7 @@ function coordinate(index) {
 
 // ADD A UNIT TO THE MAP
 function addUnitToMap(unit) {
-	var element = new Image().src = "images/units/" + unit.type + ".png";
+	var element = new Image().src = 'images/map/' + localStorage.tileset + '/units/' + unit.type + ".png";
 	var unitImage = new createjs.Bitmap(element).setTransform(coordinate(unit.x) + camera.x, coordinate(unit.y) + camera.y, SCALE, SCALE);
 	
 	var hit = new createjs.Shape();

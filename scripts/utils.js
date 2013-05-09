@@ -29,11 +29,6 @@ function closePopup() {
     }
 }
 
-// RESET POPUP WINDOW
-function resetPopup() {
-    $('#popup').html('<div id="popupcontent"><br/></div><button class="gradient button closebutton" onclick="closePopup()" title="Close"><img src="images/hud/close.png" width="20"></button>');
-}
-
 // OPEN ACTION BAR
 function openActionbar() {
     if (document.getElementById('actionbar').style.visibility === "hidden") {
@@ -50,11 +45,10 @@ function closeActionbar() {
 
 // MAIN MENU
 function mainMenu() {
-    resetPopup();
-    var content = '<br/><br/><br/><button class="gradient button menubutton" id="saveBtn" title="Save Game" alt="Save Game"><img src="images/hud/save.png" class="buttonimage"> Save Game</button>'
-                + '<br/><button class="gradient button menubutton" id="loadBtn" title="Load Game" alt="Load Game"><img src="images/hud/load.png" class="buttonimage"> Load Game</button>'
-                + '<br/><button class="gradient button menubutton" id="manualBtn" title="Instructions Manual" alt="Instructions Manual"><img src="images/hud/manual.png" class="buttonimage"> Manual</button>'
-                + '<br/><button class="gradient button menubutton" id="exitBtn" title="Exit Game" alt="Exit Game"><img src="images/hud/exit.png" class="buttonimage"> Exit Game</button>';
+    var content = '<br/><br/><br/><button class="gradient button menubutton" id="saveBtn" title="Save Game" alt="Save Game"><img src="images/hud/' + localStorage.hudset + '/save.png" class="buttonimage"> Save Game</button>'
+                + '<br/><button class="gradient button menubutton" id="loadBtn" title="Load Game" alt="Load Game"><img src="images/hud/' + localStorage.hudset + '/load.png" class="buttonimage"> Load Game</button>'
+                + '<br/><button class="gradient button menubutton" id="manualBtn" title="Instructions Manual" alt="Instructions Manual"><img src="images/hud/' + localStorage.hudset + '/manual.png" class="buttonimage"> Manual</button>'
+                + '<br/><button class="gradient button menubutton" id="exitBtn" title="Exit Game" alt="Exit Game"><img src="images/hud/' + localStorage.hudset + '/exit.png" class="buttonimage"> Exit Game</button>';
     $('#popupcontent').html(content);
     $("#saveBtn").click(function () { saveGame(); });
     $("#loadBtn").click(function () { loadGame(); });
@@ -84,7 +78,6 @@ function loadGame() {
 
 // INSTRUCTIONS MANUAL
 function manual() {
-    resetPopup();
     $('#popupcontent').load('docs/manual.txt');
     openPopup();
 }
@@ -348,7 +341,7 @@ function focusNext () {
             }
         }
     }
-    $("#actionbar").html('<p align="center">You have no active units. You should End Turn. (Press SPACE)<p>');
+    $("#actionbar").html('<p class="center">You have no active units. You should End Turn. (Press SPACE)<p>');
     openActionbar();
 }
 

@@ -12,7 +12,8 @@ This document outlines the general goals for CivJS ongoing development.
 * Update manual.txt _(DONE)_
 * Optimized HUD images _(DONE)_
 * Implement science research _(DONE)_
-* Implemented Barracks, Granary, Monument, Library, Temple, University, Aqueduct _(DONE)_
+* Implement culture production _(DONE)_
+* Implemented Barracks, Granary, Monument, Library, Temple, University, Aqueduct, Market _(DONE)_
 * Add Empire overview _(DONE)_
 * Removed players stats on the toolbar _(DONE)_
 * Redesigned movement rules, hill and mountain tiles require more Mov to enter _(DONE)_
@@ -22,9 +23,16 @@ This document outlines the general goals for CivJS ongoing development.
 * Add if no research is specified, half the science is converted to gold _(DONE)_
 * Add oasis _(DONE)_
 * Tiles does not provide Gold, but Commerce, and Science and Gold base production is based on the half of Commerce production _(DONE)_
-
+* Setup for future implementation of several HUD/Map graphic set _(DONE)_
+* New HUD graphics _(DONE)_
 * Fix messages callback behaviour
 * Implement more buildings
+* Code optimizations and Bug Fixes
+
+### Version 0.4.0 (May 2013)
+
+* Add other nature elements (marsh, jungle, natural wonder, river)
+* Implement streets
 * Code optimizations and Bug Fixes
 
 ### Version 1.0.0 (Unscheduled)
@@ -42,10 +50,10 @@ _Bugs & technical features_
 
 _Game Features_
 
+* Implement resources
+* Implement improvements
 * Implement more units
-* Implement culture
 * Implement points
-* Add other nature elements (marsh, jungle, natural wonder, river)
 * Implement civilizations abilities
 * Implement politics (aka Society)
 * Implement enemy AIs

@@ -27,12 +27,12 @@ A victory can be achieved in four different ways.
 As a civilization nears one of the above mentioned victory conditions, all other civilizations will usually declare war on it in an attempt to delay or stop it from winning.
 
 ## Controls
-`spacebar` - End turn
-`up` `left` `right` `down` - move the camera through the map
-`ctrl + e` - Export map
-`ctrl + a` - Discover All
-`ctrl + q` - Zoom out
-`ctrl + w` - Zoom in
+`spacebar` - End turn  
+`up` `left` `right` `down` - move the camera through the map  
+`ctrl + e` - Export map  
+`ctrl + a` - Discover All  
+`ctrl + q` - Zoom out  
+`ctrl + w` - Zoom in  
 
 ## The Map
 The map is the playground of the game. Each tile can be of one of these types:
