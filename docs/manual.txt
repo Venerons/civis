@@ -2,78 +2,203 @@
 
 <ul>
 <li><a href="#winning">Winning</a></li>
+<li><a href="#controls">Controls</a></li>
 <li><a href="#the-map">The Map</a></li>
-<li><a href="#units">Units</a>
-<ul><li><a href="#fighting">Fighting</a></li>
-<li><a href="#settling">Settling</a></li>
-<li><a href="#unit-list">Unit List</a></li></ul></li>
-<li><a href="#cities">Cities</a>
-<ul><li><a href="#buildings">Buildings</a></li></ul></li>
-<li><a href="#science">Science</a>
-<ul><li><a href="#technologies">Technologies</a></li></ul></li>
-<li><a href="#society">Society</a></li>
-</ul>
+<li>
+<a href="#units">Units</a>
 
-<h2>Winning</h2>
+<ul>
+<li><a href="#fighting">Fighting</a></li>
+<li><a href="#settling">Settling</a></li>
+<li><a href="#unit-list">Unit List</a></li>
+</ul>
+</li>
+<li>
+<a href="#cities">Cities</a>
+
+<ul>
+<li><a href="#buildings">Buildings</a></li>
+</ul>
+</li>
+<li>
+<a href="#science">Science</a>
+
+<ul>
+<li><a href="#technologies">Technologies</a></li>
+</ul>
+</li>
+<li><a href="#society">Society</a></li>
+</ul><h2>
+<a name="winning" class="anchor" href="#winning"><span class="mini-icon mini-icon-link"></span></a>Winning</h2>
 
 <p>A victory can be achieved in four different ways.</p>
 
 <ul>
 <li>Domination: capture all cities of the game.</li>
-<li>Culture: Obtain 10,000 culture point.</li>
-<li>Economic: Acquire 10,000 Gold.</li>
+<li>Culture: Obtain 20,000 culture point.</li>
+<li>Economic: Acquire 20,000 Gold.</li>
 <li>Technological: Be the first to discover Tecnologia Futura. </li>
-</ul>
+</ul><p>As a civilization nears one of the above mentioned victory conditions, all other civilizations will usually declare war on it in an attempt to delay or stop it from winning.</p>
 
-<p>As a civilization nears one of the above mentioned victory conditions, all other civilizations will usually declare war on it in an attempt to delay or stop it from winning.</p>
+<h2>
+<a name="controls" class="anchor" href="#controls"><span class="mini-icon mini-icon-link"></span></a>Controls</h2>
 
-<h2>The Map</h2>
+<p><code>spacebar</code> - End turn
+<code>up</code> <code>left</code> <code>right</code> <code>down</code> - move the camera through the map
+<code>ctrl + e</code> - Export map
+<code>ctrl + a</code> - Discover All
+<code>ctrl + q</code> - Zoom out
+<code>ctrl + w</code> - Zoom in</p>
+
+<h2>
+<a name="the-map" class="anchor" href="#the-map"><span class="mini-icon mini-icon-link"></span></a>The Map</h2>
 
 <p>The map is the playground of the game. Each tile can be of one of these types:</p>
 
-<p>Tile | Food | Production | Gold | Modifiers
---- | :---: | :---: | :---: | :---:
-Grass | 2 | - | - | -
-Hill | 1 | 1 | - | +50% Atk/Def
-Mountain | - | 2 | 1 | +100% Atk/Def
-Water | 1 | - | 1 | -
-Desert | - | - | - | -
-Snow | - | - | - | -50% Atk/Def</p>
+<table>
+<thead><tr>
+<th>Tile</th>
+<th align="center">Food</th>
+<th align="center">Production</th>
+<th align="center">Commerce</th>
+<th align="center">Movement</th>
+<th align="center">Modifiers</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Grass</td>
+<td align="center">2</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td>Hill</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">-</td>
+<td align="center">+1</td>
+<td align="center">+50% Atk/Def</td>
+</tr>
+<tr>
+<td>Mountain</td>
+<td align="center">-</td>
+<td align="center">2</td>
+<td align="center">-</td>
+<td align="center">+2</td>
+<td align="center">+100% Atk/Def</td>
+</tr>
+<tr>
+<td>Water</td>
+<td align="center">1</td>
+<td align="center">-</td>
+<td align="center">2</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td>Desert</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td>Snow</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-50% Atk/Def</td>
+</tr>
+</tbody>
+</table><p>Some tiles also can host a nature element, that modify the values of the tile</p>
 
-<p>Some tiles also can host a nature element, that modify the values of the tile</p>
-
-<p>Nature | Food | Production | Gold | Modifiers
---- | :---: | :---: | :---: | :---:
-Forest | - | +1 | - | +50% Atk/Def
-Jungle | +1 | -1 | - | +50% Atk/Def
-Marsh | -1 | - | - | -50% Atk/Def
-Oasis | +3 | - | +2 | -
-River | - | - | +1 | -
-Natural Wonder | - | +2 | +3 | -</p>
-
-<h2>Units</h2>
+<table>
+<thead><tr>
+<th>Nature</th>
+<th align="center">Food</th>
+<th align="center">Production</th>
+<th align="center">Commerce</th>
+<th align="center">Modifiers</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Forest</td>
+<td align="center">-</td>
+<td align="center">+1</td>
+<td align="center">-</td>
+<td align="center">+50% Atk/Def</td>
+</tr>
+<tr>
+<td>Jungle</td>
+<td align="center">+1</td>
+<td align="center">-1</td>
+<td align="center">-</td>
+<td align="center">+50% Atk/Def</td>
+</tr>
+<tr>
+<td>Marsh</td>
+<td align="center">-1</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-50% Atk/Def</td>
+</tr>
+<tr>
+<td>Oasis</td>
+<td align="center">+3</td>
+<td align="center">-</td>
+<td align="center">+2</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td>River</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">+1</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td>Natural Wonder</td>
+<td align="center">-</td>
+<td align="center">+2</td>
+<td align="center">+3</td>
+<td align="center">-</td>
+</tr>
+</tbody>
+</table><h2>
+<a name="units" class="anchor" href="#units"><span class="mini-icon mini-icon-link"></span></a>Units</h2>
 
 <p>Each unit have 5 stats:</p>
 
 <ul>
-<li><strong>Life:</strong> Remaining life points of the unit. If the unit have less than 1 life point, it dies.</li>
-<li><strong>Exp:</strong> Experience points of the unit. A unit can gain Exp by surviving in a fight. When a unit reach 5 Exp, it becomes Veteran, and gain +50% Atk/Def. When a unit reach 10 Exp, it becomes Elite, and gain +100% Atk/Def.</li>
-<li><strong>Atk:</strong> Attack power of the unit, used to deal damage in a fight.</li>
-<li><strong>Def:</strong> Defence power of the unit, used to prevent damage in a fight.</li>
-<li><strong>Mov:</strong> Maximum movement that the unit can do in a turn. The movement still have to be a unique movement.</li>
-</ul>
-
-<p>A unit can do various actions, depending to the unit type. Actions can be:</p>
+<li>
+<strong>Life:</strong> Remaining life points of the unit. If the unit have less than 1 life point, it dies.</li>
+<li>
+<strong>Exp:</strong> Experience points of the unit. A unit can gain Exp by surviving in a fight. When a unit reach 5 Exp, it becomes Veteran, and gain +50% Atk/Def. When a unit reach 10 Exp, it becomes Elite, and gain +100% Atk/Def.</li>
+<li>
+<strong>Atk:</strong> Attack power of the unit, used to deal damage in a fight.</li>
+<li>
+<strong>Def:</strong> Defence power of the unit, used to prevent damage in a fight.</li>
+<li>
+<strong>Mov:</strong> Movement points of the unit, used to move around the map.</li>
+</ul><p>A unit can do various actions, depending to the unit type. Actions can be:</p>
 
 <ul>
-<li><strong>Move:</strong> Move the unit to another tile. A unit can move only one time in a turn.</li>
-<li><strong>Fortify:</strong> Fortify the unit, that gain a +25% Atk/Def until it's fortified. Moving the unit de-fortify the unit.</li>
-<li><strong>Kill:</strong> Kill the unit to gain a small amount of gold. The unit will be removed.</li>
-<li><strong>No Orders:</strong> Issue no orders to the unit, that will be left as it is.</li>
-<li><strong>Settle:</strong> Settle a city in the tile where the unit is. Only available for settlers.</li>
-</ul>
-
-<h3>Fighting</h3>
+<li>
+<strong>Move:</strong> Move the unit to another tile. To move, a unit requires Mov points and consumes a Mov point every tiles moved. Some tiles consumes more Mov than others, see the section <em>The Map</em> for futher informations.</li>
+<li>
+<strong>Fortify:</strong> Fortify the unit, that gain a +25% Atk/Def until it's fortified. Moving the unit de-fortify the unit.</li>
+<li>
+<strong>Kill:</strong> Kill the unit to gain a small amount of gold. The unit will be removed.</li>
+<li>
+<strong>No Orders:</strong> Issue no orders to the unit, that will be left as it is.</li>
+<li>
+<strong>Settle:</strong> Settle a city in the tile where the unit is. Only available for settlers.</li>
+</ul><h3>
+<a name="fighting" class="anchor" href="#fighting"><span class="mini-icon mini-icon-link"></span></a>Fighting</h3>
 
 <p>A fight is resolved this way:</p>
 
@@ -82,56 +207,149 @@ Natural Wonder | - | +2 | +3 | -</p>
 <li>The damage dealt decrease the life points of the units, and if a unit have no remaining life points, it dies. In a fight could die one, both or none of the units.</li>
 <li>The surviving units (if any) gain an Exp. If a unit is promoted this way to the Elite or Veteran rank, the max life of the unit will be doubled and all the life points will be restored.</li>
 <li>If the attacker kill the defender, it take its position. By the way, if the attacker get killed by the defender, the defender cannot gain the position, and stand on its tile.</li>
-</ol>
-
-<h3>Settling</h3>
+</ol><h3>
+<a name="settling" class="anchor" href="#settling"><span class="mini-icon mini-icon-link"></span></a>Settling</h3>
 
 <p>settling instructions</p>
 
-<h3>Unit List</h3>
+<h3>
+<a name="unit-list" class="anchor" href="#unit-list"><span class="mini-icon mini-icon-link"></span></a>Unit List</h3>
 
-<p>Unit | Atk | Def | Mov | Initial Life | Requirements
---- | :---: | :---: | :---: | :---: | ---
-Settler | 0 | 0 | 2 | 1 | -
-Warrior | 1 | 1 | 1 | 1 | -
-Archer | 1 | 2 | 1 | 1 | Tiro con l'Arco
-Galley | 1 | 1 | 2 | 1 | Navigazione</p>
-
-<h2>Cities</h2>
+<table>
+<thead><tr>
+<th>Unit</th>
+<th align="center">Atk</th>
+<th align="center">Def</th>
+<th align="center">Mov</th>
+<th align="center">Initial Life</th>
+<th>Requirements</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Settler</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Warrior</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Archer</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td>Archery</td>
+</tr>
+<tr>
+<td>Galley</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td>Sailing</td>
+</tr>
+</tbody>
+</table><h2>
+<a name="cities" class="anchor" href="#cities"><span class="mini-icon mini-icon-link"></span></a>Cities</h2>
 
 <p>cities about
 each turn will be consumed 2 food per citizen. Eventual remaining will be used to increase population. If negative, population may decrease.</p>
 
-<h3>Buildings</h3>
+<h3>
+<a name="buildings" class="anchor" href="#buildings"><span class="mini-icon mini-icon-link"></span></a>Buildings</h3>
 
-<p>list of buildings</p>
-
-<p>Building | Cost | Tech Required | Building Required | Effect
---- | :---: | :---: | :---: | :---
-Barracks | 40 | Bronze Working | - | Units produced are automatically Veterans (+5 exp)
-Granary | 40 | Agriculture | - | +2 food
-Library | 40 | Writing | - | +1 science each 2 population
-Monument | 20 | Mysticism | - | +2 culture</p>
-
-<p>Harbor | ? | ? | - | +1 food in sea tiles
+<table>
+<thead><tr>
+<th>Building</th>
+<th align="center">Cost</th>
+<th align="center">Tech Required</th>
+<th align="center">Building Required</th>
+<th align="left">Effect</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Barracks</td>
+<td align="center">40</td>
+<td align="center">Bronze Working</td>
+<td align="center">-</td>
+<td align="left">Units produced are automatically Veterans (+5 exp)</td>
+</tr>
+<tr>
+<td>Granary</td>
+<td align="center">40</td>
+<td align="center">Agriculture</td>
+<td align="center">-</td>
+<td align="left">+3 Food</td>
+</tr>
+<tr>
+<td>Library</td>
+<td align="center">40</td>
+<td align="center">Writing</td>
+<td align="center">-</td>
+<td align="left">+1 Science each 2 population</td>
+</tr>
+<tr>
+<td>Monument</td>
+<td align="center">20</td>
+<td align="center">Mysticism</td>
+<td align="center">-</td>
+<td align="left">+2 Culture</td>
+</tr>
+<tr>
+<td>Temple</td>
+<td align="center">40</td>
+<td align="center">Theology</td>
+<td align="center">Monument</td>
+<td align="left">+1 Culture each 2 population</td>
+</tr>
+<tr>
+<td>University</td>
+<td align="center">80</td>
+<td align="center">Education</td>
+<td align="center">Library</td>
+<td align="left">+1 Science each 2 population (combinable with the Library)</td>
+</tr>
+<tr>
+<td>Aqueduct</td>
+<td align="center">100</td>
+<td align="center">Engineering</td>
+<td align="center">-</td>
+<td align="left">+50% Food</td>
+</tr>
+<tr>
+<td>Market</td>
+<td align="center">100</td>
+<td align="center">Currency</td>
+<td align="center">-</td>
+<td align="left">+25% Gold</td>
+</tr>
+</tbody>
+</table><p>Harbor | ? | ? | - | +1 food in sea tiles
 Workshop | ? | ? | - | Provides +2 production from hills
 Iron Mine | ? | ? | - | Mountain tiles give +4 production 
 Walls | ? | ? | - | Gives +100% defensive bonus
-University | ? | ? | - | Replaces library, x4 science production
-Temple | ? | ? | - | +1 culture for every citizen in city
 Cathedral  | ? | ? | - | Replaces temple and gives +2 culture for each citizen 
-Aqueduct | ? | ? | - | Increases city's growth by half 
-Market | ? | ? | - | Doubles city gold production
-Bank | ? | ? | - | Replaces market, x4 gold production 
-Courthouse | ? | ? | - | Increases the city's workable tile region (or reduce >:( )
+Bank | ? | ? | - | +50% Gold
+Courthouse | ? | ? | - | Increases the city's workable tile region (or reduce &gt;:( )
 Factory | ? | ? | - | Doubles the city's production </p>
 
-<h2>Food Buildings</h2>
+<h2>
+<a name="food-buildings" class="anchor" href="#food-buildings"><span class="mini-icon mini-icon-link"></span></a>Food Buildings</h2>
 
 <p>Hospital
 Medical Lab</p>
 
-<h2>Production Buildings</h2>
+<h2>
+<a name="production-buildings" class="anchor" href="#production-buildings"><span class="mini-icon mini-icon-link"></span></a>Production Buildings</h2>
 
 <p>Stable (must have access to hourse resource, +2 production)
 Forge
@@ -139,26 +357,31 @@ Nuclear Plant
 Recycling center
 Solar plant</p>
 
-<h2>Gold Buildings</h2>
+<h2>
+<a name="gold-buildings" class="anchor" href="#gold-buildings"><span class="mini-icon mini-icon-link"></span></a>Gold Buildings</h2>
 
-<p>Lighthouse (must be near water, +1 gold in sea tiles)
+<p>Lighthouse (must be near water, +1 commerce in sea tiles)
 Stock exchange</p>
 
-<h2>Culture Buildings</h2>
+<h2>
+<a name="culture-buildings" class="anchor" href="#culture-buildings"><span class="mini-icon mini-icon-link"></span></a>Culture Buildings</h2>
 
-<p>Amphitheater (+3 culture, require monument)
+<p>Academy
+Amphitheater (+3 culture, require monument)
 Opera House
 Theater
 Museum
 Broadcast Tower</p>
 
-<h2>Science Buildings</h2>
+<h2>
+<a name="science-buildings" class="anchor" href="#science-buildings"><span class="mini-icon mini-icon-link"></span></a>Science Buildings</h2>
 
 <p>Observatory
 Public School
 Research Lab</p>
 
-<h2>Other Buildings</h2>
+<h2>
+<a name="other-buildings" class="anchor" href="#other-buildings"><span class="mini-icon mini-icon-link"></span></a>Other Buildings</h2>
 
 <p>Circus (+2 :) )
 Colosseum (+ 3 :) )
@@ -173,84 +396,416 @@ Garden
 Water Mill (must be near a river, +2 food and +1 production)
 Windmill</p>
 
-<h2>Science</h2>
+<h2>
+<a name="science" class="anchor" href="#science"><span class="mini-icon mini-icon-link"></span></a>Science</h2>
 
-<p>Science is produced by the player's cities and is used to pay the cost of the research of technologies.
-Each turn a city produce science and the total science from all of the player's cities is used to pay the cost of the player current technology research.</p>
+<p>Science is produced by the player's cities and is used to pay the cost of the research of technologies.<br>
+Each turn a city produce science and the total science from all of the player's cities is used to pay the cost of the player current technology research.<br>
+A city produce science equal to the half of its commerce production, plus eventual bonus granted by buildings, tiles, technologies and societies.<br>
+If no research is in queue at the end of the turn, the science produced is converted to gold.</p>
 
-<h3>Technologies</h3>
+<h3>
+<a name="technologies" class="anchor" href="#technologies"><span class="mini-icon mini-icon-link"></span></a>Technologies</h3>
 
-<p>Technology         | Cost  | Technologies Required           | Advantages Unlocked
------------------- | :---: | ------------------------------- | -------------------
-Mysticism          | 20    | -                               | Unlock Monument
-Writing            | 20    | -                               | Unlock Library
-Agriculture        | 20    | -                               | Unlock Granary
-Hunting            | 20    | -                               | -
-Fishing            | 20    | -                               | -
-Theology           | 40    | Mysticism, Writing              | Unlock Theocracy
-Mathematics        | 40    | Writing, Wheel                  | -
-Wheel              | 40    | Agriculture                     | -
-Mining             | 40    | Agriculture                     | -
-Breeding           | 40    | Agriculture, Hunting            | -
-Archery            | 40    | Hunting                         | Unlock Archer
-Navigation         | 40    | Fishing                         | Unlock Galley
-Divine Right       | 80    | Theology                        | Unlock Monarchy
-Education          | 80    | Theology, Mathematics           | Unlock Republic
-Currency           | 80    | Mathematics                     | -
-Masonry            | 80    | Mining                          | -
-Bronze Working     | 80    | Mining                          | -
-Horse Riding       | 80    | Breeding                        | -
-Optics             | 80    | Archery, Navigation             | -
-Art                | 160   | Divine Right, Education         | -
-Literature         | 160   | Education                       | -
-Engineering        | 160   | Mathematics, Masonry            | -
-Iron Working       | 160   | Bronze Working                  | -
-Code of Chivalry   | 160   | Horse Riding, Currency          | -
-Astronomy          | 160   | Optics                          | -
-Music              | 320   | Art, Literature                 | -
-Banking            | 320   | Divine Right, Currency          | -
-Mechanics          | 320   | Engineering                     | -
-Physics            | 320   | Engineering                     | -
-Metal Casting      | 320   | Iron Working                    | -
-Scientific Theory  | 640   | Astronomy, Physics              | -
-Economy            | 640   | Banking                         | -
-Steel              | 640   | Metal Casting                   | -
-Steam Energy       | 1024  | Code of Chivalry, Steel         | -
-Gunpowder          | 1024  | Physics, Steel                  | -
-Rifling            | 2048  | Mechanics, Gunpowder            | -
-Chemistry          | 2048  | Gunpowder                       | -
-Independent Pieces | 2048  | Steam Energy                    | -
-Electricity        | 2048  | Steam Energy, Scientific Theory | -
-Radio              | 4096  | Music, Electricity              | -
-Combustion         | 4096  | Rifling, Chemistry              | -
-Plastic            | 4096  | Chemistry, Electricity          | -
-Flight             | 4096  | Independent Pieces              | -
-Mass Media         | 8192  | Radio                           | -
-Electronics        | 8192  | Radio                           | -
-Rocketry           | 8192  | Flight, Combustion              | -
-Atomic Theory      | 8192  | Combustion                      | -
-Computers          | 16384 | Electronics                     | -
-Nuclear Fission    | 16384 | Atomic Theory, Rocketry         | -
-Globalization      | 32768 | Economy, Computers              | -
-Robotics           | 32768 | Computers                       | -
-Particle Physics   | 65536 | Atomic Theory, Robotics         | -
-Nanotechnology     | 131072 | Particle Physics, Plastic       | -
-Future Technology  | 262144 | Nanotechnology, Nuclear Fission | -</p>
-
-<h2>Society</h2>
+<table>
+<thead><tr>
+<th>Technology</th>
+<th align="center">Cost</th>
+<th>Technologies Required</th>
+<th>Advantages Unlocked</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Mysticism</td>
+<td align="center">20</td>
+<td>-</td>
+<td>Unlock Monument</td>
+</tr>
+<tr>
+<td>Writing</td>
+<td align="center">20</td>
+<td>-</td>
+<td>Unlock Library</td>
+</tr>
+<tr>
+<td>Agriculture</td>
+<td align="center">20</td>
+<td>-</td>
+<td>Unlock Granary</td>
+</tr>
+<tr>
+<td>Hunting</td>
+<td align="center">20</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Fishing</td>
+<td align="center">20</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Theology</td>
+<td align="center">40</td>
+<td>Mysticism, Writing</td>
+<td>Unlock Theocracy, Temple</td>
+</tr>
+<tr>
+<td>Mathematics</td>
+<td align="center">40</td>
+<td>Writing, Wheel</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Wheel</td>
+<td align="center">40</td>
+<td>Agriculture</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Mining</td>
+<td align="center">40</td>
+<td>Agriculture</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Breeding</td>
+<td align="center">40</td>
+<td>Agriculture, Hunting</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Archery</td>
+<td align="center">40</td>
+<td>Hunting</td>
+<td>Unlock Archer</td>
+</tr>
+<tr>
+<td>Sailing</td>
+<td align="center">40</td>
+<td>Fishing</td>
+<td>Unlock Galley</td>
+</tr>
+<tr>
+<td>Divine Right</td>
+<td align="center">80</td>
+<td>Theology</td>
+<td>Unlock Monarchy</td>
+</tr>
+<tr>
+<td>Education</td>
+<td align="center">80</td>
+<td>Theology, Mathematics</td>
+<td>Unlock Republic, University</td>
+</tr>
+<tr>
+<td>Currency</td>
+<td align="center">80</td>
+<td>Mathematics</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Masonry</td>
+<td align="center">80</td>
+<td>Mining</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Bronze Working</td>
+<td align="center">80</td>
+<td>Mining</td>
+<td>Unlock Barracks</td>
+</tr>
+<tr>
+<td>Horse Riding</td>
+<td align="center">80</td>
+<td>Breeding</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Optics</td>
+<td align="center">80</td>
+<td>Archery, Sailing</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Art</td>
+<td align="center">160</td>
+<td>Divine Right, Education</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Literature</td>
+<td align="center">160</td>
+<td>Education</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Engineering</td>
+<td align="center">160</td>
+<td>Mathematics, Masonry</td>
+<td>Unlock Aqueduct</td>
+</tr>
+<tr>
+<td>Iron Working</td>
+<td align="center">160</td>
+<td>Bronze Working</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Code of Chivalry</td>
+<td align="center">160</td>
+<td>Horse Riding, Currency</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Astronomy</td>
+<td align="center">160</td>
+<td>Optics</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Music</td>
+<td align="center">320</td>
+<td>Art, Literature</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Banking</td>
+<td align="center">320</td>
+<td>Divine Right, Currency</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Mechanics</td>
+<td align="center">320</td>
+<td>Engineering</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Physics</td>
+<td align="center">320</td>
+<td>Engineering</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Metal Casting</td>
+<td align="center">320</td>
+<td>Iron Working</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Scientific Theory</td>
+<td align="center">640</td>
+<td>Astronomy, Physics</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Economy</td>
+<td align="center">640</td>
+<td>Banking</td>
+<td>Unlock Nationalism</td>
+</tr>
+<tr>
+<td>Steel</td>
+<td align="center">640</td>
+<td>Metal Casting</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Steam Energy</td>
+<td align="center">1024</td>
+<td>Code of Chivalry, Steel</td>
+<td>Unlock Communism</td>
+</tr>
+<tr>
+<td>Gunpowder</td>
+<td align="center">1024</td>
+<td>Physics, Steel</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Rifling</td>
+<td align="center">2048</td>
+<td>Mechanics, Gunpowder</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Chemistry</td>
+<td align="center">2048</td>
+<td>Gunpowder</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Independent Pieces</td>
+<td align="center">2048</td>
+<td>Steam Energy</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Electricity</td>
+<td align="center">2048</td>
+<td>Steam Energy, Scientific Theory</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Radio</td>
+<td align="center">4096</td>
+<td>Music, Electricity</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Combustion</td>
+<td align="center">4096</td>
+<td>Rifling, Chemistry</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Plastic</td>
+<td align="center">4096</td>
+<td>Chemistry, Electricity</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Flight</td>
+<td align="center">4096</td>
+<td>Independent Pieces</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Mass Media</td>
+<td align="center">8192</td>
+<td>Radio</td>
+<td>Unlock Fascism</td>
+</tr>
+<tr>
+<td>Electronics</td>
+<td align="center">8192</td>
+<td>Radio</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Rocketry</td>
+<td align="center">8192</td>
+<td>Flight, Combustion</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Atomic Theory</td>
+<td align="center">8192</td>
+<td>Combustion</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Computers</td>
+<td align="center">16384</td>
+<td>Electronics</td>
+<td>Unlock Police State</td>
+</tr>
+<tr>
+<td>Nuclear Fission</td>
+<td align="center">16384</td>
+<td>Atomic Theory, Rocketry</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Globalization</td>
+<td align="center">32768</td>
+<td>Economy, Computers</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Robotics</td>
+<td align="center">32768</td>
+<td>Computers</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Particle Physics</td>
+<td align="center">65536</td>
+<td>Atomic Theory, Robotics</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Nanotechnology</td>
+<td align="center">131072</td>
+<td>Particle Physics, Plastic</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Future Technology</td>
+<td align="center">262144</td>
+<td>Nanotechnology, Nuclear Fission</td>
+<td>-</td>
+</tr>
+</tbody>
+</table><h2>
+<a name="society" class="anchor" href="#society"><span class="mini-icon mini-icon-link"></span></a>Society</h2>
 
 <p>Each civilization have a society system</p>
 
-<p>Society      | Requirements | Effects
------------- | ------------ | ---
-Anarchy      | -            | No production, gold, science or food.
-Dispotism    | -            | No special effects. Available on the beginning of the game.
-Monarchy     | Divine Right | -
-Republic     | Education    | -
-Teocracy     | Theology     | +XX% culture
-Democracy    | -            | +50% gold and +50% science but you can't declare war.
-Socialism    | -            | -
-Nationalism  | Economy      | -
-Communism    | Energia a Vapore oppure Pezzi indipendenti | +XX% production
-Fascism      | Mass Media   | -
-Police State | Computer oppure Combustione | -</p>
+<table>
+<thead><tr>
+<th>Society</th>
+<th>Requirements</th>
+<th>Effects</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Anarchy</td>
+<td>-</td>
+<td>No production, commerce, gold, science or food.</td>
+</tr>
+<tr>
+<td>Dispotism</td>
+<td>-</td>
+<td>No special effects. Available on the beginning of the game.</td>
+</tr>
+<tr>
+<td>Monarchy</td>
+<td>Divine Right</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Republic</td>
+<td>Education</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Teocracy</td>
+<td>Theology</td>
+<td>+XX% culture</td>
+</tr>
+<tr>
+<td>Democracy</td>
+<td>-</td>
+<td>+50% gold and +50% science but you can't declare war.</td>
+</tr>
+<tr>
+<td>Socialism</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Nationalism</td>
+<td>Economy</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Communism</td>
+<td>Steam Energy</td>
+<td>+XX% production</td>
+</tr>
+<tr>
+<td>Fascism</td>
+<td>Mass Media</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Police State</td>
+<td>Computers</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>

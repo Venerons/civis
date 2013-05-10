@@ -247,7 +247,7 @@ function endTurn () {
             var message = {};
             message.info = "A " + city.build.name + " was built in " + city.name;
             message.type = "city-notif";
-            message.callback = function () { showCityManager(city.id); };
+            message.callback = makeCallback("city", {"id": city.id});
             notifications.push(message);
             city.build.name = "nothing";
             city.build.cost = 0;
@@ -268,7 +268,7 @@ function endTurn () {
                 var message = {};
                 message.info = "Technology " + player.research.tech + " discovered";
                 message.type = "science-notif";
-                message.callback = function () { showResearchManagement(); };
+                message.callback = makeCallback("research", {});
                 notifications.push(message);
                 player.research = { tech: "", cost: 0 };
             }
@@ -287,7 +287,7 @@ function endTurn () {
             var message = {};
             message.info = "A citizen died for food in " + city.name;
             message.type = "city-notif";
-            message.callback = function () { centerCameraOnXY(city.x, city.y); };
+            message.callback = makeCallback("camera", {"x": city.x, "y": city.y});
             notifications.push(message);
         }
         var step = Math.floor(15 + 6 * (city.population - 1) + Math.pow(city.population - 1, 1.8));
@@ -297,7 +297,7 @@ function endTurn () {
             var message = {};
             message.info = city.name + " has grown to " + city.population + " of population";
             message.type = "city-notif";
-            message.callback = function () { centerCameraOnXY(city.x, city.y); };
+            message.callback = makeCallback("camera", {"x": city.x, "y": city.y});
             notifications.push(message);
         }
 
@@ -325,7 +325,19 @@ function endTurn () {
     focusNext();
 }
 
-function showUnitOptions (unitid) {
+function makeCallback(type, object) {
+    if (type === "camera") {
+        return function () { centerCameraOnXY(object.x, object.y); };
+    }
+    if (type === "research") {
+        return function () { showResearchManagement(); };
+    }
+    if (type === "city") {
+        return function () { showCityManager(object.id); };
+    }
+}
+
+function showUnitOptions(unitid) {
     deselectDestinations(); // deselect eventual selected destinations
     var unit = findUnitById(unitid);
     if (unit.player === map.players[0].id) {
@@ -338,14 +350,14 @@ function showUnitOptions (unitid) {
             }
         }
         
-        var content = '<span style="position: relative; top: 5px; left: 10px; height: 40px; margin-right: 20px; vertical-align: middle;"><img src="images/map/' + localStorage.tileset + '/units/' + unit.type + '.png" alt="' + unittitle + unit.type + '" title="' + unittitle + unit.type + '" class="buttonimage"> <strong>' 
+        var content = '<span style="position: relative; top: 5px; left: 10px; height: 40px; margin-right: 20px; vertical-align: middle;"><img src="' + localStorage.tileset + '/units/' + unit.type + '.png" alt="' + unittitle + unit.type + '" title="' + unittitle + unit.type + '" class="buttonimage"> <strong>' 
                     + unittitle + unit.type.toUpperCase() 
-                    + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><img src="images/hud/' + localStorage.hudset + '/life.png" alt="Life" title="Life" class="buttonimage"> ' + unit.life + ' <img src="images/hud/' + localStorage.hudset + '/exp.png" alt="Exp" title="Exp" class="buttonimage">  ' + unit.experience + ' <img src="images/hud/' + localStorage.hudset + '/atk.png" alt="Atk" title="Atk" class="buttonimage"> ' + getAtk(unit) + ' <img src="images/hud/' + localStorage.hudset + '/def.png" alt="Def" title="Def" class="buttonimage"> ' + getDef(unit) + ' <img src="images/hud/' + localStorage.hudset + '/move.png" alt="Mov" title="Mov" class="buttonimage"> ' + unit.active + '</span>' 
+                    + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><img src="' + localStorage.hudset + '/life.png" alt="Life" title="Life" class="buttonimage"> ' + unit.life + ' <img src="' + localStorage.hudset + '/exp.png" alt="Exp" title="Exp" class="buttonimage">  ' + unit.experience + ' <img src="' + localStorage.hudset + '/atk.png" alt="Atk" title="Atk" class="buttonimage"> ' + getAtk(unit) + ' <img src="' + localStorage.hudset + '/def.png" alt="Def" title="Def" class="buttonimage"> ' + getDef(unit) + ' <img src="' + localStorage.hudset + '/move.png" alt="Mov" title="Mov" class="buttonimage"> ' + unit.active + '</span>' 
                     + '&nbsp;&nbsp;<span id="specialOrders"></span>'
-                    + '<button class="button gradient topbarbutton" alt="Move" title="Move" id="moveUnit"><img src="images/hud/' + localStorage.hudset + '/move.png" class="buttonimage"></button>'
-                    + '<button class="button gradient topbarbutton" alt="Fortify" title="Fortify" id="fortifyUnit"><img src="images/hud/' + localStorage.hudset + '/fortify.png" class="buttonimage"></button>'
-                    + '<button class="button gradient topbarbutton" alt="Kill" title="Kill" id="killUnit"><img src="images/hud/' + localStorage.hudset + '/kill.png" class="buttonimage"></button>'
-                    + '<button class="button gradient topbarbutton" alt="No Orders" title="No Orders" id="noOrders"><img src="images/hud/' + localStorage.hudset + '/close.png" class="buttonimage"></button>';
+                    + '<button class="button gradient topbarbutton" alt="Move" title="Move" id="moveUnit"><img src="' + localStorage.hudset + '/move.png" class="buttonimage"></button>'
+                    + '<button class="button gradient topbarbutton" alt="Fortify" title="Fortify" id="fortifyUnit"><img src="' + localStorage.hudset + '/fortify.png" class="buttonimage"></button>'
+                    + '<button class="button gradient topbarbutton" alt="Kill" title="Kill" id="killUnit"><img src="' + localStorage.hudset + '/kill.png" class="buttonimage"></button>'
+                    + '<button class="button gradient topbarbutton" alt="No Orders" title="No Orders" id="noOrders"><img src="' + localStorage.hudset + '/close.png" class="buttonimage"></button>';
         $("#actionbar").html(content);
 
         $("#moveUnit").click(function () { moveUnit(unit.id); });
@@ -355,7 +367,7 @@ function showUnitOptions (unitid) {
 
         var specialOrders = "";
         if (unit.type === "settler") {
-            specialOrders = '<button class="button gradient topbarbutton" alt="Settle" title="Settle" id="settleCity"><img src="images/hud/' + localStorage.hudset + '/settle.png" class="buttonimage"></button>';
+            specialOrders = '<button class="button gradient topbarbutton" alt="Settle" title="Settle" id="settleCity"><img src="' + localStorage.hudset + '/settle.png" class="buttonimage"></button>';
             $("#specialOrders").html(specialOrders);
             $("#settleCity").click(function () { settleCity(unit.id); });
         }
@@ -496,18 +508,18 @@ function attackUnit(unit1, unit2) {
     if (damage2 < 0) { damage2 = 0; }
 
     var content = '<table class="w100"><tbody><tr>'
-                + '<td class="center"><img src="images/map/' + localStorage.tileset + '/units/' + unit1.type + '.png">' 
+                + '<td class="center"><img src="' + localStorage.tileset + '/units/' + unit1.type + '.png">' 
                 + '<br/><span style="color: ' + findPlayerById(unit1.player).color + '"><strong>' + unit1title + unit1.type.toUpperCase() + '</strong></span>' 
-                + '<br/><img src="images/hud/' + localStorage.hudset + '/life.png" alt="Life" title="Life" class="buttonimage"> ' + unit1.life 
-                + '<br/><img src="images/hud/' + localStorage.hudset + '/exp.png" alt="Exp" title="Exp" class="buttonimage"> ' + unit1.experience 
-                + '<br/><img src="images/hud/' + localStorage.hudset + '/atk.png" alt="Atk" title="Atk" class="buttonimage"> ' + unit1Atk 
-                + '<br/><img src="images/hud/' + localStorage.hudset + '/def.png" alt="Def" title="Def" class="buttonimage"> ' + unit1Def 
-                + '</td><td class="center"><img src="images/map/' + localStorage.tileset + '/units/' + unit2.type + '.png">' 
+                + '<br/><img src="' + localStorage.hudset + '/life.png" alt="Life" title="Life" class="buttonimage"> ' + unit1.life 
+                + '<br/><img src="' + localStorage.hudset + '/exp.png" alt="Exp" title="Exp" class="buttonimage"> ' + unit1.experience 
+                + '<br/><img src="' + localStorage.hudset + '/atk.png" alt="Atk" title="Atk" class="buttonimage"> ' + unit1Atk 
+                + '<br/><img src="' + localStorage.hudset + '/def.png" alt="Def" title="Def" class="buttonimage"> ' + unit1Def 
+                + '</td><td class="center"><img src="' + localStorage.tileset + '/units/' + unit2.type + '.png">' 
                 + '<br/><span style="color: ' + findPlayerById(unit2.player).color + '"><strong>' + unit2title + unit2.type.toUpperCase() + '</strong></span>' 
-                + '<br/><img src="images/hud/' + localStorage.hudset + '/life.png" alt="Life" title="Life" class="buttonimage"> ' + unit2.life 
-                + '<br/><img src="images/hud/' + localStorage.hudset + '/exp.png" alt="Exp" title="Exp" class="buttonimage"> ' + unit2.experience 
-                + '<br/><img src="images/hud/' + localStorage.hudset + '/atk.png" alt="Atk" title="Atk" class="buttonimage"> ' + unit2Atk 
-                + '<br/><img src="images/hud/' + localStorage.hudset + '/def.png" alt="Def" title="Def" class="buttonimage"> ' + unit2Def + '</td></tr></tbody></table>';
+                + '<br/><img src="' + localStorage.hudset + '/life.png" alt="Life" title="Life" class="buttonimage"> ' + unit2.life 
+                + '<br/><img src="' + localStorage.hudset + '/exp.png" alt="Exp" title="Exp" class="buttonimage"> ' + unit2.experience 
+                + '<br/><img src="' + localStorage.hudset + '/atk.png" alt="Atk" title="Atk" class="buttonimage"> ' + unit2Atk 
+                + '<br/><img src="' + localStorage.hudset + '/def.png" alt="Def" title="Def" class="buttonimage"> ' + unit2Def + '</td></tr></tbody></table>';
 
     content += '<br/><center><span style="color: ' + findPlayerById(unit2.player).color + '"><strong>' + unit2title + unit2.type.toUpperCase() + '</strong></span> deal <strong>' + damage1 + '</strong> damage to <span style="color: ' + findPlayerById(unit1.player).color + '"><strong>' + unit1title + unit1.type.toUpperCase() + '</strong></span><br/>';
     content += '<span style="color: ' + findPlayerById(unit1.player).color + '"><strong>' + unit1title + unit1.type.toUpperCase() + '</strong></span> deal <strong>' + damage2 + '</strong> damage to <span style="color: ' + findPlayerById(unit2.player).color + '"><strong>' + unit2title + unit2.type.toUpperCase() + '</strong></span>';
@@ -619,9 +631,9 @@ function showCityManager(cityid) {
         btext = '+&nbsp;' + bilancio;
     }
 
-    var content = '<h3 class="center"><img src="images/map/' + localStorage.tileset + '/elements/city.png" width="25" height="25">&nbsp;&nbsp;' + city.name + '&nbsp;&nbsp;&nbsp;<em>(Population ' + city.population + ')</em></h3><table class="w100"><tbody>'
-                + '<tr><td class="w70"><table class="w100"><tbody><tr><td class="w33 center"><img src="images/hud/' + localStorage.hudset + '/food.png" alt="Food" title="Food" width="20" height="20">&nbsp;&nbsp;' + getCityFood(city) + '</td><td class="w33 center"><img src="images/hud/' + localStorage.hudset + '/prod.png" alt="Production" title="Production" width="20" height="20">&nbsp;&nbsp;' + cityproduction + '</td><td class="w33 center"><img src="images/hud/' + localStorage.hudset + '/commerce.png" alt="Commerce" title="Commerce" width="20" height="20">&nbsp;&nbsp;' + getCityCommerce(city) + '</td></tr></tbody></table>'
-                + '<br/><table class="w100"><tbody><tr><td class="w33 center"><strong>Growth:</strong> ' + btext + ' (' + city.growth + '/' + step + ')</td><td class="w33 center"><img src="images/hud/' + localStorage.hudset + '/research.png" alt="Science" title="Science" width="30" height="30">&nbsp;+&nbsp;' + getCityScience(city) + '</td><td class="w33 center"><img src="images/hud/' + localStorage.hudset + '/culture.png" alt="Culture" title="Culture" width="20" height="20">&nbsp;+&nbsp;' + getCityCulture(city) + '</td></tr></tbody></table>'
+    var content = '<h3 class="center"><img src="' + localStorage.tileset + '/elements/city.png" width="25" height="25">&nbsp;&nbsp;' + city.name + '&nbsp;&nbsp;&nbsp;<em>(Population ' + city.population + ')</em></h3><table class="w100"><tbody>'
+                + '<tr><td class="w70"><table class="w100"><tbody><tr><td class="w33 center"><img src="' + localStorage.hudset + '/food.png" alt="Food" title="Food" width="20" height="20">&nbsp;&nbsp;' + getCityFood(city) + '</td><td class="w33 center"><img src="' + localStorage.hudset + '/prod.png" alt="Production" title="Production" width="20" height="20">&nbsp;&nbsp;' + cityproduction + '</td><td class="w33 center"><img src="' + localStorage.hudset + '/commerce.png" alt="Commerce" title="Commerce" width="20" height="20">&nbsp;&nbsp;' + getCityCommerce(city) + '</td></tr></tbody></table>'
+                + '<br/><table class="w100"><tbody><tr><td class="w33 center"><strong>Growth:</strong> ' + btext + ' (' + city.growth + '/' + step + ')</td><td class="w33 center"><img src="' + localStorage.hudset + '/research.png" alt="Science" title="Science" width="30" height="30">&nbsp;+&nbsp;' + getCityScience(city) + '</td><td class="w33 center"><img src="' + localStorage.hudset + '/culture.png" alt="Culture" title="Culture" width="20" height="20">&nbsp;+&nbsp;' + getCityCulture(city) + '</td></tr></tbody></table>'
                 + '<br/><br/><strong>Current Build:</strong> ' + city.build.name + ' (' + Math.ceil(city.build.cost/cityproduction) + ' Turns)&nbsp;&nbsp;&nbsp;<button id="changebuildBtn" class="gradient button w33">Change Build</button></td>'
                 + '<td class="w30" style="border-style: solid"><h4 class="center">Buildings</h4>' + list + '</td></tr></tbody></table>';
 
@@ -693,7 +705,7 @@ function showResearchManagement() {
         }
     }
 
-    var content = '<h3 class="center"><img src="images/hud/' + localStorage.hudset + '/research.png" alt="Gold" title="Gold" width="25" height="25">&nbsp;&nbsp;Technology Research</h3>';
+    var content = '<h3 class="center"><img src="' + localStorage.hudset + '/research.png" alt="Gold" title="Gold" width="25" height="25">&nbsp;&nbsp;Technology Research</h3>';
     if (map.players[0].research.tech !== "") {
         var current = getTechProdCost(player.research.tech);
         var status = current - player.research.cost;
@@ -734,7 +746,7 @@ function setResearch(techname) {
 function showSocietyManagement() {
     closePopup();
 
-    var content = '<h3 class="center"><img src="images/hud/' + localStorage.hudset + '/society.png" alt="Gold" title="Gold" width="25" height="25">&nbsp;&nbsp;Society</h3>';
+    var content = '<h3 class="center"><img src="' + localStorage.hudset + '/society.png" alt="Gold" title="Gold" width="25" height="25">&nbsp;&nbsp;Society</h3>';
     content += '<strong>Current Society:</strong> ' + map.players[0].society;
     content += '<h4 class="center">Available Societies</h4>';
 
@@ -747,11 +759,11 @@ function showEmpireOverview() {
 
     var player = map.players[0];
 
-    var content = '<h3 class="center"><img src="images/hud/' + localStorage.hudset + '/empire.png" alt="Gold" title="Gold" width="25" height="25">&nbsp;&nbsp;Empire Overview</h3><h4 class="center"><span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + player.color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + player.name + ' (' + player.civilization + ')</h4>';
+    var content = '<h3 class="center"><img src="' + localStorage.hudset + '/empire.png" alt="Gold" title="Gold" width="25" height="25">&nbsp;&nbsp;Empire Overview</h3><h4 class="center"><span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + player.color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + player.name + ' (' + player.civilization + ')</h4>';
     content += '<table class="w100"><tbody><tr><td class="w33 center"><strong>Points:</strong> ' + player.points;
-    content += '</td><td class="w33 center"><img src="images/hud/' + localStorage.hudset + '/gold.png" alt="Gold" title="Gold" width="20" height="20">&nbsp;&nbsp;' + player.gold;
-    content += '</td><td class="w33 center"><img src="images/hud/' + localStorage.hudset + '/culture.png" alt="Culture" title="Culture" width="20" height="20">&nbsp;&nbsp;' + player.culture;
-    content += '</td></tr></tbody></table><h3 class="center"><img src="images/hud/' + localStorage.hudset + '/diplomacy.png" alt="Gold" title="Gold" width="25" height="25">&nbsp;&nbsp;Diplomacy</h3>';
+    content += '</td><td class="w33 center"><img src="' + localStorage.hudset + '/gold.png" alt="Gold" title="Gold" width="20" height="20">&nbsp;&nbsp;' + player.gold;
+    content += '</td><td class="w33 center"><img src="' + localStorage.hudset + '/culture.png" alt="Culture" title="Culture" width="20" height="20">&nbsp;&nbsp;' + player.culture;
+    content += '</td></tr></tbody></table><h3 class="center"><img src="' + localStorage.hudset + '/diplomacy.png" alt="Gold" title="Gold" width="25" height="25">&nbsp;&nbsp;Diplomacy</h3>';
 
     for (var i = 1, len = map.players.length; i < len; i++) {
         content += '<span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + map.players[i].color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + map.players[i].name + ' (' + map.players[i].civilization + ')<br/><br/>';

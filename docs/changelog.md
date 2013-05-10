@@ -2,6 +2,12 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 10/05/2013 (Version 0.3.0)
+
+* Tagged version 0.3.0
+* Fix messages callback behaviour
+* Updated manual.txt
+
 ### Update 09/05/2013
 
 * Add oasis

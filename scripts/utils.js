@@ -45,10 +45,10 @@ function closeActionbar() {
 
 // MAIN MENU
 function mainMenu() {
-    var content = '<br/><br/><br/><button class="gradient button menubutton" id="saveBtn" title="Save Game" alt="Save Game"><img src="images/hud/' + localStorage.hudset + '/save.png" class="buttonimage"> Save Game</button>'
-                + '<br/><button class="gradient button menubutton" id="loadBtn" title="Load Game" alt="Load Game"><img src="images/hud/' + localStorage.hudset + '/load.png" class="buttonimage"> Load Game</button>'
-                + '<br/><button class="gradient button menubutton" id="manualBtn" title="Instructions Manual" alt="Instructions Manual"><img src="images/hud/' + localStorage.hudset + '/manual.png" class="buttonimage"> Manual</button>'
-                + '<br/><button class="gradient button menubutton" id="exitBtn" title="Exit Game" alt="Exit Game"><img src="images/hud/' + localStorage.hudset + '/exit.png" class="buttonimage"> Exit Game</button>';
+    var content = '<br/><br/><br/><button class="gradient button menubutton" id="saveBtn" title="Save Game" alt="Save Game"><img src="' + localStorage.hudset + '/save.png" class="buttonimage"> Save Game</button>'
+                + '<br/><button class="gradient button menubutton" id="loadBtn" title="Load Game" alt="Load Game"><img src="' + localStorage.hudset + '/load.png" class="buttonimage"> Load Game</button>'
+                + '<br/><button class="gradient button menubutton" id="manualBtn" title="Instructions Manual" alt="Instructions Manual"><img src="' + localStorage.hudset + '/manual.png" class="buttonimage"> Manual</button>'
+                + '<br/><button class="gradient button menubutton" id="exitBtn" title="Exit Game" alt="Exit Game"><img src="' + localStorage.hudset + '/exit.png" class="buttonimage"> Exit Game</button>';
     $('#popupcontent').html(content);
     $("#saveBtn").click(function () { saveGame(); });
     $("#loadBtn").click(function () { loadGame(); });

@@ -37,25 +37,25 @@ As a civilization nears one of the above mentioned victory conditions, all other
 ## The Map
 The map is the playground of the game. Each tile can be of one of these types:
 
-Tile     | Food  | Production | Commerce  | Movement | Modifiers
--------- | :---: | :--------: | :-------: | :------: | :---:
-Grass    | 2     | -          | -         | -        | -
-Hill     | 1     | 1          | -         | +1       | +50% Atk/Def
-Mountain | -     | 2          | -         | +2       | +100% Atk/Def
-Water    | 1     | -          | 2         | -        | -
-Desert   | -     | -          | -         | -        | -
-Snow     | -     | -          | -         | -        | -50% Atk/Def
+Tile     | Food  | Production | Commerce  | Movement | Modifiers  
+-------- | :---: | :--------: | :-------: | :------: | :---:  
+Grass    | 2     | -          | -         | -        | -  
+Hill     | 1     | 1          | -         | +1       | +50% Atk/Def  
+Mountain | -     | 2          | -         | +2       | +100% Atk/Def  
+Water    | 1     | -          | 2         | -        | -  
+Desert   | -     | -          | -         | -        | -  
+Snow     | -     | -          | -         | -        | -50% Atk/Def  
 
 Some tiles also can host a nature element, that modify the values of the tile
 
-Nature         | Food  | Production | Commerce  | Modifiers
--------------- | :---: | :--------: | :-------: | :---:
-Forest         | -     | +1         | -         | +50% Atk/Def
-Jungle         | +1    | -1         | -         | +50% Atk/Def
-Marsh          | -1    | -          | -         | -50% Atk/Def
-Oasis          | +3    | -          | +2        | -
-River          | -     | -          | +1        | -
-Natural Wonder | -     | +2         | +3        | -
+Nature         | Food  | Production | Commerce  | Modifiers  
+-------------- | :---: | :--------: | :-------: | :---:  
+Forest         | -     | +1         | -         | +50% Atk/Def  
+Jungle         | +1    | -1         | -         | +50% Atk/Def  
+Marsh          | -1    | -          | -         | -50% Atk/Def  
+Oasis          | +3    | -          | +2        | -  
+River          | -     | -          | +1        | -  
+Natural Wonder | -     | +2         | +3        | -  
 
 ## Units
 Each unit have 5 stats:
@@ -86,28 +86,28 @@ A fight is resolved this way:
 settling instructions
 
 ### Unit List
-Unit             | Atk   | Def   | Mov   | Initial Life | Requirements
----------------- | :---: | :---: | :---: | :----------: | ---
-Settler          | 0     | 0     | 2     | 1            | -
-Warrior          | 1     | 1     | 1     | 1            | -
-Archer           | 1     | 2     | 1     | 1            | Archery
-Galley           | 1     | 1     | 2     | 1            | Sailing
+Unit             | Atk   | Def   | Mov   | Initial Life | Requirements  
+---------------- | :---: | :---: | :---: | :----------: | ---  
+Settler          | 0     | 0     | 2     | 1            | -  
+Warrior          | 1     | 1     | 1     | 1            | -  
+Archer           | 1     | 2     | 1     | 1            | Archery  
+Galley           | 1     | 1     | 2     | 1            | Sailing  
 
 ## Cities
 cities about
 each turn will be consumed 2 food per citizen. Eventual remaining will be used to increase population. If negative, population may decrease.
 
 ### Buildings
-Building         | Cost  | Tech Required  | Building Required | Effect
----------------- | :---: | :------------: | :---------------: | :---
-Barracks         | 40    | Bronze Working | -                 | Units produced are automatically Veterans (+5 exp)
-Granary          | 40    | Agriculture    | -                 | +3 Food
-Library          | 40    | Writing        | -                 | +1 Science each 2 population
-Monument         | 20    | Mysticism      | -                 | +2 Culture
-Temple           | 40    | Theology       | Monument          | +1 Culture each 2 population
-University       | 80    | Education      | Library           | +1 Science each 2 population (combinable with the Library)
-Aqueduct         | 100   | Engineering    | -                 | +50% Food
-Market           | 100   | Currency       | -                 | +25% Gold
+Building         | Cost  | Tech Required  | Building Required | Effect  
+---------------- | :---: | :------------: | :---------------: | :---  
+Barracks         | 40    | Bronze Working | -                 | Units produced are automatically Veterans (+5 exp)  
+Granary          | 40    | Agriculture    | -                 | +3 Food  
+Library          | 40    | Writing        | -                 | +1 Science each 2 population  
+Monument         | 20    | Mysticism      | -                 | +2 Culture  
+Temple           | 40    | Theology       | Monument          | +1 Culture each 2 population  
+University       | 80    | Education      | Library           | +1 Science each 2 population (combinable with the Library)  
+Aqueduct         | 100   | Engineering    | -                 | +50% Food  
+Market           | 100   | Currency       | -                 | +25% Gold  
 
 Harbor | ? | ? | - | +1 food in sea tiles
 Workshop | ? | ? | - | Provides +2 production from hills
@@ -179,76 +179,76 @@ A city produce science equal to the half of its commerce production, plus eventu
 If no research is in queue at the end of the turn, the science produced is converted to gold.
 
 ### Technologies
-Technology         | Cost  | Technologies Required           | Advantages Unlocked
------------------- | :---: | ------------------------------- | -------------------
-Mysticism          | 20    | -                               | Unlock Monument
-Writing            | 20    | -                               | Unlock Library
-Agriculture        | 20    | -                               | Unlock Granary
-Hunting            | 20    | -                               | -
-Fishing            | 20    | -                               | -
-Theology           | 40    | Mysticism, Writing              | Unlock Theocracy, Temple
-Mathematics        | 40    | Writing, Wheel                  | -
-Wheel              | 40    | Agriculture                     | -
-Mining             | 40    | Agriculture                     | -
-Breeding           | 40    | Agriculture, Hunting            | -
-Archery            | 40    | Hunting                         | Unlock Archer
-Sailing            | 40    | Fishing                         | Unlock Galley
-Divine Right       | 80    | Theology                        | Unlock Monarchy
-Education          | 80    | Theology, Mathematics           | Unlock Republic, University
-Currency           | 80    | Mathematics                     | -
-Masonry            | 80    | Mining                          | -
-Bronze Working     | 80    | Mining                          | Unlock Barracks
-Horse Riding       | 80    | Breeding                        | -
-Optics             | 80    | Archery, Sailing                | -
-Art                | 160   | Divine Right, Education         | -
-Literature         | 160   | Education                       | -
-Engineering        | 160   | Mathematics, Masonry            | Unlock Aqueduct
-Iron Working       | 160   | Bronze Working                  | -
-Code of Chivalry   | 160   | Horse Riding, Currency          | -
-Astronomy          | 160   | Optics                          | -
-Music              | 320   | Art, Literature                 | -
-Banking            | 320   | Divine Right, Currency          | -
-Mechanics          | 320   | Engineering                     | -
-Physics            | 320   | Engineering                     | -
-Metal Casting      | 320   | Iron Working                    | -
-Scientific Theory  | 640   | Astronomy, Physics              | -
-Economy            | 640   | Banking                         | Unlock Nationalism
-Steel              | 640   | Metal Casting                   | -
-Steam Energy       | 1024  | Code of Chivalry, Steel         | Unlock Communism
-Gunpowder          | 1024  | Physics, Steel                  | -
-Rifling            | 2048  | Mechanics, Gunpowder            | -
-Chemistry          | 2048  | Gunpowder                       | -
-Independent Pieces | 2048  | Steam Energy                    | -
-Electricity        | 2048  | Steam Energy, Scientific Theory | -
-Radio              | 4096  | Music, Electricity              | -
-Combustion         | 4096  | Rifling, Chemistry              | -
-Plastic            | 4096  | Chemistry, Electricity          | -
-Flight             | 4096  | Independent Pieces              | -
-Mass Media         | 8192  | Radio                           | Unlock Fascism
-Electronics        | 8192  | Radio                           | -
-Rocketry           | 8192  | Flight, Combustion              | -
-Atomic Theory      | 8192  | Combustion                      | -
-Computers          | 16384 | Electronics                     | Unlock Police State
-Nuclear Fission    | 16384 | Atomic Theory, Rocketry         | -
-Globalization      | 32768 | Economy, Computers              | -
-Robotics           | 32768 | Computers                       | -
-Particle Physics   | 65536 | Atomic Theory, Robotics         | -
-Nanotechnology     | 131072 | Particle Physics, Plastic       | -
-Future Technology  | 262144 | Nanotechnology, Nuclear Fission | -
+Technology         | Cost  | Technologies Required           | Advantages Unlocked  
+------------------ | :---: | ------------------------------- | -------------------  
+Mysticism          | 20    | -                               | Unlock Monument  
+Writing            | 20    | -                               | Unlock Library  
+Agriculture        | 20    | -                               | Unlock Granary  
+Hunting            | 20    | -                               | -  
+Fishing            | 20    | -                               | -  
+Theology           | 40    | Mysticism, Writing              | Unlock Theocracy, Temple  
+Mathematics        | 40    | Writing, Wheel                  | -  
+Wheel              | 40    | Agriculture                     | -  
+Mining             | 40    | Agriculture                     | -  
+Breeding           | 40    | Agriculture, Hunting            | -  
+Archery            | 40    | Hunting                         | Unlock Archer  
+Sailing            | 40    | Fishing                         | Unlock Galley  
+Divine Right       | 80    | Theology                        | Unlock Monarchy  
+Education          | 80    | Theology, Mathematics           | Unlock Republic, University  
+Currency           | 80    | Mathematics                     | -  
+Masonry            | 80    | Mining                          | -  
+Bronze Working     | 80    | Mining                          | Unlock Barracks  
+Horse Riding       | 80    | Breeding                        | -  
+Optics             | 80    | Archery, Sailing                | -  
+Art                | 160   | Divine Right, Education         | -  
+Literature         | 160   | Education                       | -  
+Engineering        | 160   | Mathematics, Masonry            | Unlock Aqueduct  
+Iron Working       | 160   | Bronze Working                  | -  
+Code of Chivalry   | 160   | Horse Riding, Currency          | -  
+Astronomy          | 160   | Optics                          | -  
+Music              | 320   | Art, Literature                 | -  
+Banking            | 320   | Divine Right, Currency          | -  
+Mechanics          | 320   | Engineering                     | -  
+Physics            | 320   | Engineering                     | -  
+Metal Casting      | 320   | Iron Working                    | -  
+Scientific Theory  | 640   | Astronomy, Physics              | -  
+Economy            | 640   | Banking                         | Unlock Nationalism  
+Steel              | 640   | Metal Casting                   | -  
+Steam Energy       | 1024  | Code of Chivalry, Steel         | Unlock Communism  
+Gunpowder          | 1024  | Physics, Steel                  | -  
+Rifling            | 2048  | Mechanics, Gunpowder            | -  
+Chemistry          | 2048  | Gunpowder                       | -  
+Independent Pieces | 2048  | Steam Energy                    | -  
+Electricity        | 2048  | Steam Energy, Scientific Theory | -  
+Radio              | 4096  | Music, Electricity              | -  
+Combustion         | 4096  | Rifling, Chemistry              | -  
+Plastic            | 4096  | Chemistry, Electricity          | -  
+Flight             | 4096  | Independent Pieces              | -  
+Mass Media         | 8192  | Radio                           | Unlock Fascism  
+Electronics        | 8192  | Radio                           | -  
+Rocketry           | 8192  | Flight, Combustion              | -  
+Atomic Theory      | 8192  | Combustion                      | -  
+Computers          | 16384 | Electronics                     | Unlock Police State  
+Nuclear Fission    | 16384 | Atomic Theory, Rocketry         | -  
+Globalization      | 32768 | Economy, Computers              | -  
+Robotics           | 32768 | Computers                       | -  
+Particle Physics   | 65536 | Atomic Theory, Robotics         | -  
+Nanotechnology     | 131072 | Particle Physics, Plastic       | -  
+Future Technology  | 262144 | Nanotechnology, Nuclear Fission | -  
 
 ## Society
 Each civilization have a society system
 
-Society      | Requirements | Effects
------------- | ------------ | ---
-Anarchy      | -            | No production, commerce, gold, science or food.
-Dispotism    | -            | No special effects. Available on the beginning of the game.
-Monarchy     | Divine Right | -
-Republic     | Education    | -
-Teocracy     | Theology     | +XX% culture
-Democracy    | -            | +50% gold and +50% science but you can't declare war.
-Socialism    | -            | -
-Nationalism  | Economy      | -
-Communism    | Steam Energy | +XX% production
-Fascism      | Mass Media   | -
-Police State | Computers    | -
+Society      | Requirements | Effects  
+------------ | ------------ | ---  
+Anarchy      | -            | No production, commerce, gold, science or food.  
+Dispotism    | -            | No special effects. Available on the beginning of the game.  
+Monarchy     | Divine Right | -  
+Republic     | Education    | -  
+Teocracy     | Theology     | +XX% culture  
+Democracy    | -            | +50% gold and +50% science but you can't declare war.  
+Socialism    | -            | -  
+Nationalism  | Economy      | -  
+Communism    | Steam Energy | +XX% production  
+Fascism      | Mass Media   | -  
+Police State | Computers    | -  

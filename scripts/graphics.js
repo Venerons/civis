@@ -23,20 +23,20 @@ window.addEventListener("load", function() {
 }, 0);
 
 function init() {
-	localStorage.tileset = "default";
-	localStorage.hudset = "default";
+	localStorage.tileset = "images/map/default";
+	localStorage.hudset = "images/hud/default";
 	
 	preloadImages();
 	loadMap();
 	keyboardMapping();
 
-	$("#focusnextbutton").html('<img src="images/hud/' + localStorage.hudset + '/focusnext.png" class="buttonimage">').click(function () { focusNext(); });
-	$("#endturnbutton").html('<img src="images/hud/' + localStorage.hudset + '/endturn.png" class="buttonimage">').click(function () { endTurn(); });
-	$("#empirebutton").html('<img src="images/hud/' + localStorage.hudset + '/empire.png" class="buttonimage">').click(function () { showEmpireOverview(); });
-	$("#researchbutton").html('<img src="images/hud/' + localStorage.hudset + '/research.png" class="buttonimage">').click(function () { showResearchManagement(); });
-	$("#societybutton").html('<img src="images/hud/' + localStorage.hudset + '/society.png" class="buttonimage">').click(function () { showSocietyManagement(); });
-	$("#mainmenubutton").html('<img src="images/hud/' + localStorage.hudset + '/menu.png" class="buttonimage">').click(function () { mainMenu(); });
-	$("#closeBtn").html('<img src="images/hud/' + localStorage.hudset + '/close.png" width="20">').click(function () { closePopup(); });
+	$("#focusnextbutton").html('<img src="' + localStorage.hudset + '/focusnext.png" class="buttonimage">').click(function () { focusNext(); });
+	$("#endturnbutton").html('<img src="' + localStorage.hudset + '/endturn.png" class="buttonimage">').click(function () { endTurn(); });
+	$("#empirebutton").html('<img src="' + localStorage.hudset + '/empire.png" class="buttonimage">').click(function () { showEmpireOverview(); });
+	$("#researchbutton").html('<img src="' + localStorage.hudset + '/research.png" class="buttonimage">').click(function () { showResearchManagement(); });
+	$("#societybutton").html('<img src="' + localStorage.hudset + '/society.png" class="buttonimage">').click(function () { showSocietyManagement(); });
+	$("#mainmenubutton").html('<img src="' + localStorage.hudset + '/menu.png" class="buttonimage">').click(function () { mainMenu(); });
+	$("#closeBtn").html('<img src="' + localStorage.hudset + '/close.png" width="20">').click(function () { closePopup(); });
 
 	canvas = document.getElementById("mapcanvas");
 	canvas.width = $(window).width() - 10;
@@ -91,22 +91,22 @@ function loadMap() {
 }
 
 function preloadImages () {
-	imageCache.upImg = new Image().src = "images/hud/" + localStorage.hudset + "/up.png";
-	imageCache.downImg = new Image().src = "images/hud/" + localStorage.hudset + "/down.png";
-	imageCache.leftImg = new Image().src = "images/hud/" + localStorage.hudset + "/left.png";
-	imageCache.rightImg = new Image().src = "images/hud/" + localStorage.hudset + "/right.png";
+	imageCache.upImg = new Image().src = localStorage.hudset + "/up.png";
+	imageCache.downImg = new Image().src = localStorage.hudset + "/down.png";
+	imageCache.leftImg = new Image().src = localStorage.hudset + "/left.png";
+	imageCache.rightImg = new Image().src = localStorage.hudset + "/right.png";
 
-	imageCache.desert = new Image().src = "images/map/" + localStorage.tileset + "/tiles/desert.jpg";
-	imageCache.fog = new Image().src = "images/map/" + localStorage.tileset + "/tiles/fog.jpg";
-	imageCache.grass = new Image().src = "images/map/" + localStorage.tileset + "/tiles/grass.jpg";
-	imageCache.hill = new Image().src = "images/map/" + localStorage.tileset + "/tiles/hill.jpg";
-	imageCache.mountain = new Image().src = "images/map/" + localStorage.tileset + "/tiles/mountain.jpg";
-	imageCache.snow = new Image().src = "images/map/" + localStorage.tileset + "/tiles/snow.jpg";
-	imageCache.water = new Image().src = "images/map/" + localStorage.tileset + "/tiles/water.jpg";
+	imageCache.desert = new Image().src = localStorage.tileset + "/tiles/desert.jpg";
+	imageCache.fog = new Image().src = localStorage.tileset + "/tiles/fog.jpg";
+	imageCache.grass = new Image().src = localStorage.tileset + "/tiles/grass.jpg";
+	imageCache.hill = new Image().src = localStorage.tileset + "/tiles/hill.jpg";
+	imageCache.mountain = new Image().src = localStorage.tileset + "/tiles/mountain.jpg";
+	imageCache.snow = new Image().src = localStorage.tileset + "/tiles/snow.jpg";
+	imageCache.water = new Image().src = localStorage.tileset + "/tiles/water.jpg";
 
-	imageCache.forest = new Image().src = "images/map/" + localStorage.tileset + "/elements/forest.png";
-	imageCache.oasis = new Image().src = "images/map/" + localStorage.tileset + "/elements/oasis.png";
-	imageCache.city = new Image().src = "images/map/" + localStorage.tileset + "/elements/city.png";
+	imageCache.forest = new Image().src = localStorage.tileset + "/elements/forest.png";
+	imageCache.oasis = new Image().src = localStorage.tileset + "/elements/oasis.png";
+	imageCache.city = new Image().src = localStorage.tileset + "/elements/city.png";
 }
 
 function toggleLoadingMessage () {
@@ -131,7 +131,7 @@ function renderMap() {
 	mapelements = [];
 
     // STATS SETTING
-    document.getElementById('stats').innerHTML = '<img src="images/hud/' + localStorage.hudset + '/stats.png" class="buttonimage" alt="Turn" title="Turn"> ' + map.game.turn + ' &nbsp;<img src="images/hud/' + localStorage.hudset + '/time.png" class="buttonimage" alt="Year" title="Year"> ' + map.game.year;
+    document.getElementById('stats').innerHTML = '<img src="' + localStorage.hudset + '/stats.png" class="buttonimage" alt="Turn" title="Turn"> ' + map.game.turn + ' &nbsp;<img src="' + localStorage.hudset + '/time.png" class="buttonimage" alt="Year" title="Year"> ' + map.game.year;
 
     // TILES SETTING
     discoverTiles();
@@ -306,7 +306,7 @@ function coordinate(index) {
 
 // ADD A UNIT TO THE MAP
 function addUnitToMap(unit) {
-	var element = new Image().src = 'images/map/' + localStorage.tileset + '/units/' + unit.type + ".png";
+	var element = new Image().src = localStorage.tileset + '/units/' + unit.type + ".png";
 	var unitImage = new createjs.Bitmap(element).setTransform(coordinate(unit.x) + camera.x, coordinate(unit.y) + camera.y, SCALE, SCALE);
 	
 	var hit = new createjs.Shape();

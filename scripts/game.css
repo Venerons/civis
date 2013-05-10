@@ -7,17 +7,17 @@ html {
 body {
 	margin: 0;
 	background-color: rgb(34, 34, 34);
-	background-image: url("../images/hud/noise.png");
+	background-image: url("../images/noise.png");
 }
 
 .gradient {
 	background: #f1e767; Old browsers */
-	background-image: url("../images/hud/noise.png"), -moz-linear-gradient(top,  #f1e767 0%, #feb645 100%); /* FF3.6+ */
-	background-image: url("../images/hud/noise.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f1e767), color-stop(100%,#feb645)); /* Chrome,Safari4+ */
-	background-image: url("../images/hud/noise.png"), -webkit-linear-gradient(top,  #f1e767 0%,#feb645 100%); /* Chrome10+,Safari5.1+ */
-	background-image: url("../images/hud/noise.png"), -o-linear-gradient(top,  #f1e767 0%,#feb645 100%); /* Opera 11.10+ */
-	background-image: url("../images/hud/noise.png"), -ms-linear-gradient(top,  #f1e767 0%,#feb645 100%); /* IE10+ */
-	background-image: url("../images/hud/noise.png"), linear-gradient(to bottom,  #f1e767 0%,#feb645 100%); /* W3C */
+	background-image: url("../images/noise.png"), -moz-linear-gradient(top,  #f1e767 0%, #feb645 100%); /* FF3.6+ */
+	background-image: url("../images/noise.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f1e767), color-stop(100%,#feb645)); /* Chrome,Safari4+ */
+	background-image: url("../images/noise.png"), -webkit-linear-gradient(top,  #f1e767 0%,#feb645 100%); /* Chrome10+,Safari5.1+ */
+	background-image: url("../images/noise.png"), -o-linear-gradient(top,  #f1e767 0%,#feb645 100%); /* Opera 11.10+ */
+	background-image: url("../images/noise.png"), -ms-linear-gradient(top,  #f1e767 0%,#feb645 100%); /* IE10+ */
+	background-image: url("../images/noise.png"), linear-gradient(to bottom,  #f1e767 0%,#feb645 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645',GradientType=0 ); /* IE6-9 */
 }
 
