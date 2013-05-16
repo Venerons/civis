@@ -1,5 +1,5 @@
 // Copyright (c) 2013 Daniele Veneroni. Released under MIT License
-//"use strict";
+"use strict";
 
 var stage;
 var canvas;
@@ -98,13 +98,16 @@ function preloadImages () {
 
 	imageCache.desert = new Image().src = localStorage.tileset + "/tiles/desert.jpg";
 	imageCache.fog = new Image().src = localStorage.tileset + "/tiles/fog.jpg";
+	imageCache.plain = new Image().src = localStorage.tileset + "/tiles/plain.jpg";
 	imageCache.grass = new Image().src = localStorage.tileset + "/tiles/grass.jpg";
+	imageCache.tundra = new Image().src = localStorage.tileset + "/tiles/tundra.jpg";
 	imageCache.hill = new Image().src = localStorage.tileset + "/tiles/hill.jpg";
 	imageCache.mountain = new Image().src = localStorage.tileset + "/tiles/mountain.jpg";
 	imageCache.snow = new Image().src = localStorage.tileset + "/tiles/snow.jpg";
 	imageCache.water = new Image().src = localStorage.tileset + "/tiles/water.jpg";
 
 	imageCache.forest = new Image().src = localStorage.tileset + "/elements/forest.png";
+	imageCache.jungle = new Image().src = localStorage.tileset + "/elements/jungle.png";
 	imageCache.oasis = new Image().src = localStorage.tileset + "/elements/oasis.png";
 	imageCache.city = new Image().src = localStorage.tileset + "/elements/city.png";
 }
@@ -341,6 +344,8 @@ function addTileToMap(tile) {
 	} else {
 		if (tile.type === "desert") { elementimg = imageCache.desert; }
 		else if (tile.type === "grass") { elementimg = imageCache.grass; }
+		else if (tile.type === "plain") { elementimg = imageCache.plain; }
+		else if (tile.type === "tundra") { elementimg = imageCache.tundra; }
 		else if (tile.type === "hill") { elementimg = imageCache.hill; }
 		else if (tile.type === "mountain") { elementimg = imageCache.mountain; }
 		else if (tile.type === "snow") { elementimg = imageCache.snow; }
@@ -407,6 +412,7 @@ function addCityToMap(city) {
 function addElementToMap(element, x, y) {
 	var elementimg;
 	if (element === "forest") { elementimg = imageCache.forest; }
+	else if (element === "jungle") { elementimg = imageCache.jungle; }
 	else if (element === "oasis") { elementimg = imageCache.oasis; }
 
 	var elementBmp = new createjs.Bitmap(elementimg).setTransform(coordinate(x) - 10 + camera.x, coordinate(y) - 10 + camera.y, SCALE, SCALE);

@@ -1,5 +1,5 @@
 // Copyright (c) 2013 Daniele Veneroni. Released under MIT License
-//"use strict";
+"use strict";
 
 // GET URL VARS
 function getUrlVars() {
@@ -123,6 +123,7 @@ function getAtk(unit) {
     if (tileType === "hill") { unitAtk += Math.round(baseAtk / 2); } // +50% Atk/Def calcolata sulla base
     if (tileType === "mountain") { unitAtk += baseAtk; } // +100% Atk/Def calcolata sulla base
     if (tileType === "snow") { unitAtk -= Math.round(baseAtk / 2); } // -50% Atk/Def calcolata sulla base
+    if (tileNature === "fallout") { unitAtk -= Math.round(baseAtk / 2); } // -50% Atk/Def calcolata sulla base
     if (tileNature === "forest") { unitAtk += Math.round(baseAtk / 2); } // +50% Atk/Def calcolata sulla base
     if (tileNature === "jungle") { unitAtk += Math.round(baseAtk / 2); } // +50% Atk/Def calcolata sulla base
     if (tileNature === "marsh") { unitAtk -= Math.round(baseAtk / 2); } // -50% Atk/Def calcolata sulla base
@@ -145,6 +146,7 @@ function getDef(unit) {
     if (tileType === "hill") { unitDef += Math.round(baseDef / 2); } // +50% Atk/Def calcolata sulla base
     if (tileType === "mountain") { unitDef += baseDef; } // +100% Atk/Def calcolata sulla base
     if (tileType === "snow") { unitDef -= Math.round(baseDef / 2); } // -50% Atk/Def calcolata sulla base
+    if (tileNature === "fallout") { unitDef -= Math.round(baseDef / 2); } // -50% Atk/Def calcolata sulla base
     if (tileNature === "forest") { unitDef += Math.round(baseDef / 2); } // +50% Atk/Def calcolata sulla base
     if (tileNature === "jungle") { unitDef += Math.round(baseDef / 2); } // +50% Atk/Def calcolata sulla base
     if (tileNature === "marsh") { unitDef -= Math.round(baseDef / 2); } // -50% Atk/Def calcolata sulla base
@@ -349,12 +351,17 @@ function getFoodFromTile(tile) {
     var food = 0;
     
     if (tile.type === "grass") { food = 2; }
-    else if (tile.type === "hill") { food = 1; }
+    else if (tile.type === "plain") { food = 1; }
     else if (tile.type === "water") { food = 1; }
+    else if (tile.type === "tundra") { food = 1; }
 
     if (tile.nature === "jungle") { food++; }
     else if (tile.nature === "marsh") { food--; }
+    else if (tile.nature === "forest") { food--; }
+    else if (tile.nature === "fallout") { food -= 3; }
     else if (tile.nature === "oasis") { food += 3; }
+
+    if (food < 0) { food = 0; }
 
     return food;
 }
@@ -362,26 +369,34 @@ function getFoodFromTile(tile) {
 function getProdFromTile(tile) {
     var prod = 0;
     
-    if (tile.type === "hill") { prod = 1; }
-    else if (tile.type === "mountain") { prod = 2; }
+    if (tile.type === "plain") { prod = 1; }
+    else if (tile.type === "hill") { prod = 2; }
+    else if (tile.type === "mountain") { prod = 1; }
 
     if (tile.nature === "forest") { prod++; }
     else if (tile.nature === "jungle") { prod--; }
+    else if (tile.nature === "fallout") { prod -= 3; }
+    else if (tile.nature === "atoll") { prod++; }
     else if (tile.nature === "natural wonder") { prod += 2; }
+
+    if (prod < 0) { prod = 0; }
 
     return prod;
 }
 
-function getCommerceFromTile(tile) {
-    var commerce = 0;
+function getGoldFromTile(tile) {
+    var gold = 0;
 
-    if (tile.type === "water") { commerce = 2; }
+    if (tile.type === "water") { gold = 1; }
+    else if (tile.type === "mountain") { gold = 1; }
 
-    if (tile.nature === "oasis") { commerce += 2; }
-    else if (tile.nature === "river") { commerce++; }
-    else if (tile.nature === "natural wonder") { commerce += 3; }
+    if (tile.nature === "oasis") { gold += 1; }
+    else if (tile.nature === "river") { gold++; }
+    else if (tile.nature === "atoll") { gold--; }
+    else if (tile.nature === "fallout") { gold -= 3; }
+    else if (tile.nature === "natural wonder") { gold += 3; }
 
-    return commerce;
+    return gold;
 }
 
 function getCityFood(city) {
@@ -404,24 +419,25 @@ function getCityProd(city) {
     return prod;
 }
 
-function getCityCommerce(city) {
-    var commerce = 0;
+function getCityGold(city) {
+    var basegold = 0;
     var tiles = getNearTiles(city.x, city.y);
     for (var j = 0, len = tiles.length; j < len; j++) {
-        commerce += getCommerceFromTile(tiles[j]);
+        basegold += getGoldFromTile(tiles[j]);
     }
-    return commerce;
-}
 
-function getCityGold(city) {
-    var basegold = Math.floor(getCityCommerce(city) / 2); // base gold = commerce / 2
     var gold = basegold;
     if (cityHaveBuilding(city, "Market")) { gold += Math.round(basegold / 4); } // +25%
+
+    for (var i = 0, len = city.buildings.length; i < len; i++) {
+        gold -= buildingsDB[city.buildings[i]].maintenance;
+    }
+
     return gold;
 }
 
 function getCityScience(city) {
-    var science = Math.floor(getCityCommerce(city) / 2); // base science = commerce / 2
+    var science = city.population; // base science = population
     if (cityHaveBuilding(city, "Library")) { science += Math.round(city.population / 2); }
     if (cityHaveBuilding(city, "University")) { science += Math.round(city.population / 2); }
     return science;

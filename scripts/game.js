@@ -1,5 +1,5 @@
 // Copyright (c) 2013 Daniele Veneroni. Released under MIT License
-//"use strict";
+"use strict";
 
 // GLOBAL DECLARATION OF THE MAP
 var map;
@@ -27,9 +27,9 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
 
     // TILES TYPE BY SECTOR
     var poles = ["water", "water", "snow"]; // 10 % - 0-10 & 90-100
-    var cold = ["snow", "snow", "grass", "grass", "mountain", "water", "water"]; // 10% - 11-20 & 80-89
-    var middle = ["grass", "grass", "mountain", "hill", "hill", "water", "water"]; // 21-40 & 60-79
-    var center = ["desert", "desert", "grass", "hill", "mountain", "water", "water"]; // 20% - 41-59
+    var cold = ["tundra", "tundra", "plain", "mountain", "water", "water"]; // 10% - 11-20 & 80-89
+    var middle = ["grass", "grass", "plain", "plain", "mountain", "hill", "hill", "water", "water", "water"]; // 21-40 & 60-79
+    var center = ["desert", "desert", "plain", "hill", "mountain", "water", "water"]; // 20% - 41-59
 
     var nature = ["none", "forest"];
 
@@ -116,8 +116,10 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
             
 
             // add eventual nature element
-            if (t.type === "grass" || t.type === "hill") {
+            if (t.type === "grass") {
                 if (Math.floor(Math.random() * 100 + 1) <= 30) { t.nature = "forest"; } // 30 % forest
+            } else if (t.type === "plain"){
+                if (Math.floor(Math.random() * 100 + 1) <= 30) { t.nature = "jungle"; } // 30 % jungle
             } else if (t.type === "desert"){
                 if (Math.floor(Math.random() * 100 + 1) <= 15) { t.nature = "oasis"; } // 15 % oasis
             } else {
@@ -300,7 +302,13 @@ function endTurn () {
             message.callback = makeCallback("camera", {"x": city.x, "y": city.y});
             notifications.push(message);
         }
+    }
 
+    // UNIT MAINTENANCE COST
+    for (var i = 0, len = map.units.length; i < len; i++) {
+        if (map.units[i].player === map.players[0].id) {
+            map.players[0].gold -= 1;
+        }
     }
 
     map.game.turn++;
@@ -437,9 +445,13 @@ function make_handler(selected, unit) {
         }
         
         // decrease movement based on the destination tile type
-        var tiletype = findTileByXY(unit.x, unit.y).type;
-        if (tiletype === "grass") { unit.active--; }
-        else if (tiletype === "hill") { unit.active -= 2; }
+        var tile = findTileByXY(unit.x, unit.y);
+        var tiletype = tile.type;
+        var tilenature = tile.nature;
+
+        if (tile.nature === "forest" || tile.nature === "jungle" || tile.nature === "marsh" || tile.nature === "fallout") { unit.active --; }
+        
+        if (tiletype === "hill") { unit.active -= 2; }
         else if (tiletype === "mountain") { unit.active -= 3; }
         else { unit.active--; }
 
@@ -632,10 +644,10 @@ function showCityManager(cityid) {
     }
 
     var content = '<h3 class="center"><img src="' + localStorage.tileset + '/elements/city.png" width="25" height="25">&nbsp;&nbsp;' + city.name + '&nbsp;&nbsp;&nbsp;<em>(Population ' + city.population + ')</em></h3><table class="w100"><tbody>'
-                + '<tr><td class="w70"><table class="w100"><tbody><tr><td class="w33 center"><img src="' + localStorage.hudset + '/food.png" alt="Food" title="Food" width="20" height="20">&nbsp;&nbsp;' + getCityFood(city) + '</td><td class="w33 center"><img src="' + localStorage.hudset + '/prod.png" alt="Production" title="Production" width="20" height="20">&nbsp;&nbsp;' + cityproduction + '</td><td class="w33 center"><img src="' + localStorage.hudset + '/commerce.png" alt="Commerce" title="Commerce" width="20" height="20">&nbsp;&nbsp;' + getCityCommerce(city) + '</td></tr></tbody></table>'
+                + '<tr><td class="w70"><table class="w100"><tbody><tr><td class="w33 center"><img src="' + localStorage.hudset + '/food.png" alt="Food" title="Food" width="20" height="20">&nbsp;&nbsp;' + getCityFood(city) + '</td><td class="w33 center"><img src="' + localStorage.hudset + '/prod.png" alt="Production" title="Production" width="20" height="20">&nbsp;&nbsp;' + cityproduction + '</td><td class="w33 center"><img src="' + localStorage.hudset + '/gold.png" alt="Gold" title="Gold" width="20" height="20">&nbsp;&nbsp;' + getCityGold(city) + '</td></tr></tbody></table>'
                 + '<br/><table class="w100"><tbody><tr><td class="w33 center"><strong>Growth:</strong> ' + btext + ' (' + city.growth + '/' + step + ')</td><td class="w33 center"><img src="' + localStorage.hudset + '/research.png" alt="Science" title="Science" width="30" height="30">&nbsp;+&nbsp;' + getCityScience(city) + '</td><td class="w33 center"><img src="' + localStorage.hudset + '/culture.png" alt="Culture" title="Culture" width="20" height="20">&nbsp;+&nbsp;' + getCityCulture(city) + '</td></tr></tbody></table>'
                 + '<br/><br/><strong>Current Build:</strong> ' + city.build.name + ' (' + Math.ceil(city.build.cost/cityproduction) + ' Turns)&nbsp;&nbsp;&nbsp;<button id="changebuildBtn" class="gradient button w33">Change Build</button></td>'
-                + '<td class="w30" style="border-style: solid"><h4 class="center">Buildings</h4>' + list + '</td></tr></tbody></table>';
+                + '<td class="w30" style="border-style: solid; border-width: 1px"><h4 class="center">Buildings</h4>' + list + '</td></tr></tbody></table>';
 
     $('#popupcontent').html(content);
 

@@ -1,5 +1,5 @@
 // Copyright (c) 2013 Daniele Veneroni. Released under MIT License
-//"use strict";
+"use strict";
 
 // UNITS DATABASE
 var unitsDB = {
@@ -55,49 +55,57 @@ var buildingsDB = {
         {
             "productioncost": 40,
             "techrequired": "Agriculture",
-            "buildingrequired": "none"
+            "buildingrequired": "none",
+            "maintenance": 1
         },
     "Barracks": // +5 exp to the unit created on that city
         {
             "productioncost": 40,
             "techrequired": "Bronze Working",
-            "buildingrequired": "none"
+            "buildingrequired": "none",
+            "maintenance": 1
         },
     "Library": // +1 science per 2 citizen (+ (popultation / 2) science)
         {
             "productioncost": 40,
             "techrequired": "Writing",
-            "buildingrequired": "none"
+            "buildingrequired": "none",
+            "maintenance": 1
         },
     "Monument": // +2 culture
         {
             "productioncost": 20,
             "techrequired": "Mysticism",
-            "buildingrequired": "none"
+            "buildingrequired": "none",
+            "maintenance": 1
         },
     "Temple": // +1 culture per 2 citizen (+ (popultation / 2) culture)
         {
             "productioncost": 40,
             "techrequired": "Theology",
-            "buildingrequired": "Monument"
+            "buildingrequired": "Monument",
+            "maintenance": 1
         },
     "University": // +1 science per 2 citizen (+ (popultation / 2) science)
         {
             "productioncost": 80,
             "techrequired": "Education",
-            "buildingrequired": "Library"
+            "buildingrequired": "Library",
+            "maintenance": 1
         },
     "Aqueduct": // +50% food
         {
             "productioncost": 100,
             "techrequired": "Engineering",
-            "buildingrequired": "none"
+            "buildingrequired": "none",
+            "maintenance": 1
         },
     "Market": // +25% gold
         {
             "productioncost": 100,
             "techrequired": "Currency",
-            "buildingrequired": "none"
+            "buildingrequired": "none",
+            "maintenance": 1
         }
 };
 

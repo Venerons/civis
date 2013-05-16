@@ -11,6 +11,7 @@ CivJS is currently in PRE-ALPHA development stage.
 ## Supported Platforms:
 
 ### Browser _(suggested browser: Firefox)_
+_Support: IE 9+, FireFox 3.5+, Chrome 4.0+, Safari 4.0+, Opera 10.5+, iOS Safari 3.2+, Android 2.1+, BlackBerry 7.0+, Opera Mobile 11.0+_
 * **Web App** - [CivJS](http://venerons.github.io/CivJS/play/)
 
 ### Desktop OS

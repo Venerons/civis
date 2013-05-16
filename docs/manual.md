@@ -37,25 +37,29 @@ As a civilization nears one of the above mentioned victory conditions, all other
 ## The Map
 The map is the playground of the game. Each tile can be of one of these types:
 
-Tile     | Food  | Production | Commerce  | Movement | Modifiers  
--------- | :---: | :--------: | :-------: | :------: | :---:  
-Grass    | 2     | -          | -         | -        | -  
-Hill     | 1     | 1          | -         | +1       | +50% Atk/Def  
-Mountain | -     | 2          | -         | +2       | +100% Atk/Def  
-Water    | 1     | -          | 2         | -        | -  
-Desert   | -     | -          | -         | -        | -  
-Snow     | -     | -          | -         | -        | -50% Atk/Def  
+Tile      | Food  | Production | Gold  | Movement | Modifiers  
+--------- | :---: | :--------: | :---: | :------: | :---:  
+Grassland | 2     | -          | -     | -        | -  
+Plain     | 1     | 1          | -     | -        | -  
+Hill      | -     | 2          | -     | +1       | +50% Atk/Def  
+Mountain  | -     | 1          | 1     | +2       | +100% Atk/Def  
+Desert    | -     | -          | -     | -        | -  
+Tundra    | 1     | -          | -     | -        | -  
+Snow      | -     | -          | -     | -        | -50% Atk/Def  
+Water     | 1     | -          | 1     | -        | -  
 
 Some tiles also can host a nature element, that modify the values of the tile
 
-Nature         | Food  | Production | Commerce  | Modifiers  
--------------- | :---: | :--------: | :-------: | :---:  
-Forest         | -     | +1         | -         | +50% Atk/Def  
-Jungle         | +1    | -1         | -         | +50% Atk/Def  
-Marsh          | -1    | -          | -         | -50% Atk/Def  
-Oasis          | +3    | -          | +2        | -  
-River          | -     | -          | +1        | -  
-Natural Wonder | -     | +2         | +3        | -  
+Nature         | Food  | Production | Gold  | Modifiers      | Base Tile  
+-------------- | :---: | :--------: | :---: | :------------: | :---:  
+Fallout        | -3    | -3         | -3    | -50% Atk/Def   | Any  
+Forest         | -1    | +1         | -     | +50% Atk/Def   | Grassland  
+Jungle         | +1    | -1         | -     | +50% Atk/Def   | Plain  
+Marsh          | -1    | -          | -     | -50% Atk/Def   | Grassland  
+Oasis          | +3    | -          | +1    | -              | Desert  
+River          | -     | -          | +1    | -              | Any  
+Atoll          | -     | +1         | -1    | -              | Water  
+Natural Wonder | -     | +2         | +3    | -              | Any  
 
 ## Units
 Each unit have 5 stats:

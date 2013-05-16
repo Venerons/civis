@@ -6,7 +6,11 @@ This document outlines the general goals for CivJS ongoing development.
 
 ### Version 0.4.0 (May 2013)
 
-* Add other nature elements (marsh, jungle, natural wonder, river)
+* Refactor gold and commerce, new tiles _(DONE)_
+* buildings & units maintenance cost _(DONE)_
+* Add Jungle _(DONE)_
+
+* Add other nature elements (marsh, natural wonder, river)
 * Implement more buildings
 * better discoverTiles() (implementare la distanza di visuale, ovvero se stai su una collina vedi più lontano, su una montagna ancora di più. Colline, montagne, foreste e giungle tuttavia possono bloccare la visuale.)
 * Implement streets
@@ -31,6 +35,9 @@ _Bugs & technical features_
 
 _Game Features_
 
+* spend gold to build or accelerate builds
+* implement happyness?
+* technologies unlock improvements and bonuses/effects
 * Implement resources
 * Implement improvements (and workers)
 * Implement more units

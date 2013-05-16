@@ -2,6 +2,15 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 16/05/2013
+
+* Reintroduced Gold instead of Commerce
+* Refactored food/prod/gold values
+* New tiles tundra and plain
+* New nature element Jungle
+* Base science production is equal to the cities population
+* Buildings and unit maintenance cost
+
 ### Update 10/05/2013 (Version 0.3.0)
 
 * Tagged version 0.3.0
