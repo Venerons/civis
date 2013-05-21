@@ -2,6 +2,11 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 21/05/2013
+
+* Updated EaselJS library to version 0.6.1
+* Removed unused libraries SoundJS, TweenJS and PreloadJS
+
 ### Update 16/05/2013
 
 * Reintroduced Gold instead of Commerce
