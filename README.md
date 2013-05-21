@@ -6,22 +6,23 @@ CivJS is an HTML5, CSS3 and JavaScript game inspired by the Sid Meier's Civiliza
 
 It implements similar but simpler rules, and thanks to the web technologies is available to almost any modern OS.
 
-CivJS is currently in PRE-ALPHA development stage.
+CivJS is currently in ALPHA development stage.
 
 ## Supported Platforms:
 
 ### Browser _(suggested browser: Firefox)_
-_Support: IE 9+, FireFox 3.5+, Chrome 4.0+, Safari 4.0+, Opera 10.5+, iOS Safari 3.2+, Android 2.1+, BlackBerry 7.0+, Opera Mobile 11.0+_
+_**Desktop Support:** IE 9+, Firefox 3.5+, Chrome 4.0+, Safari 4.0+, Opera 10.5+_
+_**Mobile Support:** iOS Safari 3.2+, Android 2.1+, BlackBerry 7.0+, Opera Mobile 11.0+_
 * **Web App** - [CivJS](http://venerons.github.io/CivJS/play/)
 
 ### Desktop OS
-* **Mac OS X** - _future native app, at today playable as web app_
-* **Windows** - _future native app, at today playable as web app_
-* **Linux** - _future native app, at today playable as web app_
+* **Mac OS X** - _future native app, at today playable as web app via browser_
+* **Windows** - _future native app, at today playable as web app via browser_
+* **Linux** - _future native app, at today playable as web app via browser_
 
 ### Mobile OS
-* **iOS** - _future native app, at today playable as web app_
-* **Firefox OS** - _future native app, at today playable as web app_
+* **iOS** - _future native app, at today playable as web app via browser_
+* **Firefox OS** - _future native app, at today playable as web app via browser_
 * **Android** - [Play Store](https://play.google.com/store/apps/details?id=it.venerons.civjs) - [apk](https://build.phonegap.com/apps/282025/download/android/)
 * **Windows Phone** - [xap](https://build.phonegap.com/apps/282025/download/winphone/)
 * **BlackBerry** - [OTA Install](https://build.phonegap.com/apps/282025/download/blackberry)
