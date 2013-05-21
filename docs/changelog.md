@@ -10,6 +10,7 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 * Implemented streets
 * Add New unit: worker
 * Updated city graphics
+* Add automated build shell script
 
 ### Update 16/05/2013
 
