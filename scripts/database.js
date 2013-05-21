@@ -14,6 +14,17 @@ var unitsDB = {
             "initialLife": 1,
             "techrequired": "none"
         },
+    "worker": 
+        {
+            "atk": 0,
+            "def": 0,
+            "mov": 2,
+            "naval": false,
+            "terrain": true,
+            "productioncost": 10,
+            "initialLife": 1,
+            "techrequired": "none"
+        },
     "warrior": 
         {
             "atk": 1,

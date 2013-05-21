@@ -109,6 +109,8 @@ function preloadImages () {
 	imageCache.forest = new Image().src = localStorage.tileset + "/elements/forest.png";
 	imageCache.jungle = new Image().src = localStorage.tileset + "/elements/jungle.png";
 	imageCache.oasis = new Image().src = localStorage.tileset + "/elements/oasis.png";
+
+	imageCache.street = new Image().src = localStorage.tileset + "/elements/street.png";
 	imageCache.city = new Image().src = localStorage.tileset + "/elements/city.png";
 }
 
@@ -372,6 +374,13 @@ function addTileToMap(tile) {
 	// set eventual nature element
 	if (!(tile.nature === "none" || tile.fog)) {
 		addElementToMap(tile.nature, tile.x, tile.y);
+	}
+
+	// set eventual street
+	if (tile.street) {
+		var elementBmp = new createjs.Bitmap(imageCache.street).setTransform(coordinate(tile.x) - 10 + camera.x, coordinate(tile.y) - 10 + camera.y, SCALE, SCALE);
+		mapelements.push(elementBmp);
+		stage.addChild(elementBmp);
 	}
 }
 

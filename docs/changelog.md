@@ -6,6 +6,10 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
 * Updated EaselJS library to version 0.6.1
 * Removed unused libraries SoundJS, TweenJS and PreloadJS
+* Updated ReadMe
+* Implemented streets
+* Add New unit: worker
+* Updated city graphics
 
 ### Update 16/05/2013
 

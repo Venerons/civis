@@ -8,12 +8,15 @@ This document outlines the general goals for CivJS ongoing development.
 
 * Refactor gold and commerce, new tiles _(DONE)_
 * buildings & units maintenance cost _(DONE)_
-* Add Jungle _(DONE)_
+* Add new nature: Jungle _(DONE)_
+* Update EaselJS and remove useless libraries _(DONE)_
+* Implemented streets _(DONE)_
+* Add new units: worker _(DONE)_
+* Updated city graphics _(DONE)_
 
 * Add other nature elements (marsh, natural wonder, river)
 * Implement more buildings
 * better discoverTiles() (implementare la distanza di visuale, ovvero se stai su una collina vedi più lontano, su una montagna ancora di più. Colline, montagne, foreste e giungle tuttavia possono bloccare la visuale.)
-* Implement streets
 * Code optimizations and Bug Fixes
 
 ### Version 0.5.0 (Unsheduled)
@@ -39,7 +42,7 @@ _Game Features_
 * implement happyness?
 * technologies unlock improvements and bonuses/effects
 * Implement resources
-* Implement improvements (and workers)
+* Implement improvements (function buildImprovement() already set)
 * Implement more units
 * Implement points
 * Implement civilizations abilities

@@ -378,6 +378,12 @@ function showUnitOptions(unitid) {
             specialOrders = '<button class="button gradient topbarbutton" alt="Settle" title="Settle" id="settleCity"><img src="' + localStorage.hudset + '/settle.png" class="buttonimage"></button>';
             $("#specialOrders").html(specialOrders);
             $("#settleCity").click(function () { settleCity(unit.id); });
+        } else if (unit.type === "worker") {
+            specialOrders = '<button class="button gradient topbarbutton" alt="Build Street" title="Build Street" id="buildStreet"><img src="' + localStorage.hudset + '/street.png" class="buttonimage"></button>'
+                          + '<button class="button gradient topbarbutton" alt="Build Improvement" title="Build Improvement" id="buildImprovement"><img src="' + localStorage.hudset + '/improvement.png" class="buttonimage"></button>';
+            $("#specialOrders").html(specialOrders);
+            $("#buildStreet").click(function () { buildStreet(unit.id); });
+            $("#buildImprovement").click(function () { buildImprovement(unit.id); });
         }
 
         openActionbar();
@@ -454,6 +460,10 @@ function make_handler(selected, unit) {
         if (tiletype === "hill") { unit.active -= 2; }
         else if (tiletype === "mountain") { unit.active -= 3; }
         else { unit.active--; }
+
+        if (tile.street) {
+            unit.active += 0.5;
+        }
 
         if (unit.active > 0) { // riattiva di nuovo le destinazioni
             deselectDestinations();
@@ -568,7 +578,7 @@ function fortifyUnit(unitid) {
 
 function killUnit(unitid) {
     var unit = findUnitById(unitid);
-    var gold = Math.round(getProductionCost(unit) / 4);
+    var gold = Math.round(getUnitProductionCost(unit) / 4);
     var answer = confirm("Do you want to kill this unit to gain " + gold + " gold?");
     if (answer){
         closeActionbar();
@@ -783,4 +793,35 @@ function showEmpireOverview() {
 
     $('#popupcontent').html(content);
     openPopup();
+}
+
+function buildStreet(unitid) {
+    var unit = findUnitById(unitid);
+    var tile = findTileByXY(unit.x, unit.y);
+
+    if (unit.active === 0) {
+        alert("\"I'm just arrived here, be quiet! Wait the next turn.\"\n\n- The Worker");
+        return;
+    }
+
+    if (!tile.street) {
+        tile.street = true;
+        unit.active = 0;
+        renderMap();
+        closeActionbar();
+    } else {
+        alert("\"A street is already set on this tile\"\n\n- The Worker");
+    }
+}
+
+function buildImprovement(unitid) {
+    var unit = findUnitById(unitid);
+    var tile = findTileByXY(unit.x, unit.y);
+
+    if (unit.active === 0) {
+        alert("\"I'm just arrived here, be quiet! Wait the next turn.\"\n\n- The Worker");
+        return;
+    }
+
+    // SET THE IMPROVEMENT // TODO
 }
