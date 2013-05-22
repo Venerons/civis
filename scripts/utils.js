@@ -426,8 +426,13 @@ function getCityGold(city) {
         basegold += getGoldFromTile(tiles[j]);
     }
 
+    if (cityHaveBuilding(city, "Market")) { basegold += 2; } // +2
+    if (cityHaveBuilding(city, "Bank")) { basegold += 2; } // +2
+
     var gold = basegold;
+
     if (cityHaveBuilding(city, "Market")) { gold += Math.round(basegold / 4); } // +25%
+    if (cityHaveBuilding(city, "Bank")) { gold += Math.round(basegold / 4); } // +25%
 
     for (var i = 0, len = city.buildings.length; i < len; i++) {
         gold -= buildingsDB[city.buildings[i]].maintenance;

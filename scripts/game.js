@@ -678,7 +678,7 @@ function createBuildingsList(cityid) {
     $.each(unitsDB, function(key, val) {
         if (val.techrequired === "none" || playerHaveTech(city.player, val.techrequired)) {
             if (val.terrain || (val.naval && cityIsNearWater)) {
-                content += '<button onclick="setBuild(\'' + cityid + '\', \'unit\', \'' + key + '\')" style="margin-bottom: 5px;" class="gradient button w100"><strong>' + key + '</strong> (Cost: ' + val.productioncost + ' - ' + Math.ceil(val.productioncost/cityproduction) + ' Turns)</button><br/>';
+                content += '<button onclick="setBuild(\'' + cityid + '\', \'unit\', \'' + key + '\')" style="margin-bottom: 5px;" class="gradient button w100"><img src="' + localStorage.tileset + '/units/' + key + '.png" alt="' + key + '" title="' + key + '" class="buttonimage">&nbsp;&nbsp;&nbsp;<strong>' + key + '</strong> (Cost: ' + val.productioncost + ' - ' + Math.ceil(val.productioncost/cityproduction) + ' Turns)</button><br/>';
             }
         }
     });

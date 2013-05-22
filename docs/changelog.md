@@ -2,6 +2,15 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 22/05/2013
+
+* Add unit image on build list
+* Add new unit: scout
+* Updated unit production cost
+* Add new buildings: bank
+* Updated buildings production cost
+* Update manual
+
 ### Update 21/05/2013
 
 * Updated EaselJS library to version 0.6.1

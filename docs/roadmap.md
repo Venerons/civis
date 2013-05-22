@@ -11,10 +11,13 @@ This document outlines the general goals for CivJS ongoing development.
 * Add new nature: Jungle _(DONE)_
 * Update EaselJS and remove useless libraries _(DONE)_
 * Implemented streets _(DONE)_
-* Add new units: worker _(DONE)_
+* Add new units: worker, scout _(DONE)_
+* Updated units production cost _(DONE)_
 * Updated city graphics _(DONE)_
+* Add new buildings: bank _(DONE)_
+* Updated buildings production cost _(DONE)_
 
-* Add other nature elements (marsh, natural wonder, river)
+* Add other nature elements (marsh, natural wonder, river, atoll, fallout)
 * Implement more buildings
 * better discoverTiles() (implementare la distanza di visuale, ovvero se stai su una collina vedi più lontano, su una montagna ancora di più. Colline, montagne, foreste e giungle tuttavia possono bloccare la visuale.)
 * Code optimizations and Bug Fixes

@@ -90,12 +90,14 @@ A fight is resolved this way:
 settling instructions
 
 ### Unit List
-Unit             | Atk   | Def   | Mov   | Initial Life | Requirements  
----------------- | :---: | :---: | :---: | :----------: | ---  
-Settler          | 0     | 0     | 2     | 1            | -  
-Warrior          | 1     | 1     | 1     | 1            | -  
-Archer           | 1     | 2     | 1     | 1            | Archery  
-Galley           | 1     | 1     | 2     | 1            | Sailing  
+Unit             | Cost  | Atk   | Def   | Mov   | Initial Life | Requirements  
+---------------- | :---: | :---: | :---: | :---: | :----------: | ---  
+Settler          | 50    | 0     | 0     | 2     | 1            | -  
+Worker           | 45    | 0     | 0     | 2     | 1            | -  
+Scout            | 25    | 0     | 1     | 2     | 1            | -  
+Warrior          | 40    | 1     | 1     | 1     | 1            | -  
+Archer           | 40    | 1     | 2     | 1     | 1            | Archery  
+Galley           | 45    | 1     | 1     | 2     | 1            | Sailing  
 
 ## Cities
 cities about
@@ -104,21 +106,21 @@ each turn will be consumed 2 food per citizen. Eventual remaining will be used t
 ### Buildings
 Building         | Cost  | Tech Required  | Building Required | Effect  
 ---------------- | :---: | :------------: | :---------------: | :---  
-Barracks         | 40    | Bronze Working | -                 | Units produced are automatically Veterans (+5 exp)  
-Granary          | 40    | Agriculture    | -                 | +3 Food  
-Library          | 40    | Writing        | -                 | +1 Science each 2 population  
-Monument         | 20    | Mysticism      | -                 | +2 Culture  
-Temple           | 40    | Theology       | Monument          | +1 Culture each 2 population  
-University       | 80    | Education      | Library           | +1 Science each 2 population (combinable with the Library)  
+Barracks         | 75    | Bronze Working | -                 | Units produced are automatically Veterans (+5 exp)  
+Granary          | 60    | Agriculture    | -                 | +3 Food  
+Library          | 75    | Writing        | -                 | +1 Science each 2 population  
+Monument         | 40    | Mysticism      | -                 | +2 Culture  
+Temple           | 75    | Theology       | Monument          | +1 Culture each 2 population  
+University       | 160   | Education      | Library           | +1 Science each 2 population (combinable with the Library)  
 Aqueduct         | 100   | Engineering    | -                 | +50% Food  
-Market           | 100   | Currency       | -                 | +25% Gold  
+Market           | 100   | Currency       | -                 | +25% Gold, +2 base Gold  
+Bank             | 200   | Banking        | Market            | +25% Gold, +2 base Gold  
 
 Harbor | ? | ? | - | +1 food in sea tiles
 Workshop | ? | ? | - | Provides +2 production from hills
 Iron Mine | ? | ? | - | Mountain tiles give +4 production 
 Walls | ? | ? | - | Gives +100% defensive bonus
 Cathedral  | ? | ? | - | Replaces temple and gives +2 culture for each citizen 
-Bank | ? | ? | - | +50% Gold
 Courthouse | ? | ? | - | Increases the city's workable tile region (or reduce >:( )
 Factory | ? | ? | - | Doubles the city's production 
 

@@ -10,7 +10,7 @@ var unitsDB = {
             "mov": 2,
             "naval": false,
             "terrain": true,
-            "productioncost": 30,
+            "productioncost": 50,
             "initialLife": 1,
             "techrequired": "none"
         },
@@ -21,7 +21,18 @@ var unitsDB = {
             "mov": 2,
             "naval": false,
             "terrain": true,
-            "productioncost": 10,
+            "productioncost": 45,
+            "initialLife": 1,
+            "techrequired": "none"
+        },
+    "scout": 
+        {
+            "atk": 0,
+            "def": 1,
+            "mov": 2,
+            "naval": false,
+            "terrain": true,
+            "productioncost": 25,
             "initialLife": 1,
             "techrequired": "none"
         },
@@ -32,7 +43,7 @@ var unitsDB = {
             "mov": 1,
             "naval": false,
             "terrain": true,
-            "productioncost": 10,
+            "productioncost": 40,
             "initialLife": 1,
             "techrequired": "none"
         },
@@ -43,7 +54,7 @@ var unitsDB = {
             "mov": 1,
             "naval": false,
             "terrain": true,
-            "productioncost": 10,
+            "productioncost": 40,
             "initialLife": 1,
             "techrequired": "Archery"
         },
@@ -54,7 +65,7 @@ var unitsDB = {
             "mov": 2,
             "naval": true,
             "terrain": false,
-            "productioncost": 30,
+            "productioncost": 45,
             "initialLife": 1,
             "techrequired": "Sailing"
         }
@@ -64,42 +75,42 @@ var unitsDB = {
 var buildingsDB = {
     "Granary": // +3 food
         {
-            "productioncost": 40,
+            "productioncost": 60,
             "techrequired": "Agriculture",
             "buildingrequired": "none",
             "maintenance": 1
         },
     "Barracks": // +5 exp to the unit created on that city
         {
-            "productioncost": 40,
+            "productioncost": 75,
             "techrequired": "Bronze Working",
             "buildingrequired": "none",
             "maintenance": 1
         },
     "Library": // +1 science per 2 citizen (+ (popultation / 2) science)
         {
-            "productioncost": 40,
+            "productioncost": 75,
             "techrequired": "Writing",
             "buildingrequired": "none",
             "maintenance": 1
         },
     "Monument": // +2 culture
         {
-            "productioncost": 20,
+            "productioncost": 40,
             "techrequired": "Mysticism",
             "buildingrequired": "none",
             "maintenance": 1
         },
     "Temple": // +1 culture per 2 citizen (+ (popultation / 2) culture)
         {
-            "productioncost": 40,
+            "productioncost": 75,
             "techrequired": "Theology",
             "buildingrequired": "Monument",
             "maintenance": 1
         },
     "University": // +1 science per 2 citizen (+ (popultation / 2) science)
         {
-            "productioncost": 80,
+            "productioncost": 160,
             "techrequired": "Education",
             "buildingrequired": "Library",
             "maintenance": 1
@@ -111,11 +122,18 @@ var buildingsDB = {
             "buildingrequired": "none",
             "maintenance": 1
         },
-    "Market": // +25% gold
+    "Market": // +2 Gold +25% gold
         {
             "productioncost": 100,
             "techrequired": "Currency",
             "buildingrequired": "none",
+            "maintenance": 1
+        },
+    "Bank": // +2 Gold +25% gold
+        {
+            "productioncost": 200,
+            "techrequired": "Banking",
+            "buildingrequired": "Market",
             "maintenance": 1
         }
 };
