@@ -109,6 +109,7 @@ function preloadImages () {
 	imageCache.forest = new Image().src = localStorage.tileset + "/elements/forest.png";
 	imageCache.jungle = new Image().src = localStorage.tileset + "/elements/jungle.png";
 	imageCache.oasis = new Image().src = localStorage.tileset + "/elements/oasis.png";
+	imageCache.atoll = new Image().src = localStorage.tileset + "/elements/atoll.png";
 
 	imageCache.street = new Image().src = localStorage.tileset + "/elements/street.png";
 	imageCache.city = new Image().src = localStorage.tileset + "/elements/city.png";
@@ -423,6 +424,7 @@ function addElementToMap(element, x, y) {
 	if (element === "forest") { elementimg = imageCache.forest; }
 	else if (element === "jungle") { elementimg = imageCache.jungle; }
 	else if (element === "oasis") { elementimg = imageCache.oasis; }
+	else if (element === "atoll") { elementimg = imageCache.atoll; }
 
 	var elementBmp = new createjs.Bitmap(elementimg).setTransform(coordinate(x) - 10 + camera.x, coordinate(y) - 10 + camera.y, SCALE, SCALE);
 	mapelements.push(elementBmp);

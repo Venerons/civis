@@ -8,7 +8,7 @@ This document outlines the general goals for CivJS ongoing development.
 
 * Refactor gold and commerce, new tiles _(DONE)_
 * buildings & units maintenance cost _(DONE)_
-* Add new nature: Jungle _(DONE)_
+* Add new nature: Jungle, Atoll _(DONE)_
 * Update EaselJS and remove useless libraries _(DONE)_
 * Implemented streets _(DONE)_
 * Add new units: worker, scout _(DONE)_
@@ -16,8 +16,10 @@ This document outlines the general goals for CivJS ongoing development.
 * Updated city graphics _(DONE)_
 * Add new buildings: bank _(DONE)_
 * Updated buildings production cost _(DONE)_
+* Updated to PhoneGap 2.7.0 _(DONE)_
+* Improved random map generation _(DONE)_
 
-* Add other nature elements (marsh, natural wonder, river, atoll, fallout)
+* Add other nature elements (marsh, natural wonder, river, fallout)
 * Implement more buildings
 * better discoverTiles() (implementare la distanza di visuale, ovvero se stai su una collina vedi più lontano, su una montagna ancora di più. Colline, montagne, foreste e giungle tuttavia possono bloccare la visuale.)
 * Code optimizations and Bug Fixes
@@ -37,7 +39,7 @@ _Bugs & technical features_
 
 * Possible performance boost: paint only items that will be showed inside the camera view (however, that means a renderMap() every time the camera move...)
 * Export in-code styling on the external CSS _(PARTIAL)_
-* better generateMap()
+* better generateMap() _(ALWAYS ON STACK)_
 
 _Game Features_
 

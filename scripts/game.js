@@ -28,10 +28,8 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
     // TILES TYPE BY SECTOR
     var poles = ["water", "water", "snow"]; // 10 % - 0-10 & 90-100
     var cold = ["tundra", "tundra", "plain", "mountain", "water", "water"]; // 10% - 11-20 & 80-89
-    var middle = ["grass", "grass", "plain", "plain", "mountain", "hill", "hill", "water", "water", "water"]; // 21-40 & 60-79
-    var center = ["desert", "desert", "plain", "hill", "mountain", "water", "water"]; // 20% - 41-59
-
-    var nature = ["none", "forest"];
+    var middle = ["grass", "grass", "plain", "mountain", "hill", "hill", "water", "water", "water"]; // 21-40 & 60-79
+    var center = ["desert", "desert", "plain", "plain", "hill", "water", "water"]; // 20% - 41-59
 
     // INSERT THE PLAYER 1
 
@@ -99,29 +97,40 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
             t.fog = true;
 
             // tile type
-            var sector = t.y * 100 / nrows;
-            if (sector <= 10 || sector >= 90) {
-                t.type = poles[Math.floor(Math.random() * poles.length)];
-            } else {
-                if (sector <= 20 || sector >= 80) {
+            var perc = t.y * 100 / nrows;
+            var sector;
+            if (perc <= 10 || perc > 90) { sector = "poles"; }
+            else if (perc <= 20 || perc > 80) { sector = "cold"; }
+            else if (perc <= 40 || perc > 60) { sector = "middle"; }
+            else { sector = "center"; }
+
+            switch (sector) {
+                case "poles":
+                    t.type = poles[Math.floor(Math.random() * poles.length)];
+                    break;
+                case "cold":
                     t.type = cold[Math.floor(Math.random() * cold.length)];
-                } else {
-                    if (sector <= 40 || sector >= 60) {
-                        t.type = middle[Math.floor(Math.random() * middle.length)];
-                    } else {
-                        t.type = center[Math.floor(Math.random() * center.length)];
-                    }
-                }
+                    break;
+                case "middle":
+                    t.type = middle[Math.floor(Math.random() * middle.length)];
+                    break;
+                case "center":
+                    t.type = center[Math.floor(Math.random() * center.length)];
+                    break;
             }
-            
 
             // add eventual nature element
+            perc = Math.floor(Math.random() * 100 + 1);
             if (t.type === "grass") {
-                if (Math.floor(Math.random() * 100 + 1) <= 30) { t.nature = "forest"; } // 30 % forest
+                if (perc <= 50) { t.nature = "forest"; } // 50 % forest
             } else if (t.type === "plain"){
-                if (Math.floor(Math.random() * 100 + 1) <= 30) { t.nature = "jungle"; } // 30 % jungle
+                if (perc <= 50 && sector === "center") { t.nature = "jungle"; } // 50 % jungle in center sector
+                else if (perc <= 25 && sector === "middle") { t.nature = "jungle"; } // 25 % jungle in middle sector
             } else if (t.type === "desert"){
-                if (Math.floor(Math.random() * 100 + 1) <= 15) { t.nature = "oasis"; } // 15 % oasis
+                if (perc <= 10) { t.nature = "oasis"; } // 10 % oasis
+            } else if (t.type === "water"){
+                if (perc <= 20 && sector === "center") { t.nature = "atoll"; } // 20 % atoll in center sector
+                else if (perc <= 10 && sector === "middle") { t.nature = "atoll"; } // 10 % atoll in middle sector
             } else {
                 t.nature = "none";
             }

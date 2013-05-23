@@ -2,6 +2,12 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 23/05/2013
+
+* Add new nature element: atoll
+* Updated to PhoneGap 2.7.0
+* Improved random map generation
+
 ### Update 22/05/2013
 
 * Add unit image on build list
