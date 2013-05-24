@@ -2,6 +2,11 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 24/05/2013
+
+* Add new units: Catapult, Horseman, Galleon, Knight
+* Add unit obsolescence
+
 ### Update 23/05/2013
 
 * Add new nature element: atoll

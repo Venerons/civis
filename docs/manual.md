@@ -98,6 +98,10 @@ Scout            | 25    | 0     | 1     | 2     | 1            | -
 Warrior          | 40    | 1     | 1     | 1     | 1            | -  
 Archer           | 40    | 1     | 2     | 1     | 1            | Archery  
 Galley           | 45    | 1     | 1     | 2     | 1            | Sailing  
+Catapult         | 75    | 4     | 1     | 1     | 1            | Engineering  
+Horseman         | 75    | 2     | 1     | 2     | 1            | Horse Riding  
+Galleon          | 120   | 3     | 3     | 3     | 1            | Astronomy  
+Knight           | 120   | 4     | 2     | 2     | 1            | Code of Chivalry  
 
 ## Cities
 cities about
@@ -204,14 +208,14 @@ Education          | 80    | Theology, Mathematics           | Unlock Republic, 
 Currency           | 80    | Mathematics                     | -  
 Masonry            | 80    | Mining                          | -  
 Bronze Working     | 80    | Mining                          | Unlock Barracks  
-Horse Riding       | 80    | Breeding                        | -  
+Horse Riding       | 80    | Breeding                        | Unlock Horseman  
 Optics             | 80    | Archery, Sailing                | -  
 Art                | 160   | Divine Right, Education         | -  
 Literature         | 160   | Education                       | -  
-Engineering        | 160   | Mathematics, Masonry            | Unlock Aqueduct  
+Engineering        | 160   | Mathematics, Masonry            | Unlock Aqueduct, Catapult  
 Iron Working       | 160   | Bronze Working                  | -  
-Code of Chivalry   | 160   | Horse Riding, Currency          | -  
-Astronomy          | 160   | Optics                          | -  
+Code of Chivalry   | 160   | Horse Riding, Currency          | Unlock Knight  
+Astronomy          | 160   | Optics                          | Unlock Galleon  
 Music              | 320   | Art, Literature                 | -  
 Banking            | 320   | Divine Right, Currency          | -  
 Mechanics          | 320   | Engineering                     | -  

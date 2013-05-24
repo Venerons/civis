@@ -685,7 +685,7 @@ function createBuildingsList(cityid) {
     var content = '<h4 class="center">Available Units</h4>';
 
     $.each(unitsDB, function(key, val) {
-        if (val.techrequired === "none" || playerHaveTech(city.player, val.techrequired)) {
+        if ((val.techrequired === "none" || playerHaveTech(city.player, val.techrequired)) && !playerHaveTech(city.player, val.obsolete)) {
             if (val.terrain || (val.naval && cityIsNearWater)) {
                 content += '<button onclick="setBuild(\'' + cityid + '\', \'unit\', \'' + key + '\')" style="margin-bottom: 5px;" class="gradient button w100"><img src="' + localStorage.tileset + '/units/' + key + '.png" alt="' + key + '" title="' + key + '" class="buttonimage">&nbsp;&nbsp;&nbsp;<strong>' + key + '</strong> (Cost: ' + val.productioncost + ' - ' + Math.ceil(val.productioncost/cityproduction) + ' Turns)</button><br/>';
             }

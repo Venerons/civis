@@ -12,7 +12,8 @@ var unitsDB = {
             "terrain": true,
             "productioncost": 50,
             "initialLife": 1,
-            "techrequired": "none"
+            "techrequired": "none",
+            "obsolete": "none"
         },
     "worker": 
         {
@@ -23,7 +24,8 @@ var unitsDB = {
             "terrain": true,
             "productioncost": 45,
             "initialLife": 1,
-            "techrequired": "none"
+            "techrequired": "none",
+            "obsolete": "none"
         },
     "scout": 
         {
@@ -34,7 +36,8 @@ var unitsDB = {
             "terrain": true,
             "productioncost": 25,
             "initialLife": 1,
-            "techrequired": "none"
+            "techrequired": "none",
+            "obsolete": "Scientific Theory"
         },
     "warrior": 
         {
@@ -45,7 +48,8 @@ var unitsDB = {
             "terrain": true,
             "productioncost": 40,
             "initialLife": 1,
-            "techrequired": "none"
+            "techrequired": "none",
+            "obsolete": "Iron Working"
         },
     "archer": 
         {
@@ -56,7 +60,8 @@ var unitsDB = {
             "terrain": true,
             "productioncost": 40,
             "initialLife": 1,
-            "techrequired": "Archery"
+            "techrequired": "Archery",
+            "obsolete": "Gunpowder"
         },
     "galley": 
         {
@@ -67,7 +72,56 @@ var unitsDB = {
             "terrain": false,
             "productioncost": 45,
             "initialLife": 1,
-            "techrequired": "Sailing"
+            "techrequired": "Sailing",
+            "obsolete": "Astronomy"
+        },
+    "catapult": 
+        {
+            "atk": 4,
+            "def": 1,
+            "mov": 1,
+            "naval": false,
+            "terrain": true,
+            "productioncost": 75,
+            "initialLife": 1,
+            "techrequired": "Engineering",
+            "obsolete": "Gunpowder"
+        },
+    "horseman": 
+        {
+            "atk": 2,
+            "def": 1,
+            "mov": 2,
+            "naval": false,
+            "terrain": true,
+            "productioncost": 75,
+            "initialLife": 1,
+            "techrequired": "Horse Riding",
+            "obsolete": "Code of Chivalry"
+        },
+    "galleon": 
+        {
+            "atk": 3,
+            "def": 3,
+            "mov": 3,
+            "naval": true,
+            "terrain": false,
+            "productioncost": 120,
+            "initialLife": 1,
+            "techrequired": "Astronomy",
+            "obsolete": "Steam Energy"
+        },
+    "knight": 
+        {
+            "atk": 4,
+            "def": 2,
+            "mov": 2,
+            "naval": false,
+            "terrain": true,
+            "productioncost": 120,
+            "initialLife": 1,
+            "techrequired": "Code of Chivalry",
+            "obsolete": "Rifling"
         }
 };
 
