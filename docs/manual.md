@@ -90,18 +90,29 @@ A fight is resolved this way:
 settling instructions
 
 ### Unit List
-Unit             | Cost  | Atk   | Def   | Mov   | Initial Life | Requirements  
----------------- | :---: | :---: | :---: | :---: | :----------: | ---  
-Settler          | 50    | 0     | 0     | 2     | 1            | -  
-Worker           | 45    | 0     | 0     | 2     | 1            | -  
-Scout            | 25    | 0     | 1     | 2     | 1            | -  
-Warrior          | 40    | 1     | 1     | 1     | 1            | -  
-Archer           | 40    | 1     | 2     | 1     | 1            | Archery  
-Galley           | 45    | 1     | 1     | 2     | 1            | Sailing  
-Catapult         | 75    | 4     | 1     | 1     | 1            | Engineering  
-Horseman         | 75    | 2     | 1     | 2     | 1            | Horse Riding  
-Galleon          | 120   | 3     | 3     | 3     | 1            | Astronomy  
-Knight           | 120   | 4     | 2     | 2     | 1            | Code of Chivalry  
+Unit             | Cost  | Atk   | Def   | Mov   | Initial Life | Requirements     | Obsolete  
+---------------- | :---: | :---: | :---: | :---: | :----------: | ---------------- | ---  
+Settler          | 50    | 0     | 0     | 2     | 1            | -                | -  
+Worker           | 45    | 0     | 0     | 2     | 1            | -                | -  
+Scout            | 25    | 0     | 1     | 2     | 1            | -                | Scientific Theory  
+Warrior          | 40    | 1     | 1     | 1     | 1            | -                | Iron Working  
+Archer           | 40    | 1     | 2     | 1     | 1            | Archery          | Gunpowder  
+Galley           | 45    | 1     | 1     | 1     | 1            | Sailing          | Optics  
+Spearman         | 56    | 2     | 1     | 1     | 1            | Bronze Working   | Iron Working  
+Catapult         | 75    | 4     | 1     | 1     | 1            | Engineering      | Gunpowder  
+Horseman         | 75    | 2     | 1     | 2     | 1            | Horse Riding     | Code of Chivalry  
+Swordsman        | 75    | 2     | 2     | 1     | 1            | Iron Working     | Metal Casting  
+Trireme          | 75    | 2     | 2     | 2     | 1            | Optics           | Astronomy  
+Galleon          | 120   | 3     | 3     | 3     | 1            | Astronomy        | Steam Energy  
+Knight           | 120   | 4     | 2     | 2     | 1            | Code of Chivalry | Metal Casting  
+Lancer           | 125   | 4     | 3     | 2     | 1            | Metal Casting    | Rifling  
+
+Infantry         | 375   | ?     | ?     | ?     | 1            | Independent Pieces |  
+Tank             | 375   | ?     | ?     | ?     | 1            | Combustion         |  
+Marine           | 400   | ?     | ?     | ?     | 1            | Plastic            |  
+Submarine        | 325   | ?     | ?     | ?     | 1            | Plastic            |  
+
+
 
 ## Cities
 cities about

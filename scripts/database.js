@@ -67,13 +67,25 @@ var unitsDB = {
         {
             "atk": 1,
             "def": 1,
-            "mov": 2,
+            "mov": 1,
             "naval": true,
             "terrain": false,
             "productioncost": 45,
             "initialLife": 1,
             "techrequired": "Sailing",
-            "obsolete": "Astronomy"
+            "obsolete": "Optics"
+        },
+    "spearman": 
+        {
+            "atk": 2,
+            "def": 1,
+            "mov": 1,
+            "naval": false,
+            "terrain": true,
+            "productioncost": 56,
+            "initialLife": 1,
+            "techrequired": "Bronze Working",
+            "obsolete": "Iron Working"
         },
     "catapult": 
         {
@@ -99,6 +111,30 @@ var unitsDB = {
             "techrequired": "Horse Riding",
             "obsolete": "Code of Chivalry"
         },
+    "swordsman": 
+        {
+            "atk": 2,
+            "def": 2,
+            "mov": 1,
+            "naval": false,
+            "terrain": true,
+            "productioncost": 75,
+            "initialLife": 1,
+            "techrequired": "Iron Working",
+            "obsolete": "Metal Casting"
+        },
+    "trireme": 
+        {
+            "atk": 2,
+            "def": 2,
+            "mov": 2,
+            "naval": true,
+            "terrain": false,
+            "productioncost": 75,
+            "initialLife": 1,
+            "techrequired": "Optics",
+            "obsolete": "Astronomy"
+        },
     "galleon": 
         {
             "atk": 3,
@@ -121,6 +157,18 @@ var unitsDB = {
             "productioncost": 120,
             "initialLife": 1,
             "techrequired": "Code of Chivalry",
+            "obsolete": "Metal Casting"
+        },
+    "lancer": 
+        {
+            "atk": 4,
+            "def": 3,
+            "mov": 2,
+            "naval": false,
+            "terrain": true,
+            "productioncost": 125,
+            "initialLife": 1,
+            "techrequired": "Metal Casting",
             "obsolete": "Rifling"
         }
 };

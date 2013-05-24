@@ -11,7 +11,7 @@ This document outlines the general goals for CivJS ongoing development.
 * Add new nature: Jungle, Atoll _(DONE)_
 * Update EaselJS and remove useless libraries _(DONE)_
 * Implemented streets _(DONE)_
-* Add new units: worker, scout _(DONE)_
+* Add new units: Worker, Scout, Catapult, Horseman, Galleon, Knight, Spearman, Swordsman, Trireme, Lancer _(DONE)_
 * Updated units production cost _(DONE)_
 * Updated city graphics _(DONE)_
 * Add new buildings: bank _(DONE)_
