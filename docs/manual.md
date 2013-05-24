@@ -92,27 +92,86 @@ settling instructions
 ### Unit List
 Unit             | Cost  | Atk   | Def   | Mov   | Initial Life | Requirements     | Obsolete  
 ---------------- | :---: | :---: | :---: | :---: | :----------: | ---------------- | ---  
+NON COMBAT UNITS |       |       |       |       |              |                  |  
 Settler          | 50    | 0     | 0     | 2     | 1            | -                | -  
 Worker           | 45    | 0     | 0     | 2     | 1            | -                | -  
+ANCIENT ERA      |       |       |       |       |              |                  |  
 Scout            | 25    | 0     | 1     | 2     | 1            | -                | Scientific Theory  
 Warrior          | 40    | 1     | 1     | 1     | 1            | -                | Iron Working  
+Spearman         | 56    | 2     | 1     | 1     | 1            | Bronze Working   | Iron Working 
 Archer           | 40    | 1     | 2     | 1     | 1            | Archery          | Gunpowder  
 Galley           | 45    | 1     | 1     | 1     | 1            | Sailing          | Optics  
-Spearman         | 56    | 2     | 1     | 1     | 1            | Bronze Working   | Iron Working  
+CLASSICAL ERA    |       |       |       |       |              |                  |  
 Catapult         | 75    | 4     | 1     | 1     | 1            | Engineering      | Gunpowder  
-Horseman         | 75    | 2     | 1     | 2     | 1            | Horse Riding     | Code of Chivalry  
 Swordsman        | 75    | 2     | 2     | 1     | 1            | Iron Working     | Metal Casting  
+Horseman         | 75    | 2     | 1     | 2     | 1            | Horse Riding     | Code of Chivalry  
 Trireme          | 75    | 2     | 2     | 2     | 1            | Optics           | Astronomy  
-Galleon          | 120   | 3     | 3     | 3     | 1            | Astronomy        | Steam Energy  
+MEDIEVAL ERA     |       |       |       |       |              |                  |  
 Knight           | 120   | 4     | 2     | 2     | 1            | Code of Chivalry | Metal Casting  
+Galleon          | 120   | 3     | 3     | 3     | 1            | Astronomy        | Steam Energy  
+RENAISSANCE ERA  |       |       |       |       |              |                  |  
 Lancer           | 125   | 4     | 3     | 2     | 1            | Metal Casting    | Rifling  
+INDUSTRIAL ERA   |       |       |       |       |              |                  |  
+-                | -     | -     | -     | -     | -            | -                | -  
+MODERN ERA       |       |       |       |       |              |                  |  
+-                | -     | -     | -     | -     | -            | -                | -  
+ATOMIC ERA       |       |       |       |       |              |                  |  
+-                | -     | -     | -     | -     | -            | -                | -  
+INFORMATION ERA  |       |       |       |       |              |                  |  
+-                | -     | -     | -     | -     | -            | -                | -  
+FUTURE ERA       |       |       |       |       |              |                  |  
+-                | -     | -     | -     | -     | -            | -                | -  
 
 Infantry         | 375   | ?     | ?     | ?     | 1            | Independent Pieces |  
 Tank             | 375   | ?     | ?     | ?     | 1            | Combustion         |  
 Marine           | 400   | ?     | ?     | ?     | 1            | Plastic            |  
 Submarine        | 325   | ?     | ?     | ?     | 1            | Plastic            |  
 
+MEDIEVAL ERA
+Crossbowman
+Trebuchet
+Longswordman
+Pikeman
 
+RENAISSANCE ERA
+Cannon
+Musketman
+Frigate
+
+INDUSTRIAL ERA
+Artillery
+Rifleman
+Cavalry
+Ironclad
+
+MODERN ERA
+Infantry
+Battleship
+Submarine
+Landship
+Triplane
+
+ATOMIC ERA
+Rocket Artillery
+Marine
+Tank
+Bomber
+Fighter
+Helicopter
+Atomic Bomb
+
+INFORMATION ERA
+Mechanized infantry
+Cruiser
+Modern armor
+Stealth bomber
+Jet fighter
+Nuclear missile
+Guided missile
+
+FUTURE ERA
+Giant death robot (mech)
+Cyborg Trooper
 
 ## Cities
 cities about
@@ -131,13 +190,13 @@ Aqueduct         | 100   | Engineering    | -                 | +50% Food
 Market           | 100   | Currency       | -                 | +25% Gold, +2 base Gold  
 Bank             | 200   | Banking        | Market            | +25% Gold, +2 base Gold  
 
-Harbor | ? | ? | - | +1 food in sea tiles
-Workshop | ? | ? | - | Provides +2 production from hills
-Iron Mine | ? | ? | - | Mountain tiles give +4 production 
-Walls | ? | ? | - | Gives +100% defensive bonus
-Cathedral  | ? | ? | - | Replaces temple and gives +2 culture for each citizen 
-Courthouse | ? | ? | - | Increases the city's workable tile region (or reduce >:( )
-Factory | ? | ? | - | Doubles the city's production 
+Harbor - +1 food in sea tiles
+Workshop - Provides +2 production from hills
+Iron Mine - Mountain tiles give +4 production 
+Walls - Gives +100% defensive bonus
+Cathedral - Replaces temple and gives +2 culture for each citizen 
+Courthouse - Increases the city's workable tile region (or reduce >:( )
+Factory - Doubles the city's production 
 
 Food Buildings
 -

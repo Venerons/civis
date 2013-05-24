@@ -6,6 +6,7 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
 * Add new units: Catapult, Horseman, Galleon, Knight, Spearman, Swordsman, Trireme, Lancer
 * Add unit obsolescence
+* Updated Manual
 
 ### Update 23/05/2013
 
