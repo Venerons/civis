@@ -494,12 +494,12 @@ function cityIsNear(x, y, r) {
     return false;
 }
 
-// THE POINT X,Y HAVE A WATER TILE ADIACENT ITSELF
-function pointIsNearWater(x, y) {
+// THE POINT X,Y HAVE A TILE TYPE ADIACENT ITSELF
+function pointIsNearTile(x, y, type) {
     var tiles = getNearTiles(x, y);
     for (var j = 0, len = tiles.length; j < len; j++) {
-        if (tiles[j].type === "water") {
-            return true; // water found
+        if (tiles[j].type === type) {
+            return true; // tile found
         }
     }
     return false; // not found

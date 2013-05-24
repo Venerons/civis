@@ -70,13 +70,18 @@ Each unit have 5 stats:
 * **Def:** Defence power of the unit, used to prevent damage in a fight.
 * **Mov:** Movement points of the unit, used to move around the map.
 
-A unit can do various actions, depending to the unit type. Actions can be:
+A unit can do various actions. Actions can be:
 
 * **Move:** Move the unit to another tile. To move, a unit requires Mov points and consumes a Mov point every tiles moved. Some tiles consumes more Mov than others, see the section _The Map_ for futher informations.
 * **Fortify:** Fortify the unit, that gain a +25% Atk/Def until it's fortified. Moving the unit de-fortify the unit.
 * **Kill:** Kill the unit to gain a small amount of gold. The unit will be removed.
 * **No Orders:** Issue no orders to the unit, that will be left as it is.
+
+Some units have also special orders, depending to the unit type. Actions can be:
+
 * **Settle:** Settle a city in the tile where the unit is. Only available for settlers.
+* **Build Streer:** Build a street on the tile where the unit stands. A street reduce the Mov needed to enter the tile.
+* **Build Improvement:** Build an improvement. An improvement can improve a tile Food/Production/Gold values.
 
 ### Fighting
 A fight is resolved this way:
@@ -90,42 +95,42 @@ A fight is resolved this way:
 settling instructions
 
 ### Unit List
-Unit             | Cost  | Atk   | Def   | Mov   | Initial Life | Requirements     | Obsolete  
----------------- | :---: | :---: | :---: | :---: | :----------: | ---------------- | ---  
-NON COMBAT UNITS |       |       |       |       |              |                  |  
-Settler          | 50    | 0     | 0     | 2     | 1            | -                | -  
-Worker           | 45    | 0     | 0     | 2     | 1            | -                | -  
-ANCIENT ERA      |       |       |       |       |              |                  |  
-Scout            | 25    | 0     | 1     | 2     | 1            | -                | Scientific Theory  
-Warrior          | 40    | 1     | 1     | 1     | 1            | -                | Iron Working  
-Spearman         | 56    | 2     | 1     | 1     | 1            | Bronze Working   | Iron Working 
-Archer           | 40    | 1     | 2     | 1     | 1            | Archery          | Gunpowder  
-Galley           | 45    | 1     | 1     | 1     | 1            | Sailing          | Optics  
-CLASSICAL ERA    |       |       |       |       |              |                  |  
-Catapult         | 75    | 4     | 1     | 1     | 1            | Engineering      | Gunpowder  
-Swordsman        | 75    | 2     | 2     | 1     | 1            | Iron Working     | Metal Casting  
-Horseman         | 75    | 2     | 1     | 2     | 1            | Horse Riding     | Code of Chivalry  
-Trireme          | 75    | 2     | 2     | 2     | 1            | Optics           | Astronomy  
-MEDIEVAL ERA     |       |       |       |       |              |                  |  
-Knight           | 120   | 4     | 2     | 2     | 1            | Code of Chivalry | Metal Casting  
-Galleon          | 120   | 3     | 3     | 3     | 1            | Astronomy        | Steam Energy  
-RENAISSANCE ERA  |       |       |       |       |              |                  |  
-Lancer           | 125   | 4     | 3     | 2     | 1            | Metal Casting    | Rifling  
-INDUSTRIAL ERA   |       |       |       |       |              |                  |  
--                | -     | -     | -     | -     | -            | -                | -  
-MODERN ERA       |       |       |       |       |              |                  |  
--                | -     | -     | -     | -     | -            | -                | -  
-ATOMIC ERA       |       |       |       |       |              |                  |  
--                | -     | -     | -     | -     | -            | -                | -  
-INFORMATION ERA  |       |       |       |       |              |                  |  
--                | -     | -     | -     | -     | -            | -                | -  
-FUTURE ERA       |       |       |       |       |              |                  |  
--                | -     | -     | -     | -     | -            | -                | -  
+Unit               | Cost  | Atk   | Def   | Mov   | Initial Life | Requirements     | Obsolete  
+------------------ | :---: | :---: | :---: | :---: | :----------: | ---------------- | ---  
+_NON COMBAT UNITS_ |       |       |       |       |              |                  |  
+Settler            | 50    | 0     | 0     | 2     | 1            | -                | -  
+Worker             | 45    | 0     | 0     | 2     | 1            | -                | -  
+_ANCIENT ERA_      |       |       |       |       |              |                  |  
+Scout              | 25    | 0     | 1     | 2     | 1            | -                | Scientific Theory  
+Warrior            | 40    | 1     | 1     | 1     | 1            | -                | Iron Working  
+Spearman           | 56    | 2     | 1     | 1     | 1            | Bronze Working   | Iron Working 
+Archer             | 40    | 1     | 2     | 1     | 1            | Archery          | Gunpowder  
+Galley             | 45    | 1     | 1     | 1     | 1            | Sailing          | Optics  
+_CLASSICAL ERA_    |       |       |       |       |              |                  |  
+Catapult           | 75    | 4     | 1     | 1     | 1            | Engineering      | Gunpowder  
+Swordsman          | 75    | 2     | 2     | 1     | 1            | Iron Working     | Metal Casting  
+Horseman           | 75    | 2     | 1     | 2     | 1            | Horse Riding     | Code of Chivalry  
+Trireme            | 75    | 2     | 2     | 2     | 1            | Optics           | Astronomy  
+_MEDIEVAL ERA_     |       |       |       |       |              |                  |  
+Knight             | 120   | 4     | 2     | 2     | 1            | Code of Chivalry | Metal Casting  
+Galleon            | 120   | 3     | 3     | 3     | 1            | Astronomy        | Steam Energy  
+_RENAISSANCE ERA_  |       |       |       |       |              |                  |  
+Lancer             | 125   | 4     | 3     | 2     | 1            | Metal Casting    | Rifling  
+_INDUSTRIAL ERA_   |       |       |       |       |              |                  |  
+-                  | -     | -     | -     | -     | -            | -                | -  
+_MODERN ERA_       |       |       |       |       |              |                  |  
+-                  | -     | -     | -     | -     | -            | -                | -  
+_ATOMIC ERA_       |       |       |       |       |              |                  |  
+-                  | -     | -     | -     | -     | -            | -                | -  
+_INFORMATION ERA_  |       |       |       |       |              |                  |  
+-                  | -     | -     | -     | -     | -            | -                | -  
+_FUTURE ERA_       |       |       |       |       |              |                  |  
+-                  | -     | -     | -     | -     | -            | -                | -  
 
-Infantry         | 375   | ?     | ?     | ?     | 1            | Independent Pieces |  
-Tank             | 375   | ?     | ?     | ?     | 1            | Combustion         |  
-Marine           | 400   | ?     | ?     | ?     | 1            | Plastic            |  
-Submarine        | 325   | ?     | ?     | ?     | 1            | Plastic            |  
+Infantry           | 375   | ?     | ?     | ?     | 1            | Independent Pieces |  
+Tank               | 375   | ?     | ?     | ?     | 1            | Combustion         |  
+Marine             | 400   | ?     | ?     | ?     | 1            | Plastic            |  
+Submarine          | 325   | ?     | ?     | ?     | 1            | Plastic            |  
 
 MEDIEVAL ERA
 Crossbowman
@@ -170,7 +175,9 @@ Nuclear missile
 Guided missile
 
 FUTURE ERA
-Giant death robot (mech)
+Mech (siege unit)
+Drone (airplane unit)
+Robot Soldier
 Cyborg Trooper
 
 ## Cities
@@ -277,20 +284,20 @@ Divine Right       | 80    | Theology                        | Unlock Monarchy
 Education          | 80    | Theology, Mathematics           | Unlock Republic, University  
 Currency           | 80    | Mathematics                     | -  
 Masonry            | 80    | Mining                          | -  
-Bronze Working     | 80    | Mining                          | Unlock Barracks  
+Bronze Working     | 80    | Mining                          | Unlock Barracks, Spearman  
 Horse Riding       | 80    | Breeding                        | Unlock Horseman  
-Optics             | 80    | Archery, Sailing                | -  
+Optics             | 80    | Archery, Sailing                | Unlock Trireme  
 Art                | 160   | Divine Right, Education         | -  
 Literature         | 160   | Education                       | -  
 Engineering        | 160   | Mathematics, Masonry            | Unlock Aqueduct, Catapult  
-Iron Working       | 160   | Bronze Working                  | -  
+Iron Working       | 160   | Bronze Working                  | Unlock Swordsman  
 Code of Chivalry   | 160   | Horse Riding, Currency          | Unlock Knight  
 Astronomy          | 160   | Optics                          | Unlock Galleon  
 Music              | 320   | Art, Literature                 | -  
 Banking            | 320   | Divine Right, Currency          | -  
 Mechanics          | 320   | Engineering                     | -  
 Physics            | 320   | Engineering                     | -  
-Metal Casting      | 320   | Iron Working                    | -  
+Metal Casting      | 320   | Iron Working                    | Unlock Lancer  
 Scientific Theory  | 640   | Astronomy, Physics              | -  
 Economy            | 640   | Banking                         | Unlock Nationalism  
 Steel              | 640   | Metal Casting                   | -  
