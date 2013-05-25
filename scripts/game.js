@@ -26,10 +26,10 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
     });
 
     // TILES TYPE BY SECTOR
-    var poles = ["water", "water", "snow"]; // 10 % - 0-10 & 90-100
-    var cold = ["tundra", "tundra", "plain", "mountain", "water", "water"]; // 10% - 11-20 & 80-89
-    var middle = ["grass", "grass", "plain", "mountain", "hill", "hill", "water", "water", "water"]; // 21-40 & 60-79
-    var center = ["desert", "desert", "plain", "plain", "hill", "water", "water"]; // 20% - 41-59
+    var poles = ["snow", "water", "water"]; // 10 % - 0-10 & 90-100
+    var cold = ["tundra", "tundra", "plain", "mountain", "water", "water", "water", "water"]; // 10% - 11-20 & 80-89
+    var middle = ["grass", "grass", "plain", "mountain", "hill", "water", "water", "water", "water"]; // 21-40 & 60-79
+    var center = ["desert", "desert", "plain", "plain", "hill", "water", "water", "water", "water", "water", "water", "water", "water"]; // 20% - 41-59
 
     // INSERT THE PLAYER 1
 
@@ -129,8 +129,8 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
             } else if (t.type === "desert"){
                 if (perc <= 10) { t.nature = "oasis"; } // 10 % oasis
             } else if (t.type === "water"){
-                if (perc <= 20 && sector === "center") { t.nature = "atoll"; } // 20 % atoll in center sector
-                else if (perc <= 10 && sector === "middle") { t.nature = "atoll"; } // 10 % atoll in middle sector
+                if (perc <= 10 && sector === "center") { t.nature = "atoll"; } // 10 % atoll in center sector
+                else if (perc <= 5 && sector === "middle") { t.nature = "atoll"; } // 5 % atoll in middle sector
             } else {
                 t.nature = "none";
             }
@@ -685,7 +685,7 @@ function createBuildingsList(cityid) {
 
     $.each(unitsDB, function(key, val) {
         if ((val.techrequired === "none" || playerHaveTech(city.player, val.techrequired)) && !playerHaveTech(city.player, val.obsolete)) {
-            if (val.terrain || (val.naval && pointIsNearTile(city.x, city.y, "water")) {
+            if (val.terrain || (val.naval && pointIsNearTile(city.x, city.y, "water"))) {
                 content += '<button onclick="setBuild(\'' + cityid + '\', \'unit\', \'' + key + '\')" style="margin-bottom: 5px;" class="gradient button w100"><img src="' + localStorage.tileset + '/units/' + key + '.png" alt="' + key + '" title="' + key + '" class="buttonimage">&nbsp;&nbsp;&nbsp;<strong>' + key + '</strong> (Cost: ' + val.productioncost + ' - ' + Math.ceil(val.productioncost/cityproduction) + ' Turns)</button><br/>';
             }
         }
