@@ -310,12 +310,73 @@ function getNearTiles(x, y) {
 
 // DISCOVER TILES
 function discoverTiles() {
+    /*
     for (var i = 0, len = map.units.length; i < len; i++) {
         if (map.units[i].player === map.players[0].id) {
             var tiles = getNearTiles(map.units[i].x, map.units[i].y);
             for (var j = 0, len2 = tiles.length; j < len2; j++) {
                 tiles[j].fog = false;
             }
+        }
+    }
+    */
+
+
+    for (var i = 0, len = map.units.length; i < len; i++) {
+        if (map.units[i].player === map.players[0].id) {
+            var x = map.units[i].x;
+            var y = map.units[i].y;
+            var tile;
+
+            // upper orizontal axis
+            if (y !== 1) {
+                if (x !== 1) { findTileByXY(x-1, y-1).fog = false; }
+
+                tile = findTileByXY(x, y-1);
+                tile.fog = false;
+                if ((y-1 !== 1) && (tile.type !== "hill") && (tile.type !== "mountain") && (tile.nature !== "forest") && (tile.nature !== "jungle")) {
+                    tile = findTileByXY(x, y-2);
+                    tile.fog = false;
+                }
+
+                if (x !== map.tiles[y-1].length) { findTileByXY(x+1, y-1).fog = false; }
+            }
+
+            // middle orizontal axis
+            if (x !== 1) { // SX
+                tile = findTileByXY(x-1, y);
+                tile.fog = false;
+                if ((x-1 !== 1) && (tile.type !== "hill") && (tile.type !== "mountain") && (tile.nature !== "forest") && (tile.nature !== "jungle")) {
+                    tile = findTileByXY(x-2, y);
+                    tile.fog = false;
+                }
+            }
+
+            findTileByXY(x, y).fog = false; // unit's tile
+
+            if (x !== map.tiles[y-1].length) { // DX
+                tile = findTileByXY(x+1, y);
+                tile.fog = false;
+                if ((x+1 !== map.tiles[y-1].length) && (tile.type !== "hill") && (tile.type !== "mountain") && (tile.nature !== "forest") && (tile.nature !== "jungle")) {
+                    tile = findTileByXY(x+2, y);
+                    tile.fog = false;
+                }
+            }
+
+            // bottom orizontal axis
+            if (y !== map.tiles.length) {
+                if (x !== 1) { findTileByXY(x-1, y+1).fog = false; }
+
+                tile = findTileByXY(x, y+1);
+                tile.fog = false;
+                if ((y+1 !== map.tiles.length) && (tile.type !== "hill") && (tile.type !== "mountain") && (tile.nature !== "forest") && (tile.nature !== "jungle")) {
+                    tile = findTileByXY(x, y+2);
+                    tile.fog = false;
+                }
+                
+                if (x !== map.tiles[y-1].length) { findTileByXY(x+1, y+1).fog = false; }
+            }
+
         }
     }
 }

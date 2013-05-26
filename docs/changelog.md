@@ -2,6 +2,12 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 26/05/2013
+
+* Code optimization and correction
+* Initial implementation of newer discoverTiles()
+* Update roadmap
+
 ### Update 25/05/2013
 
 * Improved random map generation

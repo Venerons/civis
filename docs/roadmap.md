@@ -6,22 +6,26 @@ This document outlines the general goals for CivJS ongoing development.
 
 ### Version 0.4.0 (May 2013)
 
-* Refactor gold and commerce, new tiles _(DONE)_
-* buildings & units maintenance cost _(DONE)_
-* Add new nature: Jungle, Atoll _(DONE)_
-* Update EaselJS and remove useless libraries _(DONE)_
-* Implemented streets _(DONE)_
-* Add new units: Worker, Scout, Catapult, Horseman, Galleon, Knight, Spearman, Swordsman, Trireme, Lancer _(DONE)_
-* Updated units production cost _(DONE)_
-* Updated city graphics _(DONE)_
-* Add new buildings: bank _(DONE)_
-* Updated buildings production cost _(DONE)_
-* Updated to PhoneGap 2.7.0 _(DONE)_
-* Improved random map generation _(DONE)_
+Done
+
+* Refactor gold and commerce, new tiles
+* buildings & units maintenance cost
+* Add new nature: Jungle, Atoll
+* Update EaselJS and remove useless libraries
+* Implemented streets
+* Add new units: Worker, Scout, Catapult, Horseman, Galleon, Knight, Spearman, Swordsman, Trireme, Lancer
+* Updated units production cost
+* Updated city graphics
+* Add new buildings: bank
+* Updated buildings production cost
+* Updated to PhoneGap 2.7.0
+* Improved random map generation
+
+Todo
 
 * Add other nature elements (marsh, natural wonder, river, fallout)
 * Implement more buildings
-* better discoverTiles() (implementare la distanza di visuale, ovvero se stai su una collina vedi più lontano, su una montagna ancora di più. Colline, montagne, foreste e giungle tuttavia possono bloccare la visuale.)
+* better discoverTiles() (implementare la distanza di visuale, ovvero se stai su una collina vedi più lontano, su una montagna ancora di più. Colline, montagne, foreste e giungle tuttavia possono bloccare la visuale.) (_PARTIAL_)
 * Code optimizations and Bug Fixes
 
 ### Version 0.5.0 (Unsheduled)
