@@ -6,7 +6,7 @@ This document outlines the general goals for CivJS ongoing development.
 
 ### Version 0.4.0 (May 2013)
 
-Done
+**Done**
 
 * Refactor gold and commerce, new tiles
 * buildings & units maintenance cost
@@ -21,11 +21,11 @@ Done
 * Updated to PhoneGap 2.7.0
 * Improved random map generation
 
-Todo
+**Todo**
 
 * Add other nature elements (marsh, natural wonder, river, fallout)
 * Implement more buildings
-* better discoverTiles() (implementare la distanza di visuale, ovvero se stai su una collina vedi più lontano, su una montagna ancora di più. Colline, montagne, foreste e giungle tuttavia possono bloccare la visuale.) (_PARTIAL_)
+* better discoverTiles() (implementare la distanza di visuale, ovvero se stai su una collina vedi più lontano, su una montagna ancora di più. Colline, montagne, foreste e giungle tuttavia possono bloccare la visuale.) _(PARTIAL)_
 * Code optimizations and Bug Fixes
 
 ### Version 0.5.0 (Unsheduled)
