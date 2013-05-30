@@ -2,6 +2,11 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 30/05/2013
+
+* Removed useless map graphic
+* Fixed wrong alt and title texts
+
 ### Update 26/05/2013
 
 * Code optimization and correction

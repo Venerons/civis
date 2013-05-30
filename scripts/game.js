@@ -735,7 +735,7 @@ function showResearchManagement() {
         }
     }
 
-    var content = '<h3 class="center"><img src="' + localStorage.hudset + '/research.png" alt="Gold" title="Gold" width="25" height="25">&nbsp;&nbsp;Technology Research</h3>';
+    var content = '<h3 class="center"><img src="' + localStorage.hudset + '/research.png" alt="Research" title="Research" width="25" height="25">&nbsp;&nbsp;Technology Research</h3>';
     if (map.players[0].research.tech !== "") {
         var current = getTechProdCost(player.research.tech);
         var status = current - player.research.cost;
@@ -776,7 +776,7 @@ function setResearch(techname) {
 function showSocietyManagement() {
     closePopup();
 
-    var content = '<h3 class="center"><img src="' + localStorage.hudset + '/society.png" alt="Gold" title="Gold" width="25" height="25">&nbsp;&nbsp;Society</h3>';
+    var content = '<h3 class="center"><img src="' + localStorage.hudset + '/society.png" alt="Society" title="Society" width="25" height="25">&nbsp;&nbsp;Society</h3>';
     content += '<strong>Current Society:</strong> ' + map.players[0].society;
     content += '<h4 class="center">Available Societies</h4>';
 
@@ -789,11 +789,11 @@ function showEmpireOverview() {
 
     var player = map.players[0];
 
-    var content = '<h3 class="center"><img src="' + localStorage.hudset + '/empire.png" alt="Gold" title="Gold" width="25" height="25">&nbsp;&nbsp;Empire Overview</h3><h4 class="center"><span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + player.color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + player.name + ' (' + player.civilization + ')</h4>';
+    var content = '<h3 class="center"><img src="' + localStorage.hudset + '/empire.png" alt="Empire Overview" title="Empire Overview" width="25" height="25">&nbsp;&nbsp;Empire Overview</h3><h4 class="center"><span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + player.color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + player.name + ' (' + player.civilization + ')</h4>';
     content += '<table class="w100"><tbody><tr><td class="w33 center"><strong>Points:</strong> ' + player.points;
     content += '</td><td class="w33 center"><img src="' + localStorage.hudset + '/gold.png" alt="Gold" title="Gold" width="20" height="20">&nbsp;&nbsp;' + player.gold;
     content += '</td><td class="w33 center"><img src="' + localStorage.hudset + '/culture.png" alt="Culture" title="Culture" width="20" height="20">&nbsp;&nbsp;' + player.culture;
-    content += '</td></tr></tbody></table><h3 class="center"><img src="' + localStorage.hudset + '/diplomacy.png" alt="Gold" title="Gold" width="25" height="25">&nbsp;&nbsp;Diplomacy</h3>';
+    content += '</td></tr></tbody></table><h3 class="center"><img src="' + localStorage.hudset + '/diplomacy.png" alt="Diplomacy" title="Diplomacy" width="25" height="25">&nbsp;&nbsp;Diplomacy</h3>';
 
     for (var i = 1, len = map.players.length; i < len; i++) {
         content += '<span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + map.players[i].color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + map.players[i].name + ' (' + map.players[i].civilization + ')<br/><br/>';
