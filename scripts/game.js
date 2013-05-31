@@ -122,7 +122,8 @@ function generateMap(pname, civ, nplayers, nrows, ncols) {
             // add eventual nature element
             perc = Math.floor(Math.random() * 100 + 1);
             if (t.type === "grass") {
-                if (perc <= 50) { t.nature = "forest"; } // 50 % forest
+                if (perc <= 20) { t.nature = "marsh"; } // 20 % forest
+                else if (perc <= 70) { t.nature = "forest"; } // 50 % forest (20 + 50 = 70)
             } else if (t.type === "plain"){
                 if (perc <= 50 && sector === "center") { t.nature = "jungle"; } // 50 % jungle in center sector
                 else if (perc <= 25 && sector === "middle") { t.nature = "jungle"; } // 25 % jungle in middle sector

@@ -2,6 +2,14 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 31/05/2013 (Version 0.4.0)
+
+* Tagged version 0.4.0
+* Update graphics
+* Add new nature element: marsh
+* Updated manual.txt
+* Updated RoadMap
+
 ### Update 30/05/2013
 
 * Removed useless map graphic

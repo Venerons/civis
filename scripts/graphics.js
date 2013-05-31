@@ -14,7 +14,7 @@ var imageCache = {};
 
 var SCALE = 1;
 var TILESIZE = Math.floor(101 * SCALE);
-var UNITSIZE = Math.floor(56 * SCALE);
+var UNITSIZE = Math.floor(55 * SCALE);
 var UNITOFFSET = Math.floor((TILESIZE - UNITSIZE) / 2);
 
 // ON LOAD
@@ -110,6 +110,7 @@ function preloadImages () {
 	imageCache.jungle = new Image().src = localStorage.tileset + "/elements/jungle.png";
 	imageCache.oasis = new Image().src = localStorage.tileset + "/elements/oasis.png";
 	imageCache.atoll = new Image().src = localStorage.tileset + "/elements/atoll.png";
+	imageCache.marsh = new Image().src = localStorage.tileset + "/elements/marsh.png";
 
 	imageCache.street = new Image().src = localStorage.tileset + "/elements/street.png";
 	imageCache.city = new Image().src = localStorage.tileset + "/elements/city.png";
@@ -379,7 +380,7 @@ function addTileToMap(tile) {
 
 	// set eventual street
 	if (tile.street) {
-		var elementBmp = new createjs.Bitmap(imageCache.street).setTransform(coordinate(tile.x) - 10 + camera.x, coordinate(tile.y) - 10 + camera.y, SCALE, SCALE);
+		var elementBmp = new createjs.Bitmap(imageCache.street).setTransform(assex + 5, assey + 5, SCALE, SCALE);
 		mapelements.push(elementBmp);
 		stage.addChild(elementBmp);
 	}
@@ -387,7 +388,9 @@ function addTileToMap(tile) {
 
 // ADD A CITY LABEL TO THE X, Y COORDINATE
 function addCityToMap(city) {
-	var cityBitmap = new createjs.Bitmap(imageCache.city).setTransform(coordinate(city.x) + camera.x, coordinate(city.y) + camera.y, SCALE, SCALE);
+	var dx = (city.x - 1) * TILESIZE + 12;
+	var dy = (city.y - 1) * TILESIZE + 12;
+	var cityBitmap = new createjs.Bitmap(imageCache.city).setTransform(dx + camera.x, dy + camera.y, SCALE, SCALE);
 
 	var label = new createjs.Text(city.population + " - " + city.name, "normal 12px Arial", findPlayerById(city.player).color);
 	var tx = ((city.x - 1) * TILESIZE) + ((TILESIZE - label.getMeasuredWidth()) / 2) + camera.x;
@@ -423,10 +426,14 @@ function addElementToMap(element, x, y) {
 	var elementimg;
 	if (element === "forest") { elementimg = imageCache.forest; }
 	else if (element === "jungle") { elementimg = imageCache.jungle; }
+	else if (element === "marsh") { elementimg = imageCache.marsh; }
 	else if (element === "oasis") { elementimg = imageCache.oasis; }
 	else if (element === "atoll") { elementimg = imageCache.atoll; }
 
-	var elementBmp = new createjs.Bitmap(elementimg).setTransform(coordinate(x) - 10 + camera.x, coordinate(y) - 10 + camera.y, SCALE, SCALE);
+	var dx = (x - 1) * TILESIZE + 12;
+	var dy = (y - 1) * TILESIZE + 12;
+
+	var elementBmp = new createjs.Bitmap(elementimg).setTransform(dx + camera.x, dy + camera.y, SCALE, SCALE);
 	mapelements.push(elementBmp);
 	stage.addChild(elementBmp);
 }

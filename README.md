@@ -6,7 +6,7 @@ CivJS is an HTML5, CSS3 and JavaScript game inspired by the Sid Meier's Civiliza
 
 It implements similar but simpler rules, and thanks to the web technologies is available to almost any modern OS.
 
-CivJS is currently in ALPHA development stage.
+CivJS is currently in PRE-ALPHA development stage.
 
 ## Supported Platforms:
 

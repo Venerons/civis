@@ -4,31 +4,24 @@ _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
 This document outlines the general goals for CivJS ongoing development.
 
-### Version 0.4.0 (May 2013)
+### Version 0.5.0 (June 2013)
 
 **Done**
 
-* Refactor gold and commerce, new tiles
-* buildings & units maintenance cost
-* Add new nature: Jungle, Atoll
-* Update EaselJS and remove useless libraries
-* Implemented streets
-* Add new units: Worker, Scout, Catapult, Horseman, Galleon, Knight, Spearman, Swordsman, Trireme, Lancer
-* Updated units production cost
-* Updated city graphics
-* Add new buildings: bank
-* Updated buildings production cost
-* Updated to PhoneGap 2.7.0
-* Improved random map generation
+_nothing_
 
 **Todo**
 
-* Add other nature elements (marsh, natural wonder, river, fallout)
+* Add other nature elements (natural wonder, river, fallout)
 * Implement more buildings
+* Add new units
+* Implement railways
+* Implement improvements (function buildImprovement() already set)
+* Remove nature element when settling
 * better discoverTiles() (implementare la distanza di visuale, ovvero se stai su una collina vedi più lontano, su una montagna ancora di più. Colline, montagne, foreste e giungle tuttavia possono bloccare la visuale.) _(PARTIAL)_
 * Code optimizations and Bug Fixes
 
-### Version 0.5.0 (Unsheduled)
+### Version 0.6.0 (Unsheduled)
 
 * Basic enemy AI
 
@@ -51,7 +44,6 @@ _Game Features_
 * implement happyness?
 * technologies unlock improvements and bonuses/effects
 * Implement resources
-* Implement improvements (function buildImprovement() already set)
 * Implement more units
 * Implement points
 * Implement civilizations abilities
