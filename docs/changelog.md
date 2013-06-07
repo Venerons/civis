@@ -2,6 +2,11 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
 
+### Update 07/06/2013
+
+* Updated config.xml
+* Updated splash screens
+
 ### Update 31/05/2013 (Version 0.4.0)
 
 * Tagged version 0.4.0

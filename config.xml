@@ -8,29 +8,24 @@
     <name>CivJS</name>
 
     <description>
-        A JavaScript game inspired by the Sid Meier's Civilization games
-        More info at http://venerons.github.io/CivJS
+        A JavaScript game inspired by the Sid Meier's Civilization games. More info at http://venerons.github.io/CivJS
     </description>
 
-    <author href="http://venerons.github.io/" email="veneronslaboratories@gmail.com">
-        Daniele Veneroni
-    </author>
-        
+    <author href="http://venerons.github.io/" email="veneronslaboratories@gmail.com">Daniele Veneroni</author>
         
     <!-- ICONS -->
         
     <icon src="icon.png" /> <!-- default 72 pixels -->
         
-    <icon src="images/icons/ios/icon.png" width="57" height="57" /> <!-- iPhone 3G, iPhone 3GS, iPod Touch 2G, 3G -->
-    <icon src="images/icons/ios/icon72.png" gap:platform="ios" width="72" height="72" /> <!-- iPad, iPad 2, iPad mini -->
-    <icon src="images/icons/ios/icon114.png" width="114" height="114" /> <!-- iPhone 4, iPhone 4S, iPod Touch 4G -->
-    <icon src="images/icons/ios/icon144.png" width="144" height="144" /> <!-- iPad 3, iPad 4 -->
+    <icon src="images/icons/ios/icon57.png" gap:platform="ios" width="57" height="57" /> <!-- iPhone 3G, 3GS, iPod Touch 2G, 3G -->
+    <icon src="images/icons/ios/icon72.png" gap:platform="ios" width="72" height="72" /> <!-- iPad 1, 2, iPad mini -->
+    <icon src="images/icons/ios/icon114.png" gap:platform="ios" width="114" height="114" /> <!-- iPhone 4, 4S, iPod Touch 4G -->
+    <icon src="images/icons/ios/icon144.png" gap:platform="ios" width="144" height="144" /> <!-- iPad 3, 4 -->
         
     <icon src="images/icons/android/ldpi.png" gap:platform="android" gap:density="ldpi" /> <!-- 36 pixels -->
     <icon src="images/icons/android/mdpi.png" gap:platform="android" gap:density="mdpi" /> <!-- 48 pixels -->
     <icon src="images/icons/android/hdpi.png" gap:platform="android" gap:density="hdpi" /> <!-- 72 pixels -->
     <icon src="images/icons/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" /> <!-- 96 pixels -->
-    <!-- <icon src="images/icons/android/xxhdpi.png" gap:platform="android" gap:density="xxhdpi" /> 144 pixels -->
         
     <icon src="images/icons/bb/icon.png" gap:platform="blackberry" /> <!-- 72 pixels -->
     <icon src="images/icons/bb/icon_hover.png" gap:platform="blackberry" gap:state="hover"/> <!-- 72 pixels -->
@@ -45,11 +40,13 @@
         
     <gap:splash src="splash.png" /> <!-- default 320x480 pixels -->
         
-    <gap:splash src="images/splash/ios/splash1024x768.png" width="1024" height="768" /> <!-- iPad 1, iPad 2, iPad mini -->
-    <gap:splash src="images/splash/ios/splash768x1024.png" width="768" height="1024" /> <!-- iPad 1, iPad 2, iPad mini -->
-    <gap:splash src="images/splash/ios/splash320x480.png" width="320" height="480" /> <!-- iPhone 3G, iPhone 3GS, iPod Touch 2, iPod Touch 3 -->
-    <gap:splash src="images/splash/ios/splash640x960.png" width="640" height="960" /> <!-- iPhone 4, iPhone 4S, iPod Touch 4 -->
-    <gap:splash src="images/splash/ios/splash640x1136.png" width="640" height="1136" /> <!-- iPhone 5, iPod Touch 5 -->
+    <gap:splash src="images/splash/ios/splash320x480.png" gap:platform="ios" width="320" height="480" /> <!-- iPhone 3G, 3GS, iPod Touch 2, 3 -->
+    <gap:splash src="images/splash/ios/splash640x960.png" gap:platform="ios" width="640" height="960" /> <!-- iPhone 4, 4S, iPod Touch 4 -->
+    <gap:splash src="images/splash/ios/splash640x1136.png" gap:platform="ios" width="640" height="1136" /> <!-- iPhone 5, iPod Touch 5 -->
+    <gap:splash src="images/splash/ios/splash1024x768.png" gap:platform="ios" width="1024" height="768" /> <!-- iPad 1, 2, iPad mini -->
+    <gap:splash src="images/splash/ios/splash768x1024.png" gap:platform="ios" width="768" height="1024" /> <!-- iPad 1, 2, iPad mini -->
+    <gap:splash src="images/splash/ios/splash2048x1496.png" gap:platform="ios" width="2048" height="1496" /> <!-- iPad 3, 4 -->
+    <gap:splash src="images/splash/ios/splash1536x2008.png" gap:platform="ios" width="1536" height="2008" /> <!-- iPad 3, 4 -->
         
     <gap:splash src="images/splash/android/ldpi.png" gap:platform="android" gap:density="ldpi" /> <!-- 200x320 -->
     <gap:splash src="images/splash/android/mdpi.png" gap:platform="android" gap:density="mdpi" /> <!-- 320x480 -->
@@ -64,26 +61,29 @@
         
     <!-- GENERAL PREFERENCES -->
         
-    <preference name="phonegap-version" value="2.7.0" /> <!-- versione di phonegap usata -->
-    <preference name="orientation" value="default" /> <!-- entrambe supportate -->
+    <preference name="phonegap-version" value="2.7.0" />
+    <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
-    <preference name="fullscreen" value="true" /> <!-- toglie la barra in alto su iOS e Android -->
+    <preference name="fullscreen" value="true" /> <!-- remove the upper bar on iOS and Android -->
         
     <!-- iOS PREFERENCES -->
         
-    <preference name="webviewbounce" value="false" /> <!-- effetto bounce quando si raggiunge la cima o il fondo della pagina -->
-    <preference name="prerendered-icon" value="true" /> <!-- non applica effetto gloss all'icona -->
-    <preference name="stay-in-webview" value="false" /> <!-- if set to true, all links (even with target set to blank) will open in the app's webview -->
+    <preference name="webviewbounce" value="false" />
+    <preference name="prerendered-icon" value="true" />
+    <preference name="stay-in-webview" value="false" />
     <preference name="ios-statusbarstyle" value="black-opaque" />
-    <preference name="exit-on-suspend" value="true" /> <!-- if set to false, app will continue to run on suspend -->
-    <preference name="show-splash-screen-spinner" value="true" /> <!-- if set to false, the spinner won't appear on the splash screen during app loading -->
+    <preference name="detect-data-types" value="false" />
+    <preference name="exit-on-suspend" value="false" />
+    <preference name="show-splash-screen-spinner" value="false" />
     <preference name="auto-hide-splash-screen" value="true" /> <!-- if set to false, the splash screen must be hidden using a JavaScript API -->
         
     <!-- ANDROID PREFERENCES -->
         
-    <preference name="android-minSdkVersion" value="14" /> <!-- minimo Android 4.0 (si può scendere fino a 7/Android 2.1) -->
-    <!-- <preference name="android-maxSdkVersion" value="17" /> massimo Android 4.2 -->
+    <preference name="android-minSdkVersion" value="7" /> <!-- minimum Android 2.1 -->
+    <!-- <preference name="android-maxSdkVersion" value="17" /> maximum Android 4.2 -->
     <preference name="android-installLocation" value="auto" />
+    <preference name="splash-screen-duration" value="3000" />
+    <preference name="load-url-timeout" value="20000" />
         
     <!-- BLACKBERRY PREFERENCES -->
         
