@@ -1,6 +1,14 @@
 # CivJS Changelog
 
-_Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
+_Copyright (c) 2013 Daniele Veneroni. Released under GPLv3 License. See LICENSE.txt for further information._
+
+### Update 08/06/2013
+
+* Changed directories name
+* Changed license (from MIT License to GNU GPLv3)
+* Changed index.html
+* Removed jQuery Mobile
+* Added Lungo.js
 
 ### Update 07/06/2013
 

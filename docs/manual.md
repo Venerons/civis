@@ -1,4 +1,4 @@
-_Copyright (c) 2013 Daniele Veneroni. Released under MIT License._
+_Copyright (c) 2013 Daniele Veneroni. Released under GPLv3 License. See LICENSE.txt for further information._
 
 Welcome to CivJS, the JavaScript Civilization Game!
 

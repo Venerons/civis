@@ -20,7 +20,7 @@ echo "HTML compression completed."
 # JAVASCRIPT COMPRESSION
 #
 echo "JS compression started..."
-cd scripts/
+cd js/
 java -jar /Users/Venerons/Documents/Developer/compiler.jar --js=graphics.js --js=game.js --js=utils.js --js_output_file=civjs.js
 rm graphics.js
 rm game.js

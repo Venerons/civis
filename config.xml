@@ -17,47 +17,47 @@
         
     <icon src="icon.png" /> <!-- default 72 pixels -->
         
-    <icon src="images/icons/ios/icon57.png" gap:platform="ios" width="57" height="57" /> <!-- iPhone 3G, 3GS, iPod Touch 2G, 3G -->
-    <icon src="images/icons/ios/icon72.png" gap:platform="ios" width="72" height="72" /> <!-- iPad 1, 2, iPad mini -->
-    <icon src="images/icons/ios/icon114.png" gap:platform="ios" width="114" height="114" /> <!-- iPhone 4, 4S, iPod Touch 4G -->
-    <icon src="images/icons/ios/icon144.png" gap:platform="ios" width="144" height="144" /> <!-- iPad 3, 4 -->
+    <icon src="img/icons/ios/icon57.png" gap:platform="ios" width="57" height="57" /> <!-- iPhone 3G, 3GS, iPod Touch 2G, 3G -->
+    <icon src="img/icons/ios/icon72.png" gap:platform="ios" width="72" height="72" /> <!-- iPad 1, 2, iPad mini -->
+    <icon src="img/icons/ios/icon114.png" gap:platform="ios" width="114" height="114" /> <!-- iPhone 4, 4S, iPod Touch 4G -->
+    <icon src="img/icons/ios/icon144.png" gap:platform="ios" width="144" height="144" /> <!-- iPad 3, 4 -->
         
-    <icon src="images/icons/android/ldpi.png" gap:platform="android" gap:density="ldpi" /> <!-- 36 pixels -->
-    <icon src="images/icons/android/mdpi.png" gap:platform="android" gap:density="mdpi" /> <!-- 48 pixels -->
-    <icon src="images/icons/android/hdpi.png" gap:platform="android" gap:density="hdpi" /> <!-- 72 pixels -->
-    <icon src="images/icons/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" /> <!-- 96 pixels -->
+    <icon src="img/icons/android/ldpi.png" gap:platform="android" gap:density="ldpi" /> <!-- 36 pixels -->
+    <icon src="img/icons/android/mdpi.png" gap:platform="android" gap:density="mdpi" /> <!-- 48 pixels -->
+    <icon src="img/icons/android/hdpi.png" gap:platform="android" gap:density="hdpi" /> <!-- 72 pixels -->
+    <icon src="img/icons/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" /> <!-- 96 pixels -->
         
-    <icon src="images/icons/bb/icon.png" gap:platform="blackberry" /> <!-- 72 pixels -->
-    <icon src="images/icons/bb/icon_hover.png" gap:platform="blackberry" gap:state="hover"/> <!-- 72 pixels -->
+    <icon src="img/icons/bb/icon.png" gap:platform="blackberry" /> <!-- 72 pixels -->
+    <icon src="img/icons/bb/icon_hover.png" gap:platform="blackberry" gap:state="hover"/> <!-- 72 pixels -->
         
-    <icon src="images/icons/winphone/icon.png" gap:platform="winphone" /> <!-- 57 pixels -->
-    <icon src="images/icons/winphone/tileicon.png" gap:platform="winphone" gap:role="background" /> <!-- 72 pixels -->
+    <icon src="img/icons/winphone/icon.png" gap:platform="winphone" /> <!-- 57 pixels -->
+    <icon src="img/icons/winphone/tileicon.png" gap:platform="winphone" gap:role="background" /> <!-- 72 pixels -->
         
-    <icon src="images/icons/webos/icon.png" gap:platform="webos" /> <!-- 29 pixels -->
-    <icon src="images/icons/webos/miniicon.png" gap:platform="webos" gap:role="mini" /> <!-- 15 pixels -->
+    <icon src="img/icons/webos/icon.png" gap:platform="webos" /> <!-- 29 pixels -->
+    <icon src="img/icons/webos/miniicon.png" gap:platform="webos" gap:role="mini" /> <!-- 15 pixels -->
         
     <!-- SPLASH SCREENS -->
         
     <gap:splash src="splash.png" /> <!-- default 320x480 pixels -->
         
-    <gap:splash src="images/splash/ios/splash320x480.png" gap:platform="ios" width="320" height="480" /> <!-- iPhone 3G, 3GS, iPod Touch 2, 3 -->
-    <gap:splash src="images/splash/ios/splash640x960.png" gap:platform="ios" width="640" height="960" /> <!-- iPhone 4, 4S, iPod Touch 4 -->
-    <gap:splash src="images/splash/ios/splash640x1136.png" gap:platform="ios" width="640" height="1136" /> <!-- iPhone 5, iPod Touch 5 -->
-    <gap:splash src="images/splash/ios/splash1024x768.png" gap:platform="ios" width="1024" height="768" /> <!-- iPad 1, 2, iPad mini -->
-    <gap:splash src="images/splash/ios/splash768x1024.png" gap:platform="ios" width="768" height="1024" /> <!-- iPad 1, 2, iPad mini -->
-    <gap:splash src="images/splash/ios/splash2048x1496.png" gap:platform="ios" width="2048" height="1496" /> <!-- iPad 3, 4 -->
-    <gap:splash src="images/splash/ios/splash1536x2008.png" gap:platform="ios" width="1536" height="2008" /> <!-- iPad 3, 4 -->
+    <gap:splash src="img/splash/ios/splash320x480.png" gap:platform="ios" width="320" height="480" /> <!-- iPhone 3G, 3GS, iPod Touch 2, 3 -->
+    <gap:splash src="img/splash/ios/splash640x960.png" gap:platform="ios" width="640" height="960" /> <!-- iPhone 4, 4S, iPod Touch 4 -->
+    <gap:splash src="img/splash/ios/splash640x1136.png" gap:platform="ios" width="640" height="1136" /> <!-- iPhone 5, iPod Touch 5 -->
+    <gap:splash src="img/splash/ios/splash1024x768.png" gap:platform="ios" width="1024" height="768" /> <!-- iPad 1, 2, iPad mini -->
+    <gap:splash src="img/splash/ios/splash768x1024.png" gap:platform="ios" width="768" height="1024" /> <!-- iPad 1, 2, iPad mini -->
+    <gap:splash src="img/splash/ios/splash2048x1496.png" gap:platform="ios" width="2048" height="1496" /> <!-- iPad 3, 4 -->
+    <gap:splash src="img/splash/ios/splash1536x2008.png" gap:platform="ios" width="1536" height="2008" /> <!-- iPad 3, 4 -->
         
-    <gap:splash src="images/splash/android/ldpi.png" gap:platform="android" gap:density="ldpi" /> <!-- 200x320 -->
-    <gap:splash src="images/splash/android/mdpi.png" gap:platform="android" gap:density="mdpi" /> <!-- 320x480 -->
-    <gap:splash src="images/splash/android/hdpi.png" gap:platform="android" gap:density="hdpi" /> <!-- 480x800 -->
-    <gap:splash src="images/splash/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" /> <!-- 720x1280 -->
+    <gap:splash src="img/splash/android/ldpi.png" gap:platform="android" gap:density="ldpi" /> <!-- 200x320 -->
+    <gap:splash src="img/splash/android/mdpi.png" gap:platform="android" gap:density="mdpi" /> <!-- 320x480 -->
+    <gap:splash src="img/splash/android/hdpi.png" gap:platform="android" gap:density="hdpi" /> <!-- 480x800 -->
+    <gap:splash src="img/splash/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" /> <!-- 720x1280 -->
         
-    <gap:splash src="images/splash/bb/splash.png" gap:platform="blackberry" /> <!-- BlackBerry 250x250 -->
+    <gap:splash src="img/splash/bb/splash.png" gap:platform="blackberry" /> <!-- BlackBerry 250x250 -->
         
-    <gap:splash src="images/splash/winphone/splash.jpg" gap:platform="winphone" /> <!-- Windows Phone 7 480x800 -->
+    <gap:splash src="img/splash/winphone/splash.jpg" gap:platform="winphone" /> <!-- Windows Phone 7 480x800 -->
         
-    <gap:splash src="images/splash/webos/splash.png" gap:platform="webos" /> <!-- WebOS 64x64 -->
+    <gap:splash src="img/splash/webos/splash.png" gap:platform="webos" /> <!-- WebOS 64x64 -->
         
     <!-- GENERAL PREFERENCES -->
         

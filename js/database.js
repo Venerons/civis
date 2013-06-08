@@ -1,4 +1,5 @@
-// Copyright (c) 2013 Daniele Veneroni. Released under MIT License
+// Copyright (c) 2013 Daniele Veneroni.
+// Released under GPLv3 License. See LICENSE.txt for further information.
 "use strict";
 
 // UNITS DATABASE

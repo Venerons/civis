@@ -1,4 +1,5 @@
-// Copyright (c) 2013 Daniele Veneroni. Released under MIT License
+// Copyright (c) 2013 Daniele Veneroni.
+// Released under GPLv3 License. See LICENSE.txt for further information.
 "use strict";
 
 var stage;
@@ -23,8 +24,8 @@ window.addEventListener("load", function() {
 }, 0);
 
 function init() {
-	localStorage.tileset = "images/map/default";
-	localStorage.hudset = "images/hud/default";
+	localStorage.tileset = "img/map/default";
+	localStorage.hudset = "img/hud/default";
 	
 	preloadImages();
 	loadMap();
