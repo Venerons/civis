@@ -79,10 +79,10 @@
         
     <!-- ANDROID PREFERENCES -->
         
-    <preference name="android-minSdkVersion" value="7" /> <!-- minimum Android 2.1 -->
+    <preference name="android-minSdkVersion" value="14" /> <!-- minimum Android 4.0 -->
     <!-- <preference name="android-maxSdkVersion" value="17" /> maximum Android 4.2 -->
     <preference name="android-installLocation" value="auto" />
-    <preference name="splash-screen-duration" value="3000" />
+    <preference name="splash-screen-duration" value="5000" />
     <preference name="load-url-timeout" value="20000" />
         
     <!-- BLACKBERRY PREFERENCES -->
