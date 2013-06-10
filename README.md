@@ -1,6 +1,6 @@
 # CivJS
 
-_Copyright (c) 2013 Daniele Veneroni. Released under GPLv3 License. See LICENSE.txt for further information._
+_Copyright (c) 2013 Daniele Veneroni. Released under GPLv3 License. See LICENSE.md for further information._
 
 CivJS is an HTML5, CSS3 and JavaScript game inspired by the Sid Meier's Civilization game series.
 
@@ -47,7 +47,7 @@ This program is free software: you can redistribute it and/or modify it under th
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.  
 
-You can read the full copy of the GNU General Public License at LICENSE.txt or at <[http://www.gnu.org/licenses/](http://www.gnu.org/licenses/)>.  
+You can read the full copy of the GNU General Public License at LICENSE.md or at [http://www.gnu.org/licenses/](http://www.gnu.org/licenses/).  
 
 ## Credits
 

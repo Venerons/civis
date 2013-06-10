@@ -1,6 +1,11 @@
 # CivJS Changelog
 
-_Copyright (c) 2013 Daniele Veneroni. Released under GPLv3 License. See LICENSE.txt for further information._
+_Copyright (c) 2013 Daniele Veneroni. Released under GPLv3 License. See LICENSE.md for further information._
+
+### Update 10/06/2013
+
+* Added LICENSE.md
+* Removed LICENSE.txt
 
 ### Update 08/06/2013
 

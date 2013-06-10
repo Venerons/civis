@@ -1,5 +1,5 @@
 // Copyright (c) 2013 Daniele Veneroni.
-// Released under GPLv3 License. See LICENSE.txt for further information.
+// Released under GPLv3 License. See LICENSE.md for further information.
 "use strict";
 
 // GLOBAL DECLARATION OF THE MAP
