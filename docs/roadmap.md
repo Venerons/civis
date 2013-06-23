@@ -10,6 +10,7 @@ This document outlines the general goals for CivJS ongoing development.
 
 * New main menu screen
 * New License (from MIT License to GNU GPLv3)
+* Changed Galley with Trireme
 
 **Todo**
 

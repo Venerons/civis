@@ -2,6 +2,10 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under GPLv3 License. See LICENSE.md for further information._
 
+### Update 23/06/2013
+
+* Changed Galley with Trireme
+
 ### Update 10/06/2013
 
 * Added LICENSE.md

@@ -105,12 +105,12 @@ Scout              | 25    | 0     | 1     | 2     | 1            | -           
 Warrior            | 40    | 1     | 1     | 1     | 1            | -                | Iron Working  
 Spearman           | 56    | 2     | 1     | 1     | 1            | Bronze Working   | Iron Working 
 Archer             | 40    | 1     | 2     | 1     | 1            | Archery          | Gunpowder  
-Galley             | 45    | 1     | 1     | 1     | 1            | Sailing          | Optics  
+Trireme            | 45    | 1     | 1     | 1     | 1            | Sailing          | Optics  
 _CLASSICAL ERA_    |       |       |       |       |              |                  |  
 Catapult           | 75    | 4     | 1     | 1     | 1            | Engineering      | Gunpowder  
 Swordsman          | 75    | 2     | 2     | 1     | 1            | Iron Working     | Metal Casting  
 Horseman           | 75    | 2     | 1     | 2     | 1            | Horse Riding     | Code of Chivalry  
-Trireme            | 75    | 2     | 2     | 2     | 1            | Optics           | Astronomy  
+Galley             | 75    | 2     | 2     | 2     | 1            | Optics           | Astronomy  
 _MEDIEVAL ERA_     |       |       |       |       |              |                  |  
 Knight             | 120   | 4     | 2     | 2     | 1            | Code of Chivalry | Metal Casting  
 Galleon            | 120   | 3     | 3     | 3     | 1            | Astronomy        | Steam Energy  
@@ -279,14 +279,14 @@ Wheel              | 40    | Agriculture                     | -
 Mining             | 40    | Agriculture                     | -  
 Breeding           | 40    | Agriculture, Hunting            | -  
 Archery            | 40    | Hunting                         | Unlock Archer  
-Sailing            | 40    | Fishing                         | Unlock Galley  
+Sailing            | 40    | Fishing                         | Unlock Trireme  
 Divine Right       | 80    | Theology                        | Unlock Monarchy  
 Education          | 80    | Theology, Mathematics           | Unlock Republic, University  
 Currency           | 80    | Mathematics                     | -  
 Masonry            | 80    | Mining                          | -  
 Bronze Working     | 80    | Mining                          | Unlock Barracks, Spearman  
 Horse Riding       | 80    | Breeding                        | Unlock Horseman  
-Optics             | 80    | Archery, Sailing                | Unlock Trireme  
+Optics             | 80    | Archery, Sailing                | Unlock Galley  
 Art                | 160   | Divine Right, Education         | -  
 Literature         | 160   | Education                       | -  
 Engineering        | 160   | Mathematics, Masonry            | Unlock Aqueduct, Catapult  

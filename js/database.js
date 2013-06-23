@@ -64,7 +64,7 @@ var unitsDB = {
             "techrequired": "Archery",
             "obsolete": "Gunpowder"
         },
-    "galley": 
+    "trireme": 
         {
             "atk": 1,
             "def": 1,
@@ -124,7 +124,7 @@ var unitsDB = {
             "techrequired": "Iron Working",
             "obsolete": "Metal Casting"
         },
-    "trireme": 
+    "galley": 
         {
             "atk": 2,
             "def": 2,
