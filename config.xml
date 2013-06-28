@@ -61,7 +61,7 @@
         
     <!-- GENERAL PREFERENCES -->
         
-    <preference name="phonegap-version" value="2.7.0" />
+    <preference name="phonegap-version" value="2.9.0" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="true" /> <!-- remove the upper bar on iOS and Android -->
