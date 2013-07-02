@@ -2,6 +2,14 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under GPLv3 License. See LICENSE.md for further information._
 
+### Update 02/07/2013
+
+* Add overflow on menubar and actionbar to minimal support small screens
+
+### Update 28/06/2013
+
+* Update to PhoneGap 2.9.0 
+
 ### Update 23/06/2013
 
 * Changed Galley with Trireme

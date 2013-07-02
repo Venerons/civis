@@ -32,6 +32,8 @@ body {
 	height: 50px;
 	white-space: nowrap;
 	z-index: 1;
+	overflow-x: auto;
+	white-space: nowrap;
 }
 
 #mapcanvas {
@@ -49,6 +51,8 @@ body {
 	height: 50px;
 	visibility: hidden;
 	z-index: 1;
+	overflow: auto;
+	white-space: nowrap;
 }
 
 #popup {
