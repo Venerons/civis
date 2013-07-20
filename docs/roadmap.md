@@ -4,13 +4,17 @@ _Copyright (c) 2013 Daniele Veneroni. Released under GPLv3 License. See LICENSE.
 
 This document outlines the general goals for CivJS ongoing development.
 
-### Version 0.5.0 (June 2013)
+### Version 0.5.0 (August 2013)
 
 **Done**
 
 * New main menu screen
 * New License (from MIT License to GNU GPLv3)
 * Changed Galley with Trireme
+* Updated to PhoneGap 2.9.0
+* Toolbars overflow to minimal support small screens
+* Block screen orientation to landscape
+* MinAndroidSDK set to 7 (Android 2.1)
 
 **Todo**
 
@@ -23,7 +27,7 @@ This document outlines the general goals for CivJS ongoing development.
 * better discoverTiles() (implementare la distanza di visuale, ovvero se stai su una collina vedi più lontano, su una montagna ancora di più. Colline, montagne, foreste e giungle tuttavia possono bloccare la visuale.) _(PARTIAL)_
 * Code optimizations and Bug Fixes
 
-### Version 0.6.0 (Unsheduled)
+### Version 0.6.0 (October 2013)
 
 * Basic enemy AI
 

@@ -62,7 +62,7 @@
     <!-- GENERAL PREFERENCES -->
         
     <preference name="phonegap-version" value="2.9.0" />
-    <preference name="orientation" value="default" />
+    <preference name="orientation" value="landscape" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="true" /> <!-- remove the upper bar on iOS and Android -->
         
@@ -79,7 +79,7 @@
         
     <!-- ANDROID PREFERENCES -->
         
-    <preference name="android-minSdkVersion" value="14" /> <!-- minimum Android 4.0 -->
+    <preference name="android-minSdkVersion" value="7" /> <!-- minimum Android 2.1 -->
     <!-- <preference name="android-maxSdkVersion" value="17" /> maximum Android 4.2 -->
     <preference name="android-installLocation" value="auto" />
     <preference name="splash-screen-duration" value="5000" />

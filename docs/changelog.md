@@ -2,6 +2,11 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under GPLv3 License. See LICENSE.md for further information._
 
+### Update 20/07/2013
+
+* Block screen orientation to landscape
+* MinAndroidSDK set to 7 (Android 2.1)
+
 ### Update 02/07/2013
 
 * Add overflow on menubar and actionbar to minimal support small screens
