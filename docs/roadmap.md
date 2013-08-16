@@ -8,13 +8,7 @@ This document outlines the general goals for CivJS ongoing development.
 
 **Done**
 
-* New main menu screen
-* New License (from MIT License to GNU GPLv3)
-* Changed Galley with Trireme
-* Updated to PhoneGap 2.9.0
-* Toolbars overflow to minimal support small screens
-* Block screen orientation to landscape
-* MinAndroidSDK set to 7 (Android 2.1)
+* nothing
 
 **Todo**
 

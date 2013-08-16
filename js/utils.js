@@ -405,7 +405,7 @@ function focusNext () {
             }
         }
     }
-    $("#actionbar").html('<p class="center">You have no active units. You should End Turn. (Press SPACE)<p>');
+    $("#actionbar").html('<p class="center">You have no active units. You should End Turn. (Press SPACE or<img class="buttonimage" src="' + localStorage.hudset + '/endturn.png">)<p>');
     openActionbar();
 }
 

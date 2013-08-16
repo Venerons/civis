@@ -2,6 +2,12 @@
 
 _Copyright (c) 2013 Daniele Veneroni. Released under GPLv3 License. See LICENSE.md for further information._
 
+### Update 16/08/2013 (Version 0.4.1)
+
+* Update to jQuery 2.0.3
+* Removed sidebar on main menu
+* Tagged version 0.4.1
+
 ### Update 20/07/2013
 
 * Block screen orientation to landscape
