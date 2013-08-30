@@ -1,6 +1,7 @@
 # CivJS Roadmap
 
-_Copyright (c) 2013 Daniele Veneroni. Released under GPLv3 License. See LICENSE.md for further information._
+_Copyright (c) 2013 Daniele Veneroni._  
+_Released under GPLv3 License. See [LICENSE.md](../LICENSE.md) for further information._
 
 This document outlines the general goals for CivJS ongoing development.
 
@@ -8,7 +9,7 @@ This document outlines the general goals for CivJS ongoing development.
 
 **Done**
 
-* nothing
+* Update ReadMe
 
 **Todo**
 

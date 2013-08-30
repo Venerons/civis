@@ -50,7 +50,7 @@ function mainMenu() {
                 + '<br/><button class="gradient button menubutton" id="loadBtn" title="Load Game" alt="Load Game"><img src="' + localStorage.hudset + '/load.png" class="buttonimage"> Load Game</button>'
                 + '<br/><button class="gradient button menubutton" id="manualBtn" title="Instructions Manual" alt="Instructions Manual"><img src="' + localStorage.hudset + '/manual.png" class="buttonimage"> Manual</button>'
                 + '<br/><button class="gradient button menubutton" id="exitBtn" title="Exit Game" alt="Exit Game"><img src="' + localStorage.hudset + '/exit.png" class="buttonimage"> Exit Game</button>';
-    $('#popupcontent').html(content);
+    document.getElementById("popupcontent").innerHTML = content;
     $("#saveBtn").click(function () { saveGame(); });
     $("#loadBtn").click(function () { loadGame(); });
     $("#manualBtn").click(function () { manual(); });
@@ -104,7 +104,7 @@ function exportMap () {
     var content = '<h3>Export Map</h3><textarea style="width:100%;height:200px">';
     content += JSON.stringify(map);
     content += '</textarea>';
-    $('#popupcontent').html(content);
+    document.getElementById("popupcontent").innerHTML = content;
     openPopup();
 }
 
