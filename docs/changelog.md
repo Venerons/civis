@@ -3,6 +3,10 @@
 _Copyright (c) 2013 Daniele Veneroni._  
 _Released under GPLv3 License. See [LICENSE.md](../LICENSE.md) for further information._
 
+### Update 26/10/2013
+
+* Update to PhoneGap 3.1.0
+
 ### Update 30/08/2013
 
 * Update ReadMe
