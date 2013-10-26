@@ -30,14 +30,8 @@
     <icon src="img/icons/android/hdpi.png" gap:platform="android" gap:density="hdpi" /> <!-- 72 pixels -->
     <icon src="img/icons/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" /> <!-- 96 pixels -->
         
-    <icon src="img/icons/bb/icon.png" gap:platform="blackberry" /> <!-- 72 pixels -->
-    <icon src="img/icons/bb/icon_hover.png" gap:platform="blackberry" gap:state="hover"/> <!-- 72 pixels -->
-        
     <icon src="img/icons/winphone/icon.png" gap:platform="winphone" /> <!-- 57 pixels -->
     <icon src="img/icons/winphone/tileicon.png" gap:platform="winphone" gap:role="background" /> <!-- 72 pixels -->
-        
-    <icon src="img/icons/webos/icon.png" gap:platform="webos" /> <!-- 29 pixels -->
-    <icon src="img/icons/webos/miniicon.png" gap:platform="webos" gap:role="mini" /> <!-- 15 pixels -->
         
     <!-- SPLASH SCREENS -->
         
@@ -56,19 +50,12 @@
     <gap:splash src="img/splash/android/hdpi.png" gap:platform="android" gap:density="hdpi" /> <!-- 480x800 -->
     <gap:splash src="img/splash/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" /> <!-- 720x1280 -->
         
-    <gap:splash src="img/splash/bb/splash.png" gap:platform="blackberry" /> <!-- BlackBerry 250x250 -->
-        
     <gap:splash src="img/splash/winphone/splash.jpg" gap:platform="winphone" /> <!-- Windows Phone 7 480x800 -->
-        
-    <gap:splash src="img/splash/webos/splash.png" gap:platform="webos" /> <!-- WebOS 64x64 -->
         
     <!-- PLATFORM SELECTION -->
 
     <gap:platform name="ios" />
     <gap:platform name="android" />
-    <gap:platform name="webos" />
-    <gap:platform name="symbian" />
-    <gap:platform name="blackberry" />
     <gap:platform name="winphone" />
         
     <!-- GENERAL PREFERENCES -->
@@ -100,10 +87,6 @@
     <preference name="splash-screen-duration" value="5000" />
 
     <preference name="load-url-timeout" value="20000" />
-        
-    <!-- BLACKBERRY PREFERENCES -->
-        
-    <preference name="disable-cursor" value="false" />
         
     <!-- PHONEGAP API FEATURES PREFERENCES -->
         
