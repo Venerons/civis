@@ -1,10 +1,5 @@
 CACHE MANIFEST
-# 16-08-2013:v1
-
-# Explicitly cached entries
-index.html
-game.html
-LICENSE.md
+# 09-11-2013:v1
 
 # page that will be displayed if the user is offline
 FALLBACK:
@@ -13,8 +8,11 @@ FALLBACK:
 NETWORK:
 *
 
-# Additional resources to cache
+# Resources to cache
 CACHE:
+index.html
+game.html
+LICENSE.md
 manifest.webapp
 js/lib/easeljs-0.6.1.js
 js/lib/iOS.js

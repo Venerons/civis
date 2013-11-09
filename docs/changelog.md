@@ -3,6 +3,15 @@
 _Copyright (c) 2013 Daniele Veneroni._  
 _Released under GPLv3 License. See [LICENSE.md](../LICENSE.md) for further information._
 
+### Update 09/11/2013
+
+* Update config.xml
+* Update index.html
+* Update game.html
+* Add xxhdpi & xxxhdpi Android icons
+* Add iOS 7 icons
+* Add 90x90 Firefox OS icon
+
 ### Update 26/10/2013
 
 * Update to PhoneGap 3.1.0

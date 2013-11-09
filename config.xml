@@ -15,7 +15,7 @@
         
     <!-- ICONS -->
         
-    <icon src="icon.png" /> <!-- default 72 pixels -->
+    <icon src="icon.png" /> <!-- default 512 pixels -->
 
     <icon src="img/icons/ios/icon57.png" gap:platform="ios" width="57" height="57" /> <!-- iPhone & iPod Touch non retina iOS6 -->
     <icon src="img/icons/ios/icon72.png" gap:platform="ios" width="72" height="72" /> <!-- iPad non retina iOS6 -->
@@ -29,6 +29,8 @@
     <icon src="img/icons/android/mdpi.png" gap:platform="android" gap:density="mdpi" /> <!-- 48 pixels -->
     <icon src="img/icons/android/hdpi.png" gap:platform="android" gap:density="hdpi" /> <!-- 72 pixels -->
     <icon src="img/icons/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" /> <!-- 96 pixels -->
+    <icon src="img/icons/android/xxhdpi.png" gap:platform="android" gap:density="xxhdpi" /> <!-- 144 pixels -->
+    <icon src="img/icons/android/xxxhdpi.png" gap:platform="android" gap:density="xxxhdpi" /> <!-- 192 pixels -->
         
     <icon src="img/icons/winphone/icon.png" gap:platform="winphone" /> <!-- 57 pixels -->
     <icon src="img/icons/winphone/tileicon.png" gap:platform="winphone" gap:role="background" /> <!-- 72 pixels -->
@@ -61,7 +63,7 @@
     <!-- GENERAL PREFERENCES -->
         
     <preference name="phonegap-version" value="3.1.0" />
-    <preference name="orientation" value="default" />
+    <preference name="orientation" value="landscape" /> <!-- only landscape orientation -->
     <preference name="fullscreen" value="true" /> <!-- remove the upper bar on iOS and Android -->
         
     <!-- iOS PREFERENCES -->
@@ -80,8 +82,8 @@
     <!-- ANDROID PREFERENCES -->
         
     <preference name="android-minSdkVersion" value="7" /> <!-- minimum Android 2.1 -->
-    <!-- <preference name="android-maxSdkVersion" value="18" /> maximum Android 4.3 -->
-    <preference name="android-targetSdkVersion" value="18" /> <!-- targeting Android 4.3 -->
+    <!-- <preference name="android-maxSdkVersion" value="19" /> maximum Android 4.4 -->
+    <preference name="android-targetSdkVersion" value="19" /> <!-- targeting Android 4.4 -->
     <preference name="android-installLocation" value="auto" />
     <preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" />
     <preference name="splash-screen-duration" value="5000" />

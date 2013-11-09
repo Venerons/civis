@@ -1,6 +1,6 @@
 {
     "name": "CivJS",
-    "description": "A JavaScript Civilization Game",
+    "description": "The JavaScript Civilization Game",
     "version": "0.4.1",
     "csp": "allow 'self'; script-src 'self' ; style-src 'self';",
     "launch_path": "/index.html",
@@ -12,6 +12,7 @@
         "48": "/img/icons/webapp/icon48.png",
         "60": "/img/icons/webapp/icon60.png",
         "64": "/img/icons/webapp/icon64.png",
+        "90": "/img/icons/webapp/icon90.png",
         "128": "/img/icons/webapp/icon128.png",
         "256": "/img/icons/webapp/icon256.png",
         "512": "/img/icons/webapp/icon512.png"
