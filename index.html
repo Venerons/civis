@@ -1,247 +1,88 @@
-<!-- Copyright (c) 2013 Daniele Veneroni. -->
+<!DOCTYPE html>
+<!-- Copyright (c) 2013-2015 Daniele Veneroni. -->
 <!-- Released under GPLv3 License. See LICENSE.md for further information. -->
-<!doctype html>
-<html lang="en">
-<head>
-    <title>CivJS</title>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CivJS</title>
 
-    <!-- WEB SEARCH META TAGS -->
-    <meta charset="utf-8">
-    <meta name="application-name" content="APPLICATION NAME" />
-    <meta name="author" content="Daniele Veneroni (@Venerons)" />
-    <meta name="description" content="A JavaScript game inspired by Sid Meier's Civilization series" />
-    <meta name="keywords" content="Android,Web,App,iPod,iPhone,iPad,Mac,OSX,Windows,browser,game,civ,civilization,js" />
-    <meta name="copyright" content="© 2013 Daniele Veneroni" />
-    <meta name="generator" content="Daniele Veneroni" />
-    <meta name="robots" content="index,follow,snippet,archive" />
-    <meta name="revisit-after" content="7 days">
+		<!-- CSS STYLESHEETS -->
+		<link rel="stylesheet" href="css/style.min.css">
+		<link rel="stylesheet" href="css/fontello/css/fontello.css">
+	</head>
+	<body>
+		<!-- MAIN SCREEN -->
+		<div id="main-screen">
+			<div id="main-screen-content-home" class="main-screen-page">
+				<img src="img/logo.png" title="CivJS" alt="CivJS"><br>
+				<button id="home-new">Nuova Partita</button><br>
+				<button id="home-load">Carica Partita</button><br>
+				<button id="home-manual"><i class="icon-graduation-cap"></i> Manuale</button><br>
+				<button id="home-settings"><i class="icon-cog"></i> Impostazioni</button>
+			</div>
 
-    <!-- SAFARI WEB APP META TAGS -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+			<div id="main-screen-content-settings" class="main-screen-page" hidden>
+				<form action="javascript:return false;" onsubmit="javascript:return false;">
+					<span id="settings-language"><i class="icon-language"></i> Lingua</span> 
+					<select id="settings-language-select">
+						<option value="en-GB">English</option>
+						<option value="it-IT">Italiano</option>
+					</select><br>
+					<button id="settings-save">Salva</button><br>
+					<button id="settings-back">Indietro</button>
+				</form>
+			</div>
 
-    <!-- iOS FAVICONS -->
-    <link rel="apple-touch-icon-precomposed" href="img/icons/favicons/icon57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/icons/favicons/icon57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/icons/favicons/icon72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="img/icons/favicons/icon76.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/icons/favicons/icon114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="img/icons/favicons/icon120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/icons/favicons/icon144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/icons/favicons/icon152.png">
+			<span id="app-version">v0.6.0</span>
+			<span id="app-credits">© 2013-2015 Daniele Veneroni</span>
+		</div>
 
-    <!-- OTHER FAVICONS -->
-    <link rel="icon" sizes="16x16" type="image/vnd.microsoft.icon" href="img/icons/favicons/icon16.ico">
-    <link rel="icon" sizes="16x16" type="image/png" href="img/icons/favicons/icon16.png">
-    <link rel="icon" sizes="32x32" type="image/png" href="img/icons/favicons/icon32.png">
-    <link rel="icon" sizes="64x64" type="image/png" href="img/icons/favicons/icon64.png">
-    <link rel="icon" sizes="any" type="image/svg+xml" href="img/icons/favicons/icon.svg">
+		<!-- HEADER -->
+		<header>
+			<i id="header-turn-icon" class="icon-clock-1"></i><span id="header-turn">1</span>
+			<i id="header-culture-icon" class="icon-culture"></i><span id="header-culture">3</span>
+			<i id="header-gold-icon" class="icon-attention-circled"></i><span id="header-gold">4</span>
+			<i id="header-trade-icon" class="icon-loop-alt"></i><span id="header-trade">10</span>
+			<a id="header-menu" href="#" class="header-right">Menu</a>
+		</header>
 
-    <!-- iOS Splash Screens -->
-    <!-- iPhone -->
-    <link rel="apple-touch-startup-image" href="img/splash/ios/splash320x460.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)">
-    <!-- iPhone (Retina) -->
-    <link rel="apple-touch-startup-image" href="img/splash/ios/splash640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)">
-    <!-- iPhone 5 -->
-    <link rel="apple-touch-startup-image" href="img/splash/ios/splash640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)">
-    <!-- iPad -->
-    <link rel="apple-touch-startup-image" href="img/splash/ios/splash768x1004.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)">
-    <link rel="apple-touch-startup-image" href="img/splash/ios/splash748x1024.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)">
-    <!-- iPad (Retina) -->
-    <link rel="apple-touch-startup-image" href="img/splash/ios/splash1536x2008.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)">
-    <link rel="apple-touch-startup-image" href="img/splash/ios/splash1496x2048.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)">
+		<!-- SVG PAPER -->
+		<svg id="paper"></svg>
 
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="js/lib/lungo/lungo.css">
-    <link rel="stylesheet" type="text/css" href="js/lib/lungo/lungo.icon.css">
-    <link rel="stylesheet" type="text/css" href="js/lib/lungo/lungo.icon.brand.css">
-    <link rel="stylesheet" type="text/css" href="js/lib/lungo/lungo.css">
-    <link rel="stylesheet" type="text/css" href="js/lib/lungo/theme.lungo.css">
-</head>
+		<!-- MENU -->
+		<div id="menu">
+			<img id="menu-return" src="img/hud/return.svg">
+			<img id="menu-manual" src="img/hud/help.svg">
+			<img id="menu-save" src="img/hud/save.svg">
+			<img id="menu-load" src="img/hud/load.svg">
+			<img id="menu-exit" src="img/hud/cancel.svg">
+		</div>
 
-<body class="app">
-    <section id="main" data-transition="">
+		<!-- SIDEBAR -->
+		<div id="sidebar">
+			<button id="sidebar-map"><i class="icon-world"></i></button>
+			<button id="sidebar-cities"><i class="icon-bank"></i></button>
+			<button id="sidebar-culture"><i class="icon-culture"></i></button>
+			<button id="sidebar-tech"><i class="icon-science"></i></button>
+			<button id="sidebar-units"><i class="icon-flag-1"></i></button>
+			<button id="sidebar-nextturn"><i class="icon-hourglass"></i></button>
+		</div>
 
-        <!-- HEADER -->
-        <header data-title="CivJS">
-            <nav class="left">
-                <a href="#home" data-router="article" data-title="CivJS" data-icon="home"></a>
-            </nav>
-            <nav class="right">
-                <a href="#info" data-router="article" data-title="About CivJS" data-icon="info"></a>
-            </nav>
-        </header>
+		<!-- INFO POPUP -->
+		<div id="popup" style="display: none"></div>
 
-        <!-- HOME -->
-        <article id="home" class="active list indented scroll">
-            <ul>
-                <div style="text-align: center">
-                    <img style="width: 30%;" src="img/logo.png" alt="CivJS" title="CivJS">
-                </div>
-                <li class="selectable accept"><a href="#custom" data-title="New Custom Game" data-router="article">
-                    <strong>New Custom Game</strong><small>Start a new game with custom parameters</small>
-                </a></li>
-                <li class="selectable accept"><a href="#scenario" data-title="New Scenario" data-router="article">
-                    <strong>New Scenario</strong><small>Start a new game starting from a preset scenario</small>
-                </a></li>
+		<!-- CONTAINER POPUP -->
+		<div id="container"></div>
 
-                <li class="selectable cancel" id="loadautobtn"><a href="#">
-                    <strong>Load Auto Save</strong><small>Load the last auto saved game</small>
-                </a></li>
-                <li class="selectable cancel" id="loadmanualbtn"><a href="#">
-                    <strong>Load Manual Save</strong><small>Load the manual saved game</small>
-                </a></li>
+		<!-- FRAMEWORKS & LIBRARIES -->
+		<script src="js/lib/jquery-2.1.4.min.js"></script>
+		<script src="js/lib/snap.svg-min.js"></script>
+		<script src="js/lib/localforage.js"></script>
 
-                <li class="selectable secondary"><a href="#manual" data-title="Instructions Manual" data-router="article">
-                    <strong>Manual</strong><small>Read the instructions manual</small>
-                </a></li>
-
-                <li class="selectable secondary"><a href="#info" data-title="About CivJS" data-router="article">
-                    <strong>Credits</strong><small>About the CivJS project</small>
-                </a></li>
-            </ul>
-        </article>
-
-        <!-- INFO -->
-        <article id="info" class="list indented scroll">
-            <ul>
-                <li><strong>Version</strong><br/><br/>0.4.1</li>
-                <li><strong>Author</strong><br/><br/>Daniele Veneroni (@Venerons)</li>
-                <li><strong>Company</strong><br/><br/><a href="http://venerons.github.io/" target="_blank">Venerons Laboratories</a></li>
-                <li><strong>About</strong>
-                    <br/><br/><p>CivJS is a JavaScript game inspired by Sid Meier's Civilization series.</p><br/>
-                    
-                    <p>For more information about the project CivJS please visit the official website <a href="http://venerons.github.io/CivJS/" target="_blank">http://venerons.github.io/CivJS/</a></p>
-                </li>
-                <li><strong>Licensing</strong>
-                    <br/><br/><p>CivJS is released under the terms of the GNU GPLv3 License.</p><br/>
-
-                    <p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p><br/>
-
-                    <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p><br/>
-                    
-                    <p>Read the complete license at <a href="LICENSE.md" target="_blank">LICENSE.md</a></p>
-                </li>
-            </ul>
-        </article>
-
-        <!-- CUSTOM -->
-        <article id="custom" class="list indented scroll">
-            <li class="light">
-                <strong>
-                    Start a new game with custom parameters
-                </strong>
-            </li>
-
-            <div class="form">
-                <fieldset>
-                    <label>Player Name:</label>
-                    <br/>
-                    <input type="text" id="customPlayerName" placeholder="Player Name" value="Player1">
-                </fieldset>
-
-                <fieldset>
-                    <label>Civilization:</label>
-                    <label class="select">
-                        <select id="customCiv" class="custom">
-                            <!-- civs list -->
-                        </select>
-                    </label>
-                </fieldset>
-
-                <fieldset>
-                    <label>Players:</label>
-                    <label class="select">
-                        <select id="customPlayers" class="custom">
-                            <option value="2">2</option>
-                            <option value="3" selected>3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </label>
-                </fieldset>
-
-                <fieldset>
-                    <label>Map Size:</label>
-                    <label class="select">
-                        <select id="mapSize" class="custom">
-                            <option value="small" selected>Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
-                            <option value="xlarge">Extra Large</option>
-                        </select>
-                    </label>
-                </fieldset>
-            </div>
-            
-            <a id="customgamebtn" href="#" class="button anchor">Start Game</a>
-        </article>
-
-        <!-- SCENARIO -->
-        <article id="scenario" class="list indented scroll">
-            <li class="light">
-                <strong>
-                    Start a new game from a preset scenario
-                </strong>
-            </li>
-
-            <div class="form">
-                <fieldset>
-                    <label>Player Name:</label>
-                    <br/>
-                    <input type="text" id="scenarioPlayerName" placeholder="Player Name" value="Player1">
-                </fieldset>
-
-                <fieldset>
-                    <label>Civilization:</label>
-                    <label class="select">
-                        <select id="scenarioCiv" class="custom">
-                            <!-- civs list -->
-                        </select>
-                    </label>
-                </fieldset>
-
-                <fieldset>
-                    <label>Players:</label>
-                    <label class="select">
-                        <select id="scenarioPlayers" class="custom">
-                            <option value="2">2</option>
-                            <option value="3" selected>3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </label>
-                </fieldset>
-
-                <fieldset>
-                    <label>Scenario:</label>
-                    <label class="select">
-                        <select id="preset" class="custom">
-                            <option value="testmap" selected>Test Map</option>
-                            <option value="earthsmall">Earth Small</option>
-                            <option value="earthmedium">Earth Medium</option>
-                            <option value="earthlarge">Earth Large</option>
-                        </select>
-                    </label>
-                </fieldset>
-            </div>
-            
-            <a id="presetmapbtn" href="#" class="button anchor">Start Game</a>
-        </article>
-
-        <!-- MANUAL -->
-        <article id="manual" class="list indented scroll">
-            <li class="light">
-                <p align="justify" id="manualcontent"></p>
-            </li>
-        </article>
-
-    </section>
-
-    <!-- SCRIPTS -->
-    <script type="application/javascript" src="js/lib/quojs/quo.js"></script>
-    <script type="application/javascript" src="js/lib/lungo/lungo.js"></script>
-    <script type="application/javascript" src="js/lib/jquery-2.0.3.js"></script>
-    <script type="application/javascript" src="js/database.js"></script>
-    <script type="application/javascript" src="js/index.js"></script>
-</body>
+		<!-- SCRIPTS -->
+		<script src="js/database.js"></script>
+		<script src="js/render.js"></script>
+		<script src="js/game.js"></script>
+		<script src="js/main.js"></script>
+	</body>
 </html>

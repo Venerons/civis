@@ -1,837 +1,408 @@
-// Copyright (c) 2013 Daniele Veneroni.
+// Copyright (c) 2013-2015 Daniele Veneroni.
 // Released under GPLv3 License. See LICENSE.md for further information.
-"use strict";
-
-// GLOBAL DECLARATION OF THE MAP
-var map;
-
-// GENERATE A NEW MAP/GAME
-function generateMap(pname, civ, nplayers, nrows, ncols) {
-    var basemap = {
-        "game": {
-            "turn": 1,
-            "year": -4000,
-            "yearstep": 10
-        },
-        "players": [],
-        "tiles": [],
-        "units": [],
-        "cities": []
-    };
-
-    var colors = ["#1E74FF", "red", "yellow", "orange", "purple"];
-    var civs = [];
-
-    $.each(civsDB, function(key, val) {
-        civs.push(key);
-    });
-
-    // TILES TYPE BY SECTOR
-    var poles = ["snow", "water", "water"]; // 10 % - 0-10 & 90-100
-    var cold = ["tundra", "tundra", "plain", "mountain", "water", "water", "water", "water"]; // 10% - 11-20 & 80-89
-    var middle = ["grass", "grass", "plain", "mountain", "hill", "water", "water", "water", "water"]; // 21-40 & 60-79
-    var center = ["desert", "desert", "plain", "plain", "hill", "water", "water", "water", "water", "water", "water", "water", "water"]; // 20% - 41-59
-
-    // INSERT THE PLAYER 1
-
-    var p = {};
-    p.id = 0;
-    p.color = colors[0];
-    p.name = pname;
-    p.civilization = civ;
-    p.points = 0;
-    p.gold = 0;
-    p.society = "dispotism";
-    p.culture = 0;
-    p.tech = [];
-    p.research = { tech: "", cost: 0 };
-    p.unitsCounter = 1;
-
-    basemap.players.push(p);
-
-    // INSERT THE OTHER PLAYERS (AI)
-
-    for (var i = 1; i < nplayers; i++) {
-        p = {};
-        p.id = i;
-        p.color = colors[i];
-
-        var civis;
-        var trovato = false;
-        while (!trovato) {
-            civis = civs[Math.floor(Math.random() * civs.length)];
-            var uguale = false;
-            var j = 0;
-            var len = basemap.players.length;
-            while (!uguale && j < len) {
-                if (basemap.players[j].civilization === civis) { uguale = true; }
-                j++;
-            }
-            if (!uguale) { trovato = true; }
-        }
-        p.civilization = civis;
-
-        p.name = civsDB[p.civilization].leaders[Math.floor(Math.random() * civsDB[p.civilization].leaders.length)];
-        p.points = 0;
-        p.gold = 0;
-        p.society = "dispotism";
-        p.culture = 0;
-        p.tech = [];
-        p.research = { tech: "", cost: 0 };
-        p.unitsCounter = 1;
-
-        basemap.players.push(p);
-    }
-
-    // TILES GENERATION
-
-    for (var y = 0; y < nrows; y++) {
-        var row = [];
-        for (var x = 0; x < ncols; x++) {
-
-            // TODO the type of the tile must be more controlled, and must add a "nature" and "resource" elements
-
-            var t = {};
-            t.x = x + 1;
-            t.y = y + 1;
-            t.id = "x" + t.x + "y" + t.y;
-            t.fog = true;
-
-            // tile type
-            var perc = t.y * 100 / nrows;
-            var sector;
-            if (perc <= 10 || perc > 90) { sector = "poles"; }
-            else if (perc <= 20 || perc > 80) { sector = "cold"; }
-            else if (perc <= 40 || perc > 60) { sector = "middle"; }
-            else { sector = "center"; }
-
-            switch (sector) {
-                case "poles":
-                    t.type = poles[Math.floor(Math.random() * poles.length)];
-                    break;
-                case "cold":
-                    t.type = cold[Math.floor(Math.random() * cold.length)];
-                    break;
-                case "middle":
-                    t.type = middle[Math.floor(Math.random() * middle.length)];
-                    break;
-                case "center":
-                    t.type = center[Math.floor(Math.random() * center.length)];
-                    break;
-            }
-
-            // add eventual nature element
-            perc = Math.floor(Math.random() * 100 + 1);
-            if (t.type === "grass") {
-                if (perc <= 20) { t.nature = "marsh"; } // 20 % forest
-                else if (perc <= 70) { t.nature = "forest"; } // 50 % forest (20 + 50 = 70)
-            } else if (t.type === "plain"){
-                if (perc <= 50 && sector === "center") { t.nature = "jungle"; } // 50 % jungle in center sector
-                else if (perc <= 25 && sector === "middle") { t.nature = "jungle"; } // 25 % jungle in middle sector
-            } else if (t.type === "desert"){
-                if (perc <= 10) { t.nature = "oasis"; } // 10 % oasis
-            } else if (t.type === "water"){
-                if (perc <= 10 && sector === "center") { t.nature = "atoll"; } // 10 % atoll in center sector
-                else if (perc <= 5 && sector === "middle") { t.nature = "atoll"; } // 5 % atoll in middle sector
-            } else {
-                t.nature = "none";
-            }
-            t.resource = "none";
-            t.improvement = "none";
-            t.street = false;
-            t.culture = 0;
-
-            row.push(t);
-        }
-
-        basemap.tiles.push(row);
-    }
-
-    // FIRST UNIT PLACEMENT
-
-    for (var i = 0; i < nplayers; i++) {
-
-        // TODO the coordinate of the starting unit must be more controlled
-
-        var found = false;
-        var targetx;
-        var targety;
-        while (!found) {
-            targetx = Math.floor(Math.random() * ncols) + 1;
-            targety = Math.floor(Math.random() * nrows) + 1;
-            var len = basemap.tiles.length;
-            for (var index = 0; index < len; index++) {
-                var len2 = basemap.tiles[index].length;
-                for (var j = 0; j < len2; j++) {
-                    if (basemap.tiles[index][j].x === targetx && basemap.tiles[index][j].y === targety) {
-                        if (basemap.tiles[index][j].type === "grass" || basemap.tiles[index][j].type === "hill") {
-                            var len3 = basemap.units.length;
-                            var occupied = false;
-                            for (var i3 = 0; i3 < len3; i3++) {
-                                if (basemap.units[i3].x === targetx && basemap.units[i3].y === targety) {
-                                    occupied = true;
-                                    break;
-                                }
-                            }
-                            if (!occupied) {
-                                found = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-                if (found) { break; }
-            }
-        }
-
-        var u1 = {};
-
-        u1.id = "p" + String(i) + "u1";
-        u1.player = i;
-        u1.x = targetx;
-        u1.y = targety;
-        u1.type = "settler";
-        u1.experience = 0;
-        u1.life = unitsDB.settler.initialLife;
-        u1.maxlife = unitsDB.settler.initialLife;
-        u1.fortified = false;
-        u1.active = unitsDB.settler.mov;
-
-        basemap.units.push(u1);
-    }
-
-	return basemap;
-}
-
-function endTurn () {
-    autoSaveGame(); // save the game as right before calling endTurn
-    closeActionbar();
-    var notifications = [];
-
-    // INSERT HERE THE AIs ACTIONS
-
-    // UNITS END TURN
-    // re-active all units and cure if fortified
-    var len = map.units.length;
-    for (var i = 0; i < len; i++) {
-        var unit = map.units[i];
-        unit.active = getMov(unit); // restore full movement
-        
-        if (unit.fortified) {
-            // detect the admount of heal
-            var heal = 1;
-            if (isElite(unit)) {
-                heal = 3;
-            } else {
-                if (isVeteran(unit)) {
-                    heal = 2;
-                }
-            }
-            // heal the unit
-            var newlife = unit.life + heal;
-            if (newlife >= unit.maxlife) {
-                unit.life = unit.maxlife;
-            } else {
-                unit.life = newlife;
-            }
-        }
-    }
-
-    // CITY END TURN
-    len = map.cities.length;
-    for (var i = 0; i < len; i++) {
-        var city = map.cities[i];
-        var player = findPlayerById(city.player);
-
-        // CITY PRODUCTION
-        var cityprod = getCityProd(city);
-        if (city.build.name !== "nothing" && city.build.cost - cityprod <= 0) {
-            // build finished
-            if (city.build.type === "unit") {
-                if (cityHaveBuilding(city, "Barracks")) {
-                    createNewUnit(player, city.build.name, 5, city.x, city.y);
-                } else {
-                    createNewUnit(player, city.build.name, 0, city.x, city.y);
-                }
-                if (city.build.name === "settler") { city.population--; }
-            } else {
-                city.buildings.push(city.build.name);
-            }
-            var message = {};
-            message.info = "A " + city.build.name + " was built in " + city.name;
-            message.type = "city-notif";
-            message.callback = makeCallback("city", {"id": city.id});
-            notifications.push(message);
-            city.build.name = "nothing";
-            city.build.cost = 0;
-        } else {
-            // build continued
-            if (city.build.name !== "nothing") { city.build.cost -= cityprod; }
-        }
-
-        // CITY GOLD
-        player.gold += getCityGold(city);
-
-        // CITY SCIENCE
-        if (player.research.tech !== "") {
-            player.research.cost -= getCityScience(city);
-            if (player.research.cost <= 0) { 
-                // research ended
-                player.tech.push(player.research.tech);
-                var message = {};
-                message.info = "Technology " + player.research.tech + " discovered";
-                message.type = "science-notif";
-                message.callback = makeCallback("research", {});
-                notifications.push(message);
-                player.research = { tech: "", cost: 0 };
-            }
-        } else {
-            player.gold += getCityScience(city); // if no research is in queue, the science is converted to gold
-        }
-
-        // CITY CULTURE
-        player.culture += getCityCulture(city);
-
-        // CITY GROWTH
-        city.growth += getCityFood(city) - city.population * 2;
-        if (city.growth < 0) { // if growth < 0, one citizen die
-            city.growth = 0;
-            city.population--;
-            var message = {};
-            message.info = "A citizen died for food in " + city.name;
-            message.type = "city-notif";
-            message.callback = makeCallback("camera", {"x": city.x, "y": city.y});
-            notifications.push(message);
-        }
-        var step = Math.floor(15 + 6 * (city.population - 1) + Math.pow(city.population - 1, 1.8));
-        if (city.growth >= step) { // if there is enougth food to grow, add a citizen and reset the growth (exeded food is maintained)
-            city.growth -= step;
-            city.population++;
-            var message = {};
-            message.info = city.name + " has grown to " + city.population + " of population";
-            message.type = "city-notif";
-            message.callback = makeCallback("camera", {"x": city.x, "y": city.y});
-            notifications.push(message);
-        }
-    }
-
-    // UNIT MAINTENANCE COST
-    for (var i = 0, len = map.units.length; i < len; i++) {
-        if (map.units[i].player === map.players[0].id) {
-            map.players[0].gold -= 1;
-        }
-    }
-
-    map.game.turn++;
-    map.game.year += map.game.yearstep;
-
-    if (notifications.length >= 1) {
-        var htmlcode = '<h4 class="center">Notifications</h4>';
-        for (var i = 0, len = notifications.length; i < len; i++) {
-            htmlcode += '<span class="notification ' + notifications[i].type + '" id="notification' + i + '">' + notifications[i].info + '</span><br/><br/>';
-        }
-        $("#infopopup").html(htmlcode);
-        for (var i = 0, len = notifications.length; i < len; i++) {
-            $("#notification" + i).click(notifications[i].callback);
-        }
-        $("#infopopup").css({'top': 55, 'left': 0, 'visibility': 'visible', 'height': 'auto', 'width': 'auto'});
-    } else {
-        $("#infopopup").css({'visibility': 'hidden'});
-    }
-    
-    
-    renderMap();
-    focusNext();
-}
-
-function makeCallback(type, object) {
-    if (type === "camera") {
-        return function () { centerCameraOnXY(object.x, object.y); };
-    }
-    if (type === "research") {
-        return function () { showResearchManagement(); };
-    }
-    if (type === "city") {
-        return function () { showCityManager(object.id); };
-    }
-}
-
-function showUnitOptions(unitid) {
-    deselectDestinations(); // deselect eventual selected destinations
-    var unit = findUnitById(unitid);
-    if (unit.player === map.players[0].id) {
-        var unittitle = "";
-        if (isElite(unit)) {
-            unittitle = "Elite ";
-        } else {
-            if (isVeteran(unit)) {
-                unittitle = "Veteran ";
-            }
-        }
-        
-        var content = '<span style="position: relative; top: 5px; left: 10px; height: 40px; margin-right: 20px; vertical-align: middle;"><img src="' + localStorage.tileset + '/units/' + unit.type + '.png" alt="' + unittitle + unit.type + '" title="' + unittitle + unit.type + '" class="buttonimage"> <strong>' 
-                    + unittitle + unit.type.toUpperCase() 
-                    + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><img src="' + localStorage.hudset + '/life.png" alt="Life" title="Life" class="buttonimage"> ' + unit.life + ' <img src="' + localStorage.hudset + '/exp.png" alt="Exp" title="Exp" class="buttonimage">  ' + unit.experience + ' <img src="' + localStorage.hudset + '/atk.png" alt="Atk" title="Atk" class="buttonimage"> ' + getAtk(unit) + ' <img src="' + localStorage.hudset + '/def.png" alt="Def" title="Def" class="buttonimage"> ' + getDef(unit) + ' <img src="' + localStorage.hudset + '/move.png" alt="Mov" title="Mov" class="buttonimage"> ' + unit.active + '</span>' 
-                    + '&nbsp;&nbsp;<span id="specialOrders"></span>'
-                    + '<button class="button gradient topbarbutton" alt="Move" title="Move" id="moveUnit"><img src="' + localStorage.hudset + '/move.png" class="buttonimage"></button>'
-                    + '<button class="button gradient topbarbutton" alt="Fortify" title="Fortify" id="fortifyUnit"><img src="' + localStorage.hudset + '/fortify.png" class="buttonimage"></button>'
-                    + '<button class="button gradient topbarbutton" alt="Kill" title="Kill" id="killUnit"><img src="' + localStorage.hudset + '/kill.png" class="buttonimage"></button>'
-                    + '<button class="button gradient topbarbutton" alt="No Orders" title="No Orders" id="noOrders"><img src="' + localStorage.hudset + '/close.png" class="buttonimage"></button>';
-        $("#actionbar").html(content);
-
-        $("#moveUnit").click(function () { moveUnit(unit.id); });
-        $("#fortifyUnit").click(function () { fortifyUnit(unit.id); });
-        $("#killUnit").click(function () { killUnit(unit.id); });
-        $("#noOrders").click(function () { closeActionbar(); });
-
-        var specialOrders = "";
-        if (unit.type === "settler") {
-            specialOrders = '<button class="button gradient topbarbutton" alt="Settle" title="Settle" id="settleCity"><img src="' + localStorage.hudset + '/settle.png" class="buttonimage"></button>';
-            $("#specialOrders").html(specialOrders);
-            $("#settleCity").click(function () { settleCity(unit.id); });
-        } else if (unit.type === "worker") {
-            specialOrders = '<button class="button gradient topbarbutton" alt="Build Street" title="Build Street" id="buildStreet"><img src="' + localStorage.hudset + '/street.png" class="buttonimage"></button>'
-                          + '<button class="button gradient topbarbutton" alt="Build Improvement" title="Build Improvement" id="buildImprovement"><img src="' + localStorage.hudset + '/improvement.png" class="buttonimage"></button>';
-            $("#specialOrders").html(specialOrders);
-            $("#buildStreet").click(function () { buildStreet(unit.id); });
-            $("#buildImprovement").click(function () { buildImprovement(unit.id); });
-        }
-
-        openActionbar();
-    }
-}
-
-function moveUnit(unitid) {
-    var unit = findUnitById(unitid);
-    if (unit.active <= 0) {
-        alert("This unit have already moved this turn, or cannot move.");
-        return;
-    }
-    selectDestinations(unit);
-    closeActionbar();
-
-    var len = mapselections.length;
-    for (var i = 0; i < len; i++) {
-        mapselections[i].bmp.onClick = make_handler(mapselections[i], unit);
-    }
-}
-
-function make_handler(selected, unit) {
-    return function (e) {
-        unit.fortified = false;
-        var len = map.units.length;
-        var i = 0;
-        var attack = false;
-        while (!attack && i < len) {
-            if (map.units[i].x === selected.x && map.units[i].y === selected.y && map.units[i].player !== map.players[0].id) { 
-                // a unit of a different player is already on that tile
-                var unit2 = map.units[i];
-
-                var unit1title = findPlayerById(unit.player).civilization + " ";
-                if (isElite(unit)) {
-                    unit1title += "Elite ";
-                } else {
-                    if (isVeteran(unit)) {
-                        unit1title += "Veteran ";
-                    }
-                }
-                var unit2title = findPlayerById(unit2.player).civilization + " ";
-                if (isElite(unit2)) {
-                    unit2title += "Elite ";
-                } else {
-                    if (isVeteran(unit2)) {
-                        unit2title += "Veteran ";
-                    }
-                }
-                var confront = unit1title + unit.type.toUpperCase() + "  -  VS  -  " + unit2title + unit2.type.toUpperCase();
-
-                var answer = confirm(confront + "\n\nAre you sure to attack?");
-                if (answer){
-                    attackUnit(unit, unit2);
-                    attack = true;
-                } else {
-                    return;
-                }
-            }
-            i++;
-        }
-
-        if (!attack) { // the unit have not been involved in an attack
-            unit.x = selected.x;
-            unit.y = selected.y;
-        }
-        
-        // decrease movement based on the destination tile type
-        var tile = findTileByXY(unit.x, unit.y);
-        var tiletype = tile.type;
-        var tilenature = tile.nature;
-
-        if (tile.nature === "forest" || tile.nature === "jungle" || tile.nature === "marsh" || tile.nature === "fallout") { unit.active --; }
-        
-        if (tiletype === "hill") { unit.active -= 2; }
-        else if (tiletype === "mountain") { unit.active -= 3; }
-        else { unit.active--; }
-
-        if (tile.street) {
-            unit.active += 0.5;
-        }
-
-        if (unit.active > 0) { // riattiva di nuovo le destinazioni
-            deselectDestinations();
-            renderMap();
-            selectDestinations(unit);
-            var len = mapselections.length;
-            for (var i = 0; i < len; i++) {
-                mapselections[i].bmp.onClick = make_handler(mapselections[i], unit);
-            }
-        } else {
-            unit.active = 0;
-            deselectDestinations();
-            closeActionbar();
-            renderMap();
-            focusNext();
-        }
-        
-
-        // animazione che sposta
-        /* 
-        var unitGraphics = findGraphics("unit", unit.id);
-        destx = coordinate(Math.floor(e.stageX / 101) + 1);
-        desty = coordinate(Math.floor(e.stageY / 101) + 1);
-        diffx = unitGraphics.unitBmp.x - destx;
-        diffy = unitGraphics.unitBmp.y - desty;
-        createjs.Tween.get(unitGraphics.unitBmp).to({
-            x: destx, 
-            y: desty
-        }, 300);
-        createjs.Tween.get(unitGraphics.hitBmp).to({
-            x: -diffx, 
-            y: -diffy
-        }, 300);
-        */
-    };
-}
-
-function attackUnit(unit1, unit2) {
-    var unit1title = "";
-    if (isElite(unit1)) {
-        unit1title = "Elite ";
-    } else {
-        if (isVeteran(unit1)) {
-            unit1title = "Veteran ";
-        }
-    }
-    var unit2title = "";
-    if (isElite(unit2)) {
-        unit2title = "Elite ";
-    } else {
-        if (isVeteran(unit2)) {
-            unit2title = "Veteran ";
-        }
-    }
-
-    var unit1Atk = getAtk(unit1);
-    var unit2Atk = getAtk(unit2);
-    var unit1Def = getDef(unit1);
-    var unit2Def = getDef(unit2);
-
-    var damage1 = unit2Atk - unit1Def;
-    var damage2 = unit1Atk - unit2Def;
-    if (damage1 < 0) { damage1 = 0; }
-    if (damage2 < 0) { damage2 = 0; }
-
-    var content = '<table class="w100"><tbody><tr>'
-                + '<td class="center"><img src="' + localStorage.tileset + '/units/' + unit1.type + '.png">' 
-                + '<br/><span style="color: ' + findPlayerById(unit1.player).color + '"><strong>' + unit1title + unit1.type.toUpperCase() + '</strong></span>' 
-                + '<br/><img src="' + localStorage.hudset + '/life.png" alt="Life" title="Life" class="buttonimage"> ' + unit1.life 
-                + '<br/><img src="' + localStorage.hudset + '/exp.png" alt="Exp" title="Exp" class="buttonimage"> ' + unit1.experience 
-                + '<br/><img src="' + localStorage.hudset + '/atk.png" alt="Atk" title="Atk" class="buttonimage"> ' + unit1Atk 
-                + '<br/><img src="' + localStorage.hudset + '/def.png" alt="Def" title="Def" class="buttonimage"> ' + unit1Def 
-                + '</td><td class="center"><img src="' + localStorage.tileset + '/units/' + unit2.type + '.png">' 
-                + '<br/><span style="color: ' + findPlayerById(unit2.player).color + '"><strong>' + unit2title + unit2.type.toUpperCase() + '</strong></span>' 
-                + '<br/><img src="' + localStorage.hudset + '/life.png" alt="Life" title="Life" class="buttonimage"> ' + unit2.life 
-                + '<br/><img src="' + localStorage.hudset + '/exp.png" alt="Exp" title="Exp" class="buttonimage"> ' + unit2.experience 
-                + '<br/><img src="' + localStorage.hudset + '/atk.png" alt="Atk" title="Atk" class="buttonimage"> ' + unit2Atk 
-                + '<br/><img src="' + localStorage.hudset + '/def.png" alt="Def" title="Def" class="buttonimage"> ' + unit2Def + '</td></tr></tbody></table>';
-
-    content += '<br/><center><span style="color: ' + findPlayerById(unit2.player).color + '"><strong>' + unit2title + unit2.type.toUpperCase() + '</strong></span> deal <strong>' + damage1 + '</strong> damage to <span style="color: ' + findPlayerById(unit1.player).color + '"><strong>' + unit1title + unit1.type.toUpperCase() + '</strong></span><br/>';
-    content += '<span style="color: ' + findPlayerById(unit1.player).color + '"><strong>' + unit1title + unit1.type.toUpperCase() + '</strong></span> deal <strong>' + damage2 + '</strong> damage to <span style="color: ' + findPlayerById(unit2.player).color + '"><strong>' + unit2title + unit2.type.toUpperCase() + '</strong></span>';
-    
-    unit1.experience++;
-    unit2.experience++;
-
-    if ((unit1.life - damage1) <= 0) {
-        content += '<br/><span style="color: ' + findPlayerById(unit1.player).color + '"><strong>' + unit1title + unit1.type.toUpperCase() + '</strong></span> is <strong>dead!</strong>';
-        removeUnit(unit1);
-    } else {
-        unit1.life -= damage1;
-        if (unit1.experience === 5 || unit1.experience === 10) { promoteUnit(unit1); }
-    } 
-    if ((unit2.life - damage2) <= 0) {
-        content += '<br/><span style="color: ' + findPlayerById(unit2.player).color + '"><strong>' + unit2title + unit2.type.toUpperCase() + '</strong></span> is <strong>dead!</strong>';
-        unit1.x = unit2.x;
-        unit1.y = unit2.y;
-        removeUnit(unit2);
-    } else {
-        unit2.life -= damage2;
-        if (unit2.experience === 5 || unit2.experience === 10) { promoteUnit(unit2); }
-    } 
-    $('#popupcontent').html(content + '</center>');
-    openPopup();
-}
-
-function fortifyUnit(unitid) {
-    var unit = findUnitById(unitid);
-    unit.fortified = true;
-    closeActionbar();
-    focusNext();
-}
-
-function killUnit(unitid) {
-    var unit = findUnitById(unitid);
-    var gold = Math.round(getUnitProductionCost(unit) / 4);
-    var answer = confirm("Do you want to kill this unit to gain " + gold + " gold?");
-    if (answer){
-        closeActionbar();
-        var player = findPlayerById(unit.player);
-        removeUnit(unit);
-        player.gold += gold;
-        renderMap();
-    }
-    focusNext();
-}
-
-function settleCity(unitid) {
-    var unit = findUnitById(unitid);
-
-    if (!cityIsNear(unit.x, unit.y, 2) && findTileByXY(unit.x, unit.y).type !== "water") {
-        var cityname = prompt("Name of the city","MyCity");
-        if (cityname !== null) {
-            var trovato = false, i = 0, len = map.cities.length;
-            while (!trovato && i < len) {
-                if (map.cities[i].name === cityname) {
-                    trovato = true;
-                }
-                i++;
-            }
-            if (!trovato) {
-                closeActionbar();
-                
-                var city = {};
-                city.id = "x" + unit.x + "y" + unit.y + "-" + cityname;
-                city.name = cityname;
-                city.player = unit.player;
-                city.x = unit.x;
-                city.y = unit.y;
-                city.population = 2;
-                city.growth = 0;
-                city.buildings = [];
-                city.build = { name: "nothing", cost: 0 };
-
-                map.cities.push(city);
-
-                removeUnit(unit);
-
-                renderMap();
-
-                showCityManager(city.id);
-            } else {
-                alert("\"I cannot give this name to my city. Maybe it's already taken.\"\n\n- The Settler");
-            }
-        }
-    } else {
-        alert("\"Cannot settle a city here, it's too near to another city.\"\n\n- The Settler");
-    }
-}
-
-function showCityManager(cityid) {
-    var city = findCityById(cityid);
-    var cityproduction = getCityProd(city);
-
-    var list = "<ul>";
-    var len = city.buildings.length;
-    for (var i = 0; i < len; i++) {
-        list += '<li>' + city.buildings[i] + '</li>';
-    }
-    list += '</ul>';
-
-    var step = Math.floor(15 + 6 * (city.population - 1) + Math.pow(city.population - 1, 1.8));
-    var bilancio = getCityFood(city) - city.population * 2;
-    var btext;
-    if (bilancio < 0) {
-        btext = '' + bilancio;
-    } else {
-        btext = '+&nbsp;' + bilancio;
-    }
-
-    var content = '<h3 class="center"><img src="' + localStorage.tileset + '/elements/city.png" width="25" height="25">&nbsp;&nbsp;' + city.name + '&nbsp;&nbsp;&nbsp;<em>(Population ' + city.population + ')</em></h3><table class="w100"><tbody>'
-                + '<tr><td class="w70"><table class="w100"><tbody><tr><td class="w33 center"><img src="' + localStorage.hudset + '/food.png" alt="Food" title="Food" width="20" height="20">&nbsp;&nbsp;' + getCityFood(city) + '</td><td class="w33 center"><img src="' + localStorage.hudset + '/prod.png" alt="Production" title="Production" width="20" height="20">&nbsp;&nbsp;' + cityproduction + '</td><td class="w33 center"><img src="' + localStorage.hudset + '/gold.png" alt="Gold" title="Gold" width="20" height="20">&nbsp;&nbsp;' + getCityGold(city) + '</td></tr></tbody></table>'
-                + '<br/><table class="w100"><tbody><tr><td class="w33 center"><strong>Growth:</strong> ' + btext + ' (' + city.growth + '/' + step + ')</td><td class="w33 center"><img src="' + localStorage.hudset + '/research.png" alt="Science" title="Science" width="30" height="30">&nbsp;+&nbsp;' + getCityScience(city) + '</td><td class="w33 center"><img src="' + localStorage.hudset + '/culture.png" alt="Culture" title="Culture" width="20" height="20">&nbsp;+&nbsp;' + getCityCulture(city) + '</td></tr></tbody></table>'
-                + '<br/><br/><strong>Current Build:</strong> ' + city.build.name + ' (' + Math.ceil(city.build.cost/cityproduction) + ' Turns)&nbsp;&nbsp;&nbsp;<button id="changebuildBtn" class="gradient button w33">Change Build</button></td>'
-                + '<td class="w30" style="border-style: solid; border-width: 1px"><h4 class="center">Buildings</h4>' + list + '</td></tr></tbody></table>';
-
-    $('#popupcontent').html(content);
-
-    $("#changebuildBtn").click(function () { createBuildingsList(cityid); });
-    
-    openPopup();
-}
-
-function createBuildingsList(cityid) {
-    closePopup();
-
-    var city = findCityById(cityid);
-    var cityproduction = getCityProd(city);
-
-    var content = '<h4 class="center">Available Units</h4>';
-
-    $.each(unitsDB, function(key, val) {
-        if ((val.techrequired === "none" || playerHaveTech(city.player, val.techrequired)) && !playerHaveTech(city.player, val.obsolete)) {
-            if (val.terrain || (val.naval && pointIsNearTile(city.x, city.y, "water"))) {
-                content += '<button onclick="setBuild(\'' + cityid + '\', \'unit\', \'' + key + '\')" style="margin-bottom: 5px;" class="gradient button w100"><img src="' + localStorage.tileset + '/units/' + key + '.png" alt="' + key + '" title="' + key + '" class="buttonimage">&nbsp;&nbsp;&nbsp;<strong>' + key + '</strong> (Cost: ' + val.productioncost + ' - ' + Math.ceil(val.productioncost/cityproduction) + ' Turns)</button><br/>';
-            }
-        }
-    });
-
-    content += '<h4 class="center">Available Buildings</h4>';
-
-    $.each(buildingsDB, function(key, val) {
-        if (!cityHaveBuilding(city, key)) {
-            if (val.techrequired === "none" || playerHaveTech(city.player, val.techrequired)) {
-                if (val.buildingrequired === "none" || cityHaveBuilding(city, val.buildingrequired)) {
-                    content += '<button onclick="setBuild(\'' + cityid + '\', \'building\', \'' + key + '\')" style="margin-bottom: 5px;" class="gradient button w100"><strong>' + key + "</strong> (Cost: " + val.productioncost + ' - ' + Math.ceil(val.productioncost/cityproduction) + ' Turns)</button><br/>';
-                }
-            }
-        }
-    });
-
-    $('#popupcontent').html(content);
-
-    openPopup();
-}
-
-function setBuild(cityid, target, building) {
-    var city = findCityById(cityid);
-    var build = {};
-    build.name = building;
-    build.type = target;
-    if (target === "unit") {
-        build.cost = getUnitProductionCost({type:building});
-    } else {
-        build.cost = getBuildingProductionCost({name:building});
-    }
-    
-    city.build = build;
-    closePopup();
-}
-
-function showResearchManagement() {
-    closePopup();
-
-    var player = map.players[0];
-    var scienceproduction = 0;
-    for (var i = 0, len = map.cities.length; i < len; i++) {
-        var city = map.cities[i];
-        if (city.player === player.id) {
-            scienceproduction += getCityScience(city);
-        }
-    }
-
-    var content = '<h3 class="center"><img src="' + localStorage.hudset + '/research.png" alt="Research" title="Research" width="25" height="25">&nbsp;&nbsp;Technology Research</h3>';
-    if (map.players[0].research.tech !== "") {
-        var current = getTechProdCost(player.research.tech);
-        var status = current - player.research.cost;
-        content += '<strong>Current Research:</strong> ' + player.research.tech + ' (' + status + '/' + current +  ') - ' + Math.ceil(player.research.cost/scienceproduction) + ' Turns';
-    } else {
-        content += '<strong>Current Research:</strong> Nothing';
-    }
-
-    content += '<h4 class="center">Available Research</h4>';
-    
-
-    $.each(techDB, function(key, val) {
-        if (!playerHaveTech(player.id, key) && (player.research.tech !== key)) {
-            if (val.techrequired.length < 1 || playerHaveRequiredTechs(player.id, val.techrequired)) {
-                content += '<button onclick="setResearch(\'' + key + '\')" style="margin-bottom: 5px;" class="gradient button w100"><strong>' + key + "</strong> (Cost: " + val.productioncost + ' - ' + Math.ceil(val.productioncost/scienceproduction) + ' Turns)</button><br/>';
-            }
-        }
-    });
-
-    content += '<h4 class="center">Technologies Discovered</h4><ul>';
-    for (var i = 0, len = player.tech.length; i < len; i++) {
-        content += '<li>' + player.tech[i] + '</li>';
-    }
-    content += '</ul>';
-
-    $('#popupcontent').html(content);
-    openPopup();
-}
-
-function setResearch(techname) {
-    var research = {};
-    research.tech = techname;
-    research.cost = getTechProdCost(techname);
-    map.players[0].research = research;
-    closePopup();
-}
-
-function showSocietyManagement() {
-    closePopup();
-
-    var content = '<h3 class="center"><img src="' + localStorage.hudset + '/society.png" alt="Society" title="Society" width="25" height="25">&nbsp;&nbsp;Society</h3>';
-    content += '<strong>Current Society:</strong> ' + map.players[0].society;
-    content += '<h4 class="center">Available Societies</h4>';
-
-    $('#popupcontent').html(content);
-    openPopup();
-}
-
-function showEmpireOverview() {
-    closePopup();
-
-    var player = map.players[0];
-
-    var content = '<h3 class="center"><img src="' + localStorage.hudset + '/empire.png" alt="Empire Overview" title="Empire Overview" width="25" height="25">&nbsp;&nbsp;Empire Overview</h3><h4 class="center"><span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + player.color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + player.name + ' (' + player.civilization + ')</h4>';
-    content += '<table class="w100"><tbody><tr><td class="w33 center"><strong>Points:</strong> ' + player.points;
-    content += '</td><td class="w33 center"><img src="' + localStorage.hudset + '/gold.png" alt="Gold" title="Gold" width="20" height="20">&nbsp;&nbsp;' + player.gold;
-    content += '</td><td class="w33 center"><img src="' + localStorage.hudset + '/culture.png" alt="Culture" title="Culture" width="20" height="20">&nbsp;&nbsp;' + player.culture;
-    content += '</td></tr></tbody></table><h3 class="center"><img src="' + localStorage.hudset + '/diplomacy.png" alt="Diplomacy" title="Diplomacy" width="25" height="25">&nbsp;&nbsp;Diplomacy</h3>';
-
-    for (var i = 1, len = map.players.length; i < len; i++) {
-        content += '<span style="width: 15px; height: 15px; border: 1px solid black; background-color:' + map.players[i].color + '">&nbsp;&nbsp;&nbsp;&nbsp;</span> ' + map.players[i].name + ' (' + map.players[i].civilization + ')<br/><br/>';
-    }
-
-    $('#popupcontent').html(content);
-    openPopup();
-}
-
-function buildStreet(unitid) {
-    var unit = findUnitById(unitid);
-    var tile = findTileByXY(unit.x, unit.y);
-
-    if (unit.active === 0) {
-        alert("\"I'm just arrived here, be quiet! Wait the next turn.\"\n\n- The Worker");
-        return;
-    }
-
-    if (!tile.street) {
-        tile.street = true;
-        unit.active = 0;
-        renderMap();
-        closeActionbar();
-    } else {
-        alert("\"A street is already set on this tile\"\n\n- The Worker");
-    }
-}
-
-function buildImprovement(unitid) {
-    var unit = findUnitById(unitid);
-    var tile = findTileByXY(unit.x, unit.y);
-
-    if (unit.active === 0) {
-        alert("\"I'm just arrived here, be quiet! Wait the next turn.\"\n\n- The Worker");
-        return;
-    }
-
-    // SET THE IMPROVEMENT // TODO
-}
+(function () {
+	'use strict';
+
+	window.GAME = {};
+
+	// ##############################################
+	// # GENERATE MAP                               #
+	// ##############################################
+
+	GAME.generateMap = function (options) {
+		options = options || {
+			players: 4,
+			playerName: 'Daniele',
+			playerCiv: 'rome',
+			playerColor: 'dodgerblue'
+		};
+
+		var map = {
+			width: 16,
+			height: 16,
+			turn: 1,
+			players: {},
+			tiles: {}
+		};
+
+		// PLAYERS
+		var colors = ['crimson', 'orangered', 'darkorange', 'gold', 'limegreen', 'mediumaquamarine', 'dodgerblue', 'mediumslateblue', 'mediumvioletred'],
+			civs = [];
+
+		for (var civ in CIVSDB) {
+			if (CIVSDB.hasOwnProperty(civ)) {
+				civs.push(civ);
+			}
+		}
+
+		// ADD PLAYER TO MAP
+		for (var i = 0; i < options.players; ++i) {
+			var player = {
+				id: 'player' + i,
+				type: i === 0 ? 'human' : 'AI',
+				name: i === 0 ? options.playerName : 'AI' + i,
+				color: i === 0 ? options.playerColor : colors[Math.floor(Math.random() * colors.length)],
+				civ: i === 0 ? options.playerCiv : civs[Math.floor(Math.random() * civs.length)],
+				gold: 0,
+				culture: 0,
+				techs: [],
+				cities: {},
+				units: {}
+			};
+			map.players[player.id] = player;
+		}
+
+		// TILES
+		var tileType = ['mountain', 'forest', 'plain', 'desert', 'water'];
+		for (var y = 0; y < map.height; ++y) {
+			for (var x = 0; x < map.width; ++x) {
+				var tile = {
+					id: 'x' + x + 'y' + y,
+					x: x,
+					y: y,
+					type: tileType[Math.floor(Math.random() * tileType.length)],
+					fog: true
+				};
+				map.tiles[tile.id] = tile;
+			}
+		}
+
+		// EXPOSE MAP
+		console.log(map);
+		return map;
+	};
+
+	// ##############################################
+	// # SAVE GAME                                  #
+	// ##############################################
+
+	GAME.saveGame = function (name) {
+		localforage.getItem('saves', function (value) {
+			var saves = null;
+			if (value) {
+				saves = value;
+			} else {
+				// create saves object
+				saves = {};
+			}
+			if (name) {
+				// save over named slot
+				saves[name] = window.MAP;
+				localforage.setItem('saves', saves);
+			} else {
+				// open save game destination panel
+				// TODO
+			}
+		});
+	};
+
+	// ##############################################
+	// # LOAD GAME                                  #
+	// ##############################################
+
+	GAME.loadGame = function (name) {
+		localforage.getItem('saves', function (value) {
+			var saves = null;
+			if (value) {
+				saves = value;
+			} else {
+				alert('No saved game available!');
+				return;
+			}
+			if (name) {
+				// load over named slot
+				window.MAP = saves[name];
+				RENDER.paper.clear();
+				RENDER.renderMap(MAP);
+			} else {
+				// open load game destination panel
+				// TODO
+			}
+		});
+	};
+
+	// ##############################################
+	// # PLAY TURN                                  #
+	// ##############################################
+	/*
+
+	TURN
+
+	1. Start of Turn
+		Any player may one or many of these actions:
+		* Build a city by sacrifing a scout (Note: cannot move now)
+		* Change governments (se si cambia si va in anarchia: per quel turno non è possibile eseguire azioni nella capitale)
+
+	2. Trade
+		- Collect trade from any city (max 27 trade points at a time)
+
+	3. City Management
+		For every city take one of the following actions:
+		* produce a unit
+		* produce a building
+		* gain culture points (1 + simboli C negli outskirts. used to advance culture level and achieve culture events or great people)
+		* harvest a resource
+
+	4. Movement
+		For every unit: move a number of spaces on the board equal to the civilization available (min: 2. techs may increase this)
+
+	5. Research
+		Players may spend trade points to research new technologies
+
+	*/
+	GAME.playTurn = function () {
+		// 0. AUTOSAVE
+		// TODO
+
+		// 1. START OF TURN
+		// TODO
+
+		// 2. TRADE
+		// TODO
+
+		// 3. CITY MANAGEMENT
+		// TODO
+
+		// 4. MOVEMENT
+		// TODO
+
+		// 5. RESEARCH
+		// TODO
+	};
+
+	// ##############################################
+	// # END TURN                                   #
+	// ##############################################
+
+	GAME.endTurn = function () {
+		// 1. AUTOSAVE
+		GAME.saveGame('auto');
+		console.log('Game saved');
+
+		// 2. CLOSE POPUPS
+		$$('#menu, #popup, #container').slideOut();
+		console.log('Popups closed');
+
+		// 3. RESET NOTIFICATIONS
+		$$('#notifications').empty();
+		console.log('Notifications resetted');
+
+		// 4. CURE UNITS IF FORTIFIED
+		for (var unit in MAP.players.player0.units) {
+			if (unit.fortified) {
+				var heal = 1;
+				if (unit.exp >= 10) { // ELITE
+					heal = 3;
+				} else if (unit.exp >= 5) { // VETERAN
+					heal = 2;
+				}
+				unit.life = unit.life + heal > unit.maxlife ? unit.maxlife : unit.life + heal;
+				console.log('Unit ' + unit.id + ' cured, now have ' + unit.life + '/' + unit.maxlife + ' life.');
+			}
+		}
+
+		// 5. AI PLAYERS TURNS
+		for (var player in MAP.players) {
+			// FOR EACH AI PLAYER
+			if (MAP.players.hasOwnProperty(player) && player != 'player0') {
+				console.group(player + '\'s turn');
+				MAP.game.turnPlayer = player;
+				console.log('Now playing ' + MAP.game.turnPlayer);
+
+				// 5.1 ACTIVATE PLAYER UNITS
+				for (var unit in MAP.players[player].units) {
+					unit.active = UNITSDB.getMov(unit);
+					console.log('Unit ' + unit.id + ' activated.');
+				}
+
+				// 5.2 GOLD PRODUCTION
+				for (var city in MAP.players[player].cities) {
+					MAP.players[player].gold += GAME.getCityGold(city);
+				}
+				console.log(MAP.game.turnPlayer + '\'s gold: ' + MAP.players[player].gold);
+
+				// 5.3 MAINTENANCE COST
+				MAP.players[player].gold -= Object.keys(MAP.players[player].units).length; // -1 gold for each unit
+				console.log(MAP.game.turnPlayer + '\'s gold after maintenance: ' + MAP.players[player].gold);
+
+				// 5.4 SCIENCE PRODUCTION
+				// TODO
+
+				// 5.5 CULTURE PRODUCTION
+				// TODO
+
+				// 5.6 BUILDINGS PRODUCTION
+				// TODO
+
+				// 5.7 CITIES GROWTH
+				// TODO
+
+				// 5.8 AI ACTIONS + UPDATE MAP
+				// TODO
+
+				// 5.9 CURE PLAYER UNITS IF FORTIFIED
+				for (var unit in MAP.players[player].units) {
+					if (unit.fortified) {
+						var heal = 1;
+						if (unit.exp >= 10) { // ELITE
+							heal = 3;
+						} else if (unit.exp >= 5) { // VETERAN
+							heal = 2;
+						}
+						unit.life = unit.life + heal > unit.maxlife ? unit.maxlife : unit.life + heal;
+						console.log('Unit ' + unit.id + ' cured, now have ' + unit.life + '/' + unit.maxlife + ' life.');
+					}
+				}
+				console.groupEnd();
+			}
+		}
+
+		// 6. STEP FORWARD TURN AND YEAR
+		MAP.game.turn++;
+		MAP.game.year += MAP.game.yearStep;
+		MAP.game.turnPlayer = 'player0'; // id of the human player
+		console.log('Turn: ' + MAP.game.turn + ' - Year: ' + MAP.game.year + ' - Now playing: ' +  MAP.game.turnPlayer);
+
+		// 7. ACTIVATE PLAYER UNITS
+		for (var unit in MAP.players.player0.units) {
+			unit.active = UNITSDB.getMov(unit);
+			console.log('Unit ' + unit.id + ' activated.');
+		}
+
+		// 8. GOLD PRODUCTION
+		for (var city in MAP.players.player0.cities) {
+			MAP.players.player0.gold += GAME.getCityGold(city);
+		}
+		console.log(MAP.game.turnPlayer + '\'s gold: ' + MAP.players.player0.gold);
+
+		// 9. MAINTENANCE COST
+		MAP.players.player0.gold -= Object.keys(MAP.players.player0.units).length; // -1 gold for each unit
+		console.log(MAP.game.turnPlayer + '\'s gold after maintenance: ' + MAP.players.player0.gold);
+
+		// 10. SCIENCE PRODUCTION
+		// TODO
+
+		// 11. CULTURE PRODUCTION
+		// TODO
+
+		// 12. BUILDINGS PRODUCTION
+		// TODO
+
+		// 13. CITIES GROWTH
+		// TODO
+
+		// 14. UPDATE MAP
+		$$('#header-science').text(MAP.players.player0.science.points.toString());
+		$$('#header-gold').text(MAP.players.player0.gold.toString());
+		$$('#header-culture').text(MAP.players.player0.culture.toString());
+		$$('#header-turn-number').text(MAP.game.turn.toString());
+		$$('#header-turn-year').text(MAP.game.year.toString());
+	};
+
+	// ##############################################
+	// # CREATE UNIT                                #
+	// ##############################################
+
+	/*
+	GAME.createUnit({
+		player: MAP.players.player0,
+		x: 1,
+		y: 2,
+		type: 'archer'
+	});
+	*/
+	GAME.createUnit = function (obj) {
+		return {
+			id: '' + obj.player.id + 'u' + $$.guid(),
+			player: obj.player.id,
+			x: obj.x,
+			y: obj.y,
+			type: obj.type,
+			exp: 0,
+			life: 1,
+			maxlife: 1,
+			fortified: false,
+			active: UNITSDB.getMov({ type: obj.type })
+		};
+	};
+
+	// ##############################################
+	// # GET NEAR TILES                             #
+	// ##############################################
+
+	GAME.getNearTiles = function (x, y) {
+		var list = [];
+		if (y !== 0) {
+			if (x !== 0) {
+				list.push('x' + (x-1) + 'y' + (y-1));
+			}
+			list.push('x' + x + 'y' + (y-1));
+			if (x !== MAP.width - 1) {
+				list.push('x' + (x+1) + 'y' + (y-1));
+			}
+		}
+		if (x !== 0) {
+			list.push('x' + (x-1) + 'y' + y);
+		}
+		list.push('x' + x + 'y' + y);
+		if (x !== MAP.width - 1) {
+			list.push('x' + (x+1) + 'y' + y);
+		}
+		if (y !== MAP.height - 1) {
+			if (x !== 0) {
+				list.push('x' + (x-1) + 'y' + (y+1));
+			}
+			list.push('x' + x + 'y' + (y+1));
+			if (x !== MAP.width - 1) {
+				list.push('x' + (x+1) + 'y' + (y+1));
+			}
+		}
+		return list;
+	};
+
+	// ##############################################
+	// # SELECT DESTINATIONS                        #
+	// ##############################################
+
+	GAME.selectDestinations = function (unit) {
+		var tiles = GAME.getNearTiles(unit.x, unit.y);
+		for (var i = 0; i < tiles.length; i++) {
+			var tile = MAP.tiles[tiles[i]];
+			(function (tile) {
+				RENDER.renderDestination(tile, function () {
+					RENDER.renderMove({ id: 'p0u2' }, tile.x, tile.y);
+				});
+			})(tile);
+		}
+	};
+
+	// ##############################################
+	// # GET CITY GOLD                              #
+	// ##############################################
+
+	GAME.getCityGold = function (city) {
+		/*
+		var basegold = 0,
+			tiles = GAME.getNearTiles(city.x, city.y);
+		for (var j = 0, len = tiles.length; j < len; j++) {
+			basegold += getGoldFromTile(tiles[j]);
+		}
+
+		if (cityHaveBuilding(city, "Market")) { basegold += 2; } // +2
+		if (cityHaveBuilding(city, "Bank")) { basegold += 2; } // +2
+
+		var gold = basegold;
+
+		if (cityHaveBuilding(city, "Market")) { gold += Math.round(basegold / 4); } // +25%
+		if (cityHaveBuilding(city, "Bank")) { gold += Math.round(basegold / 4); } // +25%
+
+		for (var i = 0, len = city.buildings.length; i < len; i++) {
+			gold -= buildingsDB[city.buildings[i]].maintenance;
+		}
+
+		return gold;
+		*/
+		return 0;
+	};
+
+})();
