@@ -1,3 +1,4 @@
+$gradient: linear-gradient(#f1e767, #feb645);
 $culture: #9033A3;
 $tech: #2DA0D8;
 
@@ -104,6 +105,26 @@ button {
 }
 
 // ##############################################
+// # PLACEHOLDERS                               #
+// ##############################################
+
+%sanded {
+	background: linear-gradient(#f1e767, #feb645);
+	border: 3px ridge #feb645;
+	border-radius: 5px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+%stitched {
+	color: #f1c40f;
+	text-shadow: -1px -1px #aa3030;
+	background: #C0392B;
+	border: 1px dashed #f1c40f;
+	border-radius: 5px;
+	box-shadow: 0 0 0 4px #C0392B, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+}
+
+// ##############################################
 // # MAIN SCREEN                                #
 // ##############################################
 
@@ -117,7 +138,11 @@ button {
 	margin: 0;
 	padding: 0;
 	transition: all 1s ease;
-	background: linear-gradient(to bottom, #025d8c, #3c6f89);
+
+	//background: linear-gradient(to bottom, #025d8c, #3c6f89);
+	color: #f1c40f;
+	background-color: #C0392B;
+	background-image: url("zenbg.png");
 
 	> #app-version, > #app-credits {
 		color: white;
@@ -164,7 +189,7 @@ button {
 		border-radius: 5px;
 		border: 3px ridge #feb645;
 		box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-		background: linear-gradient(#f1e767, #feb645);
+		background: $gradient;
 
 		&:hover {
 			background: linear-gradient(#feb645, #f1e767);
@@ -243,11 +268,9 @@ header {
 	position: fixed;
 	top: 40px;
 	right: 0;
-	background: linear-gradient(#f1e767, #feb645);
-	border: 3px ridge #feb645;
+	@extend %stitched;
 	border-right: none;
 	border-radius: 5px 0 0 5px;
-	box-shadow: 0 2px 6px rgba(0,0,0,0.5);
 
 	display: flex;
 	flex-flow: column nowrap;
@@ -263,6 +286,14 @@ header {
 		cursor: pointer;
 		background: none;
 		border: none;
+		color: inherit;
+		text-shadow: inherit;
+
+		&:hover,
+		&:focus {
+			background: #f1c40f;
+			color: #C0392B;
+		}
 	}
 }
 
@@ -320,25 +351,16 @@ header {
 	left: 0.8rem;
 	bottom: 0.8rem;
 	padding: 0.5rem;
-	background: linear-gradient(#f1e767, #feb645);
-	border: 3px ridge #feb645;
-	border-radius: 5px;
-	box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+	@extend %stitched;
 }
 
 // ##############################################
 // # DIALOG                                     #
 // ##############################################
 
-#container {
-	padding: 5px;
-	margin: 0;
-	border-radius: 5px;
-	border: 3px ridge #feb645;
-	box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-	background: linear-gradient(#f1e767, #feb645);
+#dialog {
 	position: fixed;
-	top: -100%;
+	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 50%;
@@ -348,7 +370,9 @@ header {
 	min-height: 300px;
 	max-height: 95%;
 	z-index: 2;
+	padding: 10px 20px;
+	margin: 10px;
 	overflow: auto;
 	resize: both;
-	transition: all 600ms ease;
+	@extend %stitched;
 }
