@@ -98,12 +98,12 @@
 			size = t.tileSize * 0.6,
 			x = t.coordinate(unit.x) + ((t.tileSize - size) / 2),
 			y = t.coordinate(unit.y) + ((t.tileSize - size) / 2),
-			unitSVG = t.units.select('#' + unit.type).clone(),
+			unitSVG = t.units.select('#unit-' + unit.type).clone(),
 			matrix = Snap.matrix();
 		matrix.translate(x, y);
-		matrix.scale(0.12, 0.12, 0, 0);
+		matrix.scale(0.06, 0.06, 0, 0);
 		unitSVG.attr({ fill: MAP.players[unit.player].color, transform: matrix });
-		unitSVG.prepend(t.paper.rect(0, 0, 512, 512).attr({ fill: 'whitesmoke' }));
+		unitSVG.prepend(t.paper.rect(0, 0, 1024, 1024).attr({ fill: 'whitesmoke' }));
 
 		unitSVG.data('info', unit.type);
 
@@ -131,7 +131,7 @@
 			y = t.coordinate(coordY) + ((t.tileSize - size) / 2),
 			matrix = Snap.matrix();
 		matrix.translate(x, y);
-		matrix.scale(0.12, 0.12, 0, 0);
+		matrix.scale(0.06, 0.06, 0, 0);
 		unitShape.animate({ transform: matrix }, 500, mina.easeinout);
 	};
 
