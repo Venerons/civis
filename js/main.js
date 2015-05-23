@@ -41,22 +41,25 @@ localforage.getItem('language', function (error, value) {
 		// # MAIN SCREEN HOME                           #
 		// ##############################################
 
-		$('#home-new').text(_('newGame')).on('click', function () {
+		$('#home-new').attr({ title: _('newGame') }).on('click', function () {
 			$('#main-screen').css('top', '-100%');
 			// TESTING
 			test();
-		});
-		$('#home-load').text(_('loadGame')).on('click', function () {
+		}).find('p').text(_('newGame'));
+
+		$('#home-load').attr({ title: _('loadGame') }).on('click', function () {
 			GAME.loadGame('auto');
 			$('#main-screen').css('top', '-100%');
-		});
-		$('#home-manual').text(_('manual')).on('click', function () {
+		}).find('p').text(_('loadGame'));
+
+		$('#home-manual').attr({ title: _('manual') }).on('click', function () {
 			$('#main-screen').css('top', '-100%');
-		});
-		$('#home-settings').text(_('settings')).on('click', function () {
+		}).find('p').text(_('manual'));
+
+		$('#home-settings').attr({ title: _('settings') }).on('click', function () {
 			$('.main-screen-page').hide();
 			$('#main-screen-content-settings').show();
-		});
+		}).find('p').text(_('settings'));
 
 		// ##############################################
 		// # MAIN SCREEN SETTINGS                       #

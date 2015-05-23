@@ -183,19 +183,35 @@ button {
 	}
 
 	button {
-		width: 280px;
-		max-width: 90%;
-		height: 35px;
-		border-radius: 5px;
-		border: 3px ridge #feb645;
-		box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-		background: $gradient;
+		//width: 280px;
+		//max-width: 90%;
+		//height: 35px;
+		//border-radius: 5px;
+		//border: 3px ridge #feb645;
+		//box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+		//background: $gradient;
 
-		&:hover {
-			background: linear-gradient(#feb645, #f1e767);
+		margin: 0 0.5rem;
+		width: 150px;
+		height: 150px;
+		background: none;
+		border: none;
+		border-radius: 100%;
+		color: gold;
+		font-size: 3rem;
+
+		&:hover,
+		&:focus {
+			background: gold;
+			color: #C0392B;
+			//box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.2) inset, 0 12px 24px 6px rgba(0, 0, 0, 0.2) inset, 0 0 2px 2px rgba(0, 0, 0, 0.2) inset;
 		}
 		&:active {
 			box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.2) inset, 0 12px 24px 6px rgba(0, 0, 0, 0.2) inset, 0 0 2px 2px rgba(0, 0, 0, 0.2) inset;
+		}
+
+		> p {
+			font-size: 1rem;
 		}
 	}
 }
