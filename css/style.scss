@@ -93,10 +93,7 @@ select,
 textarea {
 	font: inherit;
 	border: none;
-	margin: 5px 0;
-	padding: 0.5rem;
-	background: rgba(255, 255, 255, 0.9);
-	border-radius: 5px;
+	padding: 0.2rem 0.5rem;
 }
 
 button {
@@ -105,7 +102,7 @@ button {
 }
 
 // ##############################################
-// # PLACEHOLDERS                               #
+// # PLACEHOLDERS & UTILITIES                   #
 // ##############################################
 
 %sanded {
@@ -124,6 +121,33 @@ button {
 	box-shadow: 0 0 0 4px #C0392B, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
 }
 
+.flex-row {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.flex-form-row {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: center;
+
+	> label {
+		width: 150px;
+	}
+	> :nth-child(2) {
+		flex-grow: 1;
+		min-width: 150px;
+	}
+}
+
+.flex-center {
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+
 // ##############################################
 // # MAIN SCREEN                                #
 // ##############################################
@@ -135,85 +159,83 @@ button {
 	width: 100%;
 	height: 100%;
 	z-index: 5;
+	overflow: auto;
+	color: #f1c40f;
+	background: url("background.png") #C0392B;
+	transition: all 1s ease;
+}
+
+.main-screen-page {
+	display: inline-block;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: auto;
+	height: auto;
 	margin: 0;
 	padding: 0;
-	transition: all 1s ease;
-
-	//background: linear-gradient(to bottom, #025d8c, #3c6f89);
-	color: #f1c40f;
-	background-color: #C0392B;
-	background-image: url("zenbg.png");
-
-	> #app-version, > #app-credits {
-		color: white;
-		position: absolute;
-	}
-
-	> #app-version {
-		top: 10px;
-		right: 10px;
-	}
-
-	> #app-credits {
-		bottom: 10px;
-		left: 50%;
-		transform: translateX(-50%);
-	}
-
-	> div {
-		position: relative;
-		top: 50%;
-		transform: translateY(-50%);
-		width: 100%;
-		height: auto;
-		margin: 0;
-		padding: 0;
-		text-align: center;
-	}
-
-	> div img,
-	> div button {
-		margin-top: 2vh;
-		margin-bottom: 2vh;
-	}
-
-	> div img {
-		max-width: 90%;
-		max-height: 30vh;
-	}
 
 	button {
-		//width: 280px;
-		//max-width: 90%;
-		//height: 35px;
-		//border-radius: 5px;
-		//border: 3px ridge #feb645;
-		//box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-		//background: $gradient;
-
-		margin: 0 0.5rem;
-		width: 150px;
-		height: 150px;
+		margin: 1rem 0.5rem;
+		padding: 0.5rem;
 		background: none;
 		border: none;
-		border-radius: 100%;
 		color: gold;
-		font-size: 3rem;
 
 		&:hover,
 		&:focus {
 			background: gold;
 			color: #C0392B;
-			//box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.2) inset, 0 12px 24px 6px rgba(0, 0, 0, 0.2) inset, 0 0 2px 2px rgba(0, 0, 0, 0.2) inset;
 		}
 		&:active {
 			box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.2) inset, 0 12px 24px 6px rgba(0, 0, 0, 0.2) inset, 0 0 2px 2px rgba(0, 0, 0, 0.2) inset;
 		}
+	}
+
+	select {
+		background: url("background.png") #C0392B;
+		border: 1px solid gold;
+		font: inherit;
+		color: gold;
+	}
+}
+
+#main-screen-content-home {
+	text-align: center;
+
+	> img {
+		margin-top: 2vh;
+		margin-bottom: 2vh;
+		max-width: 90%;
+		max-height: 30vh;
+	}
+
+	button {
+		width: 150px;
+		height: 150px;
+		border-radius: 100%;
+		font-size: 3rem;
 
 		> p {
 			font-size: 1rem;
 		}
 	}
+}
+
+#app-version {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: rgba(255, 255, 255, 0.3);
+}
+
+#app-credits {
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	color: rgba(255, 255, 255, 0.3);
 }
 
 // ##############################################

@@ -14,8 +14,8 @@
 		<!-- MAIN SCREEN -->
 		<div id="main-screen">
 			<div id="main-screen-content-home" class="main-screen-page">
-				<img src="img/logo-blur.png" title="Civis" alt="Civis">
-				<div class="flex-row">
+				<img id="main-screen-logo" src="img/logo-blur.png" title="Civis" alt="Civis">
+				<div class="flex-row flex-center">
 					<button id="home-new"><i class="icon-map"></i><p>Nuova Partita</p></button>
 					<button id="home-load"><i class="icon-upload-1"></i><p>Carica Partita</p></button>
 					<button id="home-manual"><i class="icon-graduation-cap"></i><p>Manuale</p></button>
@@ -23,16 +23,33 @@
 				</div>
 			</div>
 
-			<div id="main-screen-content-settings" class="main-screen-page" hidden>
-				<form action="javascript:return false;" onsubmit="javascript:return false;">
-					<span id="settings-language"><i class="icon-language"></i> Lingua</span> 
+			<div id="main-screen-content-load" class="main-screen-page" style="display: none">
+				<p>TODO</p>
+				<div class="flex-row flex-center">
+					<button id="load-back" style="flex-grow: 1">Indietro</button>
+					<button id="load-load" style="flex-grow: 1">Carica</button>
+				</div>
+			</div>
+
+			<div id="main-screen-content-manual" class="main-screen-page" style="display: none">
+				<p>TODO</p>
+				<div class="flex-row flex-center">
+					<button id="manual-back" style="flex-grow: 1">Indietro</button>
+				</div>
+			</div>
+
+			<div id="main-screen-content-settings" class="main-screen-page" style="display: none">
+				<div class="flex-form-row">
+					<label id="settings-language" for="settings-language-select">Lingua</label> 
 					<select id="settings-language-select">
 						<option value="en-GB">English</option>
 						<option value="it-IT">Italiano</option>
-					</select><br>
-					<button id="settings-save">Salva</button><br>
-					<button id="settings-back">Indietro</button>
-				</form>
+					</select>
+				</div>
+				<div class="flex-row flex-center">
+					<button id="settings-back" style="flex-grow: 1">Indietro</button>
+					<button id="settings-save" style="flex-grow: 1">Salva</button>
+				</div>
 			</div>
 
 			<span id="app-version">v0.6.0</span>

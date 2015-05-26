@@ -42,18 +42,19 @@ localforage.getItem('language', function (error, value) {
 		// ##############################################
 
 		$('#home-new').attr({ title: _('newGame') }).on('click', function () {
-			$('#main-screen').css('top', '-100%');
 			// TESTING
 			test();
+			$('#main-screen').css('top', '-100%');
 		}).find('p').text(_('newGame'));
 
 		$('#home-load').attr({ title: _('loadGame') }).on('click', function () {
-			GAME.loadGame('auto');
-			$('#main-screen').css('top', '-100%');
+			$('.main-screen-page').hide();
+			$('#main-screen-content-load').show();
 		}).find('p').text(_('loadGame'));
 
 		$('#home-manual').attr({ title: _('manual') }).on('click', function () {
-			$('#main-screen').css('top', '-100%');
+			$('.main-screen-page').hide();
+			$('#main-screen-content-manual').show();
 		}).find('p').text(_('manual'));
 
 		$('#home-settings').attr({ title: _('settings') }).on('click', function () {
@@ -65,14 +66,14 @@ localforage.getItem('language', function (error, value) {
 		// # MAIN SCREEN SETTINGS                       #
 		// ##############################################
 
-		$('#settings-language').text(_('language'));
+		$('#settings-language').html('<i class="icon-language"></i> ' + _('language'));
 		$('#settings-language-select').val(LANGUAGE);
 		$('#settings-save').text(_('save')).on('click', function () {
 			loadLanguage($('#settings-language-select').val()).done(function () {
 				alert(_('configurationSaved') + '\n\n' + _('mayReloadGame'));
 			});
 		});
-		$('#settings-back').text(_('back')).on('click', function () {
+		$('#load-back, #manual-back, #settings-back').text(_('back')).on('click', function () {
 			$('.main-screen-page').hide();
 			$('#main-screen-content-home').show();
 		});
