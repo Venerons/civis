@@ -42,9 +42,8 @@ localforage.getItem('language', function (error, value) {
 		// ##############################################
 
 		$('#home-new').attr({ title: _('newGame') }).on('click', function () {
-			// TESTING
-			test();
-			$('#main-screen').css('top', '-100%');
+			$('.main-screen-page').hide();
+			$('#main-screen-content-new').show();
 		}).find('p').text(_('newGame'));
 
 		$('#home-load').attr({ title: _('loadGame') }).on('click', function () {
@@ -66,6 +65,12 @@ localforage.getItem('language', function (error, value) {
 		// # MAIN SCREEN SETTINGS                       #
 		// ##############################################
 
+		$('#new-start').on('click', function () {
+			// TESTING
+			test();
+			$('#main-screen').css('top', '-100%');
+		});
+
 		$('#settings-language').html('<i class="icon-language"></i> ' + _('language'));
 		$('#settings-language-select').val(LANGUAGE);
 		$('#settings-save').text(_('save')).on('click', function () {
@@ -73,7 +78,8 @@ localforage.getItem('language', function (error, value) {
 				alert(_('configurationSaved') + '\n\n' + _('mayReloadGame'));
 			});
 		});
-		$('#load-back, #manual-back, #settings-back').text(_('back')).on('click', function () {
+
+		$('#new-back, #load-back, #manual-back, #settings-back').text(_('back')).on('click', function () {
 			$('.main-screen-page').hide();
 			$('#main-screen-content-home').show();
 		});
@@ -89,6 +95,36 @@ localforage.getItem('language', function (error, value) {
 		$('#header-gold, #header-gold-image').attr({ title: _('gold') });
 		$('#header-culture, #header-culture-image').attr({ title: _('culture') });
 		$('#header-turn-text').text(_('turn'));
+
+		// ##############################################
+		// # SIDEBAR                                    #
+		// ##############################################
+
+		$('#sidebar-map').on('click', function () {
+			$('#dialog').hide();
+		});
+		$('#sidebar-cities').on('click', function () {
+			$('.dialog-section').hide();
+			$('#dialog-cities').show();
+			$('#dialog').show();
+		});
+		$('#sidebar-culture').on('click', function () {
+			$('.dialog-section').hide();
+			$('#dialog-culture').show();
+			$('#dialog').show();
+		});
+		$('#sidebar-tech').on('click', function () {
+			$('.dialog-section').hide();
+			$('#dialog-tech').show();
+			$('#dialog').show();
+		});
+		$('#sidebar-units').on('click', function () {
+			// TODO
+		});
+		$('#sidebar-nextturn').on('click', function () {
+			// TODO
+		});
+		
 
 		// MENU
 		/*

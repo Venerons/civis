@@ -414,3 +414,18 @@ header {
 	resize: both;
 	@extend %stitched;
 }
+
+#dialog-cities {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+#dialog-cities-list {
+	width: 25%;
+	min-width: 200px;
+}
+
+#dialog-cities-overview {}

@@ -23,6 +23,25 @@
 				</div>
 			</div>
 
+			<div id="main-screen-content-new" class="main-screen-page" style="display: none">
+				<div class="flex-form-row">
+					<label>Civiltà</label> 
+					<select></select>
+				</div>
+				<div class="flex-form-row">
+					<label>Giocatori</label> 
+					<select>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+					</select>
+				</div>
+				<div class="flex-row flex-center">
+					<button id="new-back" style="flex-grow: 1">Indietro</button>
+					<button id="new-start" style="flex-grow: 1">Inizia</button>
+				</div>
+			</div>
+
 			<div id="main-screen-content-load" class="main-screen-page" style="display: none">
 				<p>TODO</p>
 				<div class="flex-row flex-center">
@@ -91,7 +110,33 @@
 		<div id="popup" style="display: none"></div>
 
 		<!-- CONTAINER POPUP -->
-		<div id="dialog" style="display: none"></div>
+		<div id="dialog" style="display: none">
+			<!-- CITIES -->
+			<div id="dialog-cities" class="dialog-section">
+				<div id="dialog-cities-list">
+					<div>
+						<h3>My City 1</h3>
+					</div>
+					<div>
+						<h3>My City 2</h3>
+					</div>
+					<div>
+						<h3>My City 3</h3>
+					</div>
+				</div>
+				<div id="dialog-cities-overview">
+					<h2>My City 1</h2>
+				</div>
+			</div>
+			<!-- CULTURE -->
+			<div id="dialog-culture" class="dialog-section"></div>
+			<!-- TECH -->
+			<div id="dialog-tech" class="dialog-section">
+				<div id="dialog-tech-owned"></div>
+				<div id="dialog-tech-overview"></div>
+				<div id="dialog-tech-available"></div>
+			</div>
+		</div>
 
 		<!-- FRAMEWORKS & LIBRARIES -->
 		<script src="js/lib/jquery-2.1.4.min.js"></script>
