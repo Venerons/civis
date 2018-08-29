@@ -9,14 +9,10 @@ It implements similar but simpler rules, and thanks to the web technologies is a
 * [Changelog](https://github.com/Venerons/CivJS/wiki/Changelog)
 * [Roadmap](https://github.com/Venerons/CivJS/wiki/Roadmap)
 
-_Copyright (c) 2013-2015 Daniele Veneroni._  
-_Released under GPLv3 License. See [LICENSE.md](LICENSE.md) for further information._
-
-
 ## Licensing
-
-CivJS  
-Copyright (c) 2013-2015 Daniele Veneroni  
+CivJS
+_Copyright (c) 2013-2015 Daniele Veneroni._  
+_Released under GPLv3 License. See [LICENSE.md](LICENSE.md) for further information._  
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.  
 
