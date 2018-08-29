@@ -1,9 +1,17 @@
 # CivJS
+![CivJS](/img/Civis-main-menu.png)
+
+**CivJS** is an HTML5, CSS3 and JavaScript game inspired by the Sid Meier's Civilization game series.
+
+It implements similar but simpler rules, and thanks to the web technologies is available to almost any modern OS.
+
+* [Instructions Manual](https://github.com/Venerons/CivJS/wiki/Instructions-Manual)
+* [Changelog](https://github.com/Venerons/CivJS/wiki/Changelog)
+* [Roadmap](https://github.com/Venerons/CivJS/wiki/Roadmap)
 
 _Copyright (c) 2013-2015 Daniele Veneroni._  
 _Released under GPLv3 License. See [LICENSE.md](LICENSE.md) for further information._
 
-![CivJS](/img/Civis-main-menu.png)
 
 ## Licensing
 
