@@ -3,7 +3,7 @@
 _Copyright (c) 2013-2015 Daniele Veneroni._  
 _Released under GPLv3 License. See [LICENSE.md](LICENSE.md) for further information._
 
-[CivJS](/img/Civis-main-menu.png)
+![CivJS](/img/Civis-main-menu.png)
 
 ## Licensing
 
