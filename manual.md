@@ -21,7 +21,7 @@ Welcome to CivJS, the JavaScript Civilization Game!
 A victory can be achieved in four different ways.
 
 * Domination: capture all cities of the game.
-* Culture: Obtain 20,000 culture point.
+* Culture: Obtain 20,000 culture points.
 * Economic: Acquire 20,000 Gold.
 * Technological: Be the first to discover Tecnologia Futura. 
 
@@ -29,14 +29,14 @@ As a civilization nears one of the above mentioned victory conditions, all other
 
 ## Controls
 `spacebar` - End turn  
-`up` `left` `right` `down` - move the camera through the map  
+`up` `left` `right` `down` - Move the camera through the map  
 `ctrl + e` - Export map  
 `ctrl + a` - Discover All  
 `ctrl + q` - Zoom out  
 `ctrl + w` - Zoom in  
 
 ## The Map
-The map is the playground of the game. Each tile can be of one of these types:
+The map is the playground of the game. Each tile can be one of these types:
 
 Tile      | Food  | Production | Gold  | Movement | Modifiers  
 --------- | :---: | :--------: | :---: | :------: | :---:  
@@ -63,34 +63,34 @@ Atoll          | -     | +1         | -1    | -              | Water
 Natural Wonder | -     | +2         | +3    | -              | Any  
 
 ## Units
-Each unit have 5 stats:
+Each unit has 5 stats:
 
 * **Life:** Remaining life points of the unit. If the unit have less than 1 life point, it dies.
-* **Exp:** Experience points of the unit. A unit can gain Exp by surviving in a fight. When a unit reach 5 Exp, it becomes Veteran, and gain +50% Atk/Def. When a unit reach 10 Exp, it becomes Elite, and gain +100% Atk/Def.
+* **Exp:** Experience points of the unit. A unit can gain Exp by surviving in a fight. When a unit reaches 5 Exp, it becomes Veteran, and gains +50% Atk/Def. When a unit reaches 10 Exp, it becomes Elite, and gains +100% Atk/Def.
 * **Atk:** Attack power of the unit, used to deal damage in a fight.
 * **Def:** Defence power of the unit, used to prevent damage in a fight.
 * **Mov:** Movement points of the unit, used to move around the map.
 
 A unit can do various actions. Actions can be:
 
-* **Move:** Move the unit to another tile. To move, a unit requires Mov points and consumes a Mov point every tiles moved. Some tiles consumes more Mov than others, see the section _The Map_ for futher informations.
-* **Fortify:** Fortify the unit, that gain a +25% Atk/Def until it's fortified. Moving the unit de-fortify the unit.
+* **Move:** Move the unit to another tile. To move, a unit requires Mov points and consumes a Mov point for every tile moved. Some tiles consume more Mov than others, see the section _The Map_ for futher information.
+* **Fortify:** Fortify the unit, that gain a +25% Atk/Def until it's fortified. Moving the unit de-fortifies the unit.
 * **Kill:** Kill the unit to gain a small amount of gold. The unit will be removed.
 * **No Orders:** Issue no orders to the unit, that will be left as it is.
 
-Some units have also special orders, depending to the unit type. Actions can be:
+Some units also have special orders, depending on the unit type. Actions can be:
 
 * **Settle:** Settle a city in the tile where the unit is. Only available for settlers.
-* **Build Streer:** Build a street on the tile where the unit stands. A street reduce the Mov needed to enter the tile.
+* **Build Streer:** Build a street on the tile where the unit stands. A street reduces the Mov needed to enter the tile.
 * **Build Improvement:** Build an improvement. An improvement can improve a tile Food/Production/Gold values.
 
 ### Fighting
 A fight is resolved this way:
 
-1. Each unit deal damage to the other unit, and the damage dealt is egual to the Atk of the unit minus the Def of the other unit (Damage dealt = Atk - Def).
-2. The damage dealt decrease the life points of the units, and if a unit have no remaining life points, it dies. In a fight could die one, both or none of the units.
+1. Each unit deals damage to the other unit, and the damage dealt is equal to the Atk of the unit minus the Def of the other unit (Damage dealt = Atk - Def).
+2. The damage dealt decreases the life points of the unit, and if a unit has no remaining life points, it dies. A fight could result in the death of one, both or none of the units.
 3. The surviving units (if any) gain an Exp. If a unit is promoted this way to the Elite or Veteran rank, the max life of the unit will be doubled and all the life points will be restored.
-4. If the attacker kill the defender, it take its position. By the way, if the attacker get killed by the defender, the defender cannot gain the position, and stand on its tile.
+4. If the attacker kills the defender, it takes its position. By the way, if the attacker gets killed by the defender, the defender cannot gain the position, and stands on its tile.
 
 ### Settling
 settling instructions
@@ -183,7 +183,7 @@ Cyborg Trooper
 
 ## Cities
 cities about
-each turn will be consumed 2 food per citizen. Eventual remaining will be used to increase population. If negative, population may decrease.
+each turn will consume 2 food per citizen. The remaining food will be used to increase the population. If negative, the population may decrease.
 
 ### Buildings
 Building         | Cost  | Tech Required  | Building Required | Effect  
@@ -214,7 +214,7 @@ Medical Lab
 
 Production Buildings
 -
-Stable (must have access to hourse resource, +2 production)
+Stable (must have access to horse resource, +2 production)
 Forge
 Nuclear Plant
 Recycling center
@@ -262,8 +262,8 @@ Windmill
 
 ## Science
 Science is produced by the player's cities and is used to pay the cost of the research of technologies.  
-Each turn a city produce science and the total science from all of the player's cities is used to pay the cost of the player current technology research.  
-A city produce science equal to the half of its commerce production, plus eventual bonus granted by buildings, tiles, technologies and societies.  
+Each turn a city produces science and the total science from all of the player's cities is used to pay the cost of the player's current technology research.  
+A city produces science equal to half of its commerce production, plus eventual bonus granted by buildings, tiles, technologies and societies.  
 If no research is in queue at the end of the turn, the science produced is converted to gold.
 
 ### Technologies
@@ -325,15 +325,15 @@ Nanotechnology     | 131072 | Particle Physics, Plastic       | -
 Future Technology  | 262144 | Nanotechnology, Nuclear Fission | -  
 
 ## Society
-Each civilization have a society system
+Each civilization has a society system
 
 Society      | Requirements | Effects  
 ------------ | ------------ | ---  
 Anarchy      | -            | No production, commerce, gold, science or food.  
-Dispotism    | -            | No special effects. Available on the beginning of the game.  
+Despotism    | -            | No special effects. Available on the beginning of the game.  
 Monarchy     | Divine Right | -  
 Republic     | Education    | -  
-Teocracy     | Theology     | +XX% culture  
+Theocracy     | Theology     | +XX% culture  
 Democracy    | -            | +50% gold and +50% science but you can't declare war.  
 Socialism    | -            | -  
 Nationalism  | Economy      | -  
