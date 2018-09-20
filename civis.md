@@ -1,14 +1,12 @@
 
-
-
-VITTORIA
+## Victory
 
 * Culturale -> raggiungi la fine del culture track
 * Tecnologica -> ricerca "Volo Spaziale" (tecnologia livello 5)
 * Economica -> colleziona 15 monete
 * Militare -> conquista una capitale nemica
 
-CIVILTA'
+## Civilizations
 
 America
 Cina
@@ -17,7 +15,7 @@ Germania
 Roma
 Russia
 
-MAPPA
+## Map
 
 blocchi da 4x4
 
@@ -41,35 +39,28 @@ Risorse: wheat (grano?), silk, incenso, ferro, uranio
 
 TURN
 
-1. Start of Turn
-	Any player may one or many of these actions:
-	* Build a city by sacrifing a scout (Note: cannot move now)
-	* Change governments (se si cambia si va in anarchia: per quel turno non è possibile eseguire azioni nella capitale)
+1. Init
+	1. Autosave
+	2. Close Popups
+	3. Reset Notifications
+	4. Activate all units
 
-2. Trade
-	- Collect trade from any city (max 27 trade points at a time)
+2. Upkeep
+	1. Gather Trade, Production, Culture and Gold
+	2. Pay upkeep for cities and units
 
-3. City Management
-	For every city take one of the following actions:
-	* produce a unit
-	* produce a building
-	* gain culture points (1 + simboli C negli outskirts. used to advance culture level and achieve culture events or great people)
-	* harvest a resource
+3. Trade
 
-4. Movement
-	For every unit: move a number of spaces on the board equal to the civilization available (min: 2. techs may increase this)
+4. City Management
+	1. For every city, choose between (a) Produce a unit or (b) Produce a building
 
-5. Research
-	Players may spend trade points to research new technologies
+5. Movement
+	1. For every unit, move a number of spaces on the board equal to the civilization available (min: 2. techs may increase this)
 
-EXPANSION RULES:
-	- sacrifice a unit on a city outskirt to grant a one-time bonus to city defence of +???
-	- sacrifice a scout on a city outskirt to grant a one-time bonus to the city of +1 production
-	- Metropolises: A new technology permits players to expand their capital city into a metropolis. Metropolises take up two spaces instead of one, and may be expanded into water. Metropolises also gain a token defensive bonus over regular cities, and generally produce more resources due to there being 10 spaces around the metropolis compared to 8 around the city (metropolis defence +14/+18 if walled)
-	- All 55 unit cards were replaced for new, more complex ones. Now, every card has two attributes: power and strength, working as attack and defense. Every card has a sum of power and strength equal to four, so a card may be 3/1, 2/2 or 1/3. It is possible now to a unit enter combat with another unit and both end the combat alive. Also, at the end of combat, wounds aren't healed and only strength minus wounds (aside of other combat bonus) are counted to declare the winner. These changes made combat much more complex, and luck was reduced as every card has the same total points.
-	- The expansion introduced a fifth possible action for a city. Now every city may start a "building program". Essentially, the city loses its action this turn, and next turn the same city has the double amount of production points. This allows for a greater number of wonders in the game, as well as allow small cities with low production to build a much needed construction.
+6. Research
+	1. Players may spend trade points to research new technologies
 
-CITTA'
+## Cities
 
 * Max 3 città per giocatore
 * Per fondare una città serve uno scout sulla casella (viene sacrificato)
@@ -84,7 +75,7 @@ La casella:
 * il centro non genera nulla
 * le caselle immediatamente adiacenti (outskirts) generano a meno che non ci sia sulla casella un unità nemica
 
-TECNOLOGIE
+## Technologies
 
 ricercare consuma tutto il commercio accumulato dal giocatore, a prescindere dal costo.
 
@@ -94,11 +85,10 @@ Livello 3	16T
 Livello 4	21T
 Livello 5	26T
 
-PRODUZIONE
+## Production
 
 si può convertire 3T in 1P
 
-Army -> 4P (non devono esistere qui)
 Scout -> 6P (non possono entrare in villaggi e accampamenti e vengono uccisi se attaccati)
 Rank 1 Unit -> 5P strength 1-3
 Rank 2 Unit -> 7P strength 2-4
