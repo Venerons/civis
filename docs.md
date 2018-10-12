@@ -39,7 +39,8 @@ Villaggi e accampamenti barbari
 	1. Autosave
 	2. Close Popups
 	3. Reset Notifications
-	4. Activate all units
+	4. Increase turn counter
+	5. Activate all units
 
 2. Upkeep
 	1. Gather Trade, Production, Culture and Gold
