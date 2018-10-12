@@ -1,3 +1,4 @@
+
 ## Victory
 
 * Culturale -> raggiungi la fine del culture track
@@ -7,65 +8,10 @@
 
 ## Civilizations
 
-America
-Cina
-Egitto
-Germania
-Roma
-Russia
-
 ogni civiltà dovrebbe avere almeno un tratto particolare, che sia semplice da implementare e sia equilibrato.
 possibilimente dovrebbe avere anche almeno un'unità unica e un edificio unico.
 
 http://it.wikipedia.org/wiki/Civilt%C3%A0#Elenco_di_civilt.C3.A0_.28secondo_Toynbee_e_Huntington.29
-
-'Romans': {
-	strings: {
-		name: {
-			it: 'Romani',
-			en: 'Romans'
-		},
-		desc: {
-			it: 'questa descrizione comparirà nel campo title dove serve ecc.',
-			en: 'this description will appear on field title where it\'s needed etc.'
-		}
-	},
-	greeting: 'Ave',
-	leaders: ['Gaius Iulius Cæsar', 'Gaius Iulius Cæsar Octavianus Augustus'], // i nomi dei leaders dovrebbero essere nella loro lingua originale, non tradotti
-	cities: ['Roma', 'Pisa', 'Firenze', 'Venezia'] // lista ordinata di nomi di città per suggerimenti e scelta nomi per le AI
-}
-
-Civiltà				| Unità 	| Edificio 	| Leader
--
-Romani				| Legione	| 			| Gaius Iulius Cæsar, Gaius Iulius Cæsar Octavianus Augustus
-Greci				| Oplita	| 			| Alessandro
-Normanni			| Berserker	| 			| Harald, Guglielmo
-Celti				| 			| 			| Vercingetorix, Boudica
-Egizi				| 			| 			| Ramses, Tutankamen, Cleopatra
-Babilonesi			| 			| 			| 
-Persiani			| Immortale |			| Dario I
-Arabi				| 			| 			| Saladino
-Nativi americani	| 			| 			| Hiawatwa
-Maya				|			|			| Pacal
-Aztechi				|			|			| Montezuma I
-Incas				|			|			|
-Indù				|			|			| Ashoka, Ghandi
-Khmer				|			|			|
-Cinesi				|			|			| Mao
-Mongoli				|			|			| Gengis Khan, Kubilai Khan
-Giapponesi			|			|			| Tokugawa, Nobunaga [Yamamoto]
-
-
-Russia (Pietro, Caterina, Stalin, Lenin)
-Spagna (Isabella)
-Francia (Napoleone, Giovanna d'Arco)
-Germania (Bismark, Barbarossa, Hitler)
-Inghilterra (Elisabetta I, Vittoria)
-Zimbabwe
-Zulu
-[Sumeri]
-[Ittiti (Turchi)]
-[Fenici]
 
 ## Map
 
