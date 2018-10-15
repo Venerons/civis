@@ -11,24 +11,10 @@
 		<div id="home">
 			<div id="home-menu" class="page">
 				<img id="home-menu-logo" src="img/logo-blur.png" title="Civis" alt="Civis">
-				<div id="home-menu-buttons" class="flex-row flex-row-margins">
-					<button data-page="home-new">
-						<i class="icon-map"></i>
-						<span>New Game</span>
-					</button>
-					<button data-page="home-load">
-						<i class="icon-upload-1"></i>
-						<span>Load Game</span>
-					</button>
-					<button data-page="home-help">
-						<i class="icon-graduation-cap"></i>
-						<span>Help</span>
-					</button>
-					<button data-page="home-settings">
-						<i class="icon-cog"></i>
-						<span>Settings</span>
-					</button>
-				</div>
+				<button data-page="home-new">New Game</button>
+				<button data-page="home-load">Load Game</button>
+				<button data-page="home-help">Help</button>
+				<button data-page="home-settings">Settings</button>
 			</div>
 
 			<div id="home-new" class="page" style="display: none">
@@ -49,7 +35,7 @@
 					<select id="home-new-player4-civ"style="flex-grow: 1"></select>
 				</div>
 				<div class="flex-row flex-row-margins">
-					<button id="home-new-back" style="flex-grow: 1">Back</button>
+					<button data-page="home-menu" style="flex-grow: 1">Back</button>
 					<button id="home-new-start" style="flex-grow: 1">Start</button>
 				</div>
 			</div>
@@ -57,27 +43,27 @@
 			<div id="home-load" class="page" style="display: none">
 				<ul id="home-load-list" class="list"></ul>
 				<div class="flex-row flex-row-margins">
-					<button id="home-load-back" style="flex-grow: 1">Back</button>
+					<button data-page="home-menu" style="flex-grow: 1">Back</button>
 				</div>
 			</div>
 
 			<div id="home-help" class="page" style="display: none">
 				<p>Work in progess</p>
 				<div class="flex-row flex-row-margins">
-					<button id="home-help-back" style="flex-grow: 1">Back</button>
+					<button data-page="home-menu" style="flex-grow: 1">Back</button>
 				</div>
 			</div>
 
 			<div id="home-settings" class="page" style="display: none">
 				<div class="flex-row flex-row-margins">
-					<label for="home-settings-language">Language</label> 
-					<select id="home-settings-language" style="flex-grow: 1">
+					<label for="home-settings-language" style="flex-grow: 1">Language</label> 
+					<select id="home-settings-language" style="flex-grow: 2">
 						<option value="en">English</option>
 						<option value="it">Italiano</option>
 					</select>
 				</div>
 				<div class="flex-row flex-row-margins">
-					<button id="home-settings-back" style="flex-grow: 1">Back</button>
+					<button data-page="home-menu" style="flex-grow: 1">Back</button>
 					<button id="home-settings-save" style="flex-grow: 1">Save</button>
 				</div>
 			</div>
@@ -110,14 +96,15 @@
 				<button id="main-sidebar-nextturn"><i class="icon-hourglass"></i></button>
 			</div>
 
-			<div id="main-menu">
+			<dialog id="main-menu">
 				<button id="main-menu-save">Save</button>
 				<button id="main-menu-help">Help</button>
 				<button id="main-menu-exit">Exit</button>
 				<button id="main-menu-cancel">Cancel</button>
-			</div>
+			</dialog>
 		</div>
 
+		<script src="https://cdn.jsdelivr.net/npm/dialog-polyfill@0.4.10/dialog-polyfill.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.slim.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/localforage@1/dist/localforage.min.js"></script>
