@@ -122,7 +122,7 @@
 		*/
 	};
 
-	GAME.getNearTiles = function (x, y) {
+	Civis.getNearTiles = function (x, y) {
 		var list = [];
 		if (y !== 0) {
 			if (x !== 0) {
