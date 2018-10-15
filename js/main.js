@@ -28,8 +28,22 @@
 
 	// home - new
 
+	var options = [
+		{ label: 'None', value: 'none' },
+		{ label: 'Random', value: 'random' }
+	];
+	Object.keys(DATABASE.civs).sort().forEach(function (civ) {
+		options.push({ label: DATABASE.civs[civ].name.en, value: civ });
+	});
+	var $selects = $('#home-new select').empty();
+	options.forEach(function (item) {
+		$selects.append('<option value="' + item.value + '">' + item.label + '</option>');
+	});
 	$('#home-new-start').on('click', function () {
 		// TODO
+		var map = Civis.generateMap();
+		window.MAP = map;
+		Civis.renderMap(map);
 		$('#home').hide();
 	});
 
