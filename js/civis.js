@@ -38,8 +38,8 @@
 	Civis.generateMap = function (settings) {
 		var map = {
 			id: Date.now().toString(),
-			width: 16,
-			height: 16,
+			width: settings && settings.width ? settings.width : 16,
+			height: settings && settings.height ? settings.height : 16,
 			turn: 1,
 			players: {},
 			tiles: {}
@@ -101,12 +101,12 @@
 			tile_gap = 1,
 			shapes = {};
 
+		paper.clear();
 		paper.attr({
 			width: width,
 			height: height,
 			viewBox: camera.x + ' ' + camera.y + ' ' + width + ' ' + height
 		});
-
 		$(window).on('resize', function () {
 			width = window.innerWidth;
 			height = window.innerHeight;
@@ -116,42 +116,30 @@
 				viewBox: camera.x + ' ' + camera.y + ' ' + width + ' ' + height
 			});
 		});
-		/*
-		paper.mousemove(function (e) {
-			var step = 10;
-			if (e.pageX < 30) { camera.x -= step; }
-			if (e.pageX > width - 30) { camera.x += step; }
-			if (e.pageY < 60) { camera.y -= step; }
-			if (e.pageY > height - 30) { camera.y += step; }
-			paper.attr({ viewBox: camera.x + ' ' + camera.y + ' ' + width + ' ' + height });
-		});
-		*/
 		paper.drag(function (dx, dy) {
 			camera.x = camera.x_predrag - dx;
 			camera.y = camera.y_predrag - dy;
 			paper.attr({ viewBox: camera.x + ' ' + camera.y + ' ' + width + ' ' + height });
-		}, function (dx, dy) {
+		}, function () {
 			camera.x_predrag = camera.x;
 			camera.y_predrag = camera.y;
-		}, function (dx, dy) {
+		}, function () {
 			delete camera.x_predrag;
 			delete camera.y_predrag;
 		});
 
 		var tiles = {
-			mountain: 'img/map/tiles/mountain.jpg',
-			forest: 'img/map/tiles/grass.jpg',
-			plain: 'img/map/tiles/plain.jpg',
-			desert: 'img/map/tiles/desert.jpg',
-			water: 'img/map/tiles/water.jpg'
+			mountain: '#9ba0a6',
+			forest: '#629246',
+			plain: '#a9d78e',
+			desert: '#bd986c',
+			water: '#136c96'
 		};
 
 		for (var x = 0; x < map.width; ++x) {
 			for (var y = 0; y < map.height; ++y) {
 				var tileID = 'x' + x + 'y' + y;
-				;
-				shapes[tileID] = paper.image(tiles[map.tiles[tileID].type], x * (tile_size + tile_gap), y * (tile_size + tile_gap), tile_size, tile_size);
-				//paper.text(x * (tile_size + tile_gap), y * (tile_size + tile_gap), x + ', ' + y).attr({ 'fill': 'white', 'font-size': 15, 'font-family': 'inherit' });
+				shapes[tileID] = paper.rect(x * (tile_size + tile_gap), y * (tile_size + tile_gap), tile_size, tile_size).attr({ fill: tiles[map.tiles[tileID].type] });
 			}
 		}
 
