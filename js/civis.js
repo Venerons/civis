@@ -96,36 +96,44 @@
 		var paper = Snap('#main-paper'),
 			width = window.innerWidth,
 			height = window.innerHeight,
-			camera = { x: 0, y: 0 },
+			camera = { x: 0, y: 0, zoom: 1 },
 			tile_size = 100,
 			tile_gap = 1,
 			shapes = {};
+
+		var getViewBox = function () {
+			return (camera.x * camera.zoom) + ' ' + (camera.y * camera.zoom) + ' ' + (width * camera.zoom) + ' ' + (height * camera.zoom);
+		};
 
 		paper.clear();
 		paper.attr({
 			width: width,
 			height: height,
-			viewBox: camera.x + ' ' + camera.y + ' ' + width + ' ' + height
+			viewBox: getViewBox()
 		});
-		$(window).on('resize', function () {
+		$(window).off('resize').on('resize', function () {
 			width = window.innerWidth;
 			height = window.innerHeight;
 			paper.attr({
 				width: width,
 				height: height,
-				viewBox: camera.x + ' ' + camera.y + ' ' + width + ' ' + height
+				viewBox: getViewBox()
 			});
 		});
 		paper.drag(function (dx, dy) {
 			camera.x = camera.x_predrag - dx;
 			camera.y = camera.y_predrag - dy;
-			paper.attr({ viewBox: camera.x + ' ' + camera.y + ' ' + width + ' ' + height });
+			paper.attr({ viewBox: getViewBox() });
 		}, function () {
 			camera.x_predrag = camera.x;
 			camera.y_predrag = camera.y;
 		}, function () {
 			delete camera.x_predrag;
 			delete camera.y_predrag;
+		});
+		$('#main-paper').off('wheel').on('wheel', function (e) {
+			camera.zoom = Math.max(0.5, Math.min(1.5, e.originalEvent.deltaY > 0 ? camera.zoom + 0.05 : camera.zoom - 0.05));
+			paper.attr({ viewBox: getViewBox() });
 		});
 
 		var tiles = {
