@@ -1,7 +1,5 @@
 # Civis
 
-![Civis](/img/Civis-main-menu.png)
-
 Civis is a game inspired by the Sid Meier's Civilization game series.
 
 ## Licensing

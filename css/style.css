@@ -211,19 +211,19 @@ button:active {
 
 #main-sidebar {
 	position: fixed;
-	top: 50%;
-	right: 0;
-	transform: translateY(-50%);
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
 	border: 1px dashed #f1c40f;
-	border-right: none;
-	border-radius: 5px 0 0 5px;
+	border-bottom: none;
+	border-radius: 5px 5px 0 0;
 	box-shadow: 0 0 0 4px #C0392B, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
 	/*box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);*/
 	color: #f1c40f;
 	text-shadow: -1px -1px #aa3030;
 	background: #C0392B;
 	display: flex;
-	flex-flow: column nowrap;
+	flex-flow: row nowrap;
 	justify-content: flex-start;
 	align-items: center;
 	align-content: center;
