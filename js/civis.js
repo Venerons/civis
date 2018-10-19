@@ -99,7 +99,7 @@
 			camera = { x: 0, y: 0, zoom: 1 },
 			tile_size = 100,
 			tile_gap = 1,
-			shapes = {};
+			shapes = { tiles: {} };
 
 		var getViewBox = function () {
 			return (camera.x * camera.zoom) + ' ' + (camera.y * camera.zoom) + ' ' + (width * camera.zoom) + ' ' + (height * camera.zoom);
@@ -144,10 +144,40 @@
 			water: '#136c96'
 		};
 
+		/*
 		for (var x = 0; x < map.width; ++x) {
 			for (var y = 0; y < map.height; ++y) {
 				var tileID = 'x' + x + 'y' + y;
-				shapes[tileID] = paper.rect(x * (tile_size + tile_gap), y * (tile_size + tile_gap), tile_size, tile_size).attr({ fill: tiles[map.tiles[tileID].type] });
+				shapes.tiles[tileID] = paper.rect(x * (tile_size + tile_gap), y * (tile_size + tile_gap), tile_size, tile_size).attr({ fill: tiles[map.tiles[tileID].type] });
+			}
+		}
+		*/
+
+		var getHexPolyline = function (x, y, radius) {
+			var h = (radius * Math.sqrt(3)) / 2,
+			return [
+				[x - radius / 2, y + h],
+				[x + radius / 2, y + h],
+				[x + radius, y],
+				[x + radius / 2, y - h],
+				[x - radius / 2, y - h],
+				[x - radius, y],
+				[x - radius / 2, y + h]
+			];
+		};
+
+		// https://www.redblobgames.com/grids/hexagons/
+		var w = 2 * tile_size,
+			h = Math.sqrt(3) * tile_size;
+		for (var x = 0; x < map.width; ++x) {
+			for (var y = 0; y < map.height; ++y) {
+				var cx = (x + 1) * (w * (3/4)),
+					cy = (y + 1) * h;
+				if (x % 2 === 0) {
+					cy += h / 2;
+				}
+				paper.polyline(getHexPolyline(cx, cy, tile_size)).attr({ fill: tiles[map.tiles[tileID].type] });
+				paper.text(cx, cy, x + ', ' + y).attr({ 'text-anchor': 'middle', 'alignment-baseline': 'middle' });
 			}
 		}
 
