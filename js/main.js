@@ -54,7 +54,10 @@
 					type: i === 1 ? 'human' : 'cpu',
 					name: 'Player ' + i,
 					color: color,
-					civ: civ
+					civ: civ,
+					research: 0,
+					culture: 0,
+					trade: 0
 				};
 				players[player.id] = player;
 			}
