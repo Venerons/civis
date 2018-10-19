@@ -40,8 +40,26 @@
 		$selects.append('<option value="' + item.value + '">' + item.label + '</option>');
 	});
 	$('#home-new-start').on('click', function () {
-		// TODO
-		var map = Civis.generateMap();
+		var players = {};
+		[1, 2, 3, 4].forEach(function (i) {
+			var color = $('#home-new-player' + i + '-color').val(),
+				civ = $('#home-new-player' + i + '-civ').val();
+			if (civ !== 'none') {
+				if (civ === 'random') {
+					var civs = Object.keys(DATABASE.civs);
+					civ = civs[Math.floor(Math.random() * civs.length)];
+				}
+				var player = {
+					id: 'player' + i,
+					type: i === 1 ? 'human' : 'cpu',
+					name: 'Player ' + i,
+					color: color,
+					civ: civ
+				};
+				players[player.id] = player;
+			}
+		});
+		var map = Civis.generateMap({ players: players });
 		window.MAP = map;
 		Civis.renderMap(map);
 		$('#home').hide();
@@ -68,8 +86,24 @@
 	});
 
 	$('#main-menu').on('click', 'button', function () {
-		var dialog = document.querySelector('#main-menu');
-		dialog.close();
+		var action = $(this).data('action'),
+			dialog = document.querySelector('#main-menu');
+		if (action === 'save') {
+			// TODO
+		} else if (action === 'help') {
+			// TODO
+		} else if (action === 'exit') {
+			var r = confirm('Are you sure to exit? Unsaved progress will be lost.');
+			if (r) {
+				dialog.close();
+				window.MAP = null;
+				$('#home').find('.page').hide();
+				$('#home-menu').show();
+				$('#home').show();
+			}
+		} else if (action === 'cancel') {
+			dialog.close();
+		}
 	});
 
 })();
