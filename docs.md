@@ -2,27 +2,11 @@
 
 # Turn
 
-1. Init
-	1. Autosave
-	2. Close Popups
-	3. Reset Notifications
-	4. Increase turn counter
-	5. Activate all units
-
-2. Upkeep
-	1. Gather production, research, culture and trade points
-	2. Pay upkeep for cities and units
-
-3. Trade
-
-4. Production
-	1. For every city, choose between (a) Produce a unit or (b) Produce a building or (c) do nothing
-
-5. Movement
-	1. For every unit, move a number of spaces on the board equal to the civilization available (min: 2. techs may increase this)
-
-6. Research
-	1. Players may spend research points to research new technologies
+1. Upkeep
+2. Trade
+3. Production
+4. Movement
+5. Research
 
 ## Upkeep
 
@@ -30,20 +14,20 @@ TODO
 
 ### Resources
 
-**Production:** Used to produce units and building.
-**Research:** Used to research new technologies.
-**Culture:** Used to unlock bonuses.
-**Trade:** Used in trades and also 3 trade points can be spent instead of 1 production, research or culture point.
+* **Production:** Used to produce units and building.
+* **Research:** Used to research new technologies.
+* **Culture:** Used to unlock bonuses.
+* **Trade:** Used in trades and also 3 trade points can be spent instead of 1 production, research or culture point.
 
 ### Tiles
 
-Tile | Production | Trade
---- | :---: | :---:
-Mountain | 1 | -
-Forest | 2 | -
-Plain | - | -
-Desert | - | 1
-Water | - | 1
+Tile     | Production | Trade
+---      | :---:      | :---:
+Mountain | 1          | -
+Forest   | 2          | -
+Plain    | -          | -
+Desert   | -          | 1
+Water    | -          | 1
 
 ## Trade
 
