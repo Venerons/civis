@@ -162,6 +162,9 @@ button:active {
 #home-menu > button {
 	width: 100%;
 }
+#home-menu > button:not(:last-child) {
+	margin-bottom: 1rem;
+}
 
 #home-version {
 	position: absolute;
