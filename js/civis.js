@@ -62,27 +62,26 @@
 			}
 		}
 
-		//var tile_type = ['mountain', 'forest', 'plain', 'desert', 'water'];
 		for (var y = 0; y < map.height; ++y) {
 			for (var x = 0; x < map.width; ++x) {
 				var tile = {
 					id: 'x' + x + 'y' + y,
 					x: x,
 					y: y,
-					type: null, //tile_type[Math.floor(Math.random() * tile_type.length)],
+					type: null,
 					fog: true
 				};
 				var number = Math.floor(Math.random() * 100) + 1;
 				if (number >= 1 && number <= 10) {
-					tile.type = 'mountain';
+					tile.type = 'mountain'; // 10 %
 				} else if (number >= 11 && number <= 30) {
-					tile.type = 'forest';
+					tile.type = 'forest'; // 20 %
 				} else if (number >= 31 && number <= 60) {
-					tile.type = 'plain';
+					tile.type = 'plain'; // 30 %
 				} else if (number >= 61 && number <= 70) {
-					tile.type = 'desert';
+					tile.type = 'desert'; // 10 %
 				} else {
-					tile.type = 'water';
+					tile.type = 'water'; // 30 %
 				}
 				map.tiles[tile.id] = tile;
 			}
@@ -98,7 +97,6 @@
 			height = window.innerHeight,
 			camera = { x: 0, y: 0, zoom: 1 },
 			tile_size = 100,
-			tile_gap = 1,
 			shapes = { tiles: {} };
 
 		var getViewBox = function () {
@@ -120,7 +118,7 @@
 				viewBox: getViewBox()
 			});
 		});
-		paper.drag(function (dx, dy) {
+		paper.undrag().drag(function (dx, dy) {
 			camera.x = camera.x_predrag - dx;
 			camera.y = camera.y_predrag - dy;
 			paper.attr({ viewBox: getViewBox() });
@@ -136,22 +134,13 @@
 			paper.attr({ viewBox: getViewBox() });
 		});
 
-		var tiles = {
+		var tiles_colors = {
 			mountain: '#9ba0a6',
 			forest: '#629246',
 			plain: '#a9d78e',
 			desert: '#bd986c',
 			water: '#136c96'
 		};
-
-		/*
-		for (var x = 0; x < map.width; ++x) {
-			for (var y = 0; y < map.height; ++y) {
-				var tileID = 'x' + x + 'y' + y;
-				shapes.tiles[tileID] = paper.rect(x * (tile_size + tile_gap), y * (tile_size + tile_gap), tile_size, tile_size).attr({ fill: tiles[map.tiles[tileID].type] });
-			}
-		}
-		*/
 
 		var getHexPolyline = function (x, y, radius) {
 			var h = (radius * Math.sqrt(3)) / 2;
@@ -167,20 +156,38 @@
 		};
 
 		// https://www.redblobgames.com/grids/hexagons/
-		var w = 2 * tile_size,
-			h = Math.sqrt(3) * tile_size;
 		for (var x = 0; x < map.width; ++x) {
 			for (var y = 0; y < map.height; ++y) {
 				var tileID = 'x' + x + 'y' + y,
-					cx = (x + 1) * (w * (3/4)),
-					cy = (y + 1) * h;
-				if (x % 2 === 0) {
-					cy += h / 2;
-				}
-				paper.polyline(getHexPolyline(cx, cy, tile_size)).attr({ fill: tiles[map.tiles[tileID].type] });
+					cx = tile_size * 3/2 * x,
+					cy = tile_size * Math.sqrt(3) * (y + 0.5 * (x & 1));
+				shapes.tiles[tileID] = paper.polyline(getHexPolyline(cx, cy, tile_size)).attr({ fill: tiles_colors[map.tiles[tileID].type] });
 				paper.text(cx, cy, x + ', ' + y).attr({ 'text-anchor': 'middle', 'alignment-baseline': 'middle' });
 			}
 		}
+
+		Object.keys(map.tiles).forEach(function (tileID) {
+			var tile = map.tiles[tileID],
+				shape = shapes.tiles[tile.id];
+			shape.mouseover(function () {
+				var n = Civis.getNeighborsTiles(tile.x, tile.y);
+				n.forEach(function (nID) {
+					var s = shapes.tiles[nID];
+					if (s) {
+						s.attr({ stroke: 'yellow', 'stroke-width': 4, 'stroke-linecap': 'round' });
+					}
+				});
+			});
+			shape.mouseout(function () {
+				var n = Civis.getNeighborsTiles(tile.x, tile.y);
+				n.forEach(function (nID) {
+					var s = shapes.tiles[nID];
+					if (s) {
+						s.attr({ stroke: '', 'stroke-width': 0 });
+					}
+				});
+			});
+		});
 
 		/*
 		var units;
@@ -243,33 +250,16 @@
 		*/
 	};
 
-	Civis.getNearTiles = function (x, y) {
-		var list = [];
-		if (y !== 0) {
-			if (x !== 0) {
-				list.push('x' + (x-1) + 'y' + (y-1));
-			}
-			list.push('x' + x + 'y' + (y-1));
-			if (x !== MAP.width - 1) {
-				list.push('x' + (x+1) + 'y' + (y-1));
-			}
-		}
-		if (x !== 0) {
-			list.push('x' + (x-1) + 'y' + y);
-		}
-		list.push('x' + x + 'y' + y);
-		if (x !== MAP.width - 1) {
-			list.push('x' + (x+1) + 'y' + y);
-		}
-		if (y !== MAP.height - 1) {
-			if (x !== 0) {
-				list.push('x' + (x-1) + 'y' + (y+1));
-			}
-			list.push('x' + x + 'y' + (y+1));
-			if (x !== MAP.width - 1) {
-				list.push('x' + (x+1) + 'y' + (y+1));
-			}
-		}
+	Civis.getNeighborsTiles = function (x, y) {
+		var oddq_directions = [
+			[[x + 1, y], [x + 1, y - 1], [x, y - 1], [x - 1, y - 1], [x - 1,  y], [x, y + 1]],
+			[[x + 1, y + 1], [x + 1,  y], [x, y - 1], [x - 1, y], [x - 1, y + 1], [x, y + 1]]
+		];
+		var array = oddq_directions[x & 1],
+			list = [];
+		array.forEach(function (item) {
+			list.push('x' + item[0] + 'y' + item[1]);
+		});
 		return list;
 	};
 
