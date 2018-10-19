@@ -41,26 +41,9 @@
 			width: settings && settings.width ? settings.width : 16,
 			height: settings && settings.height ? settings.height : 16,
 			turn: 1,
-			players: {},
+			players: settings && settings.players ? settings.players : {},
 			tiles: {}
 		};
-
-		if (settings && settings.players) {
-			map.players = settings.players;
-		} else {
-			var colors = ['crimson', 'orangered', 'darkorange', 'gold', 'limegreen', 'mediumaquamarine', 'dodgerblue', 'mediumslateblue', 'mediumvioletred'],
-				civs = Object.keys(DATABASE.civs);
-			for (var i = 0; i < 4; ++i) {
-				var player = {
-					id: 'player' + (i + 1),
-					type: i === 0 ? 'human' : 'cpu',
-					name: 'Player ' + (i + 1),
-					color: colors[Math.floor(Math.random() * colors.length)],
-					civ: civs[Math.floor(Math.random() * civs.length)]
-				};
-				map.players[player.id] = player;
-			}
-		}
 
 		for (var y = 0; y < map.height; ++y) {
 			for (var x = 0; x < map.width; ++x) {
