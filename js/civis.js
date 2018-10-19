@@ -154,7 +154,7 @@
 		*/
 
 		var getHexPolyline = function (x, y, radius) {
-			var h = (radius * Math.sqrt(3)) / 2,
+			var h = (radius * Math.sqrt(3)) / 2;
 			return [
 				[x - radius / 2, y + h],
 				[x + radius / 2, y + h],
@@ -171,7 +171,8 @@
 			h = Math.sqrt(3) * tile_size;
 		for (var x = 0; x < map.width; ++x) {
 			for (var y = 0; y < map.height; ++y) {
-				var cx = (x + 1) * (w * (3/4)),
+				var tileID = 'x' + x + 'y' + y,
+					cx = (x + 1) * (w * (3/4)),
 					cy = (y + 1) * h;
 				if (x % 2 === 0) {
 					cy += h / 2;
