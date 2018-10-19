@@ -74,7 +74,7 @@ select {
 }
 select optgroup {
 	font-weight: bold;
-	background: #C0392B;
+	background: #87281e;
 	color: gold;
 }
 
@@ -101,7 +101,7 @@ button:hover,
 button:focus {
 	outline: 0;
 	background: gold;
-	color: #C0392B;
+	color: #87281e;
 }
 button:active {
 	outline: 0;
@@ -144,7 +144,7 @@ button:active {
 	z-index: 5;
 	overflow: auto;
 	color: #f1c40f;
-	background: url("background.png") #C0392B;
+	background: url("background.png") #87281e;
 	transition: all 1s ease;
 	display: flex;
 	flex-flow: column nowrap;
@@ -172,8 +172,8 @@ button:active {
 #home-credits {
 	position: absolute;
 	bottom: 10px;
-	left: 50%;
-	transform: translateX(-50%);
+	width: 100%;
+	text-align: center;
 	color: rgba(255, 255, 255, 0.3);
 }
 
@@ -217,11 +217,11 @@ button:active {
 	border: 1px dashed #f1c40f;
 	border-bottom: none;
 	border-radius: 5px 5px 0 0;
-	box-shadow: 0 0 0 4px #C0392B, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+	box-shadow: 0 0 0 4px #87281e, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
 	/*box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);*/
 	color: #f1c40f;
 	text-shadow: -1px -1px #aa3030;
-	background: #C0392B;
+	background: #87281e;
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: flex-start;
@@ -250,11 +250,11 @@ button:active {
 	max-height: 95%;
 	border: 1px dashed #f1c40f;
 	border-radius: 5px;
-	box-shadow: 0 0 0 4px #C0392B, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+	box-shadow: 0 0 0 4px #87281e, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
 	/*box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);*/
 	color: #f1c40f;
 	text-shadow: -1px -1px #aa3030;
-	background: #C0392B;
+	background: #87281e;
 }
 #main-menu > button {
 	width: 100%;
