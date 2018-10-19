@@ -40,9 +40,11 @@
 			id: Date.now().toString(),
 			width: settings && settings.width ? settings.width : 16,
 			height: settings && settings.height ? settings.height : 16,
-			turn: 1,
+			turn: 0,
 			players: settings && settings.players ? settings.players : {},
-			tiles: {}
+			tiles: {},
+			cities: {},
+			units: {}
 		};
 
 		for (var y = 0; y < map.height; ++y) {
@@ -244,6 +246,58 @@
 			list.push('x' + item[0] + 'y' + item[1]);
 		});
 		return list;
+	};
+
+	Civis.executePhase = function (phase) {
+		if (phase === 'init') {
+			// autosave
+			// TODO
+			// close popups
+			// TODO
+			// reset notifications
+			// TODO
+			// increase turn counter
+			MAP.turn += 1;
+		} else if (phase === 'upkeep') {
+			// gather production, research, culture and trade points
+			Object.keys(MAP.cities).forEach(function (cityID) {
+				var city = MAP.cities[cityID],
+					player = MAP.players[city.player];
+				// gather resources from neighbors tiles
+				var tiles = Civis.getNeighborsTiles(city.x, city.y);
+				tiles.forEach(function (tileID) {
+					var tile = MAP.tiles[tileID];
+					if (tile) {
+						if (tile.type === 'mountain') {
+							city.production += 1;
+						} else if (tile.type === 'forest') {
+							city.production += 2;
+						} else if (tile.type === 'desert') {
+							player.trade += 1;
+						} else if (tile.type === 'water') {
+							player.trade += 1;
+						}
+					}
+				});
+				// gather resources from city buildings
+				// TODO
+			});
+			// pay upkeep for cities and units
+			// TODO
+		} else if (phase === 'trade') {
+			// TODO
+		} else if (phase === 'production') {
+			// for every city, choose between (a) Produce a unit or (b) Produce a building or (c) do nothing
+			// TODO
+		} else if (phase === 'movement') {
+			// activate all units
+			// TODO
+			// for every unit, move a number of spaces on the board equal to the civilization available (min: 2. techs may increase this)
+			// TODO
+		} else if (phase === 'research') {
+			// players may spend research points to research new technologies
+			// TODO
+		}
 	};
 
 	window.Civis = Civis;
