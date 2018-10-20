@@ -162,8 +162,8 @@ button:active {
 #home-menu > button {
 	width: 100%;
 }
-#home-menu > button:not(:last-child) {
-	margin-bottom: 1rem;
+#home-menu > button {
+	margin-top: 1rem;
 }
 
 #home-version {

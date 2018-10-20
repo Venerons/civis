@@ -81,6 +81,16 @@
 		// TODO
 	});
 
+	$('#main-sidebar-next').on('click', function () {
+		var phases = ['init', 'upkeep', 'trade', 'production', 'movement', 'research'],
+			nextPhase = phases.indexOf(MAP.phase) + 1;
+		if (!phases[nextPhase]) {
+			nextPhase = 0;
+		}
+		MAP.phase = phases[nextPhase];
+		Civis.executePhase(MAP.phase);
+	});
+
 	// main - menu
 	$('#main-header-menu').on('click', function () {
 		var dialog = document.querySelector('#main-menu');

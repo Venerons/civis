@@ -38,9 +38,10 @@
 	Civis.generateMap = function (settings) {
 		var map = {
 			id: Date.now().toString(),
-			width: settings && settings.width ? settings.width : 16,
+			width: settings && settings.width ? settings.width : 32,
 			height: settings && settings.height ? settings.height : 16,
 			turn: 0,
+			phase: 'init',
 			players: settings && settings.players ? settings.players : {},
 			tiles: {},
 			cities: {},
@@ -81,7 +82,7 @@
 			width = window.innerWidth,
 			height = window.innerHeight,
 			camera = { x: 0, y: 0, zoom: 1 },
-			tile_size = 100,
+			tile_size = 50,
 			shapes = { tiles: {} };
 
 		var getViewBox = function () {
@@ -250,6 +251,7 @@
 
 	Civis.executePhase = function (phase) {
 		if (phase === 'init') {
+			$('#main-sidebar-phase').text('Init');
 			// autosave
 			// TODO
 			// close popups
@@ -259,6 +261,7 @@
 			// increase turn counter
 			MAP.turn += 1;
 		} else if (phase === 'upkeep') {
+			$('#main-sidebar-phase').text('Upkeep');
 			// gather production, research, culture and trade points
 			Object.keys(MAP.cities).forEach(function (cityID) {
 				var city = MAP.cities[cityID],
@@ -285,16 +288,20 @@
 			// pay upkeep for cities and units
 			// TODO
 		} else if (phase === 'trade') {
+			$('#main-sidebar-phase').text('Trade');
 			// TODO
 		} else if (phase === 'production') {
+			$('#main-sidebar-phase').text('Production');
 			// for every city, choose between (a) Produce a unit or (b) Produce a building or (c) do nothing
 			// TODO
 		} else if (phase === 'movement') {
+			$('#main-sidebar-phase').text('Movement');
 			// activate all units
 			// TODO
 			// for every unit, move a number of spaces on the board equal to the civilization available (min: 2. techs may increase this)
 			// TODO
 		} else if (phase === 'research') {
+			$('#main-sidebar-phase').text('Research');
 			// players may spend research points to research new technologies
 			// TODO
 		}
