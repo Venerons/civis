@@ -55,6 +55,7 @@
 					name: 'Player ' + i,
 					color: color,
 					civ: civ,
+					leader: DATABASE.civs[civ].leaders[Math.floor(Math.random() * DATABASE.civs[civ].leaders.length)],
 					research: 0,
 					culture: 0,
 					trade: 0
