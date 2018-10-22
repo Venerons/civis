@@ -213,7 +213,23 @@ var DATABASE = {
 				it: 'Descrizione'
 			},
 			cost: 10,
-			upkeep: 1,
+			require: null
+		}
+	},
+	
+	// TECHNOLOGIES
+
+	techs: {
+		writing: {
+			name: {
+				en: 'Writing',
+				it: 'Scrittura'
+			},
+			description: {
+				en: 'Description',
+				it: 'Descrizione'
+			},
+			cost: 10,
 			require: null
 		}
 	},
