@@ -76,7 +76,7 @@
 		Object.keys(map.players).forEach(function (playerID) {
 			var player = map.players[playerID];
 			var city = {
-				id: Date.now().toString(),
+				id: Math.floor(Date.now() + Math.random()).toString(),
 				player: player.id,
 				name: DATABASE.civs[player.civ].cities[0],
 				x: Math.floor(Math.random() * map.width),
@@ -84,6 +84,7 @@
 				buildings: []
 			};
 			map.cities[city.id] = city;
+			console.log(city.id, city.name);
 		});
 
 		//console.log(map);
@@ -195,12 +196,16 @@
 				player = map.players[city.player],
 				tile_shape = shapes.tiles['x' + city.x + 'y' + city.y],
 				tile_bbox = tile_shape.getBBox();
+			console.log(tile_bbox.cx, tile_bbox.cy, city.name);
+			paper.text(tile_bbox.cx, tile_bbox.cy, city.name + '').attr({ 'text-anchor': 'middle', 'alignment-baseline': 'middle', fill: player.color });
+			/*
 			Snap.load('img/ui/building.svg', function (f) {
 				f.attr({ x: tile_bbox.cx, y: tile_bbox.cy });
 				paper.append(f);
 				shapes.cities[city.id] = f;
-				paper.text(tile_bbox.cx, tile_bbox.cy, city.name).attr({ 'text-anchor': 'middle', 'alignment-baseline': 'middle', stroke: player.color, fill: player.color });
+				paper.text(tile_bbox.cx, tile_bbox.cy, city.name + '').attr({ 'text-anchor': 'middle', 'alignment-baseline': 'middle', stroke: player.color, fill: player.color });
 			});
+			*/
 		});
 
 		/*
