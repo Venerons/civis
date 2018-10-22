@@ -73,6 +73,19 @@
 			}
 		}
 
+		Object.keys(map.players).forEach(function (playerID) {
+			var player = map.players[playerID];
+			var city = {
+				id: Date.now().toString(),
+				player: player.id,
+				name: DATABASE.civs[player.civ].cities[0],
+				x: Math.floor(Math.random() * map.width),
+				y: Math.floor(Math.random() * map.height),
+				buildings: []
+			};
+			map.cities[city.id] = city;
+		});
+
 		//console.log(map);
 		return map;
 	};
@@ -148,10 +161,11 @@
 					cx = tile_size * 3/2 * x,
 					cy = tile_size * Math.sqrt(3) * (y + 0.5 * (x & 1));
 				shapes.tiles[tileID] = paper.polyline(getHexPolyline(cx, cy, tile_size)).attr({ fill: tiles_colors[map.tiles[tileID].type] });
-				paper.text(cx, cy, x + ', ' + y).attr({ 'text-anchor': 'middle', 'alignment-baseline': 'middle' });
+				//paper.text(cx, cy, x + ', ' + y).attr({ 'text-anchor': 'middle', 'alignment-baseline': 'middle' });
 			}
 		}
 
+		/*
 		Object.keys(map.tiles).forEach(function (tileID) {
 			var tile = map.tiles[tileID],
 				shape = shapes.tiles[tile.id];
@@ -172,6 +186,20 @@
 						s.attr({ stroke: '', 'stroke-width': 0 });
 					}
 				});
+			});
+		});
+		*/
+
+		Object.keys(map.cities).forEach(function (cityID) {
+			var city = map.cities[cityID],
+				player = map.players[city.player],
+				tile_shape = shapes.tiles['x' + city.x + 'y' + city.y],
+				tile_bbox = tile_shape.getBBox();
+			Snap.load('img/ui/building.svg', function (f) {
+				f.attr({ x: tile_bbox.cx, y: tile_bbox.cy });
+				paper.append(f);
+				shapes.cities[city.id] = f;
+				paper.text(tile_bbox.cx, tile_bbox.cy, city.name).attr({ 'text-anchor': 'middle', 'alignment-baseline': 'middle', stroke: player.color, fill: player.color });
 			});
 		});
 
@@ -262,6 +290,8 @@
 			MAP.turn += 1;
 		} else if (phase === 'upkeep') {
 			$('#main-sidebar-phase').text('Upkeep');
+			// save current situation of the map
+			var previous = JSON.parse(JSON.stringify(MAP));
 			// gather production, research, culture and trade points
 			Object.keys(MAP.cities).forEach(function (cityID) {
 				var city = MAP.cities[cityID],
@@ -283,9 +313,45 @@
 					}
 				});
 				// gather resources from city buildings
-				// TODO
+				city.buildings.forEach(function (buildingID) {
+					var building = DATABASE.buildings[buildingID];
+					if (building) {
+						// TODO
+					}
+				});
 			});
-			// pay upkeep for cities and units
+			/*
+			// pay upkeep cost
+			Object.keys(MAP.cities).forEach(function (cityID) {
+				var city = MAP.cities[cityID],
+					player = MAP.players[city.player];
+				// pay upkeep for each building
+				player.trade -= city.buildings.length;
+			});
+			Object.keys(MAP.units).forEach(function (unitID) {
+				var unit = MAP.units[unitID],
+					player = MAP.players[unit.player];
+				// pay upkeep for each unit
+				player.trade -= 1;
+			});
+			*/
+			// show resume dialog
+			Object.keys(MAP.players).forEach(function (playerID) {
+				var player = MAP.players[playerID];
+				if (player.type === 'human') {
+					var previous_player = previous.players[playerID];
+					//previous_player.research - player.research
+					//previous_player.culture - player.culture
+					//previous_player.trade - player.trade
+					Object.keys(MAP.cities).forEach(function (cityID) {
+						var city = MAP.cities[cityID];
+						if (city.player === player.id) {
+							var previous_city = previous.cities[cityID];
+							//previous_city.production - city.production
+						}
+					});
+				}
+			});
 			// TODO
 		} else if (phase === 'trade') {
 			$('#main-sidebar-phase').text('Trade');
