@@ -39,23 +39,25 @@
 	options.forEach(function (item) {
 		$selects.append('<option value="' + item.value + '">' + item.label + '</option>');
 	});
+	$selects.val('random');
 	$('#home-new-start').on('click', function () {
-		var players = {};
+		var players = {},
+			colors = ['#89D8FF', '#78C5D6', '#459BA8', '#79C267', '#C5D647', '#9CFF86', '#FFFA8B', '#F5D63D', '#FFB481', '#F28C33', '#FF7F7F', '#E868A2', '#BF62A6'];
 		[1, 2, 3, 4].forEach(function (i) {
-			var color = $('#home-new-player' + i + '-color').val(),
-				civ = $('#home-new-player' + i + '-civ').val();
+			var civ = $('#home-new-player' + i + '-civ').val();
 			if (civ !== 'none') {
 				if (civ === 'random') {
 					var civs = Object.keys(DATABASE.civs);
 					civ = civs[Math.floor(Math.random() * civs.length)];
 				}
+				var dbciv = DATABASE.civs[civ];
 				var player = {
 					id: 'player' + i,
 					type: i === 1 ? 'human' : 'cpu',
 					name: 'Player ' + i,
-					color: color,
 					civ: civ,
-					leader: DATABASE.civs[civ].leaders[Math.floor(Math.random() * DATABASE.civs[civ].leaders.length)],
+					leader: dbciv.leaders[Math.floor(Math.random() * DATABASE.civs[civ].leaders.length)],
+					color: dbciv.color || colors[Math.floor(Math.random() * colors.length)],
 					research: 0,
 					culture: 0,
 					trade: 0
